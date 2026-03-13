@@ -698,7 +698,7 @@
 
 <script>
 // ---- AUTH ----
-const SENHA_HASH = '3a7bd3e2360a3d29eea436fcfb7e44c735d117c681f5bb6d466d28eff50b9674'; // sha256 de 159632
+const SENHA_HASH = 'cccb809ce1866f33d1baa07bd41496d62218a61c785bd0511be9df40b33a9445'; // sha256 de 159632
 
 async function sha256(msg) {
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(msg));
