@@ -361,6 +361,13 @@
   .toast.error   { background: var(--coral); }
   .toast.info    { background: var(--violet); }
 
+  .btn-primary-sm {
+    padding:.5rem 1.1rem;background:linear-gradient(135deg,#7C3AED,#FF5C5C);
+    color:white;border:none;border-radius:8px;font-size:.82rem;font-weight:700;
+    cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:transform .2s;
+  }
+  .btn-primary-sm:hover { transform:translateY(-2px); }
+
   @media (max-width: 768px) {
     .sidebar { display: none; }
     .main { margin-left: 0; }
@@ -475,16 +482,24 @@
   <div class="login-card">
     <div class="login-icon">🔐</div>
     <h1>Área Restrita</h1>
-    <p>Digite a senha de administrador<br>para acessar o painel.</p>
+    <p>Acesse com seu e-mail e senha<br>de administrador.</p>
+
+    <div class="login-input-wrap" style="margin-bottom:.75rem">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="position:absolute;left:1rem;top:50%;transform:translateY(-50%);color:#8B7BAD"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      <input class="login-input" type="email" id="login-email"
+        placeholder="Seu e-mail..." style="padding-left:2.8rem;letter-spacing:normal"
+        onkeydown="if(event.key==='Enter')tryLogin()">
+    </div>
 
     <div class="login-input-wrap">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="position:absolute;left:1rem;top:50%;transform:translateY(-50%);color:#8B7BAD"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
       <input class="login-input" type="password" id="login-input"
-        placeholder="Digite a senha..." maxlength="20"
+        placeholder="Sua senha..." style="padding-left:2.8rem"
         onkeydown="if(event.key==='Enter')tryLogin()">
       <button class="eye-btn" onclick="toggleEye()" id="eye-btn" title="Mostrar/ocultar">👁️</button>
     </div>
 
-    <div class="login-error" id="login-error">⚠️ Senha incorreta. Tente novamente.</div>
+    <div class="login-error" id="login-error">⚠️ E-mail ou senha incorretos.</div>
     <div class="locked-msg" id="locked-msg">🔒 Muitas tentativas. Aguarde <span id="countdown">30</span> segundos.</div>
 
     <button class="btn-login" id="btn-login" onclick="tryLogin()">
@@ -516,6 +531,9 @@
     <a class="nav-item" onclick="showSection('empresas')">
       <span class="icon">🏢</span> Empresas
     </a>
+    <a class="nav-item" onclick="showSection('admins')">
+      <span class="icon">👤</span> Administradores
+    </a>
     <a class="nav-item" onclick="showSection('configuracoes')">
       <span class="icon">⚙️</span> Configurações
     </a>
@@ -526,10 +544,10 @@
   </nav>
   <div class="sidebar-footer">
     <div class="admin-pill">
-      <div class="admin-avatar">AD</div>
+      <div class="admin-avatar" id="sidebar-avatar">AD</div>
       <div class="admin-info">
-        <div class="admin-name">Administrador</div>
-        <div class="admin-role">Super Admin</div>
+        <div class="admin-name" id="sidebar-nome">Administrador</div>
+        <div class="admin-role" id="sidebar-email">admin</div>
       </div>
       <button onclick="logout()" title="Sair" style="background:none;border:none;cursor:pointer;color:var(--muted);font-size:1rem;transition:color 0.2s;" onmouseover="this.style.color='#FF5C5C'" onmouseout="this.style.color='var(--muted)'">⏏️</button>
     </div>
@@ -682,8 +700,46 @@
         </div>
       </div>
     </div>
+    <!-- ADMINS -->
+    <div class="section" id="section-admins">
+      <div class="panel-header">
+        <div class="panel-title">👤 Administradores</div>
+        <button class="btn-primary-sm" onclick="openAdminModal()">+ Novo Admin</button>
+      </div>
+      <div class="job-list" id="admins-list"></div>
+    </div>
+
   </div>
 </main>
+
+<!-- MODAL ADMINS -->
+<div class="modal-overlay" id="modal-admin-overlay" onclick="if(event.target===this)closeAdminModal()">
+  <div class="modal" style="max-width:420px">
+    <button class="modal-close" onclick="closeAdminModal()">✕</button>
+    <h2 style="font-family:'Clash Display',sans-serif;font-size:1.3rem;margin-bottom:1.5rem">➕ Novo Administrador</h2>
+    <div style="display:flex;flex-direction:column;gap:1rem">
+      <div>
+        <label style="font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:block;margin-bottom:.4rem">Nome</label>
+        <input type="text" id="new-admin-nome" placeholder="Nome do administrador"
+          style="width:100%;padding:.75rem 1rem;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:10px;font-size:.9rem;color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;outline:none">
+      </div>
+      <div>
+        <label style="font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:block;margin-bottom:.4rem">E-mail</label>
+        <input type="email" id="new-admin-email" placeholder="email@exemplo.com"
+          style="width:100%;padding:.75rem 1rem;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:10px;font-size:.9rem;color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;outline:none">
+      </div>
+      <div>
+        <label style="font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:block;margin-bottom:.4rem">Senha</label>
+        <input type="password" id="new-admin-senha" placeholder="Mínimo 6 caracteres"
+          style="width:100%;padding:.75rem 1rem;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:10px;font-size:.9rem;color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;outline:none">
+      </div>
+      <div id="admin-modal-msg" style="font-size:.85rem;display:none;padding:.75rem;border-radius:8px;text-align:center"></div>
+      <button onclick="createAdmin()" style="width:100%;padding:.9rem;background:linear-gradient(135deg,#7C3AED,#FF5C5C);color:white;border:none;border-radius:12px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:transform .2s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
+        Criar Administrador ✓
+      </button>
+    </div>
+  </div>
+</div>
 
 <!-- MODAL DETALHES -->
 <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
@@ -696,68 +752,88 @@
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
+const SUPABASE_URL = 'https://hnhxxchhwhdlpuiceirz.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhuaHh4Y2hod2hkbHB1aWNlaXJ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM0MjY4MDMsImV4cCI6MjA4OTAwMjgwM30._N9DBrCq7lXW6tpfpcXHHcaH21AqEAcinPPIE-_-Ik8';
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
 // ---- AUTH ----
-const SENHA_HASH = 'cccb809ce1866f33d1baa07bd41496d62218a61c785bd0511be9df40b33a9445'; // sha256 de 159632
+let adminLogado = JSON.parse(sessionStorage.getItem('admin_data') || 'null');
+let attempts = 0;
+const MAX_ATTEMPTS = 5;
+let locked = false;
 
 async function sha256(msg) {
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(msg));
   return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
 }
 
-let attempts = 0;
-const MAX_ATTEMPTS = 5;
-let locked = false;
-
 function checkAuth() {
-  const ok = sessionStorage.getItem('admin_auth') === '1';
-  if (ok) { document.getElementById('login-screen').style.display = 'none'; render(); }
+  if (adminLogado) {
+    document.getElementById('login-screen').style.display = 'none';
+    updateSidebarAdmin();
+    render();
+  }
 }
 
 async function tryLogin() {
   if (locked) return;
-  const input = document.getElementById('login-input');
-  const val = input.value.trim();
-  if (!val) return;
+  const email = document.getElementById('login-email').value.trim();
+  const senha = document.getElementById('login-input').value;
+  const btn   = document.getElementById('btn-login');
+  const err   = document.getElementById('login-error');
 
-  const hash = await sha256(val);
-  if (hash === SENHA_HASH) {
-    sessionStorage.setItem('admin_auth', '1');
-    document.getElementById('login-screen').style.display = 'none';
-    render();
-  } else {
+  if (!email || !senha) { err.classList.add('show'); return; }
+
+  btn.disabled = true; btn.textContent = 'Verificando...';
+  const hash = await sha256(senha);
+
+  const { data, error } = await sb.from('admins')
+    .select('*').eq('email', email).eq('senha_hash', hash).eq('ativo', true).maybeSingle();
+
+  if (error || !data) {
     attempts++;
-    input.value = '';
-    input.classList.add('shake');
-    setTimeout(() => input.classList.remove('shake'), 400);
-    document.getElementById('login-error').classList.add('show');
+    document.getElementById('login-input').value = '';
+    document.getElementById('login-input').classList.add('shake');
+    setTimeout(() => document.getElementById('login-input').classList.remove('shake'), 400);
+    err.classList.add('show');
+    btn.disabled = false; btn.textContent = 'Entrar no Painel →';
 
     const left = MAX_ATTEMPTS - attempts;
-    if (left > 0) {
-      document.getElementById('attempts-text').textContent = `Tentativas restantes: ${left}`;
-    }
+    if (left > 0) document.getElementById('attempts-text').textContent = `Tentativas restantes: ${left}`;
 
     if (attempts >= MAX_ATTEMPTS) {
-      locked = true;
-      document.getElementById('btn-login').disabled = true;
-      document.getElementById('login-error').classList.remove('show');
+      locked = true; btn.disabled = true;
+      err.classList.remove('show');
       document.getElementById('locked-msg').classList.add('show');
       document.getElementById('attempts-text').textContent = '';
       let secs = 30;
       document.getElementById('countdown').textContent = secs;
-      const interval = setInterval(() => {
-        secs--;
-        document.getElementById('countdown').textContent = secs;
+      const iv = setInterval(() => {
+        secs--; document.getElementById('countdown').textContent = secs;
         if (secs <= 0) {
-          clearInterval(interval);
-          locked = false; attempts = 0;
-          document.getElementById('btn-login').disabled = false;
+          clearInterval(iv); locked = false; attempts = 0;
+          btn.disabled = false;
           document.getElementById('locked-msg').classList.remove('show');
           document.getElementById('attempts-text').textContent = '';
         }
       }, 1000);
     }
+  } else {
+    sessionStorage.setItem('admin_data', JSON.stringify(data));
+    adminLogado = data;
+    document.getElementById('login-screen').style.display = 'none';
+    updateSidebarAdmin();
+    render();
   }
+}
+
+function updateSidebarAdmin() {
+  if (!adminLogado) return;
+  document.getElementById('sidebar-nome').textContent = adminLogado.nome;
+  document.getElementById('sidebar-email').textContent = adminLogado.email;
+  document.getElementById('sidebar-avatar').textContent = adminLogado.nome.charAt(0).toUpperCase();
 }
 
 function toggleEye() {
@@ -768,13 +844,99 @@ function toggleEye() {
 }
 
 function logout() {
-  sessionStorage.removeItem('admin_auth');
+  sessionStorage.removeItem('admin_data');
   location.reload();
 }
 
-// ---- DATA ----
-function getVagas() { return JSON.parse(localStorage.getItem('iniciaaí_vagas') || '[]'); }
-function saveVagas(v) { localStorage.setItem('iniciaaí_vagas', JSON.stringify(v)); }
+// ---- ADMINS CRUD ----
+async function renderAdmins() {
+  const { data } = await sb.from('admins').select('*').order('created_at');
+  const list = document.getElementById('admins-list');
+
+  if (!data?.length) {
+    list.innerHTML = emptyHTML('Nenhum administrador', 'Adicione um novo admin clicando em "+ Novo Admin".');
+    return;
+  }
+
+  list.innerHTML = data.map(a => `
+    <div class="admin-job-card">
+      <div class="ajc-logo" style="background:linear-gradient(135deg,rgba(124,58,237,.2),rgba(255,92,92,.2));font-family:'Clash Display',sans-serif;font-weight:700;color:#A78BFA;font-size:1.2rem">
+        ${a.nome.charAt(0).toUpperCase()}
+      </div>
+      <div class="ajc-info">
+        <div class="ajc-title">${a.nome} ${a.email === adminLogado?.email ? '<span style="font-size:.7rem;background:rgba(167,139,250,.2);color:#A78BFA;padding:.15rem .5rem;border-radius:50px;font-weight:600">Você</span>' : ''}</div>
+        <div class="ajc-meta">
+          <span>📧 ${a.email}</span>
+          <span>📅 ${new Date(a.created_at).toLocaleDateString('pt-BR')}</span>
+        </div>
+      </div>
+      <span class="status-badge ${a.ativo ? 'status-aprovada' : 'status-rejeitada'}">${a.ativo ? '✅ Ativo' : '❌ Inativo'}</span>
+      <div class="ajc-actions">
+        ${a.email !== adminLogado?.email ? `
+          <button class="btn-action ${a.ativo ? 'btn-reject' : 'btn-approve'}" onclick="toggleAdminStatus('${a.id}', ${a.ativo})">
+            ${a.ativo ? 'Desativar' : 'Ativar'}
+          </button>
+          <button class="btn-action btn-delete" onclick="deleteAdmin('${a.id}', '${a.nome}')">Excluir</button>
+        ` : '<span style="font-size:.75rem;color:var(--muted)">Conta atual</span>'}
+      </div>
+    </div>`).join('');
+}
+
+async function createAdmin() {
+  const nome  = document.getElementById('new-admin-nome').value.trim();
+  const email = document.getElementById('new-admin-email').value.trim();
+  const senha = document.getElementById('new-admin-senha').value;
+  const msg   = document.getElementById('admin-modal-msg');
+
+  if (!nome || !email || !senha) { showAdminMsg('Preencha todos os campos.', 'error'); return; }
+  if (senha.length < 6) { showAdminMsg('Senha deve ter pelo menos 6 caracteres.', 'error'); return; }
+
+  const hash = await sha256(senha);
+  const { error } = await sb.from('admins').insert({ nome, email, senha_hash: hash });
+
+  if (error) {
+    showAdminMsg(error.code === '23505' ? 'Este e-mail já está cadastrado.' : 'Erro ao criar admin.', 'error');
+    return;
+  }
+
+  showAdminMsg('✅ Administrador criado com sucesso!', 'success');
+  setTimeout(() => { closeAdminModal(); renderAdmins(); }, 1500);
+}
+
+async function toggleAdminStatus(id, ativo) {
+  await sb.from('admins').update({ ativo: !ativo }).eq('id', id);
+  showToast(ativo ? '❌ Admin desativado.' : '✅ Admin ativado!', ativo ? 'error' : 'success');
+  renderAdmins();
+}
+
+async function deleteAdmin(id, nome) {
+  if (!confirm(`Tem certeza que deseja excluir o admin "${nome}"?`)) return;
+  await sb.from('admins').delete().eq('id', id);
+  showToast('🗑️ Admin excluído.', 'info');
+  renderAdmins();
+}
+
+function openAdminModal() {
+  document.getElementById('modal-admin-overlay').classList.add('open');
+  document.getElementById('new-admin-nome').value = '';
+  document.getElementById('new-admin-email').value = '';
+  document.getElementById('new-admin-senha').value = '';
+  document.getElementById('admin-modal-msg').style.display = 'none';
+}
+
+function closeAdminModal() {
+  document.getElementById('modal-admin-overlay').classList.remove('open');
+}
+
+function showAdminMsg(txt, type) {
+  const el = document.getElementById('admin-modal-msg');
+  el.textContent = txt;
+  el.style.display = 'block';
+  el.style.background = type === 'error' ? 'rgba(255,92,92,.15)' : 'rgba(16,185,129,.15)';
+  el.style.color = type === 'error' ? '#FF5C5C' : '#10B981';
+}
+
+// ---- DATA (Supabase) ----
 
 let currentFilter = 'todas';
 let currentSection = 'dashboard';
@@ -785,6 +947,7 @@ const sectionTitles = {
   vagas: 'Gerenciar Vagas',
   aprovadas: 'Vagas Aprovadas',
   empresas: 'Empresas Cadastradas',
+  admins: 'Administradores',
   configuracoes: 'Configurações'
 };
 
@@ -813,6 +976,7 @@ function render() {
   else if (currentSection === 'vagas') renderVagas();
   else if (currentSection === 'aprovadas') renderAprovadas();
   else if (currentSection === 'empresas') renderEmpresas();
+  else if (currentSection === 'admins') renderAdmins();
 }
 
 function updateStats() {
