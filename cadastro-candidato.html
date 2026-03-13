@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IniciaAí — Área do Candidato</title>
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+  :root {
+    --violet:#7C3AED; --coral:#FF5C5C; --green:#10B981; --yellow:#FBBF24;
+    --bg:#F5F3FF; --dark:#0F0A1E; --text:#1E1B33; --muted:#6B7280; --border:#E5E7EB;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Plus Jakarta Sans',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; }
+
+  nav { background:rgba(245,243,255,.9); backdrop-filter:blur(12px); border-bottom:1px solid var(--border);
+    padding:0 2rem; height:64px; display:flex; align-items:center; justify-content:space-between;
+    position:sticky; top:0; z-index:10; }
+  .logo { font-family:'Clash Display',sans-serif; font-size:1.4rem; font-weight:700;
+    background:linear-gradient(135deg,var(--violet),var(--coral));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; text-decoration:none; }
+  .nav-back { color:var(--muted); text-decoration:none; font-size:.875rem; font-weight:500;
+    display:flex; align-items:center; gap:.4rem; transition:color .2s; }
+  .nav-back:hover { color:var(--violet); }
+
+  .page-wrap { max-width:680px; margin:0 auto; padding:3rem 1.5rem 5rem; }
+
+  .tabs { display:flex; background:white; border-radius:14px; padding:.35rem; gap:.35rem;
+    border:1px solid var(--border); margin-bottom:2rem; box-shadow:0 2px 8px rgba(0,0,0,.05); }
+  .tab-btn { flex:1; padding:.65rem; border-radius:10px; border:none; cursor:pointer; font-size:.9rem;
+    font-weight:600; font-family:'Plus Jakarta Sans',sans-serif; transition:all .2s; color:var(--muted); background:transparent; }
+  .tab-btn.active { background:linear-gradient(135deg,var(--violet),var(--coral)); color:white; }
+
+  .form-card { background:white; border-radius:20px; padding:2rem; border:1.5px solid var(--border);
+    box-shadow:0 4px 24px rgba(0,0,0,.06); animation:fadeUp .4s ease both; }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+
+  .section-label { font-family:'Clash Display',sans-serif; font-size:1rem; font-weight:700;
+    margin-bottom:1.25rem; padding-bottom:.75rem; border-bottom:1.5px solid var(--bg);
+    color:var(--dark); display:flex; align-items:center; gap:.5rem; }
+  .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+  .form-group { display:flex; flex-direction:column; gap:.4rem; }
+  .form-group.full { grid-column:1/-1; }
+  label { font-size:.8rem; font-weight:600; color:var(--text); }
+  label .req { color:var(--coral); }
+  input, select, textarea {
+    width:100%; padding:.75rem 1rem; border:1.5px solid var(--border); border-radius:10px;
+    font-size:.9rem; font-family:'Plus Jakarta Sans',sans-serif; outline:none;
+    transition:border-color .2s,box-shadow .2s; background:var(--bg); color:var(--text);
+  }
+  input:focus, select:focus, textarea:focus {
+    border-color:var(--violet); box-shadow:0 0 0 3px rgba(124,58,237,.1); background:white;
+  }
+  textarea { resize:vertical; min-height:80px; }
+  .divider { border:none; border-top:1.5px solid var(--bg); margin:1.5rem 0; }
+  .btn-submit { width:100%; padding:1rem; background:linear-gradient(135deg,var(--violet),var(--coral));
+    color:white; border:none; border-radius:12px; font-size:1rem; font-weight:700; cursor:pointer;
+    font-family:'Plus Jakarta Sans',sans-serif; transition:transform .2s,box-shadow .2s; margin-top:1.5rem; }
+  .btn-submit:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(124,58,237,.35); }
+  .btn-submit:disabled { opacity:.6; cursor:not-allowed; transform:none; }
+
+  .msg-box { padding:.85rem 1rem; border-radius:10px; font-size:.875rem; font-weight:600;
+    margin-top:1rem; text-align:center; display:none; }
+  .msg-box.success { background:rgba(16,185,129,.1); color:var(--green); display:block; }
+  .msg-box.error   { background:rgba(255,92,92,.1); color:var(--coral); display:block; }
+
+  /* PAINEL CANDIDATO */
+  .painel { display:none; }
+  .painel.show { display:block; }
+
+  .welcome-card { background:linear-gradient(135deg,var(--violet),var(--coral)); border-radius:20px;
+    padding:1.75rem; color:white; margin-bottom:1.5rem; position:relative; overflow:hidden; }
+  .welcome-card::after { content:'🎓'; position:absolute; right:1.5rem; top:50%; transform:translateY(-50%);
+    font-size:4rem; opacity:.2; }
+  .welcome-card h2 { font-family:'Clash Display',sans-serif; font-size:1.5rem; margin-bottom:.25rem; }
+  .welcome-card p { opacity:.85; font-size:.9rem; }
+
+  .btn-logout { margin-top:1rem; padding:.5rem 1.2rem; background:rgba(255,255,255,.2);
+    border:1px solid rgba(255,255,255,.3); border-radius:8px; color:white; font-size:.8rem;
+    font-weight:600; cursor:pointer; font-family:'Plus Jakarta Sans',sans-serif; transition:background .2s; }
+  .btn-logout:hover { background:rgba(255,255,255,.3); }
+
+  .cands-title { font-family:'Clash Display',sans-serif; font-size:1.2rem; font-weight:700; margin-bottom:1rem; }
+
+  .cand-card { background:white; border-radius:14px; padding:1.25rem; border:1.5px solid var(--border);
+    margin-bottom:.75rem; display:flex; align-items:center; gap:1rem; }
+  .cand-logo { width:44px; height:44px; border-radius:10px; background:rgba(124,58,237,.1);
+    display:flex; align-items:center; justify-content:center; color:var(--violet);
+    font-family:'Clash Display',sans-serif; font-weight:700; font-size:1.2rem; flex-shrink:0; }
+  .cand-info { flex:1; }
+  .cand-title { font-weight:700; font-size:.9rem; margin-bottom:.2rem; }
+  .cand-meta  { font-size:.78rem; color:var(--muted); }
+  .status-badge { padding:.25rem .75rem; border-radius:50px; font-size:.72rem; font-weight:700; flex-shrink:0; }
+  .s-em_analise { background:rgba(251,191,36,.15); color:#B45309; }
+  .s-aprovado   { background:rgba(16,185,129,.15); color:var(--green); }
+  .s-recusado   { background:rgba(255,92,92,.15); color:var(--coral); }
+
+  .spinner { width:36px; height:36px; border:3px solid var(--border); border-top-color:var(--violet);
+    border-radius:50%; animation:spin .8s linear infinite; margin:2rem auto; }
+  @keyframes spin { to{transform:rotate(360deg)} }
+
+  .empty-cands { text-align:center; padding:2.5rem 1rem; color:var(--muted); }
+  .empty-cands div { font-size:2.5rem; margin-bottom:.5rem; }
+
+  @media(max-width:600px) { .form-grid{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">IniciaAí</a>
+  <a class="nav-back" href="index.html">← Ver vagas</a>
+</nav>
+
+<div class="page-wrap">
+
+  <!-- TABS -->
+  <div class="tabs" id="tabs">
+    <button class="tab-btn active" onclick="switchTab('cadastro')">Criar conta</button>
+    <button class="tab-btn" onclick="switchTab('login')">Entrar</button>
+  </div>
+
+  <!-- CADASTRO -->
+  <div id="tab-cadastro">
+    <div class="form-card">
+      <div class="section-label">👤 Dados Pessoais</div>
+      <div class="form-grid">
+        <div class="form-group"><label>Nome completo <span class="req">*</span></label><input type="text" id="c-nome" placeholder="Seu nome completo"></div>
+        <div class="form-group"><label>E-mail <span class="req">*</span></label><input type="email" id="c-email" placeholder="seu@email.com"></div>
+        <div class="form-group"><label>Senha <span class="req">*</span></label><input type="password" id="c-senha" placeholder="Mínimo 6 caracteres"></div>
+        <div class="form-group"><label>Telefone / WhatsApp</label><input type="tel" id="c-tel" placeholder="(11) 99999-9999"></div>
+        <div class="form-group"><label>Data de Nascimento</label><input type="date" id="c-nasc"></div>
+        <div class="form-group"><label>Estado</label>
+          <select id="c-estado">
+            <option value="">Selecione...</option>
+            <option>AC</option><option>AL</option><option>AP</option><option>AM</option><option>BA</option>
+            <option>CE</option><option>DF</option><option>ES</option><option>GO</option><option>MA</option>
+            <option>MT</option><option>MS</option><option>MG</option><option>PA</option><option>PB</option>
+            <option>PR</option><option>PE</option><option>PI</option><option>RJ</option><option>RN</option>
+            <option>RS</option><option>RO</option><option>RR</option><option>SC</option><option>SP</option>
+            <option>SE</option><option>TO</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Cidade</label><input type="text" id="c-cidade" placeholder="Ex.: São Paulo"></div>
+        <div class="form-group"><label>Período disponível</label>
+          <select id="c-periodo">
+            <option value="">Selecione...</option>
+            <option>Manhã</option><option>Tarde</option><option>Noite</option><option>Integral</option><option>Flexível</option>
+          </select>
+        </div>
+      </div>
+      <hr class="divider">
+      <div class="section-label">🎓 Formação</div>
+      <div class="form-grid">
+        <div class="form-group"><label>Escolaridade</label>
+          <select id="c-esc">
+            <option value="">Selecione...</option>
+            <option>Ensino Médio Incompleto</option><option>Ensino Médio Completo</option>
+            <option>Superior Incompleto</option><option>Superior Completo</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Curso</label><input type="text" id="c-curso" placeholder="Ex.: Ciência da Computação"></div>
+        <div class="form-group full"><label>Instituição de Ensino</label><input type="text" id="c-inst" placeholder="Ex.: USP, FATEC, ETEC..."></div>
+        <div class="form-group full"><label>LinkedIn (opcional)</label><input type="text" id="c-linkedin" placeholder="linkedin.com/in/seuperfil"></div>
+        <div class="form-group full"><label>Sobre você (objetivo profissional)</label>
+          <textarea id="c-sobre" rows="3" placeholder="Fale um pouco sobre seus objetivos, habilidades e o que busca numa oportunidade..."></textarea>
+        </div>
+      </div>
+      <button class="btn-submit" id="btn-cadastrar" onclick="cadastrar()">Criar minha conta 🚀</button>
+      <div class="msg-box" id="msg-cadastro"></div>
+    </div>
+  </div>
+
+  <!-- LOGIN -->
+  <div id="tab-login" style="display:none">
+    <div class="form-card">
+      <div class="section-label">🔐 Entrar na sua conta</div>
+      <div class="form-grid full" style="grid-template-columns:1fr">
+        <div class="form-group"><label>E-mail <span class="req">*</span></label><input type="email" id="l-email" placeholder="seu@email.com" onkeydown="if(event.key==='Enter')login()"></div>
+        <div class="form-group"><label>Senha <span class="req">*</span></label><input type="password" id="l-senha" placeholder="Sua senha" onkeydown="if(event.key==='Enter')login()"></div>
+      </div>
+      <button class="btn-submit" id="btn-login" onclick="login()">Entrar →</button>
+      <div class="msg-box" id="msg-login"></div>
+    </div>
+  </div>
+
+  <!-- PAINEL LOGADO -->
+  <div class="painel" id="painel">
+    <div class="welcome-card">
+      <h2>Olá, <span id="painel-nome">Candidato</span>! 👋</h2>
+      <p>Acompanhe suas candidaturas abaixo.</p>
+      <button class="btn-logout" onclick="logout()">Sair da conta</button>
+    </div>
+    <div class="cands-title">Minhas Candidaturas</div>
+    <div id="cands-loading"><div class="spinner"></div></div>
+    <div id="cands-list"></div>
+  </div>
+
+</div>
+
+<script>
+const SUPABASE_URL = 'https://hnhxxchhwhdlpuiceirz.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhuaHh4Y2hod2hkbHB1aWNlaXJ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM0MjY4MDMsImV4cCI6MjA4OTAwMjgwM30._N9DBrCq7lXW6tpfpcXHHcaH21AqEAcinPPIE-_-Ik8';
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+let candidatoLogado = JSON.parse(sessionStorage.getItem('candidato') || 'null');
+
+function switchTab(tab) {
+  document.getElementById('tab-cadastro').style.display = tab === 'cadastro' ? 'block' : 'none';
+  document.getElementById('tab-login').style.display    = tab === 'login'    ? 'block' : 'none';
+  document.querySelectorAll('.tab-btn').forEach((b,i) => b.classList.toggle('active', (i===0&&tab==='cadastro')||(i===1&&tab==='login')));
+}
+
+async function hashSenha(s) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s));
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+
+async function cadastrar() {
+  const btn = document.getElementById('btn-cadastrar');
+  const msg = document.getElementById('msg-cadastro');
+  const nome  = document.getElementById('c-nome').value.trim();
+  const email = document.getElementById('c-email').value.trim();
+  const senha = document.getElementById('c-senha').value;
+
+  if (!nome || !email || !senha) { showMsg(msg,'Por favor preencha nome, e-mail e senha.','error'); return; }
+  if (senha.length < 6) { showMsg(msg,'A senha deve ter pelo menos 6 caracteres.','error'); return; }
+
+  btn.disabled = true; btn.textContent = 'Criando conta...';
+
+  const hash = await hashSenha(senha);
+  const { data, error } = await sb.from('candidatos').insert({
+    nome, email, telefone: v('c-tel'), cidade: v('c-cidade'), estado: v('c-estado'),
+    data_nascimento: v('c-nasc') || null, escolaridade: v('c-esc'),
+    curso: v('c-curso'), instituicao: v('c-inst'), periodo_disponivel: v('c-periodo'),
+    sobre: v('c-sobre'), linkedin: v('c-linkedin'), senha_hash: hash
+  }).select().single();
+
+  if (error) {
+    const msg_txt = error.code === '23505' ? 'Este e-mail já está cadastrado. Faça login.' : 'Erro ao criar conta. Tente novamente.';
+    showMsg(msg, msg_txt, 'error');
+    btn.disabled = false; btn.textContent = 'Criar minha conta 🚀';
+    return;
+  }
+
+  sessionStorage.setItem('candidato', JSON.stringify(data));
+  candidatoLogado = data;
+  showMsg(msg, '✅ Conta criada com sucesso!', 'success');
+  setTimeout(showPainel, 1000);
+}
+
+async function login() {
+  const btn = document.getElementById('btn-login');
+  const msg = document.getElementById('msg-login');
+  const email = document.getElementById('l-email').value.trim();
+  const senha = document.getElementById('l-senha').value;
+
+  if (!email || !senha) { showMsg(msg,'Preencha e-mail e senha.','error'); return; }
+
+  btn.disabled = true; btn.textContent = 'Entrando...';
+  const hash = await hashSenha(senha);
+
+  const { data, error } = await sb.from('candidatos')
+    .select('*').eq('email', email).eq('senha_hash', hash).maybeSingle();
+
+  if (error || !data) {
+    showMsg(msg, 'E-mail ou senha incorretos.', 'error');
+    btn.disabled = false; btn.textContent = 'Entrar →';
+    return;
+  }
+
+  sessionStorage.setItem('candidato', JSON.stringify(data));
+  candidatoLogado = data;
+  showPainel();
+}
+
+function showPainel() {
+  document.getElementById('tabs').style.display = 'none';
+  document.getElementById('tab-cadastro').style.display = 'none';
+  document.getElementById('tab-login').style.display = 'none';
+  document.getElementById('painel').classList.add('show');
+  document.getElementById('painel-nome').textContent = candidatoLogado.nome.split(' ')[0];
+  loadCandidaturas();
+}
+
+async function loadCandidaturas() {
+  const { data, error } = await sb.from('candidaturas')
+    .select('*, vagas(titulo, tipo, cidade, modalidade, empresas(nome_fantasia))')
+    .eq('candidato_id', candidatoLogado.id)
+    .order('created_at', { ascending: false });
+
+  document.getElementById('cands-loading').style.display = 'none';
+  const list = document.getElementById('cands-list');
+
+  if (error || !data?.length) {
+    list.innerHTML = `<div class="empty-cands"><div>📭</div><strong>Nenhuma candidatura ainda</strong><br><span style="font-size:.85rem">Explore as vagas e candidate-se!</span><br><br><a href="index.html" style="color:var(--violet);font-weight:600;">Ver vagas →</a></div>`;
+    return;
+  }
+
+  const statusLabel = { em_analise:'⏳ Em análise', aprovado:'✅ Aprovado', recusado:'❌ Recusado' };
+  list.innerHTML = data.map(c => {
+    const v = c.vagas;
+    const emp = v?.empresas?.nome_fantasia || '—';
+    const initial = emp.charAt(0).toUpperCase();
+    return `
+      <div class="cand-card">
+        <div class="cand-logo">${initial}</div>
+        <div class="cand-info">
+          <div class="cand-title">${v?.titulo || '—'}</div>
+          <div class="cand-meta">${emp} · ${v?.cidade || '—'} · ${v?.modalidade || '—'}</div>
+        </div>
+        <span class="status-badge s-${c.status}">${statusLabel[c.status]||c.status}</span>
+      </div>`;
+  }).join('');
+}
+
+function logout() {
+  sessionStorage.removeItem('candidato');
+  location.reload();
+}
+
+function showMsg(el, txt, type) { el.textContent = txt; el.className = `msg-box ${type}`; }
+function v(id) { return document.getElementById(id)?.value?.trim() || ''; }
+
+// Auto-login se já tiver sessão
+if (candidatoLogado) showPainel();
+</script>
+</body>
+</html>
