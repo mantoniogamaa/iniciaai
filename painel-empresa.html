@@ -270,13 +270,39 @@
   .disc-S { background:rgba(16,185,129,.12);color:#059669; }
   .disc-C { background:rgba(59,130,246,.12);color:#2563EB; }
   @media(max-width:600px) { .stats-row{grid-template-columns:1fr 1fr} .cand-actions{flex-direction:column} }
+
+  /* HAMBURGUER MOBILE */
+  .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer;
+    background:none; border:none; padding:.4rem; }
+  .hamburger span { display:block; width:22px; height:2px; background:var(--text);
+    border-radius:2px; transition:all .3s; }
+  .hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity:0; }
+  .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+  .mobile-drawer { display:none; position:fixed; top:64px; left:0; right:0; bottom:0;
+    background:rgba(245,243,255,.98); backdrop-filter:blur(16px); z-index:99;
+    flex-direction:column; padding:1.5rem 2rem; border-top:1px solid var(--border);
+    overflow-y:auto; transform:translateX(100%); transition:transform .3s ease; }
+  .mobile-drawer.open { transform:translateX(0); }
+  .mobile-nav-link { display:block; padding:.85rem 1rem; border-radius:12px; font-size:1rem;
+    font-weight:600; color:var(--text); text-decoration:none; transition:background .2s; margin-bottom:.2rem; }
+  .mobile-nav-link:hover { background:white; }
+  @media(max-width:768px) { .hamburger { display:flex; } .mobile-drawer { display:flex; } }
+
 </style>
 </head>
 <body>
 <nav>
   <a class="logo" href="index.html">IniciaAí</a>
   <button class="btn-logout" id="nav-logout" onclick="logout()" style="display:none">Sair</button>
+  <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="mobile-drawer" id="mobile-drawer">
+    <a class="mobile-nav-link" href="index.html">🏠 Portal de Vagas</a>
+    <a class="mobile-nav-link" href="cadastro-empresa.html">📋 Cadastrar Nova Vaga</a>
+</div>
 
 <div class="page-wrap">
 

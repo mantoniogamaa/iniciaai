@@ -304,9 +304,61 @@
   footer { background:var(--dark); color:rgba(255,255,255,.5); text-align:center; padding:2rem; font-size:.85rem; }
   footer strong { color:white; }
 
+  /* HAMBURGUER */
+  .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer;
+    background:none; border:none; padding:.4rem; z-index:110; }
+  .hamburger span { display:block; width:22px; height:2px; background:var(--text);
+    border-radius:2px; transition:all .3s; }
+  .hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity:0; }
+  .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+
+  /* DRAWER MOBILE */
+  .mobile-drawer { display:none; position:fixed; top:64px; left:0; right:0; bottom:0;
+    background:rgba(245,243,255,.98); backdrop-filter:blur(16px);
+    z-index:99; flex-direction:column; padding:1.5rem 2rem;
+    border-top:1px solid var(--border); overflow-y:auto;
+    transform:translateX(100%); transition:transform .3s ease; }
+  .mobile-drawer.open { transform:translateX(0); }
+
+  .mobile-nav-links { display:flex; flex-direction:column; gap:.25rem; margin-bottom:1.5rem; }
+  .mobile-nav-links a { padding:.85rem 1rem; border-radius:12px; font-size:1rem; font-weight:600;
+    color:var(--text); text-decoration:none; transition:background .2s; display:flex; align-items:center; gap:.6rem; }
+  .mobile-nav-links a:hover { background:white; }
+
+  .mobile-divider { height:1px; background:var(--border); margin:.75rem 0; }
+
+  .mobile-access-title { font-size:.72rem; font-weight:700; text-transform:uppercase;
+    letter-spacing:.1em; color:var(--muted); margin-bottom:.75rem; }
+
+  .mobile-access-btn { display:flex; align-items:center; gap:.85rem; width:100%;
+    padding:1rem; border-radius:14px; border:1.5px solid var(--border); background:white;
+    cursor:pointer; font-family:'Plus Jakarta Sans',sans-serif; transition:all .2s; margin-bottom:.6rem; }
+  .mobile-access-btn:hover { border-color:var(--violet); }
+  .mobile-access-icon { width:40px; height:40px; border-radius:10px;
+    display:flex; align-items:center; justify-content:center; font-size:1.2rem; flex-shrink:0; }
+  .mobile-access-label { font-size:.9rem; font-weight:700; color:var(--text); }
+  .mobile-access-sub   { font-size:.75rem; color:var(--muted); margin-top:.1rem; }
+
+  .mobile-cta { display:flex; flex-direction:column; gap:.6rem; margin-top:.5rem; }
+  .mobile-cta a { display:block; text-align:center; padding:.9rem; border-radius:12px;
+    font-weight:700; font-size:.9rem; text-decoration:none; transition:all .2s; }
+  .mobile-cta .cta-primary { background:linear-gradient(135deg,var(--violet),var(--coral)); color:white; }
+  .mobile-cta .cta-secondary { border:1.5px solid var(--border); color:var(--muted); }
+  .mobile-cta .cta-secondary:hover { border-color:var(--violet); color:var(--violet); }
+
+  @media(max-width:768px) {
+    .nav-links { display:none; }
+    .hamburger { display:flex; }
+    .mobile-drawer { display:flex; }
+    .hero-stats { gap:1.5rem; }
+    .jobs-grid { grid-template-columns:1fr; }
+    .modal-info-grid { grid-template-columns:1fr; }
+    .btn-access span:not(.hamburger span) { }
+  }
   @media(max-width:600px) {
-    .search-row{flex-direction:column} .hero-stats{gap:1.5rem}
-    .jobs-grid{grid-template-columns:1fr} .modal-info-grid{grid-template-columns:1fr} .nav-links{display:none}
+    .search-row { flex-direction:column; }
+    .nav-user-name { display:none !important; }
   }
 </style>
 </head>
@@ -359,7 +411,39 @@
       </div>
     </div>
   </div>
+  <!-- HAMBURGUER (mobile only) -->
+  <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- DRAWER MOBILE -->
+<div class="mobile-drawer" id="mobile-drawer">
+  <div class="mobile-nav-links">
+    <a href="#" onclick="resetHome();closeMobileMenu()">🏠 Vagas</a>
+    <a href="cadastro-empresa.html">🏢 Para Empresas</a>
+    <a href="termos.html">⚖️ Termos & Privacidade</a>
+  </div>
+
+  <div class="mobile-divider"></div>
+  <div class="mobile-access-title">Entrar como</div>
+
+  <button class="mobile-access-btn" onclick="closeMobileMenu();openLoginModal('candidato')">
+    <div class="mobile-access-icon" style="background:rgba(124,58,237,.1)">🎓</div>
+    <div><div class="mobile-access-label">Candidato</div><div class="mobile-access-sub">Acesse seu perfil e candidaturas</div></div>
+  </button>
+  <button class="mobile-access-btn" onclick="closeMobileMenu();openLoginModal('empresa')">
+    <div class="mobile-access-icon" style="background:rgba(6,182,212,.1)">🏢</div>
+    <div><div class="mobile-access-label">Empresa</div><div class="mobile-access-sub">Gerencie vagas e candidatos</div></div>
+  </button>
+
+  <div class="mobile-divider"></div>
+  <div class="mobile-access-title">Novo por aqui?</div>
+  <div class="mobile-cta">
+    <a class="cta-primary" href="cadastro-candidato.html">✨ Criar perfil de candidato</a>
+    <a class="cta-secondary" href="cadastro-empresa.html">📋 Cadastrar empresa</a>
+  </div>
+</div>
 
 <!-- MODAL LOGIN -->
 <div class="login-modal-overlay" id="login-modal-overlay" onclick="if(event.target===this)closeLoginModal()">
@@ -868,6 +952,24 @@ if (new URLSearchParams(window.location.search).get('logout') === '1') {
 }
 
 checkNavSessions();
+
+// ---- MOBILE MENU ----
+function toggleMobileMenu() {
+  const hb = document.getElementById('hamburger');
+  const dr = document.getElementById('mobile-drawer');
+  hb.classList.toggle('open');
+  dr.classList.toggle('open');
+  document.body.style.overflow = dr.classList.contains('open') ? 'hidden' : '';
+}
+function closeMobileMenu() {
+  document.getElementById('hamburger').classList.remove('open');
+  document.getElementById('mobile-drawer').classList.remove('open');
+  document.body.style.overflow = '';
+}
+// Fecha drawer ao redimensionar para desktop
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 768) closeMobileMenu();
+});
 
 loadVagas();
 </script>
