@@ -124,6 +124,63 @@
   .toast.success { background:var(--green); }
   .toast.error   { background:var(--coral); }
 
+
+  /* VAGA ACTIONS */
+  .vaga-actions { display:flex; gap:.5rem; margin-top:.75rem; flex-wrap:wrap; }
+  .btn-vaga-action { padding:.38rem .9rem; border-radius:8px; font-size:.75rem; font-weight:700;
+    cursor:pointer; border:1.5px solid; font-family:'Plus Jakarta Sans',sans-serif; transition:all .2s; }
+  .btn-edit    { border-color:rgba(124,58,237,.3); color:var(--violet); background:rgba(124,58,237,.06); }
+  .btn-edit:hover    { background:var(--violet); color:white; }
+  .btn-close   { border-color:rgba(251,191,36,.4); color:#B45309; background:rgba(251,191,36,.08); }
+  .btn-close:hover   { background:#FBBF24; color:white; }
+  .btn-reopen  { border-color:rgba(16,185,129,.3); color:var(--green); background:rgba(16,185,129,.06); }
+  .btn-reopen:hover  { background:var(--green); color:white; }
+  .btn-del     { border-color:rgba(255,92,92,.3); color:var(--coral); background:rgba(255,92,92,.06); }
+  .btn-del:hover     { background:var(--coral); color:white; }
+  .b-encerrada { background:rgba(107,114,128,.12); color:var(--muted); }
+
+  /* MODAL EDIÇÃO */
+  .modal-overlay { position:fixed; inset:0; background:rgba(15,10,30,.5);
+    backdrop-filter:blur(4px); z-index:300; display:none; align-items:center; justify-content:center; padding:1rem; }
+  .modal-overlay.open { display:flex; }
+  .modal-box { background:white; border-radius:20px; width:100%; max-width:620px;
+    max-height:92vh; overflow-y:auto; padding:2rem; position:relative; animation:fadeUp .3s ease; }
+  .modal-close { position:absolute; top:1rem; right:1rem; width:32px; height:32px;
+    border-radius:50%; border:none; background:var(--bg); cursor:pointer; font-size:1rem;
+    display:flex; align-items:center; justify-content:center; color:var(--muted); transition:background .2s; }
+  .modal-close:hover { background:var(--border); }
+  .modal-title { font-family:'Clash Display',sans-serif; font-size:1.3rem; font-weight:700; margin-bottom:1.5rem; }
+  .form-grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1rem; }
+  .form-grid-2 .full { grid-column:1/-1; }
+  .modal-label { font-size:.78rem; font-weight:700; color:var(--text); display:block; margin-bottom:.35rem; }
+  .modal-input { width:100%; padding:.7rem 1rem; border:1.5px solid var(--border); border-radius:10px;
+    font-size:.875rem; font-family:'Plus Jakarta Sans',sans-serif; outline:none; background:var(--bg);
+    color:var(--text); transition:border-color .2s; }
+  .modal-input:focus { border-color:var(--violet); background:white; }
+  .modal-footer { display:flex; justify-content:flex-end; gap:.75rem; margin-top:1.5rem;
+    padding-top:1.25rem; border-top:1.5px solid var(--bg); }
+  .btn-modal-save { padding:.75rem 1.75rem; background:linear-gradient(135deg,var(--violet),var(--coral));
+    color:white; border:none; border-radius:10px; font-size:.9rem; font-weight:700;
+    cursor:pointer; font-family:'Plus Jakarta Sans',sans-serif; transition:transform .2s; }
+  .btn-modal-save:hover { transform:translateY(-2px); }
+  .btn-modal-save:disabled { opacity:.6; cursor:not-allowed; transform:none; }
+  .btn-modal-cancel { padding:.75rem 1.25rem; background:var(--bg); border:1.5px solid var(--border);
+    border-radius:10px; font-size:.9rem; font-weight:600; cursor:pointer;
+    font-family:'Plus Jakarta Sans',sans-serif; color:var(--muted); transition:all .2s; }
+  .btn-modal-cancel:hover { border-color:var(--coral); color:var(--coral); }
+  .msg-modal { padding:.7rem 1rem; border-radius:9px; font-size:.82rem; font-weight:600;
+    margin-top:.75rem; display:none; }
+  .msg-modal.success { background:rgba(16,185,129,.1); color:var(--green); display:block; }
+  .msg-modal.error   { background:rgba(255,92,92,.1); color:var(--coral); display:block; }
+
+  /* NOVA VAGA BTN */
+  .btn-nova-vaga { padding:.55rem 1.2rem; background:linear-gradient(135deg,var(--violet),var(--coral));
+    color:white; border:none; border-radius:9px; font-size:.82rem; font-weight:700;
+    cursor:pointer; font-family:'Plus Jakarta Sans',sans-serif; transition:transform .2s; text-decoration:none;
+    display:inline-block; }
+  .btn-nova-vaga:hover { transform:translateY(-2px); }
+  .section-header-row { display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem; }
+
   @media(max-width:600px) { .stats-row{grid-template-columns:1fr 1fr} .cand-actions{flex-direction:column} }
 </style>
 </head>
@@ -169,7 +226,10 @@
     </div>
 
     <div class="vagas-section">
-      <div class="section-title">Suas Vagas</div>
+      <div class="section-header-row">
+        <div class="section-title">Suas Vagas</div>
+        <a class="btn-nova-vaga" href="cadastro-empresa.html">+ Nova Vaga</a>
+      </div>
       <div id="vagas-loading"><div class="spinner"></div></div>
       <div id="vagas-list"></div>
     </div>
@@ -181,6 +241,88 @@
     </div>
   </div>
 
+</div>
+
+<!-- MODAL EDITAR VAGA -->
+<div class="modal-overlay" id="modal-editar" onclick="if(event.target===this)fecharEdicao()">
+  <div class="modal-box">
+    <button class="modal-close" onclick="fecharEdicao()">✕</button>
+    <div class="modal-title">✏️ Editar Vaga</div>
+    <input type="hidden" id="edit-vaga-id">
+    <div class="form-grid-2">
+      <div class="full">
+        <label class="modal-label">Título da vaga <span style="color:var(--coral)">*</span></label>
+        <input class="modal-input" type="text" id="edit-titulo" placeholder="Ex.: Estágio em Marketing">
+      </div>
+      <div>
+        <label class="modal-label">Tipo</label>
+        <select class="modal-input" id="edit-tipo">
+          <option>Estágio</option><option>Jovem Aprendiz</option>
+        </select>
+      </div>
+      <div>
+        <label class="modal-label">Área</label>
+        <select class="modal-input" id="edit-area">
+          <option>Tecnologia</option><option>Marketing</option><option>Design</option>
+          <option>Administrativo</option><option>Financeiro</option><option>RH</option>
+          <option>Logística</option><option>Comunicação</option><option>Vendas</option><option>Outros</option>
+        </select>
+      </div>
+      <div>
+        <label class="modal-label">Modalidade</label>
+        <select class="modal-input" id="edit-modalidade">
+          <option>Presencial</option><option>Remoto</option><option>Híbrido</option>
+        </select>
+      </div>
+      <div>
+        <label class="modal-label">Cidade</label>
+        <input class="modal-input" type="text" id="edit-cidade" placeholder="Ex.: São Paulo, SP">
+      </div>
+      <div>
+        <label class="modal-label">Período</label>
+        <select class="modal-input" id="edit-periodo">
+          <option>Manhã</option><option>Tarde</option><option>Noite</option><option>Integral</option><option>Flexível</option>
+        </select>
+      </div>
+      <div>
+        <label class="modal-label">Carga Horária</label>
+        <select class="modal-input" id="edit-horas">
+          <option>20h/semana</option><option>25h/semana</option><option>30h/semana</option><option>40h/semana</option>
+        </select>
+      </div>
+      <div>
+        <label class="modal-label">Escolaridade mínima</label>
+        <select class="modal-input" id="edit-esc">
+          <option>Ensino Médio</option><option>Superior Incompleto</option><option>Superior Completo</option>
+        </select>
+      </div>
+      <div>
+        <label class="modal-label">Bolsa (R$)</label>
+        <input class="modal-input" type="number" id="edit-bolsa" placeholder="Ex.: 1500">
+      </div>
+      <div>
+        <label class="modal-label">Nº de vagas</label>
+        <input class="modal-input" type="number" id="edit-numvagas" min="1" placeholder="Ex.: 2">
+      </div>
+      <div>
+        <label class="modal-label">Prazo de inscrição</label>
+        <input class="modal-input" type="text" id="edit-prazo" placeholder="Ex.: 30/06/2025">
+      </div>
+      <div class="full">
+        <label class="modal-label">Descrição</label>
+        <textarea class="modal-input" id="edit-descricao" rows="3" placeholder="Descreva a vaga..."></textarea>
+      </div>
+      <div class="full">
+        <label class="modal-label">Requisitos (um por linha)</label>
+        <textarea class="modal-input" id="edit-requisitos" rows="3" placeholder="Ex.: Cursando TI&#10;Disponibilidade tarde"></textarea>
+      </div>
+    </div>
+    <div class="msg-modal" id="msg-modal-edit"></div>
+    <div class="modal-footer">
+      <button class="btn-modal-cancel" onclick="fecharEdicao()">Cancelar</button>
+      <button class="btn-modal-save" id="btn-salvar-edicao" onclick="salvarEdicao()">Salvar alterações ✓</button>
+    </div>
+  </div>
 </div>
 
 <div class="toast" id="toast"></div>
@@ -238,7 +380,7 @@ async function loadVagas() {
   document.getElementById('vagas-loading').style.display = 'none';
 
   todasVagas = data || [];
-  document.getElementById('s-total').textContent = todasVagas.filter(v=>v.status==='aprovada').length;
+  document.getElementById('s-total').textContent = todasVagas.filter(v=>v.status==='aprovada'||v.status==='encerrada').length;
   loadAllStats();
   renderVagas();
 }
@@ -259,10 +401,22 @@ function renderVagas() {
     list.innerHTML = `<div class="empty-msg"><div>📭</div>Nenhuma vaga cadastrada ainda.<br><a href="cadastro-empresa.html" style="color:var(--violet);font-weight:600;">Cadastrar nova vaga →</a></div>`;
     return;
   }
-  const statusLabel = {pendente:'⏳ Pendente', aprovada:'✅ Aprovada', rejeitada:'❌ Rejeitada'};
-  const statusClass = {pendente:'b-pendente', aprovada:'b-aprovada', rejeitada:'b-rejeitada'};
-  list.innerHTML = todasVagas.map(v => `
-    <div class="vaga-item ${vagaSelecionada===v.id?'selected':''}" onclick="selectVaga('${v.id}')">
+  const statusLabel = {pendente:'⏳ Pendente', aprovada:'✅ Aprovada', rejeitada:'❌ Rejeitada', encerrada:'🔒 Encerrada'};
+  const statusClass = {pendente:'b-pendente', aprovada:'b-aprovada', rejeitada:'b-rejeitada', encerrada:'b-encerrada'};
+  list.innerHTML = todasVagas.map(v => {
+    const actions = `
+      <div class="vaga-actions" onclick="event.stopPropagation()">
+        <button class="btn-vaga-action btn-edit" onclick="abrirEdicao('${v.id}')">✏️ Editar</button>
+        ${v.status === 'aprovada'
+          ? `<button class="btn-vaga-action btn-close" onclick="encerrarVaga('${v.id}')">🔒 Encerrar</button>`
+          : v.status === 'encerrada'
+          ? `<button class="btn-vaga-action btn-reopen" onclick="reabrirVaga('${v.id}')">🔓 Reabrir</button>`
+          : ''}
+        <button class="btn-vaga-action btn-del" onclick="excluirVaga('${v.id}')">🗑️ Excluir</button>
+        <button class="btn-vaga-action btn-edit" style="border-color:rgba(6,182,212,.3);color:#0891B2;background:rgba(6,182,212,.06)" onclick="selectVaga('${v.id}')">👥 Candidatos</button>
+      </div>`;
+    return `
+    <div class="vaga-item ${vagaSelecionada===v.id?'selected':''}">
       <div class="vaga-item-header">
         <div>
           <div class="vaga-title">${v.titulo}</div>
@@ -270,9 +424,118 @@ function renderVagas() {
         </div>
         <span class="badge ${statusClass[v.status]||''}">${statusLabel[v.status]||v.status}</span>
       </div>
-      <div class="cands-count">Clique para ver os candidatos →</div>
-    </div>`).join('');
+      ${actions}
+    </div>`;
+  }).join('');
 }
+
+// ---- EDITAR VAGA ----
+function abrirEdicao(vagaId) {
+  const v = todasVagas.find(x => x.id === vagaId);
+  if (!v) return;
+  document.getElementById('edit-vaga-id').value = vagaId;
+  setVal('edit-titulo',    v.titulo);
+  setVal('edit-tipo',      v.tipo);
+  setVal('edit-area',      v.area);
+  setVal('edit-modalidade',v.modalidade);
+  setVal('edit-cidade',    v.cidade);
+  setVal('edit-periodo',   v.periodo);
+  setVal('edit-horas',     v.horas);
+  setVal('edit-esc',       v.escolaridade);
+  setVal('edit-bolsa',     v.bolsa);
+  setVal('edit-numvagas',  v.num_vagas);
+  setVal('edit-descricao', v.descricao);
+  setVal('edit-requisitos',v.requisitos);
+  setVal('edit-prazo',     v.prazo);
+  document.getElementById('msg-modal-edit').style.display = 'none';
+  document.getElementById('modal-editar').classList.add('open');
+}
+
+function setVal(id, val) { const el = document.getElementById(id); if(el && val !== null && val !== undefined) el.value = val; }
+
+async function salvarEdicao() {
+  const btn = document.getElementById('btn-salvar-edicao');
+  const msg = document.getElementById('msg-modal-edit');
+  const vagaId = document.getElementById('edit-vaga-id').value;
+  const titulo = document.getElementById('edit-titulo').value.trim();
+  if (!titulo) { showMsgModal(msg,'Título é obrigatório.','error'); return; }
+
+  btn.disabled = true; btn.textContent = 'Salvando...';
+
+  const updates = {
+    titulo,
+    tipo:        gv('edit-tipo'),
+    area:        gv('edit-area'),
+    modalidade:  gv('edit-modalidade'),
+    cidade:      gv('edit-cidade'),
+    periodo:     gv('edit-periodo'),
+    horas:       gv('edit-horas'),
+    escolaridade:gv('edit-esc'),
+    bolsa:       Number(gv('edit-bolsa')) || 0,
+    num_vagas:   Number(gv('edit-numvagas')) || 1,
+    descricao:   gv('edit-descricao'),
+    requisitos:  gv('edit-requisitos'),
+    prazo:       gv('edit-prazo'),
+  };
+
+  const { error } = await sb.from('vagas').update(updates).eq('id', vagaId);
+  if (error) {
+    showMsgModal(msg, 'Erro ao salvar. Tente novamente.', 'error');
+    btn.disabled = false; btn.textContent = 'Salvar alterações ✓';
+    return;
+  }
+
+  // Atualiza cache local
+  const idx = todasVagas.findIndex(v => v.id === vagaId);
+  if (idx !== -1) todasVagas[idx] = { ...todasVagas[idx], ...updates };
+
+  showMsgModal(msg, '✅ Vaga atualizada com sucesso!', 'success');
+  btn.disabled = false; btn.textContent = 'Salvar alterações ✓';
+  renderVagas();
+  setTimeout(() => fecharEdicao(), 1200);
+}
+
+function fecharEdicao() {
+  document.getElementById('modal-editar').classList.remove('open');
+}
+
+// ---- ENCERRAR / REABRIR ----
+async function encerrarVaga(vagaId) {
+  if (!confirm('Encerrar esta vaga? Ela sairá do portal mas ficará no seu histórico.')) return;
+  const { error } = await sb.from('vagas').update({ status: 'encerrada' }).eq('id', vagaId);
+  if (error) { showToast('Erro ao encerrar.', 'error'); return; }
+  const v = todasVagas.find(x => x.id === vagaId);
+  if (v) v.status = 'encerrada';
+  showToast('🔒 Vaga encerrada.', 'success');
+  renderVagas(); loadAllStats();
+}
+
+async function reabrirVaga(vagaId) {
+  if (!confirm('Reabrir esta vaga? Ela voltará a aparecer no portal.')) return;
+  const { error } = await sb.from('vagas').update({ status: 'aprovada' }).eq('id', vagaId);
+  if (error) { showToast('Erro ao reabrir.', 'error'); return; }
+  const v = todasVagas.find(x => x.id === vagaId);
+  if (v) v.status = 'aprovada';
+  showToast('🔓 Vaga reaberta!', 'success');
+  renderVagas(); loadAllStats();
+}
+
+async function excluirVaga(vagaId) {
+  const v = todasVagas.find(x => x.id === vagaId);
+  if (!confirm(`Excluir permanentemente "${v?.titulo}"? Esta ação não pode ser desfeita.`)) return;
+  const { error } = await sb.from('vagas').delete().eq('id', vagaId);
+  if (error) { showToast('Erro ao excluir.', 'error'); return; }
+  todasVagas = todasVagas.filter(x => x.id !== vagaId);
+  if (vagaSelecionada === vagaId) {
+    vagaSelecionada = null;
+    document.getElementById('candidatos-panel').style.display = 'none';
+  }
+  showToast('🗑️ Vaga excluída.', 'error');
+  renderVagas(); loadAllStats();
+}
+
+function showMsgModal(el, txt, type) { el.textContent = txt; el.className = `msg-modal ${type}`; }
+function gv(id) { return document.getElementById(id)?.value?.trim() || ''; }
 
 async function selectVaga(vagaId) {
   vagaSelecionada = vagaId;
