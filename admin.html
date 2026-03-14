@@ -7,25 +7,27 @@
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --primary:       #0C3D30;   /* Verde escuro Anhembi */
-    --primary-dark:  #071F18;   /* Verde mais escuro */
-    --primary-mid:   #1A5C47;   /* Verde médio */
-    --accent:        #2ECFA8;   /* Verde menta/turquesa (botões CTA) */
-    --accent-dark:   #1EA888;   /* Menta escuro hover */
-    --accent-light:  #E6FAF5;   /* Menta bem claro bg */
-    --bg:            #F7FAF9;   /* Fundo levemente esverdeado */
-    --dark:          #0C3D30;   /* Dark = verde escuro */
-    --text:          #0A1A15;   /* Texto principal */
-    --muted:         #5C7A70;   /* Texto secundário */
-    --border:        #D4E5DF;   /* Bordas */
+    --primary:       #007A5E;   /* PANTONE 7719C — Verde Escuro Anhembi */
+    --primary-dark:  #005C47;   /* Verde mais escuro hover */
+    --primary-mid:   #006B52;   /* Verde médio */
+    --accent:        #00A88E;   /* PANTONE 3285C — Verde Claro/Menta */
+    --accent-dark:   #008C76;   /* Menta escuro hover */
+    --accent-light:  #E6F7F4;   /* Menta bem claro fundo */
+    --gray:          #76787B;   /* PANTONE Cool Gray 10C */
+    --gray-light:    #F0F1F2;   /* Cinza claro */
+    --bg:            #F4F8F7;   /* Fundo levemente esverdeado */
+    --dark:          #007A5E;   /* Dark = verde escuro */
+    --text:          #1A2E28;   /* Texto principal */
+    --muted:         #76787B;   /* Cinza médio Anhembi */
+    --border:        #C8DDD9;   /* Bordas esverdeadas */
     --white:         #FFFFFF;
-    --green:         #2ECFA8;   /* success = menta */
+    --green:         #00A88E;
     --orange:        #E65100;
     --yellow:        #F57F17;
-    --cyan:          #2ECFA8;
-    /* Aliases para compatibilidade */
-    --violet:        #0C3D30;
-    --coral:         #1A5C47;
+    --cyan:          #00A88E;
+    /* Aliases */
+    --violet:        #007A5E;
+    --coral:         #005C47;
   }
 
   * { margin:0; padding:0; box-sizing:border-box; }
@@ -480,6 +482,31 @@
     color: var(--coral); margin-top: 1rem; display: none;
   }
   .locked-msg.show { display: block; }
+
+  /* ── LOGO IMAGEM ANHEMBI ── */
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+    color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
+    background: none !important;
+    font-size: 0 !important;
+  }
+  .logo::before {
+    content: '';
+    display: block;
+    width: 160px;
+    height: 44px;
+    background: url('logo-colorida.png') no-repeat center/contain;
+  }
+  /* Logo branca nos heróis (quando nav está sobre fundo escuro) */
+  .hero-logo-wrap .logo::before,
+  .vaga-hero .logo::before {
+    background-image: url('logo-branca.png');
+  }
+
 </style>
 </head>
 <body>

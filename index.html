@@ -25,25 +25,27 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
   :root {
-    --primary:       #0C3D30;   /* Verde escuro Anhembi */
-    --primary-dark:  #071F18;   /* Verde mais escuro */
-    --primary-mid:   #1A5C47;   /* Verde médio */
-    --accent:        #2ECFA8;   /* Verde menta/turquesa (botões CTA) */
-    --accent-dark:   #1EA888;   /* Menta escuro hover */
-    --accent-light:  #E6FAF5;   /* Menta bem claro bg */
-    --bg:            #F7FAF9;   /* Fundo levemente esverdeado */
-    --dark:          #0C3D30;   /* Dark = verde escuro */
-    --text:          #0A1A15;   /* Texto principal */
-    --muted:         #5C7A70;   /* Texto secundário */
-    --border:        #D4E5DF;   /* Bordas */
+    --primary:       #007A5E;   /* PANTONE 7719C — Verde Escuro Anhembi */
+    --primary-dark:  #005C47;   /* Verde mais escuro hover */
+    --primary-mid:   #006B52;   /* Verde médio */
+    --accent:        #00A88E;   /* PANTONE 3285C — Verde Claro/Menta */
+    --accent-dark:   #008C76;   /* Menta escuro hover */
+    --accent-light:  #E6F7F4;   /* Menta bem claro fundo */
+    --gray:          #76787B;   /* PANTONE Cool Gray 10C */
+    --gray-light:    #F0F1F2;   /* Cinza claro */
+    --bg:            #F4F8F7;   /* Fundo levemente esverdeado */
+    --dark:          #007A5E;   /* Dark = verde escuro */
+    --text:          #1A2E28;   /* Texto principal */
+    --muted:         #76787B;   /* Cinza médio Anhembi */
+    --border:        #C8DDD9;   /* Bordas esverdeadas */
     --white:         #FFFFFF;
-    --green:         #2ECFA8;   /* success = menta */
+    --green:         #00A88E;
     --orange:        #E65100;
     --yellow:        #F57F17;
-    --cyan:          #2ECFA8;
-    /* Aliases para compatibilidade */
-    --violet:        #0C3D30;
-    --coral:         #1A5C47;
+    --cyan:          #00A88E;
+    /* Aliases */
+    --violet:        #007A5E;
+    --coral:         #005C47;
   }
   * { margin:0; padding:0; box-sizing:border-box; }
   body { font-family:'Plus Jakarta Sans',sans-serif; background:var(--bg); color:var(--text); overflow-x:hidden; }
@@ -179,10 +181,10 @@
   .tag { padding:.4rem 1rem; border-radius:50px; font-size:.8rem; font-weight:600; cursor:pointer; transition:transform .2s; }
   .tag:hover { transform:translateY(-2px); }
   .tag-violet { background:rgba(12,61,48,.1); color:var(--violet); }
-  .tag-coral  { background:rgba(255,92,92,.1); color:var(--coral); }
-  .tag-cyan   { background:rgba(6,182,212,.1); color:var(--cyan); }
-  .tag-green  { background:rgba(16,185,129,.1); color:var(--green); }
-  .tag-yellow { background:rgba(251,191,36,.15); color:#B45309; }
+  .tag-coral  { background:rgba(255,255,255,.12); color:white; border:1px solid rgba(255,255,255,.2); }
+  .tag-cyan   { background:rgba(255,255,255,.12); color:white; border:1px solid rgba(255,255,255,.2); }
+  .tag-green  { background:rgba(255,255,255,.12); color:white; border:1px solid rgba(255,255,255,.2); }
+  .tag-yellow { background:rgba(255,255,255,.12); color:white; border:1px solid rgba(255,255,255,.2); }
 
   .search-section { max-width:900px; margin:0 auto; padding:0 2rem 3rem; animation:fadeDown .6s .4s ease both; }
   .search-card { background:white; border-radius:20px; padding:1.5rem; box-shadow:0 8px 40px rgba(0,0,0,.1); }
@@ -375,7 +377,7 @@
     .nav-user-name { display:none !important; }
   }
 
-  /* ── FUNDO ANHEMBI: Verde escuro + efeito network ── */
+  
   .hero, .page-hero, .vaga-hero, .doc-hero {
     background: linear-gradient(135deg, #071F18 0%, #0C3D30 50%, #0A3528 100%) !important;
     position: relative;
@@ -420,12 +422,85 @@
     z-index: 2;
   }
 
+
+  
+  /* ── HERO PANTONE ANHEMBI ── */
+  .hero {
+    background: linear-gradient(155deg, #004D3D 0%, #007A5E 50%, #005C47 100%);
+    padding: 120px 2rem 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg-pattern {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    z-index: 0; pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; top: -60px; right: -60px;
+    width: 480px; height: 480px;
+    background: radial-gradient(circle, rgba(0,168,142,.3) 0%, transparent 65%);
+    pointer-events: none; z-index: 0;
+  }
+  .hero > *:not(.hero-bg-pattern) { position: relative; z-index: 1; }
+  .hero h1 { color: white !important; }
+  .hero h1 .highlight { color: var(--accent) !important; -webkit-text-fill-color: var(--accent) !important; background: none !important; }
+  .hero p { color: rgba(255,255,255,.72) !important; }
+  .hero-badge { background: rgba(255,255,255,.12) !important; border-color: rgba(255,255,255,.2) !important; color: rgba(255,255,255,.9) !important; }
+  .hero .stat-num { color: var(--accent) !important; }
+  .hero .stat-label { color: rgba(255,255,255,.55) !important; }
+  .hero .tag { background: rgba(255,255,255,.1) !important; color: rgba(255,255,255,.9) !important; border: 1px solid rgba(255,255,255,.2) !important; }
+  .hero .tag:hover { background: rgba(0,168,142,.3) !important; color: white !important; }
+  .logo { color: var(--primary) !important; -webkit-text-fill-color: var(--primary) !important; background: none !important; }
+  nav { background: rgba(255,255,255,.97) !important; box-shadow: 0 1px 12px rgba(0,122,94,.1) !important; }
+
+  /* Tags no hero - fundo semi-transparente branco */
+  .hero .tag { background: rgba(255,255,255,.12) !important; color: white !important; border: 1px solid rgba(255,255,255,.2); }
+  .hero .tag:hover { background: rgba(46,207,168,.25) !important; color: var(--accent) !important; }
+
+  /* Logo - verde escuro no nav claro, sem vermelho */
+  .logo { color: var(--primary) !important; -webkit-text-fill-color: var(--primary) !important; background: none !important; }
+
+  /* Nav fundo claro - logo verde escuro */
+  nav { background: rgba(255,255,255,.96) !important; }
+
+  /* Seção de vagas - fundo claro, texto escuro normal */
+  .jobs-section, .search-section { background: var(--bg); }
+  .section-title { color: var(--text) !important; }
+  .results-count { color: var(--muted) !important; }
+
+
+  /* ── LOGO IMAGEM ANHEMBI ── */
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+    color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
+    background: none !important;
+    font-size: 0 !important;
+  }
+  .logo::before {
+    content: '';
+    display: block;
+    width: 160px;
+    height: 44px;
+    background: url('logo-colorida.png') no-repeat center/contain;
+  }
+  /* Logo branca nos heróis (quando nav está sobre fundo escuro) */
+  .hero-logo-wrap .logo::before,
+  .vaga-hero .logo::before {
+    background-image: url('logo-branca.png');
+  }
+
 </style>
 </head>
 <body>
 
 <nav>
-  <a class="logo" onclick="resetHome()" href="#">IniciaAí</a>
+  <a class="logo" onclick="resetHome()" href="#"></a>
   <div class="nav-links">
     <a href="#" onclick="resetHome()">Vagas</a>
     <a href="sobre.html">Sobre</a>
@@ -552,7 +627,74 @@
 </div>
 
 <section class="hero">
-  <canvas id="particles-canvas" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.5"></canvas>
+  <!-- Fundo tech + ensino (Pantone Anhembi) -->
+  <svg class="hero-bg-pattern" viewBox="0 0 1440 580" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" opacity=".18">
+    <g stroke="#00A88E" stroke-width="1" fill="none">
+      <line x1="0" y1="120" x2="280" y2="120"/>
+      <line x1="320" y1="120" x2="560" y2="120"/>
+      <line x1="860" y1="80" x2="1180" y2="80"/>
+      <line x1="1100" y1="190" x2="1440" y2="190"/>
+      <line x1="0" y1="310" x2="170" y2="310"/>
+      <line x1="210" y1="410" x2="450" y2="410"/>
+      <line x1="900" y1="340" x2="1140" y2="340"/>
+      <line x1="1200" y1="440" x2="1440" y2="440"/>
+      <line x1="280" y1="0" x2="280" y2="160"/>
+      <line x1="280" y1="200" x2="280" y2="330"/>
+      <line x1="560" y1="80" x2="560" y2="160"/>
+      <line x1="860" y1="0" x2="860" y2="120"/>
+      <line x1="1100" y1="80" x2="1100" y2="230"/>
+      <line x1="170" y1="270" x2="170" y2="350"/>
+      <line x1="450" y1="370" x2="450" y2="450"/>
+      <line x1="1140" y1="300" x2="1140" y2="390"/>
+      <line x1="280" y1="330" x2="360" y2="410"/>
+      <line x1="560" y1="120" x2="640" y2="80"/>
+    </g>
+    <g fill="#00A88E">
+      <circle cx="280" cy="120" r="4"/><circle cx="560" cy="120" r="4"/>
+      <circle cx="860" cy="80" r="4"/><circle cx="1100" cy="190" r="4"/>
+      <circle cx="450" cy="410" r="4"/><circle cx="1140" cy="340" r="3"/>
+      <rect x="275" y="115" width="10" height="10" rx="2" fill="none" stroke="#00A88E" stroke-width="1.5"/>
+      <rect x="1095" y="185" width="10" height="10" rx="2" fill="none" stroke="#00A88E" stroke-width="1.5"/>
+    </g>
+    <g stroke="#00A88E" stroke-width="1.5" fill="none" opacity=".55">
+      <g transform="translate(1290,30)">
+        <rect x="0" y="0" width="55" height="70" rx="3"/>
+        <rect x="7" y="0" width="41" height="70" rx="3"/>
+        <line x1="7" y1="18" x2="48" y2="18"/>
+        <line x1="7" y1="26" x2="48" y2="26"/>
+        <line x1="7" y1="34" x2="38" y2="34"/>
+        <line x1="28" y1="0" x2="28" y2="70"/>
+      </g>
+      <g transform="translate(38,450)">
+        <rect x="0" y="0" width="78" height="50" rx="4"/>
+        <line x1="24" y1="50" x2="24" y2="62"/><line x1="54" y1="50" x2="54" y2="62"/>
+        <line x1="16" y1="62" x2="62" y2="62"/>
+        <line x1="10" y1="14" x2="28" y2="14"/>
+        <line x1="10" y1="21" x2="42" y2="21"/>
+        <line x1="10" y1="28" x2="32" y2="28"/>
+        <line x1="10" y1="35" x2="48" y2="35"/>
+      </g>
+      <g transform="translate(1360,270)">
+        <polygon points="36,0 72,18 36,36 0,18"/>
+        <line x1="36" y1="36" x2="36" y2="64"/>
+        <line x1="56" y1="28" x2="56" y2="56"/>
+        <path d="M 18 48 Q 36 60 56 48"/>
+        <circle cx="56" cy="56" r="3.5" fill="#00A88E"/>
+      </g>
+    </g>
+    <g stroke="#00A88E" stroke-width="1" fill="none" opacity=".2">
+      <polygon points="690,25 710,14 730,25 730,47 710,58 690,47"/>
+      <polygon points="1230,370 1250,359 1270,370 1270,392 1250,403 1230,392"/>
+      <polygon points="105,165 125,154 145,165 145,187 125,198 105,187"/>
+    </g>
+    <g fill="#00A88E" opacity=".35">
+      <circle cx="140" cy="75" r="2.5"/><circle cx="710" cy="145" r="2"/>
+      <circle cx="960" cy="275" r="2.5"/><circle cx="410" cy="345" r="2"/>
+      <circle cx="830" cy="435" r="2"/><circle cx="1180" cy="510" r="2.5"/>
+      <circle cx="210" cy="235" r="2"/><circle cx="1310" cy="155" r="2"/>
+      <circle cx="660" cy="475" r="2"/><circle cx="75" cy="415" r="2"/>
+    </g>
+  </svg>
   <div class="hero-badge"><span>🎓</span> O portal feito para quem está começando</div>
   <h1>Seu primeiro <span class="highlight">passo</span><br>no mercado começa aqui</h1>
   <p>Estágios, Jovem Aprendiz e muito mais. Encontre a oportunidade certa para decolar na sua carreira.</p>
@@ -635,12 +777,17 @@
   </div>
 </div>
 
-<footer style="background:var(--dark);border-top:1px solid rgba(255,255,255,.07);padding:2rem;text-align:center;font-size:.82rem;color:rgba(255,255,255,.35)">
-  <p>
-    <strong style="color:rgba(255,255,255,.7)">IniciaAí</strong> &nbsp;·&nbsp;
+<footer style="background:var(--dark);border-top:1px solid rgba(255,255,255,.08);padding:2rem;text-align:center">
+  <div style="margin-bottom:1rem">
+    <img src="logo-branca.png" alt="Universidade Anhembi Morumbi - Polo Bauru-Centro" style="height:40px;object-fit:contain;filter:brightness(0) invert(1);opacity:.85">
+  </div>
+  <p style="font-size:.8rem;color:rgba(255,255,255,.35)">
     <a href="index.html" style="color:rgba(255,255,255,.45);text-decoration:none">Ver vagas</a> &nbsp;·&nbsp;
     <a href="sobre.html" style="color:rgba(255,255,255,.45);text-decoration:none">Sobre</a> &nbsp;·&nbsp;
     <a href="termos.html" style="color:rgba(255,255,255,.45);text-decoration:none">Termos & Privacidade</a>
+  </p>
+  <p style="font-size:.72rem;color:rgba(255,255,255,.2);margin-top:.5rem">
+    © 2025 Universidade Anhembi Morumbi — Polo Bauru-Centro. Todos os direitos reservados.
   </p>
 </footer>
 
@@ -656,21 +803,15 @@ async function carregarIdentidade() {
     if (!data) return;
     const cfg = Object.fromEntries(data.map(r => [r.chave, r.valor]));
 
-    // Nome do portal
-    const nome = cfg.nome_portal || 'IniciaAí';
-
-    // Logo
+    // Logo dinâmica (só aplica se admin configurou uma logo personalizada)
     if (cfg.logo_url && cfg.logo_url !== '') {
       document.querySelectorAll('.logo').forEach(el => {
-        el.innerHTML = `<img src="${cfg.logo_url}" alt="${nome}" style="height:36px;object-fit:contain;vertical-align:middle">`;
-        el.style.webkitTextFillColor = 'unset';
-        el.style.background = 'none';
-      });
-    } else {
-      document.querySelectorAll('.logo').forEach(el => {
-        el.textContent = nome;
+        el.innerHTML = '';
+        el.style.setProperty('--logo-url', `url('${cfg.logo_url}')`);
+        el.style.cssText += ';width:auto;';
       });
     }
+    // Se não há logo personalizada, o CSS usa logo-colorida.png por padrão
 
     // Cor primária
     if (cfg.cor_primary && /^#[0-9A-Fa-f]{6}$/.test(cfg.cor_primary)) {
@@ -1068,59 +1209,6 @@ if (new URLSearchParams(window.location.search).get('logout') === '1') {
 
 checkNavSessions();
 
-// ── PARTÍCULAS ANIMADAS (efeito network) ─────────────────────────
-(function(){
-  const canvas = document.getElementById('particles-canvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  let pts = [], W, H;
-  const N = 55, COLOR = 'rgba(46,207,168,';
-
-  function resize() {
-    W = canvas.width  = canvas.offsetWidth;
-    H = canvas.height = canvas.offsetHeight;
-  }
-  function init() {
-    resize();
-    pts = Array.from({length:N}, () => ({
-      x: Math.random()*W, y: Math.random()*H,
-      vx: (Math.random()-.5)*.4, vy: (Math.random()-.5)*.4,
-      r: Math.random()*2+1
-    }));
-  }
-  function draw() {
-    ctx.clearRect(0,0,W,H);
-    // linhas entre pontos próximos
-    for (let i=0;i<pts.length;i++) {
-      for (let j=i+1;j<pts.length;j++) {
-        const dx=pts[i].x-pts[j].x, dy=pts[i].y-pts[j].y;
-        const d=Math.sqrt(dx*dx+dy*dy);
-        if (d<120) {
-          ctx.beginPath();
-          ctx.strokeStyle = COLOR+(1-d/120)*0.35+')';
-          ctx.lineWidth = .6;
-          ctx.moveTo(pts[i].x,pts[i].y);
-          ctx.lineTo(pts[j].x,pts[j].y);
-          ctx.stroke();
-        }
-      }
-    }
-    // pontos
-    pts.forEach(p => {
-      ctx.beginPath();
-      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fillStyle = COLOR+'.7)';
-      ctx.fill();
-      p.x+=p.vx; p.y+=p.vy;
-      if(p.x<0||p.x>W) p.vx*=-1;
-      if(p.y<0||p.y>H) p.vy*=-1;
-    });
-    requestAnimationFrame(draw);
-  }
-  window.addEventListener('resize', () => { resize(); });
-  init(); draw();
-})();
-// ── END PARTÍCULAS ───────────────────────────────────────────────
 
 
 // ---- MOBILE MENU ----
