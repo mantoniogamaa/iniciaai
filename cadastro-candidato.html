@@ -225,6 +225,38 @@
   .disc-S { background:rgba(16,185,129,.12); color:#059669; }
   .disc-C { background:rgba(59,130,246,.12); color:#2563EB; }
   @media(max-width:768px) { .nav-links { display:none; } .hamburger { display:flex; } }
+
+  /* UPLOAD CURRÍCULO */
+  .upload-area { border:2px dashed var(--border); border-radius:14px; padding:1.75rem;
+    text-align:center; cursor:pointer; transition:all .25s; background:var(--bg);
+    position:relative; }
+  .upload-area:hover, .upload-area.drag { border-color:var(--violet);
+    background:rgba(124,58,237,.04); }
+  .upload-area input[type=file] { position:absolute; inset:0; opacity:0; cursor:pointer; width:100%; height:100%; }
+  .upload-icon { font-size:2.2rem; margin-bottom:.5rem; }
+  .upload-title { font-weight:700; font-size:.9rem; color:var(--dark); margin-bottom:.2rem; }
+  .upload-sub   { font-size:.78rem; color:var(--muted); }
+
+  .cv-preview { display:flex; align-items:center; gap:.85rem; padding:1rem;
+    background:white; border:1.5px solid var(--border); border-radius:12px;
+    margin-top:.75rem; }
+  .cv-icon { width:40px; height:40px; border-radius:10px; background:rgba(239,68,68,.1);
+    display:flex; align-items:center; justify-content:center; font-size:1.3rem; flex-shrink:0; }
+  .cv-name { font-size:.875rem; font-weight:600; color:var(--dark); flex:1;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .cv-size { font-size:.72rem; color:var(--muted); margin-top:.1rem; }
+  .btn-cv-remove { background:none; border:none; cursor:pointer; color:var(--muted);
+    font-size:1rem; padding:.25rem; transition:color .2s; flex-shrink:0; }
+  .btn-cv-remove:hover { color:var(--coral); }
+  .btn-cv-download { display:inline-flex; align-items:center; gap:.35rem; padding:.4rem .9rem;
+    border-radius:8px; border:1.5px solid rgba(124,58,237,.25); color:var(--violet);
+    background:rgba(124,58,237,.06); font-size:.78rem; font-weight:700;
+    text-decoration:none; transition:all .2s; flex-shrink:0; }
+  .btn-cv-download:hover { background:var(--violet); color:white; }
+
+  .upload-progress { height:4px; background:var(--border); border-radius:50px; margin-top:.6rem; overflow:hidden; display:none; }
+  .upload-progress-fill { height:100%; background:linear-gradient(90deg,var(--violet),var(--coral));
+    border-radius:50px; width:0%; transition:width .3s; }
   @media(max-width:600px) { .form-grid{grid-template-columns:1fr} }
 
   /* HAMBURGUER MOBILE */
@@ -437,6 +469,22 @@
           <div class="form-group full"><label>Sobre você</label>
             <textarea id="e-sobre" rows="3" placeholder="Objetivo profissional, habilidades..."></textarea>
           </div>
+          <div class="form-group full">
+            <label>Currículo (PDF) <span style="color:var(--muted);font-weight:400">— máx. 5MB</span></label>
+            <div class="upload-area" id="cv-upload-area"
+              ondragover="event.preventDefault();this.classList.add('drag')"
+              ondragleave="this.classList.remove('drag')"
+              ondrop="handleCvDrop(event)">
+              <input type="file" id="cv-file-input" accept=".pdf" onchange="handleCvSelect(event)">
+              <div class="upload-icon">📄</div>
+              <div class="upload-title">Arraste seu PDF aqui ou clique para selecionar</div>
+              <div class="upload-sub">Apenas arquivos PDF · Máximo 5MB</div>
+            </div>
+            <div class="upload-progress" id="cv-progress">
+              <div class="upload-progress-fill" id="cv-progress-fill"></div>
+            </div>
+            <div id="cv-preview-wrap"></div>
+          </div>
         </div>
         <div class="msg-inline" id="msg-perfil"></div>
         <div class="save-bar">
@@ -624,6 +672,7 @@ function preencherFormPerfil() {
   sv('e-inst',    cd.instituicao);
   sv('e-linkedin',cd.linkedin);
   sv('e-sobre',   cd.sobre);
+  preencherCvAtual();
 }
 
 function sv(id, val) {
@@ -644,8 +693,17 @@ async function salvarPerfil() {
 
   btn.disabled = true; btn.textContent = 'Salvando...';
 
+  // Upload CV se houver novo arquivo
+  const cvUrl = await uploadCvIfNeeded();
+  if (cvFile !== null && cvUrl === null) {
+    // upload falhou, já mostrou msg
+    btn.disabled = false; btn.textContent = 'Salvar alterações ✓';
+    return;
+  }
+
   const updates = {
     nome,
+    cv_url: cvUrl || candidatoLogado?.cv_url || null,
     telefone:          v('e-tel'),
     data_nascimento:   v('e-nasc') || null,
     estado:            v('e-estado'),
@@ -725,6 +783,99 @@ function showMsg(el, txt, type) { el.textContent = txt; el.className = `msg-box 
 function showMsgInline(el, txt, type) { el.textContent = txt; el.className = `msg-inline ${type}`; }
 function v(id) { return document.getElementById(id)?.value?.trim() || ''; }
 
+
+
+// ================================================================
+// CURRÍCULO PDF — UPLOAD
+// ================================================================
+let cvFile = null;
+
+function handleCvDrop(e) {
+  e.preventDefault();
+  document.getElementById('cv-upload-area').classList.remove('drag');
+  const file = e.dataTransfer.files[0];
+  if (file) processCvFile(file);
+}
+
+function handleCvSelect(e) {
+  const file = e.target.files[0];
+  if (file) processCvFile(file);
+}
+
+function processCvFile(file) {
+  if (file.type !== 'application/pdf') {
+    showMsgInline(document.getElementById('msg-perfil'), 'Apenas arquivos PDF são aceitos.', 'error');
+    return;
+  }
+  if (file.size > 5 * 1024 * 1024) {
+    showMsgInline(document.getElementById('msg-perfil'), 'O arquivo deve ter no máximo 5MB.', 'error');
+    return;
+  }
+  cvFile = file;
+  renderCvPreview(file.name, (file.size / 1024).toFixed(0) + ' KB', null);
+}
+
+function renderCvPreview(name, size, url) {
+  const wrap = document.getElementById('cv-preview-wrap');
+  wrap.innerHTML = `
+    <div class="cv-preview">
+      <div class="cv-icon">📄</div>
+      <div style="flex:1;min-width:0">
+        <div class="cv-name">${name}</div>
+        <div class="cv-size">${size}</div>
+      </div>
+      ${url ? `<a class="btn-cv-download" href="${url}" target="_blank">⬇ Baixar</a>` : ''}
+      <button class="btn-cv-remove" onclick="removeCv()" title="Remover">✕</button>
+    </div>`;
+}
+
+function removeCv() {
+  cvFile = null;
+  document.getElementById('cv-preview-wrap').innerHTML = '';
+  document.getElementById('cv-file-input').value = '';
+}
+
+async function uploadCvIfNeeded() {
+  if (!cvFile) return candidatoLogado?.cv_url || null;
+
+  // Show progress bar
+  const prog = document.getElementById('cv-progress');
+  const fill = document.getElementById('cv-progress-fill');
+  prog.style.display = 'block';
+  fill.style.width = '30%';
+
+  const ext      = 'pdf';
+  const fileName = `curriculos/${candidatoLogado.id}_${Date.now()}.${ext}`;
+
+  fill.style.width = '60%';
+
+  const { data, error } = await sb.storage
+    .from('curriculos')
+    .upload(fileName, cvFile, { upsert: true, contentType: 'application/pdf' });
+
+  fill.style.width = '100%';
+  setTimeout(() => { prog.style.display = 'none'; fill.style.width = '0%'; }, 600);
+
+  if (error) {
+    showMsgInline(document.getElementById('msg-perfil'), 'Erro ao enviar currículo: ' + error.message, 'error');
+    return null;
+  }
+
+  const { data: urlData } = sb.storage.from('curriculos').getPublicUrl(fileName);
+  cvFile = null;
+  return urlData.publicUrl;
+}
+
+function preencherCvAtual() {
+  if (candidatoLogado?.cv_url) {
+    const url  = candidatoLogado.cv_url;
+    const name = url.split('/').pop().replace(/^\d+_\d+_/, '') || 'curriculo.pdf';
+    renderCvPreview(name, 'PDF salvo', url);
+  }
+}
+// ================================================================
+// END CURRÍCULO
+// ================================================================
 
 // ================================================================
 // DISC ENGINE
