@@ -7,7 +7,7 @@
 <meta name="description" content="Gerencie suas vagas e visualize os candidatos no painel exclusivo para empresas do IniciaAí.">
 <meta name="robots" content="index, follow">
 <meta name="author" content="IniciaAí">
-<meta name="theme-color" content="#7C3AED">
+<meta name="theme-color" content="var(--primary)">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="IniciaAí">
 <meta property="og:locale" content="pt_BR">
@@ -25,10 +25,23 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
   :root {
-    --violet:#7C3AED; --coral:#FF5C5C; --cyan:#06B6D4;
-    --yellow:#FBBF24; --green:#10B981; --orange:#F97316;
-    --bg:#F5F3FF; --dark:#0F0A1E; --text:#1E1B33;
-    --muted:#6B7280; --border:#E5E7EB; --white:#FFFFFF;
+    --primary: #D32F2F;      /* Vermelho Anhembi */
+    --primary-dark: #B71C1C; /* Vermelho escuro hover */
+    --primary-light: #FFEBEE;/* Vermelho bem claro bg */
+    --accent: #1C1C1E;       /* Quase preto */
+    --cyan: #0277BD;         /* Azul institucional */
+    --yellow: #F57F17;       /* Amarelo aviso */
+    --green: #2E7D32;        /* Verde sucesso */
+    --orange: #E65100;       /* Laranja */
+    --bg: #F8F8F8;           /* Fundo quase branco */
+    --dark: #1C1C1E;         /* Preto institucional */
+    --text: #1A1A2E;         /* Texto escuro */
+    --muted: #6B6B7B;        /* Texto secundário */
+    --border: #E0E0E0;       /* Bordas */
+    --white: #FFFFFF;
+    /* Aliases para compatibilidade com código existente */
+    --violet: #D32F2F;
+    --coral: #B71C1C;
   }
   * { margin:0; padding:0; box-sizing:border-box; }
   body { font-family:'Plus Jakarta Sans',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; }
@@ -37,7 +50,7 @@
     padding:0 2rem; height:64px; display:flex; align-items:center; justify-content:space-between;
     position:sticky; top:0; z-index:10; }
   .logo { font-family:'Clash Display',sans-serif; font-size:1.4rem; font-weight:700;
-    background:linear-gradient(135deg,var(--violet),var(--coral));
+    background:linear-gradient(135deg,var(--primary),var(--primary-dark));
     -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; text-decoration:none; }
 
   .page-wrap { max-width:960px; margin:0 auto; padding:2.5rem 1.5rem 5rem; }
@@ -49,7 +62,7 @@
   }
   .page-hero::before {
     content:''; position:absolute; inset:0;
-    background:radial-gradient(ellipse 70% 60% at 70% 0%, rgba(124,58,237,.3) 0%, transparent 65%),
+    background:radial-gradient(ellipse 70% 60% at 70% 0%, rgba(211,47,47,.25) 0%, transparent 65%),
                radial-gradient(ellipse 40% 40% at 10% 100%, rgba(255,92,92,.15) 0%, transparent 60%);
     pointer-events:none;
   }
@@ -65,7 +78,7 @@
     font-weight:700; color:white; line-height:1.15; margin-bottom:.6rem;
   }
   .page-hero h1 span {
-    background:linear-gradient(135deg,#A78BFA,#FB923C);
+    background:linear-gradient(135deg,#EF9A9A,#EF5350);
     -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
   }
   .page-hero p { font-size:.95rem; color:rgba(255,255,255,.5); line-height:1.7; max-width:520px; }
@@ -84,11 +97,11 @@
     font-size:.9rem; font-family:'Plus Jakarta Sans',sans-serif; outline:none;
     background:var(--bg); color:var(--text); transition:border-color .2s,box-shadow .2s;
   }
-  input:focus, select:focus { border-color:var(--violet); box-shadow:0 0 0 3px rgba(124,58,237,.1); background:white; }
-  .btn-primary { width:100%; padding:1rem; background:linear-gradient(135deg,var(--violet),var(--coral));
+  input:focus, select:focus { border-color:var(--violet); box-shadow:0 0 0 3px rgba(211,47,47,.08); background:white; }
+  .btn-primary { width:100%; padding:1rem; background:linear-gradient(135deg,var(--primary),var(--primary-dark));
     color:white; border:none; border-radius:12px; font-size:1rem; font-weight:700; cursor:pointer;
     font-family:'Plus Jakarta Sans',sans-serif; transition:transform .2s,box-shadow .2s; margin-top:.5rem; }
-  .btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(124,58,237,.35); }
+  .btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(211,47,47,.3); }
   .btn-primary:disabled { opacity:.6; cursor:not-allowed; transform:none; }
   .msg-box { padding:.75rem 1rem; border-radius:10px; font-size:.85rem; font-weight:600;
     margin-top:1rem; text-align:center; display:none; }
@@ -119,8 +132,8 @@
 
   .vaga-item { background:white; border-radius:14px; padding:1.25rem; border:1.5px solid var(--border);
     margin-bottom:.75rem; cursor:pointer; transition:border-color .2s,box-shadow .2s; }
-  .vaga-item:hover { border-color:rgba(124,58,237,.3); box-shadow:0 4px 16px rgba(0,0,0,.07); }
-  .vaga-item.selected { border-color:var(--violet); box-shadow:0 0 0 3px rgba(124,58,237,.1); }
+  .vaga-item:hover { border-color:rgba(211,47,47,.25); box-shadow:0 4px 16px rgba(0,0,0,.07); }
+  .vaga-item.selected { border-color:var(--violet); box-shadow:0 0 0 3px rgba(211,47,47,.08); }
   .vaga-item-header { display:flex; align-items:center; justify-content:space-between; gap:1rem; }
   .vaga-title { font-weight:700; font-size:.95rem; }
   .vaga-meta  { font-size:.78rem; color:var(--muted); margin-top:.2rem; }
@@ -138,8 +151,8 @@
 
   .cand-row { display:flex; align-items:center; gap:1rem; padding:1rem;
     border-radius:12px; border:1px solid var(--border); margin-bottom:.6rem; transition:border-color .2s; }
-  .cand-row:hover { border-color:rgba(124,58,237,.2); }
-  .cand-avatar { width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg,var(--violet),var(--coral));
+  .cand-row:hover { border-color:rgba(211,47,47,.15); }
+  .cand-avatar { width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg,var(--primary),var(--primary-dark));
     display:flex; align-items:center; justify-content:center; color:white;
     font-family:'Clash Display',sans-serif; font-weight:700; font-size:1.1rem; flex-shrink:0; }
   .cand-info { flex:1; min-width:0; }
@@ -176,7 +189,7 @@
   .vaga-actions { display:flex; gap:.5rem; margin-top:.75rem; flex-wrap:wrap; }
   .btn-vaga-action { padding:.38rem .9rem; border-radius:8px; font-size:.75rem; font-weight:700;
     cursor:pointer; border:1.5px solid; font-family:'Plus Jakarta Sans',sans-serif; transition:all .2s; }
-  .btn-edit    { border-color:rgba(124,58,237,.3); color:var(--violet); background:rgba(124,58,237,.06); }
+  .btn-edit    { border-color:rgba(211,47,47,.25); color:var(--violet); background:rgba(211,47,47,.05); }
   .btn-edit:hover    { background:var(--violet); color:white; }
   .btn-close   { border-color:rgba(251,191,36,.4); color:#B45309; background:rgba(251,191,36,.08); }
   .btn-close:hover   { background:#FBBF24; color:white; }
@@ -206,7 +219,7 @@
   .modal-input:focus { border-color:var(--violet); background:white; }
   .modal-footer { display:flex; justify-content:flex-end; gap:.75rem; margin-top:1.5rem;
     padding-top:1.25rem; border-top:1.5px solid var(--bg); }
-  .btn-modal-save { padding:.75rem 1.75rem; background:linear-gradient(135deg,var(--violet),var(--coral));
+  .btn-modal-save { padding:.75rem 1.75rem; background:linear-gradient(135deg,var(--primary),var(--primary-dark));
     color:white; border:none; border-radius:10px; font-size:.9rem; font-weight:700;
     cursor:pointer; font-family:'Plus Jakarta Sans',sans-serif; transition:transform .2s; }
   .btn-modal-save:hover { transform:translateY(-2px); }
@@ -221,7 +234,7 @@
   .msg-modal.error   { background:rgba(255,92,92,.1); color:var(--coral); display:block; }
 
   /* NOVA VAGA BTN */
-  .btn-nova-vaga { padding:.55rem 1.2rem; background:linear-gradient(135deg,var(--violet),var(--coral));
+  .btn-nova-vaga { padding:.55rem 1.2rem; background:linear-gradient(135deg,var(--primary),var(--primary-dark));
     color:white; border:none; border-radius:9px; font-size:.82rem; font-weight:700;
     cursor:pointer; font-family:'Plus Jakarta Sans',sans-serif; transition:transform .2s; text-decoration:none;
     display:inline-block; }
@@ -235,7 +248,7 @@
   .painel-tab { flex:1; padding:.6rem; border-radius:9px; border:none; cursor:pointer;
     font-size:.82rem; font-weight:600; font-family:'Plus Jakarta Sans',sans-serif;
     transition:all .2s; color:var(--muted); background:transparent; }
-  .painel-tab.active { background:linear-gradient(135deg,var(--violet),var(--coral)); color:white; }
+  .painel-tab.active { background:linear-gradient(135deg,var(--primary),var(--primary-dark)); color:white; }
 
   .tab-section { display:none; }
   .tab-section.show { display:block; animation:fadeUp .3s ease both; }
@@ -248,7 +261,7 @@
     font-size:.85rem; font-family:'Plus Jakarta Sans',sans-serif; outline:none;
     background:var(--bg); color:var(--text); transition:border-color .2s; }
   .filtro-input:focus { border-color:var(--violet); background:white; }
-  .btn-buscar { width:100%; padding:.75rem; background:linear-gradient(135deg,var(--violet),var(--coral));
+  .btn-buscar { width:100%; padding:.75rem; background:linear-gradient(135deg,var(--primary),var(--primary-dark));
     color:white; border:none; border-radius:10px; font-size:.875rem; font-weight:700;
     cursor:pointer; font-family:'Plus Jakarta Sans',sans-serif; transition:transform .2s; }
   .btn-buscar:hover { transform:translateY(-2px); }
@@ -264,14 +277,14 @@
   .cand-card-busca:hover { border-color:rgba(124,58,237,.25); box-shadow:0 4px 16px rgba(0,0,0,.07); }
   .cand-card-top { display:flex; align-items:center; gap:1rem; margin-bottom:.85rem; }
   .cand-card-avatar { width:48px; height:48px; border-radius:50%; flex-shrink:0;
-    background:linear-gradient(135deg,var(--violet),var(--coral));
+    background:linear-gradient(135deg,var(--primary),var(--primary-dark));
     display:flex; align-items:center; justify-content:center; color:white;
     font-family:'Clash Display',sans-serif; font-weight:700; font-size:1.2rem; }
   .cand-card-name { font-weight:700; font-size:.95rem; margin-bottom:.15rem; }
   .cand-card-sub  { font-size:.78rem; color:var(--muted); }
   .cand-card-tags { display:flex; gap:.4rem; flex-wrap:wrap; margin-bottom:.85rem; }
   .cand-tag { padding:.25rem .7rem; border-radius:50px; font-size:.72rem; font-weight:600;
-    background:rgba(124,58,237,.08); color:var(--violet); }
+    background:rgba(211,47,47,.06); color:var(--violet); }
   .cand-tag.green  { background:rgba(16,185,129,.1); color:var(--green); }
   .cand-tag.cyan   { background:rgba(6,182,212,.1); color:#0891B2; }
   .cand-tag.yellow { background:rgba(251,191,36,.12); color:#B45309; }
@@ -279,10 +292,10 @@
     font-style:italic; padding:.75rem; background:var(--bg); border-radius:8px; margin-bottom:.85rem; }
   .cand-card-footer { display:flex; align-items:center; justify-content:space-between; gap:.75rem; }
   .cand-card-contato { font-size:.78rem; color:var(--muted); }
-  .btn-convidar { padding:.45rem 1.1rem; background:linear-gradient(135deg,var(--violet),var(--coral));
+  .btn-convidar { padding:.45rem 1.1rem; background:linear-gradient(135deg,var(--primary),var(--primary-dark));
     color:white; border:none; border-radius:8px; font-size:.78rem; font-weight:700;
     cursor:pointer; font-family:'Plus Jakarta Sans',sans-serif; transition:all .2s; }
-  .btn-convidar:hover { transform:translateY(-1px); box-shadow:0 4px 12px rgba(124,58,237,.3); }
+  .btn-convidar:hover { transform:translateY(-1px); box-shadow:0 4px 12px rgba(211,47,47,.25); }
   .btn-convidar.invited { background:rgba(16,185,129,.15); color:var(--green); cursor:default; transform:none; box-shadow:none; }
 
   /* MODAL CONVITE */
@@ -512,8 +525,8 @@
         <label class="modal-label">Prazo de inscrição</label>
         <input class="modal-input" type="text" id="edit-prazo" placeholder="Ex.: 30/06/2025">
       </div>
-      <div class="full" style="display:flex;align-items:center;gap:.75rem;background:rgba(124,58,237,.05);border:1.5px solid rgba(124,58,237,.15);border-radius:10px;padding:.85rem">
-        <input type="checkbox" id="edit-confidencial" style="width:16px;height:16px;accent-color:#7C3AED;cursor:pointer">
+      <div class="full" style="display:flex;align-items:center;gap:.75rem;background:rgba(211,47,47,.04);border:1.5px solid rgba(211,47,47,.12);border-radius:10px;padding:.85rem">
+        <input type="checkbox" id="edit-confidencial" style="width:16px;height:16px;accent-color:var(--primary);cursor:pointer">
         <div>
           <div style="font-size:.85rem;font-weight:700">🔒 Vaga Confidencial</div>
           <div style="font-size:.75rem;color:var(--muted)">Empresa aparece como "Empresa Confidencial" no portal</div>
@@ -569,6 +582,52 @@
 const SUPABASE_URL = 'https://hnhxxchhwhdlpuiceirz.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhuaHh4Y2hod2hkbHB1aWNlaXJ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM0MjY4MDMsImV4cCI6MjA4OTAwMjgwM30._N9DBrCq7lXW6tpfpcXHHcaH21AqEAcinPPIE-_-Ik8';
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+// ── LOGO & COR DINÂMICA ──────────────────────────────────────────
+async function carregarIdentidade() {
+  try {
+    const { data } = await sb.from('configuracoes').select('chave,valor');
+    if (!data) return;
+    const cfg = Object.fromEntries(data.map(r => [r.chave, r.valor]));
+
+    // Nome do portal
+    const nome = cfg.nome_portal || 'IniciaAí';
+
+    // Logo
+    if (cfg.logo_url && cfg.logo_url !== '') {
+      document.querySelectorAll('.logo').forEach(el => {
+        el.innerHTML = `<img src="${cfg.logo_url}" alt="${nome}" style="height:36px;object-fit:contain;vertical-align:middle">`;
+        el.style.webkitTextFillColor = 'unset';
+        el.style.background = 'none';
+      });
+    } else {
+      document.querySelectorAll('.logo').forEach(el => {
+        el.textContent = nome;
+      });
+    }
+
+    // Cor primária
+    if (cfg.cor_primary && /^#[0-9A-Fa-f]{6}$/.test(cfg.cor_primary)) {
+      const cor = cfg.cor_primary;
+      const corDark = ajustarCor(cor, -20);
+      document.documentElement.style.setProperty('--primary', cor);
+      document.documentElement.style.setProperty('--primary-dark', corDark);
+      document.documentElement.style.setProperty('--violet', cor);
+      document.documentElement.style.setProperty('--coral', corDark);
+    }
+  } catch(e) { /* silencioso */ }
+}
+
+function ajustarCor(hex, pct) {
+  const num = parseInt(hex.slice(1), 16);
+  const r = Math.max(0, Math.min(255, (num >> 16) + pct));
+  const g = Math.max(0, Math.min(255, ((num >> 8) & 0xff) + pct));
+  const b = Math.max(0, Math.min(255, (num & 0xff) + pct));
+  return '#' + [r,g,b].map(v => v.toString(16).padStart(2,'0')).join('');
+}
+carregarIdentidade();
+// ── END LOGO & COR ──────────────────────────────────────────────
+
 
 let empresaLogada = JSON.parse(sessionStorage.getItem('empresa') || 'null');
 let vagaSelecionada = null;
