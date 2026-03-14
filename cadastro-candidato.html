@@ -159,6 +159,71 @@
     margin-top:.75rem; display:none; }
   .msg-inline.success { background:rgba(16,185,129,.1); color:var(--green); display:block; }
   .msg-inline.error   { background:rgba(255,92,92,.1); color:var(--coral); display:block; }
+
+  /* ---- DISC STEP ---- */
+  .disc-step { display:none; animation:fadeUp .4s ease both; }
+  .disc-step.show { display:block; }
+
+  .disc-intro { text-align:center; padding:1.5rem 0 2rem; }
+  .disc-intro .disc-icon { font-size:3rem; margin-bottom:.75rem; }
+  .disc-intro h2 { font-family:'Clash Display',sans-serif; font-size:1.5rem; font-weight:700; margin-bottom:.5rem; }
+  .disc-intro p { color:var(--muted); font-size:.9rem; line-height:1.7; max-width:440px; margin:0 auto 1.5rem; }
+
+  .disc-progress-wrap { margin-bottom:2rem; }
+  .disc-progress-bar { height:6px; background:var(--border); border-radius:50px; overflow:hidden; margin-bottom:.5rem; }
+  .disc-progress-fill { height:100%; background:linear-gradient(90deg,var(--violet),var(--coral));
+    border-radius:50px; transition:width .4s ease; }
+  .disc-progress-text { font-size:.78rem; color:var(--muted); font-weight:600; text-align:right; }
+
+  .disc-question-card { background:white; border-radius:20px; padding:2rem;
+    border:1.5px solid var(--border); box-shadow:0 4px 24px rgba(0,0,0,.06);
+    margin-bottom:1.25rem; animation:fadeUp .3s ease both; }
+  .disc-q-num { font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em;
+    color:var(--muted); margin-bottom:.6rem; }
+  .disc-q-text { font-family:'Clash Display',sans-serif; font-size:1.15rem; font-weight:600;
+    color:var(--dark); line-height:1.35; margin-bottom:1.5rem; }
+
+  .disc-options { display:grid; grid-template-columns:1fr 1fr; gap:.6rem; }
+  .disc-opt { padding:.85rem 1rem; border:1.5px solid var(--border); border-radius:12px;
+    cursor:pointer; transition:all .2s; background:white; font-size:.875rem; font-weight:500;
+    color:var(--text); font-family:'Plus Jakarta Sans',sans-serif; text-align:left; line-height:1.4; }
+  .disc-opt:hover { border-color:var(--violet); background:rgba(124,58,237,.04); }
+  .disc-opt.selected { border-color:var(--violet); background:rgba(124,58,237,.08);
+    color:var(--violet); font-weight:700; }
+
+  /* RESULTADO DISC */
+  .disc-result-card { border-radius:20px; padding:2rem; text-align:center;
+    margin-bottom:1.25rem; position:relative; overflow:hidden; color:white; }
+  .disc-result-card::before { content:''; position:absolute; inset:0; opacity:.15;
+    background:radial-gradient(circle at 70% 30%, white, transparent); }
+  .disc-result-letter { font-family:'Clash Display',sans-serif; font-size:5rem; font-weight:700;
+    line-height:1; margin-bottom:.25rem; position:relative; z-index:1; }
+  .disc-result-name { font-family:'Clash Display',sans-serif; font-size:1.5rem; font-weight:700;
+    margin-bottom:.5rem; position:relative; z-index:1; }
+  .disc-result-desc { font-size:.9rem; opacity:.9; line-height:1.7;
+    max-width:400px; margin:0 auto; position:relative; z-index:1; }
+
+  .disc-bars { background:white; border-radius:16px; padding:1.5rem;
+    border:1.5px solid var(--border); margin-bottom:1.25rem; }
+  .disc-bars-title { font-size:.78rem; font-weight:700; text-transform:uppercase;
+    letter-spacing:.08em; color:var(--muted); margin-bottom:1rem; }
+  .disc-bar-row { display:flex; align-items:center; gap:.75rem; margin-bottom:.6rem; }
+  .disc-bar-label { font-weight:700; font-size:.85rem; width:100px; flex-shrink:0; }
+  .disc-bar-track { flex:1; height:10px; background:var(--bg); border-radius:50px; overflow:hidden; }
+  .disc-bar-fill { height:100%; border-radius:50px; transition:width .8s ease; }
+  .disc-bar-score { font-size:.78rem; font-weight:700; color:var(--muted); width:28px; text-align:right; flex-shrink:0; }
+
+  .disc-traits { display:flex; flex-wrap:wrap; gap:.4rem; margin-top:1rem; }
+  .disc-trait { padding:.3rem .85rem; border-radius:50px; font-size:.75rem; font-weight:600;
+    background:var(--bg); color:var(--text); }
+
+  /* BADGE DISC nos cards */
+  .disc-badge { display:inline-flex; align-items:center; gap:.3rem; padding:.22rem .65rem;
+    border-radius:50px; font-size:.7rem; font-weight:700; flex-shrink:0; }
+  .disc-D { background:rgba(239,68,68,.12); color:#DC2626; }
+  .disc-I { background:rgba(251,191,36,.15); color:#B45309; }
+  .disc-S { background:rgba(16,185,129,.12); color:#059669; }
+  .disc-C { background:rgba(59,130,246,.12); color:#2563EB; }
   @media(max-width:600px) { .form-grid{grid-template-columns:1fr} }
 </style>
 </head>
@@ -227,6 +292,33 @@
     </div>
   </div>
 
+  <!-- DISC STEP (aparece após cadastro) -->
+  <div class="disc-step" id="disc-step">
+    <div class="form-card">
+      <div class="disc-intro" id="disc-intro">
+        <div class="disc-icon">🧠</div>
+        <h2>Teste de Perfil DISC</h2>
+        <p>20 perguntas rápidas para identificar seu perfil comportamental. Empresas usam isso para encontrar o candidato certo. Leva cerca de <strong>3 minutos</strong>.</p>
+        <button class="btn-submit" style="max-width:280px;margin:0 auto" onclick="iniciarDISC()">Começar teste →</button>
+        <button onclick="pularDISC()" style="display:block;margin:.75rem auto 0;background:none;border:none;cursor:pointer;color:var(--muted);font-size:.85rem;font-family:'Plus Jakarta Sans',sans-serif;text-decoration:underline">Pular por agora</button>
+      </div>
+
+      <div id="disc-quiz" style="display:none">
+        <div class="disc-progress-wrap">
+          <div class="disc-progress-bar"><div class="disc-progress-fill" id="disc-bar" style="width:0%"></div></div>
+          <div class="disc-progress-text"><span id="disc-q-current">1</span> de 20</div>
+        </div>
+        <div id="disc-question-wrap"></div>
+        <div style="display:flex;justify-content:space-between;margin-top:1rem">
+          <button id="disc-prev-btn" onclick="discPrev()" style="padding:.6rem 1.25rem;background:var(--bg);border:1.5px solid var(--border);border-radius:10px;font-size:.85rem;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;display:none">← Anterior</button>
+          <button id="disc-next-btn" onclick="discNext()" disabled style="margin-left:auto;padding:.6rem 1.5rem;background:linear-gradient(135deg,var(--violet),var(--coral));color:white;border:none;border-radius:10px;font-size:.875rem;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;opacity:.5">Próxima →</button>
+        </div>
+      </div>
+
+      <div id="disc-resultado" style="display:none"></div>
+    </div>
+  </div>
+
   <!-- LOGIN -->
   <div id="tab-login" style="display:none">
     <div class="form-card">
@@ -249,8 +341,9 @@
     </div>
 
     <!-- TABS INTERNAS -->
-    <div class="painel-tabs">
+    <div class="painel-tabs" style="flex-wrap:wrap">
       <button class="painel-tab-btn active" onclick="switchPainelTab('candidaturas',this)">📋 Candidaturas</button>
+      <button class="painel-tab-btn" onclick="switchPainelTab('disc',this)">🧠 Perfil DISC</button>
       <button class="painel-tab-btn" onclick="switchPainelTab('perfil',this)">👤 Editar Perfil</button>
       <button class="painel-tab-btn" onclick="switchPainelTab('senha',this)">🔐 Alterar Senha</button>
     </div>
@@ -260,6 +353,11 @@
       <div class="cands-title" style="margin-bottom:1rem">Minhas Candidaturas</div>
       <div id="cands-loading"><div class="spinner"></div></div>
       <div id="cands-list"></div>
+    </div>
+
+    <!-- DISC PAINEL -->
+    <div class="edit-section" id="tab-disc">
+      <div id="painel-disc-content"></div>
     </div>
 
     <!-- EDITAR PERFIL -->
@@ -394,8 +492,13 @@ async function cadastrar() {
 
   sessionStorage.setItem('candidato', JSON.stringify(data));
   candidatoLogado = data;
-  showMsg(msg, '✅ Conta criada com sucesso!', 'success');
-  setTimeout(showPainel, 1000);
+  showMsg(msg, '✅ Conta criada! Agora faça o teste de perfil 🧠', 'success');
+  setTimeout(() => {
+    document.getElementById('tab-cadastro').style.display = 'none';
+    document.getElementById('tabs').style.display = 'none';
+    document.getElementById('disc-step').classList.add('show');
+    window.scrollTo({top:0,behavior:'smooth'});
+  }, 800);
 }
 
 async function login() {
@@ -427,10 +530,12 @@ function showPainel() {
   document.getElementById('tabs').style.display = 'none';
   document.getElementById('tab-cadastro').style.display = 'none';
   document.getElementById('tab-login').style.display = 'none';
+  document.getElementById('disc-step').classList.remove('show');
   document.getElementById('painel').classList.add('show');
   document.getElementById('painel-nome').textContent = candidatoLogado.nome.split(' ')[0];
   loadCandidaturas();
   preencherFormPerfil();
+  renderPainelDISC();
 }
 
 // ---- PAINEL TABS ----
@@ -592,6 +697,330 @@ function logout() {
 function showMsg(el, txt, type) { el.textContent = txt; el.className = `msg-box ${type}`; }
 function showMsgInline(el, txt, type) { el.textContent = txt; el.className = `msg-inline ${type}`; }
 function v(id) { return document.getElementById(id)?.value?.trim() || ''; }
+
+
+// ================================================================
+// DISC ENGINE
+// ================================================================
+const DISC_QUESTIONS = [
+  { q:"Quando preciso resolver um problema no trabalho, prefiro:", opts:[
+    {t:"Agir rápido e tomar decisões sozinho",f:"D"},
+    {t:"Conversar com todos e animar a equipe",f:"I"},
+    {t:"Pensar com calma e ouvir os outros",f:"S"},
+    {t:"Analisar todos os dados antes de decidir",f:"C"}]},
+  { q:"Em uma apresentação em grupo, costumo:", opts:[
+    {t:"Liderar e conduzir tudo",f:"D"},
+    {t:"Falar bastante e engajar o público",f:"I"},
+    {t:"Apoiar os colegas nos bastidores",f:"S"},
+    {t:"Preparar os slides com muito detalhe",f:"C"}]},
+  { q:"Quando recebo uma crítica no trabalho:", opts:[
+    {t:"Encaro direto e busco melhorar rápido",f:"D"},
+    {t:"Fico um pouco chateado mas logo supero",f:"I"},
+    {t:"Reflito por bastante tempo sobre isso",f:"S"},
+    {t:"Analiso se a crítica tem fundamento",f:"C"}]},
+  { q:"Minha maior motivação profissional é:", opts:[
+    {t:"Alcançar resultados e vencer desafios",f:"D"},
+    {t:"Trabalhar com pessoas e ser reconhecido",f:"I"},
+    {t:"Ter estabilidade e ajudar a equipe",f:"S"},
+    {t:"Fazer tudo com qualidade e precisão",f:"C"}]},
+  { q:"Em uma reunião de equipe, costumo:", opts:[
+    {t:"Propor soluções e pressionar por decisões",f:"D"},
+    {t:"Contar histórias e animar o ambiente",f:"I"},
+    {t:"Escutar com atenção e ponderar",f:"S"},
+    {t:"Perguntar dados e questionar os detalhes",f:"C"}]},
+  { q:"Meu ritmo de trabalho ideal é:", opts:[
+    {t:"Rápido, com muitos desafios",f:"D"},
+    {t:"Dinâmico e com muita interação",f:"I"},
+    {t:"Estável e sem grandes pressões",f:"S"},
+    {t:"Metódico, com tempo para aprofundar",f:"C"}]},
+  { q:"Diante de um prazo apertado, eu:", opts:[
+    {t:"Foco no essencial e entrego rápido",f:"D"},
+    {t:"Peço ajuda à equipe com entusiasmo",f:"I"},
+    {t:"Me organizo com calma e evito erros",f:"S"},
+    {t:"Reviso tudo para garantir qualidade",f:"C"}]},
+  { q:"Na escola ou faculdade, eu era:", opts:[
+    {t:"Líder de grupos e projetos",f:"D"},
+    {t:"O mais sociável da turma",f:"I"},
+    {t:"Dedicado e colaborativo",f:"S"},
+    {t:"O mais organizado e detalhista",f:"C"}]},
+  { q:"Quando discordo de alguém no trabalho:", opts:[
+    {t:"Falo direto e defendo meu ponto",f:"D"},
+    {t:"Tento convencer com entusiasmo",f:"I"},
+    {t:"Cedo para manter a harmonia",f:"S"},
+    {t:"Apresento dados para embasar minha visão",f:"C"}]},
+  { q:"O ambiente de trabalho que prefiro é:", opts:[
+    {t:"Competitivo e cheio de metas",f:"D"},
+    {t:"Descontraído e com muita gente",f:"I"},
+    {t:"Colaborativo e com rotina estável",f:"S"},
+    {t:"Silencioso, organizado e focado",f:"C"}]},
+  { q:"Quando aprendo algo novo, prefiro:", opts:[
+    {t:"Aprender fazendo, na prática",f:"D"},
+    {t:"Aprender em grupo, com troca de ideias",f:"I"},
+    {t:"Aprender no meu ritmo, com paciência",f:"S"},
+    {t:"Estudar com materiais detalhados",f:"C"}]},
+  { q:"Minha maior qualidade profissional é:", opts:[
+    {t:"Determinação e foco em resultados",f:"D"},
+    {t:"Comunicação e entusiasmo",f:"I"},
+    {t:"Paciência e lealdade",f:"S"},
+    {t:"Organização e atenção aos detalhes",f:"C"}]},
+  { q:"Como você reage a mudanças no trabalho?", opts:[
+    {t:"Abraço rápido e já penso em aproveitar",f:"D"},
+    {t:"Fico animado e envolvo todos",f:"I"},
+    {t:"Me adapto aos poucos com cautela",f:"S"},
+    {t:"Analiso os riscos antes de aceitar",f:"C"}]},
+  { q:"Para você, um bom líder é aquele que:", opts:[
+    {t:"Decide rápido e lidera pelo exemplo",f:"D"},
+    {t:"Inspira, motiva e engaja as pessoas",f:"I"},
+    {t:"Apoia e cria um ambiente seguro",f:"S"},
+    {t:"Planeja bem e mantém padrões altos",f:"C"}]},
+  { q:"Em um projeto em grupo, sua função costuma ser:", opts:[
+    {t:"Quem define o rumo e cobra resultados",f:"D"},
+    {t:"Quem anima o grupo e faz a comunicação",f:"I"},
+    {t:"Quem executa com dedicação e suporte",f:"S"},
+    {t:"Quem garante que tudo está correto",f:"C"}]},
+  { q:"Quando erra em algo, você:", opts:[
+    {t:"Assume e já parte para a solução",f:"D"},
+    {t:"Pede desculpas e tenta se redimir logo",f:"I"},
+    {t:"Fica preocupado em não ter decepcionado",f:"S"},
+    {t:"Analisa o que falhou para não repetir",f:"C"}]},
+  { q:"Você se descreve mais como:", opts:[
+    {t:"Direto, objetivo e determinado",f:"D"},
+    {t:"Otimista, comunicativo e empolgado",f:"I"},
+    {t:"Tranquilo, confiável e paciente",f:"S"},
+    {t:"Preciso, analítico e cuidadoso",f:"C"}]},
+  { q:"Em tarefas repetitivas, você:", opts:[
+    {t:"Fica entediado e busca novos desafios",f:"D"},
+    {t:"Tenta tornar mais divertido com conversa",f:"I"},
+    {t:"Executa com constância sem reclamar",f:"S"},
+    {t:"Encontra formas de otimizar o processo",f:"C"}]},
+  { q:"Ao receber uma tarefa nova, você:", opts:[
+    {t:"Começa imediatamente sem esperar",f:"D"},
+    {t:"Fala com todos antes de começar",f:"I"},
+    {t:"Planeja com cuidado cada passo",f:"S"},
+    {t:"Lê todas as instruções com atenção",f:"C"}]},
+  { q:"O que mais te incomoda num ambiente de trabalho?", opts:[
+    {t:"Lentidão, indecisão e burocracia",f:"D"},
+    {t:"Isolamento e falta de reconhecimento",f:"I"},
+    {t:"Conflitos e instabilidade constante",f:"S"},
+    {t:"Desorganização e falta de padrão",f:"C"}]},
+];
+
+const DISC_PROFILES = {
+  D: {
+    name: "Dominante", letter:"D", emoji:"🦁",
+    color: "linear-gradient(135deg,#EF4444,#DC2626)",
+    desc: "Você é direto, determinado e orientado a resultados. Age com rapidez, assume riscos calculados e não tem medo de liderar. Busca desafios e toma decisões com confiança.",
+    traits: ["Liderança","Decisão rápida","Foco em resultados","Determinado","Competitivo"]
+  },
+  I: {
+    name: "Influente", letter:"I", emoji:"🌟",
+    color: "linear-gradient(135deg,#F59E0B,#D97706)",
+    desc: "Você é comunicativo, entusiasta e adora trabalhar com pessoas. Tem facilidade para motivar equipes, criar conexões e se destacar em ambientes dinâmicos.",
+    traits: ["Comunicação","Entusiasmo","Trabalho em equipe","Criatividade","Persuasão"]
+  },
+  S: {
+    name: "Estável", letter:"S", emoji:"🌿",
+    color: "linear-gradient(135deg,#10B981,#059669)",
+    desc: "Você é paciente, leal e confiável. Valoriza harmonia, estabilidade e colaboração. É o tipo que todos podem contar — consistente, empático e dedicado.",
+    traits: ["Paciência","Lealdade","Colaboração","Empatia","Consistência"]
+  },
+  C: {
+    name: "Conscencioso", letter:"C", emoji:"🔬",
+    color: "linear-gradient(135deg,#3B82F6,#2563EB)",
+    desc: "Você é analítico, preciso e orientado à qualidade. Pensa antes de agir, valoriza dados e processos. É o tipo que garante que tudo seja feito do jeito certo.",
+    traits: ["Análise","Organização","Precisão","Qualidade","Planejamento"]
+  }
+};
+
+let discRespostas = {};
+let discQAtual = 0;
+
+function iniciarDISC() {
+  document.getElementById('disc-intro').style.display = 'none';
+  document.getElementById('disc-quiz').style.display = 'block';
+  renderDiscQuestion();
+}
+
+function renderDiscQuestion() {
+  const q = DISC_QUESTIONS[discQAtual];
+  const pct = ((discQAtual) / DISC_QUESTIONS.length * 100).toFixed(0);
+  document.getElementById('disc-bar').style.width = pct + '%';
+  document.getElementById('disc-q-current').textContent = discQAtual + 1;
+
+  // Shuffle options for this question
+  const opts = [...q.opts].sort(() => Math.random() - 0.5);
+  const selected = discRespostas[discQAtual];
+
+  document.getElementById('disc-question-wrap').innerHTML = `
+    <div class="disc-question-card">
+      <div class="disc-q-num">Pergunta ${discQAtual + 1} de ${DISC_QUESTIONS.length}</div>
+      <div class="disc-q-text">${q.q}</div>
+      <div class="disc-options">
+        ${opts.map((o,i) => `
+          <button class="disc-opt ${selected === o.f ? 'selected' : ''}"
+            onclick="selectDiscOpt(this, '${o.f}', ${discQAtual})">${o.t}</button>
+        `).join('')}
+      </div>
+    </div>`;
+
+  document.getElementById('disc-prev-btn').style.display = discQAtual > 0 ? 'block' : 'none';
+  const nextBtn = document.getElementById('disc-next-btn');
+  nextBtn.style.opacity = discRespostas[discQAtual] ? '1' : '0.5';
+  nextBtn.disabled = !discRespostas[discQAtual];
+
+  if (discQAtual === DISC_QUESTIONS.length - 1) {
+    nextBtn.textContent = 'Ver meu perfil →';
+  } else {
+    nextBtn.textContent = 'Próxima →';
+  }
+}
+
+function selectDiscOpt(el, fator, qIdx) {
+  document.querySelectorAll('.disc-opt').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+  discRespostas[qIdx] = fator;
+  const nextBtn = document.getElementById('disc-next-btn');
+  nextBtn.disabled = false;
+  nextBtn.style.opacity = '1';
+  // auto-advance after short delay
+  setTimeout(() => { if (discRespostas[qIdx]) discNext(); }, 400);
+}
+
+function discNext() {
+  if (!discRespostas[discQAtual]) return;
+  if (discQAtual < DISC_QUESTIONS.length - 1) {
+    discQAtual++;
+    renderDiscQuestion();
+    window.scrollTo({top: document.getElementById('disc-step').offsetTop - 80, behavior:'smooth'});
+  } else {
+    calcularDisc();
+  }
+}
+
+function discPrev() {
+  if (discQAtual > 0) { discQAtual--; renderDiscQuestion(); }
+}
+
+async function calcularDisc() {
+  const scores = {D:0, I:0, S:0, C:0};
+  Object.values(discRespostas).forEach(f => scores[f]++);
+  const total = Object.values(scores).reduce((a,b) => a+b, 0);
+  const perfil = Object.entries(scores).sort((a,b) => b[1]-a[1])[0][0];
+
+  document.getElementById('disc-quiz').style.display = 'none';
+  document.getElementById('disc-progress-wrap') && (document.getElementById('disc-progress-wrap').style.display='none');
+
+  renderDiscResultado(perfil, scores, total, 'disc-resultado', true);
+  document.getElementById('disc-resultado').style.display = 'block';
+
+  // Salva no Supabase
+  if (candidatoLogado) {
+    await sb.from('candidatos').update({
+      disc_perfil: perfil,
+      disc_scores: JSON.stringify(scores)
+    }).eq('id', candidatoLogado.id);
+
+    candidatoLogado.disc_perfil = perfil;
+    candidatoLogado.disc_scores = JSON.stringify(scores);
+    sessionStorage.setItem('candidato', JSON.stringify(candidatoLogado));
+  }
+}
+
+function renderDiscResultado(perfil, scores, total, containerId, showCTA) {
+  const p = DISC_PROFILES[perfil];
+  const container = document.getElementById(containerId);
+
+  const barsHTML = Object.entries(scores).map(([k,v]) => {
+    const pp = DISC_PROFILES[k];
+    const pct = total > 0 ? Math.round(v/total*100) : 0;
+    const colors = {D:'#EF4444',I:'#F59E0B',S:'#10B981',C:'#3B82F6'};
+    return `
+      <div class="disc-bar-row">
+        <div class="disc-bar-label" style="color:${colors[k]}">${pp.emoji} ${pp.name}</div>
+        <div class="disc-bar-track"><div class="disc-bar-fill" style="width:${pct}%;background:${colors[k]}"></div></div>
+        <div class="disc-bar-score">${pct}%</div>
+      </div>`;
+  }).join('');
+
+  container.innerHTML = `
+    <div class="disc-result-card" style="background:${p.color}">
+      <div class="disc-result-letter">${p.emoji} ${p.letter}</div>
+      <div class="disc-result-name">${p.name}</div>
+      <div class="disc-result-desc">${p.desc}</div>
+    </div>
+    <div class="disc-bars">
+      <div class="disc-bars-title">Distribuição do seu perfil</div>
+      ${barsHTML}
+    </div>
+    <div style="background:white;border-radius:16px;padding:1.5rem;border:1.5px solid var(--border)">
+      <div style="font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:.75rem">Seus pontos fortes</div>
+      <div class="disc-traits">${p.traits.map(t=>`<span class="disc-trait">${t}</span>`).join('')}</div>
+    </div>
+    ${showCTA ? `
+    <div style="text-align:center;margin-top:1.5rem">
+      <button class="btn-submit" style="max-width:280px;margin:0 auto" onclick="showPainel()">
+        Ir para meu painel 🚀
+      </button>
+    </div>` : ''}
+  `;
+}
+
+function pularDISC() { showPainel(); }
+
+function renderPainelDISC() {
+  const container = document.getElementById('painel-disc-content');
+  const perfil = candidatoLogado?.disc_perfil;
+  const rawScores = candidatoLogado?.disc_scores;
+
+  if (!perfil) {
+    container.innerHTML = `
+      <div class="form-card" style="text-align:center;padding:2.5rem">
+        <div style="font-size:3rem;margin-bottom:.75rem">🧠</div>
+        <h3 style="font-family:'Clash Display',sans-serif;font-size:1.3rem;margin-bottom:.5rem">Você ainda não fez o teste DISC</h3>
+        <p style="color:var(--muted);margin-bottom:1.5rem;font-size:.9rem">Leva só 3 minutos e ajuda empresas a entenderem melhor seu perfil.</p>
+        <button class="btn-submit" style="max-width:220px;margin:0 auto" onclick="
+          document.getElementById('painel').classList.remove('show');
+          document.getElementById('tabs').style.display='none';
+          document.getElementById('tab-cadastro').style.display='none';
+          document.getElementById('disc-step').classList.add('show');
+          document.getElementById('disc-intro').style.display='block';
+          document.getElementById('disc-quiz').style.display='none';
+          document.getElementById('disc-resultado').style.display='none';
+        ">Fazer o teste agora →</button>
+      </div>`;
+    return;
+  }
+
+  let scores = {D:0,I:0,S:0,C:0};
+  try { scores = JSON.parse(rawScores); } catch(e) {}
+  const total = Object.values(scores).reduce((a,b)=>a+b,0);
+
+  renderDiscResultado(perfil, scores, total, 'painel-disc-content', false);
+
+  // Add refazer button at bottom
+  container.innerHTML += `
+    <div style="text-align:center;margin-top:1rem">
+      <button onclick="refazerDISC()" style="background:none;border:1.5px solid var(--border);border-radius:10px;padding:.6rem 1.5rem;font-size:.85rem;font-weight:600;cursor:pointer;color:var(--muted);font-family:'Plus Jakarta Sans',sans-serif">
+        🔄 Refazer o teste
+      </button>
+    </div>`;
+}
+
+function refazerDISC() {
+  discRespostas = {}; discQAtual = 0;
+  document.getElementById('painel').classList.remove('show');
+  document.getElementById('tabs').style.display = 'none';
+  document.getElementById('disc-step').classList.add('show');
+  document.getElementById('disc-intro').style.display = 'none';
+  document.getElementById('disc-quiz').style.display = 'block';
+  document.getElementById('disc-resultado').style.display = 'none';
+  renderDiscQuestion();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ================================================================
+// END DISC ENGINE
+// ================================================================
 
 // Auto-login se já tiver sessão
 if (candidatoLogado) showPainel();

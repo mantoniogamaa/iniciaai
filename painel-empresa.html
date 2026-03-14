@@ -261,6 +261,14 @@
     border-radius:10px; font-size:.875rem; font-family:'Plus Jakarta Sans',sans-serif;
     outline:none; resize:vertical; min-height:100px; transition:border-color .2s; background:var(--bg); }
   .modal-convite-body textarea:focus { border-color:var(--violet); background:white; }
+
+  /* DISC BADGE */
+  .disc-badge { display:inline-flex;align-items:center;gap:.25rem;padding:.2rem .6rem;
+    border-radius:50px;font-size:.68rem;font-weight:700;flex-shrink:0; }
+  .disc-D { background:rgba(239,68,68,.12);color:#DC2626; }
+  .disc-I { background:rgba(251,191,36,.15);color:#B45309; }
+  .disc-S { background:rgba(16,185,129,.12);color:#059669; }
+  .disc-C { background:rgba(59,130,246,.12);color:#2563EB; }
   @media(max-width:600px) { .stats-row{grid-template-columns:1fr 1fr} .cand-actions{flex-direction:column} }
 </style>
 </head>
@@ -354,6 +362,13 @@
             <option value="">🕐 Período</option>
             <option>Manhã</option><option>Tarde</option><option>Noite</option>
             <option>Integral</option><option>Flexível</option>
+          </select>
+          <select class="filtro-input" id="b-disc">
+            <option value="">🧠 Perfil DISC</option>
+            <option value="D">🦁 Dominante</option>
+            <option value="I">🌟 Influente</option>
+            <option value="S">🌿 Estável</option>
+            <option value="C">🔬 Conscencioso</option>
           </select>
         </div>
         <button class="btn-buscar" onclick="buscarCandidatos()">Buscar Candidatos</button>
@@ -719,7 +734,7 @@ async function selectVaga(vagaId) {
   panel.scrollIntoView({behavior:'smooth', block:'start'});
 
   const { data, error } = await sb.from('candidaturas')
-    .select('*, candidatos(nome, email, telefone, cidade, estado, escolaridade, curso, periodo_disponivel, linkedin, sobre)')
+    .select('*, candidatos(nome, email, telefone, cidade, estado, escolaridade, curso, periodo_disponivel, linkedin, sobre, disc_perfil, disc_scores)')
     .eq('vaga_id', vagaId).order('created_at', {ascending:false});
 
   document.getElementById('cands-loading2').style.display = 'none';
@@ -753,7 +768,10 @@ async function selectVaga(vagaId) {
       <div class="cand-row" id="cand-${c.id}">
         <div class="cand-avatar">${initial}</div>
         <div class="cand-info">
-          <div class="cand-name">${cd?.nome||'—'}</div>
+          <div class="cand-name" style="display:flex;align-items:center;gap:.5rem">
+            ${cd?.nome||'—'}
+            ${cd?.disc_perfil ? discBadge(cd.disc_perfil) : ''}
+          </div>
           <div class="cand-meta">
             📧 ${cd?.email||'—'} · 📍 ${cd?.cidade||'—'}${cd?.estado?', '+cd.estado:''}<br>
             🎓 ${cd?.escolaridade||'—'}${cd?.curso?' · '+cd.curso:''} · 🕐 ${cd?.periodo_disponivel||'—'}
@@ -810,7 +828,7 @@ async function buscarCandidatos() {
   document.getElementById('busca-results').style.display = 'none';
   document.getElementById('busca-loading').style.display = 'block';
 
-  let query = sb.from('candidatos').select('*').order('created_at', { ascending: false });
+  let query = sb.from('candidatos').select('id,nome,email,telefone,cidade,estado,escolaridade,curso,periodo_disponivel,linkedin,sobre,disc_perfil,disc_scores').order('created_at', { ascending: false });
   if (estado)  query = query.eq('estado', estado);
   if (esc)     query = query.eq('escolaridade', esc);
   if (periodo) query = query.eq('periodo_disponivel', periodo);
@@ -828,6 +846,8 @@ async function buscarCandidatos() {
     c.instituicao?.toLowerCase().includes(nome)
   );
   if (cidade) results = results.filter(c => c.cidade?.toLowerCase().includes(cidade));
+  const discF = document.getElementById('b-disc').value;
+  if (discF) results = results.filter(c => c.disc_perfil === discF);
 
   const count = document.getElementById('busca-count');
   const list  = document.getElementById('busca-list');
@@ -851,6 +871,7 @@ function renderCandidatoCard(c) {
     c.curso        ? `<span class="cand-tag cyan">${c.curso}</span>` : '',
     c.periodo_disponivel ? `<span class="cand-tag yellow">🕐 ${c.periodo_disponivel}</span>` : '',
     c.cidade       ? `<span class="cand-tag green">📍 ${c.cidade}${c.estado ? ', ' + c.estado : ''}</span>` : '',
+    c.disc_perfil  ? discBadge(c.disc_perfil) : '',
   ].filter(Boolean).join('');
 
   return `
@@ -957,6 +978,13 @@ async function enviarConvite() {
 
 function fecharConvite() {
   document.getElementById('modal-convite').classList.remove('open');
+}
+
+
+function discBadge(perfil) {
+  if (!perfil) return '';
+  const labels = {D:'🦁 Dominante',I:'🌟 Influente',S:'🌿 Estável',C:'🔬 Conscencioso'};
+  return `<span class="disc-badge disc-${perfil}">${labels[perfil]||perfil}</span>`;
 }
 
 if (empresaLogada) showPainel();
