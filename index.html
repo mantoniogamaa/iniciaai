@@ -21,7 +21,7 @@
 <meta property="twitter:description" content="Encontre vagas de estágio e Jovem Aprendiz em todo o Brasil. O portal feito para quem está dando o primeiro passo na carreira.">
 <meta property="twitter:image" content="https://mantoniogamaa.github.io/iniciaaí/og-image.png">
 <link rel="canonical" href="https://mantoniogamaa.github.io/iniciaaí/">
-<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
   :root {
@@ -649,6 +649,51 @@
   /* Sort select */
   .sort-select:focus { border-color: var(--accent) !important; }
 
+
+  /* ── TYPOGRAPHY UPGRADE ── */
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap');
+  body { font-family: 'DM Sans', 'Plus Jakarta Sans', sans-serif; }
+
+  /* ── HERO BADGE FIX — não deve esticar full width ── */
+  .hero-badge {
+    display: inline-flex !important;
+    width: auto !important;
+    max-width: fit-content !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    align-self: center !important;
+  }
+  /* Centro o hero content */
+  .hero { text-align: center; }
+  .hero > * { margin-left: auto; margin-right: auto; }
+
+  /* ── HERO TITLE — mais impacto ── */
+  .hero h1 {
+    font-family: 'Clash Display', sans-serif !important;
+    font-size: clamp(2.8rem, 6vw, 5rem) !important;
+    letter-spacing: -0.02em !important;
+    line-height: 1.05 !important;
+    font-weight: 700 !important;
+  }
+
+  /* ── SEARCH CARD — ícones nos selects ── */
+  .search-card { border-radius: 20px !important; box-shadow: 0 12px 40px rgba(0,122,94,.12) !important; }
+
+  /* ── SECTION TITLE — mais peso ── */
+  .section-title {
+    font-family: 'Clash Display', sans-serif !important;
+    font-size: 1.75rem !important;
+    letter-spacing: -.02em !important;
+  }
+
+  /* ── JOB CARDS — mais refinados ── */
+  .job-card { border-radius: 18px !important; }
+  .card-title { font-family: 'Clash Display', sans-serif !important; font-size: 1.05rem !important; letter-spacing: -.01em !important; }
+  .card-company { font-size: .78rem !important; font-weight: 600 !important; letter-spacing: .04em !important; text-transform: uppercase !important; }
+
+  /* ── PAGINATION ── */
+  .page-btn { border-radius: 10px !important; font-weight: 700 !important; }
+
 </style>
 </head>
 <body>
@@ -780,7 +825,7 @@
   </div>
 </div>
 
-<section class="hero">
+<section class="hero" style="text-align:center">
   <!-- Fundo tech + ensino (Pantone Anhembi) -->
   <svg class="hero-bg-pattern" viewBox="0 0 1440 580" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" opacity=".18">
     <g stroke="#00A88E" stroke-width="1" fill="none">

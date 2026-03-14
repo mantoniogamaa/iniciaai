@@ -8,7 +8,7 @@
 <meta property="og:title" content="Sobre o IniciaAí">
 <meta property="og:description" content="Conectamos estudantes com oportunidades reais. Conheça nossa missão e como funciona.">
 <meta property="og:type" content="website">
-<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --primary:       #007A5E;   /* PANTONE 7719C — Verde Escuro Anhembi */
@@ -499,6 +499,81 @@
   /* CTA final */
   .cta-final { background: var(--dark) !important; }
 
+
+  /* ── SOBRE — UPGRADE TIPOGRAFIA + ELEGÂNCIA ── */
+  body { font-family: 'DM Sans', 'Plus Jakarta Sans', sans-serif !important; }
+
+  /* Hero mais elegante */
+  .hero {
+    background: linear-gradient(160deg, #003D2E 0%, #007A5E 60%, #004D3D 100%) !important;
+    padding: 5rem 2rem 4rem !important;
+    min-height: 580px !important;
+  }
+
+  /* Hero h1 span — não quebra em linha separada feia */
+  .hero h1 {
+    font-size: clamp(2.4rem, 5vw, 4rem) !important;
+    letter-spacing: -0.03em !important;
+    line-height: 1.1 !important;
+  }
+  .hero h1 span {
+    display: inline !important;
+    font-size: inherit !important;
+  }
+
+  /* Numbers bar mais elegante */
+  .hero-numbers {
+    background: rgba(0,0,0,.2) !important;
+    border-radius: 16px !important;
+    border: 1px solid rgba(255,255,255,.1) !important;
+    backdrop-filter: blur(10px) !important;
+    max-width: 480px !important;
+    margin: 2rem auto 0 !important;
+    overflow: hidden !important;
+  }
+  .hero-num { padding: 1.4rem 1rem !important; }
+  .hero-num-val {
+    font-family: 'Clash Display', sans-serif !important;
+    font-size: 2.2rem !important;
+    font-weight: 700 !important;
+    color: white !important;
+  }
+
+  /* Steps section — contido, não full-width */
+  .steps-list { max-width: 580px !important; }
+  .step-item { background: white !important; border-radius: 14px !important; padding: 1.25rem !important; border: 1.5px solid var(--border) !important; transition: box-shadow .2s, transform .2s !important; }
+  .step-item:hover { transform: translateX(4px) !important; box-shadow: 0 6px 20px rgba(0,122,94,.1) !important; }
+  .step-dot { border-radius: 12px !important; }
+  .step-title { font-family: 'Clash Display', sans-serif !important; font-size: 1rem !important; letter-spacing: -.01em !important; color: var(--primary) !important; }
+  .step-label { color: var(--accent) !important; font-weight: 800 !important; }
+
+  /* Section titles */
+  .section-title {
+    font-family: 'Clash Display', sans-serif !important;
+    letter-spacing: -.025em !important;
+    line-height: 1.12 !important;
+  }
+
+  /* Diff cards mais elegantes */
+  .diff-card { background: white !important; border-radius: 20px !important; }
+  .diff-title { font-family: 'Clash Display', sans-serif !important; letter-spacing: -.01em !important; }
+
+  /* FAQ mais limpo */
+  .faq-q { font-family: 'Clash Display', sans-serif !important; font-size: .95rem !important; letter-spacing: -.01em !important; }
+  .faq-item { background: white !important; border-radius: 14px !important; }
+
+  /* Nav link ativo — verde não vermelho */
+  .nav-links a[style*="color:var(--primary)"],
+  .nav-links a[style*="color:var(--accent)"] {
+    color: var(--primary) !important;
+    font-weight: 700 !important;
+    border-bottom: 2px solid var(--accent) !important;
+    padding-bottom: 2px !important;
+  }
+
+  /* Botão CTA */
+  .btn-hero-primary { font-family: 'DM Sans', sans-serif !important; font-weight: 700 !important; letter-spacing: .01em !important; }
+
 </style>
 </head>
 <body>
@@ -593,19 +668,19 @@
     <div class="how-section show" id="how-cand">
       <div class="steps-list">
         <div class="step-item fade-in">
-          <div class="step-dot step-dot-v">📝</div>
+          <div class="step-dot step-dot-v"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg></div>
           <div><div class="step-label">Passo 1</div><div class="step-title">Crie seu perfil em minutos</div><div class="step-desc">Cadastro gratuito com dados básicos, formação e objetivo profissional. Opcionalmente faça o teste de perfil DISC para se destacar.</div></div>
         </div>
         <div class="step-item fade-in">
-          <div class="step-dot step-dot-v">🔍</div>
+          <div class="step-dot step-dot-v"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
           <div><div class="step-label">Passo 2</div><div class="step-title">Explore vagas com filtros avançados</div><div class="step-desc">Filtre por área, modalidade, período, cidade e bolsa. Cada vaga tem página própria com todos os detalhes.</div></div>
         </div>
         <div class="step-item fade-in">
-          <div class="step-dot step-dot-v">🚀</div>
+          <div class="step-dot step-dot-v"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
           <div><div class="step-label">Passo 3</div><div class="step-title">Candidate-se com um clique</div><div class="step-desc">Sua candidatura chega diretamente para o RH da empresa. Acompanhe o status em tempo real no seu painel.</div></div>
         </div>
         <div class="step-item fade-in">
-          <div class="step-dot step-dot-v">🎉</div>
+          <div class="step-dot step-dot-v"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
           <div><div class="step-label">Passo 4</div><div class="step-title">Receba o contato da empresa</div><div class="step-desc">Se aprovado, a empresa entra em contato pelo WhatsApp ou LinkedIn cadastrados no seu perfil. É só aparecer!</div></div>
         </div>
       </div>
@@ -613,19 +688,19 @@
     <div class="how-section" id="how-emp">
       <div class="steps-list">
         <div class="step-item fade-in">
-          <div class="step-dot step-dot-e">🏢</div>
+          <div class="step-dot step-dot-e"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
           <div><div class="step-label">Passo 1</div><div class="step-title">Cadastre sua empresa</div><div class="step-desc">Informe os dados da empresa e crie sua conta. O processo é rápido e completamente gratuito.</div></div>
         </div>
         <div class="step-item fade-in">
-          <div class="step-dot step-dot-e">📋</div>
+          <div class="step-dot step-dot-e"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
           <div><div class="step-label">Passo 2</div><div class="step-title">Publique sua vaga</div><div class="step-desc">Preencha o formulário detalhado com cargo, benefícios, requisitos e bolsa. Pode manter confidencial se quiser.</div></div>
         </div>
         <div class="step-item fade-in">
-          <div class="step-dot step-dot-e">✅</div>
+          <div class="step-dot step-dot-e"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg></div>
           <div><div class="step-label">Passo 3</div><div class="step-title">Vaga revisada e publicada</div><div class="step-desc">Nossa equipe revisa e aprova em até 24h. Vagas com informações completas são aprovadas mais rápido.</div></div>
         </div>
         <div class="step-item fade-in">
-          <div class="step-dot step-dot-e">👥</div>
+          <div class="step-dot step-dot-e"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
           <div><div class="step-label">Passo 4</div><div class="step-title">Gerencie candidatos no painel</div><div class="step-desc">Visualize currículos, perfis DISC, contacte diretamente pelo WhatsApp ou LinkedIn e registre o status de cada candidato.</div></div>
         </div>
       </div>
