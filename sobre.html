@@ -408,6 +408,97 @@
     background-image: url('logo-branca.png');
   }
 
+
+  /* ── FIX GLOBAL: eliminar vermelho, logo correta, marca d'água ── */
+  .logo {
+    display: inline-flex; align-items: center;
+    text-decoration: none; cursor: pointer;
+    font-size: 0 !important; color: transparent !important;
+    -webkit-text-fill-color: transparent !important; background: none !important;
+  }
+  .logo::before {
+    content: '';
+    display: block;
+    width: 140px; height: 44px;
+    background: url('logo-colorida.png') no-repeat left center / contain;
+  }
+  nav {
+    background: rgba(255,255,255,.97) !important;
+    box-shadow: 0 1px 16px rgba(0,122,94,.1) !important;
+    height: 72px !important;
+  }
+
+  /* Todos os botões CTA → verde accent */
+  .btn-submit, .btn-save, .btn-modal-save, .lm-btn,
+  .btn-apply-full, .btn-apply, .btn-search, .btn-buscar,
+  .btn-nova-vaga, .btn-nav-cta, .btn-hero-primary, .btn-nav-primary,
+  .cta-btn-a, .btn-primary {
+    background: var(--accent) !important;
+    background-image: none !important;
+  }
+  .btn-submit:hover, .btn-save:hover, .btn-apply-full:hover,
+  .btn-search:hover, .btn-buscar:hover, .btn-hero-primary:hover {
+    background: var(--accent-dark) !important;
+    box-shadow: 0 8px 20px rgba(0,168,142,.3) !important;
+  }
+
+  /* Input focus → accent */
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 3px rgba(0,168,142,.1) !important;
+  }
+
+  /* Section badge */
+  .section-badge {
+    background: var(--accent-light) !important;
+    color: var(--primary) !important;
+  }
+
+  /* Section title span highlight */
+  .section-title span, h1 span, h2 span {
+    color: var(--accent) !important;
+    -webkit-text-fill-color: var(--accent) !important;
+    background: none !important;
+  }
+
+  /* Stat nums brancos dentro de heróis */
+  .hero .stat-num, .page-hero .stat-num {
+    color: white !important;
+    font-weight: 800 !important;
+  }
+
+  /* Remove qualquer gradiente texto residual */
+  *[style*="background-clip:text"] {
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: unset !important;
+    background-clip: unset !important;
+  }
+
+  /* Marca d'água nas seções sobre */
+  .missao-grid { position: relative; }
+  section:nth-child(odd) { position: relative; }
+
+  /* Hero sobre — sem "Sobre" ativo vermelho */
+  .nav-links a[style*="color:var(--primary)"] { color: var(--primary) !important; font-weight: 700; }
+  .nav-links a[style*="color:var(--accent)"] { color: var(--primary) !important; }
+
+  /* FAQ colors */
+  .faq-item.open .faq-q { color: var(--primary) !important; }
+  .faq-item.open .faq-q svg { color: var(--accent) !important; }
+
+  /* Diferenciais cards */
+  .diff-card:hover { border-color: rgba(0,122,94,.25) !important; }
+  .diff-title { color: var(--text) !important; }
+
+  /* Valores grid */
+  .valor-name { color: white !important; }
+
+  /* benefit check */
+  .benefit-check { background: rgba(0,168,142,.12) !important; }
+
+  /* CTA final */
+  .cta-final { background: var(--dark) !important; }
+
 </style>
 </head>
 <body>

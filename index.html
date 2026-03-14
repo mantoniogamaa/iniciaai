@@ -201,7 +201,7 @@
     font-size:.85rem; font-family:'Plus Jakarta Sans',sans-serif; outline:none;
     background:var(--bg); color:var(--text); cursor:pointer; transition:border-color .2s;
     flex:1; min-width:140px; }
-  .filter-select:focus { border-color:var(--violet); }
+  .filter-select:focus { border-color:var(--accent); box-shadow:0 0 0 3px rgba(0,168,142,.1); }
   .btn-search { padding:.85rem 2rem; background:linear-gradient(135deg,var(--accent),var(--accent-dark));
     color:white; border:none; border-radius:12px; font-size:.95rem; font-weight:600; cursor:pointer;
     transition:transform .2s,box-shadow .2s; font-family:'Plus Jakarta Sans',sans-serif; white-space:nowrap; }
@@ -495,6 +495,160 @@
     background-image: url('logo-branca.png');
   }
 
+
+  /* ── LOGO ANHEMBI ── */
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 0 !important;
+    color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
+    background: none !important;
+    line-height: 1;
+  }
+  .logo::before {
+    content: '';
+    display: block;
+    width: 140px;
+    height: 48px;
+    background: url('logo-colorida.png') no-repeat left center / contain;
+  }
+
+  /* ── NAV ── */
+  nav {
+    background: rgba(255,255,255,.97) !important;
+    box-shadow: 0 1px 16px rgba(0,122,94,.12) !important;
+    height: 72px !important;
+  }
+
+  /* ── HERO MELHORADO ── */
+  .hero {
+    background: linear-gradient(155deg, #004D3D 0%, #007A5E 55%, #005C47 100%);
+    padding: 100px 2rem 0;
+    position: relative;
+    overflow: hidden;
+    min-height: 520px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .hero-bg-pattern {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    z-index: 0; pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; top: -80px; right: -80px;
+    width: 550px; height: 550px;
+    background: radial-gradient(circle, rgba(0,168,142,.28) 0%, transparent 65%);
+    pointer-events: none; z-index: 0;
+  }
+  /* Marca d'água no hero */
+  .hero::before {
+    content: '';
+    position: absolute;
+    bottom: -20px; left: -40px;
+    width: 420px; height: 120px;
+    background: url('logo-branca.png') no-repeat left center / contain;
+    opacity: .05;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero > *:not(.hero-bg-pattern) { position: relative; z-index: 1; }
+
+  /* Textos do hero */
+  .hero h1 { color: white !important; font-size: clamp(2.4rem,5.5vw,4.2rem); }
+  .hero h1 .highlight { color: var(--accent) !important; -webkit-text-fill-color: var(--accent) !important; background: none !important; }
+  .hero p { color: rgba(255,255,255,.75) !important; }
+  .hero-badge { background: rgba(255,255,255,.12) !important; border-color: rgba(255,255,255,.2) !important; color: rgba(255,255,255,.9) !important; }
+
+  /* STATS — brancos e em negrito */
+  .hero-stats { margin-top: 2rem; }
+  .stat-num {
+    font-family: 'Clash Display', sans-serif;
+    font-size: 2.4rem !important;
+    font-weight: 800 !important;
+    color: white !important;
+    text-shadow: 0 2px 12px rgba(0,0,0,.25);
+  }
+  .stat-label { color: rgba(255,255,255,.65) !important; font-weight: 500 !important; }
+
+  /* Tags modernas */
+  .tag {
+    background: rgba(255,255,255,.1) !important;
+    color: white !important;
+    border: 1px solid rgba(255,255,255,.2) !important;
+    backdrop-filter: blur(8px);
+    border-radius: 50px !important;
+    padding: .45rem 1.1rem !important;
+    font-size: .82rem !important;
+    font-weight: 600 !important;
+    transition: all .25s !important;
+  }
+  .tag:hover {
+    background: var(--accent) !important;
+    border-color: var(--accent) !important;
+    color: white !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 14px rgba(0,168,142,.35) !important;
+  }
+
+  /* Transição suave hero → conteúdo */
+  .hero-to-content {
+    height: 56px;
+    background: linear-gradient(to bottom, #005C47, var(--bg));
+    margin-bottom: -1px;
+  }
+
+  /* ── MARCA D'ÁGUA SEÇÃO VAGAS ── */
+  .jobs-section {
+    position: relative;
+    overflow: hidden;
+  }
+  .jobs-section::before {
+    content: '';
+    position: absolute;
+    top: 50%; right: -60px;
+    transform: translateY(-50%);
+    width: 380px; height: 110px;
+    background: url('logo-colorida.png') no-repeat center / contain;
+    opacity: .035;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .jobs-section > * { position: relative; z-index: 1; }
+
+  /* ── ELIMINAR VERMELHO RESIDUAL ── */
+  .section-badge { background: var(--accent-light) !important; color: var(--primary) !important; border: 1px solid rgba(0,122,94,.2); }
+  .btn-search { background: var(--accent) !important; }
+  .btn-search:hover { background: var(--accent-dark) !important; box-shadow: 0 8px 20px rgba(0,168,142,.35) !important; }
+  .btn-primary, .btn-apply, .btn-apply-full, .btn-nav-cta {
+    background: var(--accent) !important;
+  }
+  .btn-primary:hover, .btn-apply:hover, .btn-apply-full:hover {
+    box-shadow: 0 8px 20px rgba(0,168,142,.35) !important;
+  }
+  .badge-type-estagio { background: rgba(0,122,94,.1) !important; color: var(--primary) !important; }
+  .badge-type-aprendiz { background: rgba(0,168,142,.12) !important; color: var(--accent-dark) !important; }
+  .badge-remote { background: rgba(0,168,142,.1) !important; color: var(--accent-dark) !important; }
+  .card-salary { color: var(--primary) !important; }
+  .job-card:hover::before { opacity: 1 !important; }
+  .card-estagio::before { background: linear-gradient(90deg, var(--primary), var(--accent)) !important; }
+  .card-aprendiz::before { background: linear-gradient(90deg, var(--accent), var(--primary)) !important; }
+  .results-count { color: var(--muted) !important; }
+  .section-title { color: var(--text) !important; }
+  .company-logo { background: rgba(0,122,94,.08) !important; color: var(--primary) !important; }
+
+  /* Paginação */
+  .page-btn.active { background: var(--accent) !important; }
+  .page-btn:hover { border-color: var(--accent) !important; color: var(--accent) !important; }
+
+  /* Sort select */
+  .sort-select:focus { border-color: var(--accent) !important; }
+
 </style>
 </head>
 <body>
@@ -699,13 +853,27 @@
   <h1>Seu primeiro <span class="highlight">passo</span><br>no mercado começa aqui</h1>
   <p>Estágios, Jovem Aprendiz e muito mais. Encontre a oportunidade certa para decolar na sua carreira.</p>
   <div class="floating-tags">
-    <span class="tag tag-violet" onclick="filterByTag('Tecnologia')">💻 Tecnologia</span>
-    <span class="tag tag-coral"  onclick="filterByTag('Marketing')">📣 Marketing</span>
-    <span class="tag tag-cyan"   onclick="filterByTag('Administrativo')">📋 Administrativo</span>
-    <span class="tag tag-green"  onclick="filterByTag('Design')">🎨 Design</span>
-    <span class="tag tag-yellow" onclick="filterByTag('Financeiro')">💰 Financeiro</span>
-    <span class="tag tag-violet" onclick="filterByTag('RH')">👥 RH</span>
-    <span class="tag tag-coral"  onclick="filterByTag('Logística')">📦 Logística</span>
+    <span class="tag" onclick="filterByTag('Tecnologia')">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:.35rem"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Tecnologia
+    </span>
+    <span class="tag" onclick="filterByTag('Marketing')">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:.35rem"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>Marketing
+    </span>
+    <span class="tag" onclick="filterByTag('Administrativo')">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:.35rem"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>Administrativo
+    </span>
+    <span class="tag" onclick="filterByTag('Design')">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:.35rem"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>Design
+    </span>
+    <span class="tag" onclick="filterByTag('Financeiro')">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:.35rem"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Financeiro
+    </span>
+    <span class="tag" onclick="filterByTag('RH')">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:.35rem"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>RH
+    </span>
+    <span class="tag" onclick="filterByTag('Logística')">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:.35rem"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>Logística
+    </span>
   </div>
   <div class="hero-stats">
     <div class="stat"><div class="stat-num" id="stat-vagas">—</div><div class="stat-label">Vagas ativas</div></div>
@@ -714,6 +882,7 @@
   </div>
 </section>
 
+<div class="hero-to-content"></div>
 <section class="search-section">
   <div class="search-card">
     <div class="search-row">
