@@ -773,7 +773,7 @@ function checkAuth() {
   if (adminLogado) {
     document.getElementById('login-screen').style.display = 'none';
     updateSidebarAdmin();
-    render();
+    loadAllData().then(render);
   }
 }
 
@@ -825,6 +825,7 @@ async function tryLogin() {
     adminLogado = data;
     document.getElementById('login-screen').style.display = 'none';
     updateSidebarAdmin();
+    await loadAllData();
     render();
   }
 }
@@ -937,6 +938,17 @@ function showAdminMsg(txt, type) {
 }
 
 // ---- DATA (Supabase) ----
+let allVagas = [];
+let allCandidatos = [];
+
+async function loadAllData() {
+  const [vagasRes, candsRes] = await Promise.all([
+    sb.from('vagas').select('*, empresas(nome_fantasia, razao_social, cnpj, email, telefone, setor)').order('created_at', { ascending: false }),
+    sb.from('candidatos').select('*').order('created_at', { ascending: false })
+  ]);
+  allVagas      = vagasRes.data  || [];
+  allCandidatos = candsRes.data  || [];
+}
 
 let currentFilter = 'todas';
 let currentSection = 'dashboard';
@@ -959,7 +971,7 @@ function showSection(id) {
   document.querySelectorAll('.nav-item').forEach(n => { if (n.getAttribute('onclick') && n.getAttribute('onclick').includes(id)) n.classList.add('active'); });
   document.getElementById('topbar-title').textContent = sectionTitles[id] || id;
   currentSection = id;
-  render();
+  loadAllData().then(render);
 }
 
 function setFilter(f, el) {
@@ -980,67 +992,65 @@ function render() {
 }
 
 function updateStats() {
-  const vagas = getVagas();
-  const pend = vagas.filter(v => v.status === 'pendente').length;
-  const aprov = vagas.filter(v => v.status === 'aprovada').length;
-  const rej = vagas.filter(v => v.status === 'rejeitada').length;
-  const emps = [...new Set(vagas.map(v => v.empresa?.cnpj).filter(Boolean))].length;
+  const pend  = allVagas.filter(v => v.status === 'pendente').length;
+  const aprov = allVagas.filter(v => v.status === 'aprovada').length;
+  const rej   = allVagas.filter(v => v.status === 'rejeitada').length;
+  const emps  = new Set(allVagas.map(v => v.empresa_id).filter(Boolean)).size;
 
-  document.getElementById('dash-pendente').textContent = pend;
-  document.getElementById('dash-aprovada').textContent = aprov;
+  document.getElementById('dash-pendente').textContent  = pend;
+  document.getElementById('dash-aprovada').textContent  = aprov;
   document.getElementById('dash-rejeitada').textContent = rej;
-  document.getElementById('dash-empresas').textContent = emps;
-
+  document.getElementById('dash-empresas').textContent  = emps;
   document.getElementById('badge-pendente').textContent = pend;
   document.getElementById('badge-aprovada').textContent = aprov;
 }
 
 function renderDashboard() {
-  const vagas = getVagas().slice().reverse().slice(0, 5);
+  const recentes = allVagas.slice(0, 5);
   const c = document.getElementById('dashboard-recent');
-  c.innerHTML = vagas.length ? vagas.map(v => cardHTML(v, true)).join('') : emptyHTML('Nenhuma submissão ainda', 'As vagas cadastradas pelas empresas aparecerão aqui.');
+  c.innerHTML = recentes.length ? recentes.map(v => cardHTML(v, true)).join('') : emptyHTML('Nenhuma submissão ainda', 'As vagas cadastradas pelas empresas aparecerão aqui.');
 }
 
 function renderVagas() {
-  let vagas = getVagas().slice().reverse();
   const kw = document.getElementById('topbar-search').value.toLowerCase();
-
+  let vagas = allVagas;
   if (currentFilter !== 'todas') vagas = vagas.filter(v => v.status === currentFilter);
   if (kw) vagas = vagas.filter(v =>
-    v.vaga?.titulo?.toLowerCase().includes(kw) ||
-    v.empresa?.fantasia?.toLowerCase().includes(kw) ||
-    v.empresa?.razao?.toLowerCase().includes(kw)
+    v.titulo?.toLowerCase().includes(kw) ||
+    v.empresas?.nome_fantasia?.toLowerCase().includes(kw) ||
+    v.area?.toLowerCase().includes(kw)
   );
-
   const c = document.getElementById('vagas-list');
-  c.innerHTML = vagas.length ? vagas.map(v => cardHTML(v, true)).join('') : emptyHTML('Nenhuma vaga', 'Nenhuma vaga encontrada com os filtros atuais.');
+  c.innerHTML = vagas.length ? vagas.map(v => cardHTML(v, true)).join('') : emptyHTML('Nenhuma vaga', 'Nenhuma vaga com os filtros atuais.');
 }
 
 function renderAprovadas() {
-  const vagas = getVagas().filter(v => v.status === 'aprovada').reverse();
+  const vagas = allVagas.filter(v => v.status === 'aprovada');
   const c = document.getElementById('aprovadas-list');
   c.innerHTML = vagas.length ? vagas.map(v => cardHTML(v, false)).join('') : emptyHTML('Nenhuma vaga aprovada', 'Aprove vagas na aba "Gerenciar Vagas".');
 }
 
 function renderEmpresas() {
-  const vagas = getVagas();
   const seen = new Set();
-  const empresas = vagas.filter(v => { const k = v.empresa?.cnpj; if (!k || seen.has(k)) return false; seen.add(k); return true; });
+  const empresas = allVagas.filter(v => {
+    if (!v.empresa_id || seen.has(v.empresa_id)) return false;
+    seen.add(v.empresa_id); return true;
+  });
   const c = document.getElementById('companies-grid');
   c.innerHTML = empresas.length ? empresas.map(v => `
     <div class="company-card">
       <div class="cc-header">
         <div class="cc-avatar">🏢</div>
         <div>
-          <div class="cc-name">${v.empresa?.fantasia || '—'}</div>
-          <div class="cc-setor">${v.empresa?.setor || '—'}</div>
+          <div class="cc-name">${v.empresas?.nome_fantasia || '—'}</div>
+          <div class="cc-setor">${v.empresas?.setor || '—'}</div>
         </div>
       </div>
       <div class="cc-meta">
-        <span>📧 ${v.empresa?.email || '—'}</span>
-        <span>📞 ${v.empresa?.tel || '—'}</span>
-        <span>🪪 CNPJ: ${v.empresa?.cnpj || '—'}</span>
-        <span>💼 ${vagas.filter(x => x.empresa?.cnpj === v.empresa?.cnpj).length} vaga(s) submetida(s)</span>
+        <span>📧 ${v.empresas?.email || '—'}</span>
+        <span>📞 ${v.empresas?.telefone || '—'}</span>
+        <span>🪪 CNPJ: ${v.empresas?.cnpj || '—'}</span>
+        <span>💼 ${allVagas.filter(x => x.empresa_id === v.empresa_id).length} vaga(s)</span>
       </div>
     </div>
   `).join('') : emptyHTML('Nenhuma empresa', 'As empresas que cadastrarem vagas aparecerão aqui.');
@@ -1048,32 +1058,34 @@ function renderEmpresas() {
 
 function cardHTML(v, showActions) {
   const badgeClass = `status-${v.status}`;
-  const badgeText = v.status === 'pendente' ? '⏳ Pendente' : v.status === 'aprovada' ? '✅ Aprovada' : '❌ Rejeitada';
-  const date = v.submittedAt ? new Date(v.submittedAt).toLocaleDateString('pt-BR') : '—';
+  const badgeText  = v.status === 'pendente' ? '⏳ Pendente' : v.status === 'aprovada' ? '✅ Aprovada' : '❌ Rejeitada';
+  const date = new Date(v.created_at).toLocaleDateString('pt-BR');
+  const emp  = v.empresas?.nome_fantasia || '—';
+  const id   = v.id;
 
   let actions = '';
   if (showActions) {
     if (v.status === 'pendente') {
       actions = `
-        <button class="btn-action btn-view" onclick="event.stopPropagation();openDetail(${v.id})">Ver</button>
-        <button class="btn-action btn-approve" onclick="event.stopPropagation();approve(${v.id})">Aprovar</button>
-        <button class="btn-action btn-reject" onclick="event.stopPropagation();reject(${v.id})">Rejeitar</button>`;
+        <button class="btn-action btn-view"    onclick="event.stopPropagation();openDetail('${id}')">Ver</button>
+        <button class="btn-action btn-approve" onclick="event.stopPropagation();approveVaga('${id}')">Aprovar</button>
+        <button class="btn-action btn-reject"  onclick="event.stopPropagation();rejectVaga('${id}')">Rejeitar</button>`;
     } else {
       actions = `
-        <button class="btn-action btn-view" onclick="event.stopPropagation();openDetail(${v.id})">Ver</button>
-        <button class="btn-action btn-delete" onclick="event.stopPropagation();deleteVaga(${v.id})">Excluir</button>`;
+        <button class="btn-action btn-view"   onclick="event.stopPropagation();openDetail('${id}')">Ver</button>
+        <button class="btn-action btn-delete" onclick="event.stopPropagation();deleteVaga('${id}')">Excluir</button>`;
     }
   }
 
   return `
-    <div class="admin-job-card" onclick="openDetail(${v.id})">
+    <div class="admin-job-card" onclick="openDetail('${id}')">
       <div class="ajc-logo" style="background:rgba(167,139,250,0.1)">💼</div>
       <div class="ajc-info">
-        <div class="ajc-title">${v.vaga?.titulo || 'Sem título'}</div>
+        <div class="ajc-title">${v.titulo || 'Sem título'}</div>
         <div class="ajc-meta">
-          <span>🏢 ${v.empresa?.fantasia || '—'}</span>
-          <span>📂 ${v.vaga?.area || '—'}</span>
-          <span>📍 ${v.vaga?.cidade || '—'}</span>
+          <span>🏢 ${emp}</span>
+          <span>📂 ${v.area || '—'}</span>
+          <span>📍 ${v.cidade || '—'}</span>
           <span>📅 ${date}</span>
         </div>
       </div>
@@ -1086,37 +1098,39 @@ function emptyHTML(title, sub) {
   return `<div class="empty-list"><div>📭</div><strong>${title}</strong><br><span style="font-size:0.8rem">${sub}</span></div>`;
 }
 
-// ---- ACTIONS ----
-function approve(id) {
-  const vagas = getVagas();
-  const i = vagas.findIndex(v => v.id === id);
-  if (i === -1) return;
-  vagas[i].status = 'aprovada';
-  saveVagas(vagas);
-  showToast('✅ Vaga aprovada e publicada no portal!', 'success');
+// ---- ACTIONS (Supabase) ----
+async function approveVaga(id) {
+  const { error } = await sb.from('vagas').update({ status: 'aprovada' }).eq('id', id);
+  if (error) { showToast('Erro ao aprovar.', 'error'); return; }
+  const v = allVagas.find(x => x.id === id);
+  if (v) v.status = 'aprovada';
+  showToast('✅ Vaga aprovada e publicada!', 'success');
   render();
 }
 
-function reject(id) {
-  const vagas = getVagas();
-  const i = vagas.findIndex(v => v.id === id);
-  if (i === -1) return;
-  vagas[i].status = 'rejeitada';
-  saveVagas(vagas);
+async function rejectVaga(id) {
+  const { error } = await sb.from('vagas').update({ status: 'rejeitada' }).eq('id', id);
+  if (error) { showToast('Erro ao rejeitar.', 'error'); return; }
+  const v = allVagas.find(x => x.id === id);
+  if (v) v.status = 'rejeitada';
   showToast('❌ Vaga rejeitada.', 'error');
   render();
 }
 
-function deleteVaga(id) {
-  const vagas = getVagas().filter(v => v.id !== id);
-  saveVagas(vagas);
+async function deleteVaga(id) {
+  if (!confirm('Excluir esta vaga permanentemente?')) return;
+  const { error } = await sb.from('vagas').delete().eq('id', id);
+  if (error) { showToast('Erro ao excluir.', 'error'); return; }
+  allVagas = allVagas.filter(v => v.id !== id);
   showToast('🗑️ Vaga excluída.', 'info');
   render();
 }
 
-function clearRejected() {
-  const vagas = getVagas().filter(v => v.status !== 'rejeitada');
-  saveVagas(vagas);
+async function clearRejected() {
+  const ids = allVagas.filter(v => v.status === 'rejeitada').map(v => v.id);
+  if (!ids.length) { showToast('Nenhuma vaga rejeitada.', 'info'); return; }
+  await sb.from('vagas').delete().in('id', ids);
+  allVagas = allVagas.filter(v => v.status !== 'rejeitada');
   showToast('🗑️ Vagas rejeitadas removidas.', 'info');
   render();
 }
@@ -1126,36 +1140,36 @@ function filterJobs() { if (currentSection === 'vagas') renderVagas(); }
 
 // ---- DETAIL MODAL ----
 function openDetail(id) {
-  const v = getVagas().find(x => x.id === id);
+  const v = allVagas.find(x => x.id === id);
   if (!v) return;
   const statusClass = `status-${v.status}`;
-  const statusText = v.status === 'pendente' ? '⏳ Pendente' : v.status === 'aprovada' ? '✅ Aprovada' : '❌ Rejeitada';
+  const statusText  = v.status === 'pendente' ? '⏳ Pendente' : v.status === 'aprovada' ? '✅ Aprovada' : '❌ Rejeitada';
 
   document.getElementById('modal-body').innerHTML = `
     <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem;">
       <div style="flex:1">
-        <div style="font-size:0.78rem;color:var(--muted);margin-bottom:0.15rem;">${v.empresa?.fantasia || '—'}</div>
-        <h2 style="font-family:'Clash Display',sans-serif;font-size:1.3rem;">${v.vaga?.titulo || '—'}</h2>
+        <div style="font-size:0.78rem;color:var(--muted);margin-bottom:0.15rem;">${v.empresas?.nome_fantasia || '—'}</div>
+        <h2 style="font-family:'Clash Display',sans-serif;font-size:1.3rem;">${v.titulo || '—'}</h2>
       </div>
       <span class="status-badge ${statusClass}">${statusText}</span>
     </div>
 
     <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:0.5rem;">🏢 EMPRESA</div>
     <div class="detail-grid" style="margin-bottom:1.25rem;">
-      <div class="detail-item"><div class="detail-label">Razão Social</div><div class="detail-value">${v.empresa?.razao || '—'}</div></div>
-      <div class="detail-item"><div class="detail-label">CNPJ</div><div class="detail-value">${v.empresa?.cnpj || '—'}</div></div>
-      <div class="detail-item"><div class="detail-label">E-mail</div><div class="detail-value">${v.empresa?.email || '—'}</div></div>
-      <div class="detail-item"><div class="detail-label">Telefone</div><div class="detail-value">${v.empresa?.tel || '—'}</div></div>
+      <div class="detail-item"><div class="detail-label">Nome Fantasia</div><div class="detail-value">${v.empresas?.nome_fantasia || '—'}</div></div>
+      <div class="detail-item"><div class="detail-label">CNPJ</div><div class="detail-value">${v.empresas?.cnpj || '—'}</div></div>
+      <div class="detail-item"><div class="detail-label">E-mail</div><div class="detail-value">${v.empresas?.email || '—'}</div></div>
+      <div class="detail-item"><div class="detail-label">Telefone</div><div class="detail-value">${v.empresas?.telefone || '—'}</div></div>
     </div>
 
     <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:0.5rem;">💼 VAGA</div>
     <div class="detail-grid" style="margin-bottom:1.25rem;">
-      <div class="detail-item"><div class="detail-label">Tipo</div><div class="detail-value">${v.vaga?.tipo || '—'}</div></div>
-      <div class="detail-item"><div class="detail-label">Área</div><div class="detail-value">${v.vaga?.area || '—'}</div></div>
-      <div class="detail-item"><div class="detail-label">Modalidade</div><div class="detail-value">${v.vaga?.modalidade || '—'}</div></div>
-      <div class="detail-item"><div class="detail-label">Cidade</div><div class="detail-value">${v.vaga?.cidade || '—'}</div></div>
-      <div class="detail-item"><div class="detail-label">Período</div><div class="detail-value">${v.vaga?.periodo || '—'}</div></div>
-      <div class="detail-item"><div class="detail-label">Bolsa</div><div class="detail-value">R$ ${Number(v.vaga?.bolsa||0).toLocaleString('pt-BR')}/mês</div></div>
+      <div class="detail-item"><div class="detail-label">Tipo</div><div class="detail-value">${v.tipo || '—'}</div></div>
+      <div class="detail-item"><div class="detail-label">Área</div><div class="detail-value">${v.area || '—'}</div></div>
+      <div class="detail-item"><div class="detail-label">Modalidade</div><div class="detail-value">${v.modalidade || '—'}</div></div>
+      <div class="detail-item"><div class="detail-label">Cidade</div><div class="detail-value">${v.cidade || '—'}</div></div>
+      <div class="detail-item"><div class="detail-label">Período</div><div class="detail-value">${v.periodo || '—'}</div></div>
+      <div class="detail-item"><div class="detail-label">Bolsa</div><div class="detail-value">R$ ${Number(v.bolsa||0).toLocaleString('pt-BR')}/mês</div></div>
     </div>
 
     <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:0.4rem;">📝 DESCRIÇÃO</div>
@@ -1169,8 +1183,8 @@ function openDetail(id) {
 
     ${v.status === 'pendente' ? `
     <div class="modal-actions">
-      <button class="btn-modal-approve" onclick="approve(${v.id});closeModalBtn()">✅ Aprovar e Publicar</button>
-      <button class="btn-modal-reject" onclick="reject(${v.id});closeModalBtn()">❌ Rejeitar</button>
+      <button class="btn-modal-approve" onclick="approveVaga('${v.id}');closeModalBtn()">✅ Aprovar e Publicar</button>
+      <button class="btn-modal-reject"  onclick="rejectVaga('${v.id}');closeModalBtn()">❌ Rejeitar</button>
     </div>` : ''}
   `;
 
@@ -1191,30 +1205,7 @@ function showToast(msg, type = 'info') {
   setTimeout(() => t.classList.remove('show'), 3000);
 }
 
-// ---- DEMO DATA ----
-function addDemoData() {
-  const demos = [
-    { id: Date.now()+1, status:'pendente', submittedAt: new Date(Date.now()-86400000).toISOString(),
-      empresa: { razao:'Tech Solutions Ltda', fantasia:'TechBrasil', cnpj:'12.345.678/0001-99', setor:'Tecnologia', email:'rh@techbrasil.com', tel:'(11) 99999-0001' },
-      vaga: { titulo:'Estágio em Desenvolvimento Web', tipo:'Estágio', area:'Tecnologia', modalidade:'Remoto', cidade:'Remoto', periodo:'Tarde', horas:'30h/semana', esc:'Superior', bolsa:'1600', numvagas:'2' },
-      descricao:'Você irá colaborar com a equipe de dev em projetos reais usando React e Node.js.', requisitos:'Cursando Ciência da Computação, conhecimento em JS, disponibilidade tarde.', beneficios:'Vale Refeição, Plano de Saúde, Mentoria', tags:'React, Node.js', prazo:'30/06/2025' },
-    { id: Date.now()+2, status:'pendente', submittedAt: new Date(Date.now()-43200000).toISOString(),
-      empresa: { razao:'LogFast Transportes SA', fantasia:'LogFast', cnpj:'98.765.432/0001-11', setor:'Logística', email:'aprendiz@logfast.com', tel:'(11) 98888-0002' },
-      vaga: { titulo:'Jovem Aprendiz – Logística', tipo:'Jovem Aprendiz', area:'Logística', modalidade:'Presencial', cidade:'São Paulo, SP', periodo:'Manhã', horas:'20h/semana', esc:'Ensino Médio', bolsa:'880', numvagas:'5' },
-      descricao:'Oportunidade para jovens entre 14 e 24 anos aprenderem na prática operação logística.', requisitos:'14 a 24 anos, Ensino Médio, disponibilidade manhã, residir em SP.', beneficios:'Vale Transporte, Certificado', tags:'Logística, Aprendiz', prazo:'Até preencher a vaga' },
-    { id: Date.now()+3, status:'aprovada', submittedAt: new Date(Date.now()-172800000).toISOString(),
-      empresa: { razao:'GrowUp Agência Digital Ltda', fantasia:'GrowUp Agency', cnpj:'55.444.333/0001-22', setor:'Marketing & Comunicação', email:'talentos@growup.com', tel:'(21) 97777-0003' },
-      vaga: { titulo:'Estágio em Marketing Digital', tipo:'Estágio', area:'Marketing', modalidade:'Remoto', cidade:'Remoto', periodo:'Manhã', horas:'25h/semana', esc:'Superior', bolsa:'1400', numvagas:'1' },
-      descricao:'Apoio em campanhas de tráfego pago, gestão de redes sociais e análise de métricas.', requisitos:'Cursando Marketing ou áreas afins, interesse em métricas, criatividade.', beneficios:'Home Office 100%, Cursos Pagos, Horário Flexível', tags:'Marketing Digital, Social Media', prazo:'31/05/2025' },
-  ];
-
-  const vagas = getVagas();
-  demos.forEach(d => { if (!vagas.find(v => v.id === d.id)) vagas.push(d); });
-  saveVagas(vagas);
-  showToast('🎉 Dados de demonstração adicionados!', 'success');
-  render();
-}
-
+// ---- INIT ----
 // ---- INIT ----
 checkAuth();
 </script>

@@ -372,7 +372,7 @@ function renderCard(j, delay=0) {
   const date = new Date(j.created_at).toLocaleDateString('pt-BR');
 
   return `
-    <div class="job-card ${typeClass}" style="animation-delay:${delay}ms" onclick="openModal('${j.id}')">
+    <div class="job-card ${typeClass}" style="animation-delay:${delay}ms" onclick="window.location.href='vaga.html?id=${j.id}'">
       <div class="card-top">
         <div class="company-logo">${initial}</div>
         <div class="card-meta">
@@ -395,7 +395,7 @@ function renderCard(j, delay=0) {
           <div class="card-salary">R$ ${Number(j.bolsa||0).toLocaleString('pt-BR')}/mês</div>
           <div class="card-date">Publicado: ${date}</div>
         </div>
-        <button class="btn-apply" onclick="event.stopPropagation();openModal('${j.id}')">Ver vaga →</button>
+        <button class="btn-apply" onclick="event.stopPropagation();window.location.href='vaga.html?id=${j.id}'">Ver vaga →</button>
       </div>
     </div>`;
 }
