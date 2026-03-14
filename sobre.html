@@ -14,10 +14,10 @@
     --violet:#7C3AED; --coral:#FF5C5C; --cyan:#06B6D4;
     --yellow:#FBBF24; --green:#10B981; --orange:#F97316;
     --bg:#F5F3FF; --dark:#0F0A1E; --text:#1E1B33;
-    --muted:#6B7280; --border:#E5E7EB;
+    --muted:#6B7280; --border:#E5E7EB; --white:#FFFFFF;
   }
   * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family:'Plus Jakarta Sans',sans-serif; background:white; color:var(--text); overflow-x:hidden; }
+  body { font-family:'Plus Jakarta Sans',sans-serif; background:var(--bg); color:var(--text); overflow-x:hidden; }
 
   /* NAV */
   nav { position:sticky; top:0; z-index:50; background:rgba(255,255,255,.9);
@@ -26,13 +26,41 @@
   .logo { font-family:'Clash Display',sans-serif; font-size:1.4rem; font-weight:700;
     background:linear-gradient(135deg,var(--violet),var(--coral));
     -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; text-decoration:none; }
-  .nav-right { display:flex; gap:1rem; align-items:center; }
-  .nav-link { color:var(--muted); text-decoration:none; font-size:.875rem; font-weight:500; transition:color .2s; }
-  .nav-link:hover { color:var(--violet); }
-  .btn-nav { padding:.55rem 1.2rem; background:linear-gradient(135deg,var(--violet),var(--coral));
+
+  /* ── NAV PADRÃO ── */
+  nav {
+    position:sticky; top:0; z-index:100;
+    background:rgba(245,243,255,.92); backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--border);
+    height:64px; padding:0 2rem;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .logo {
+    font-family:'Clash Display',sans-serif; font-size:1.4rem; font-weight:700;
+    background:linear-gradient(135deg,var(--violet),var(--coral));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    background-clip:text; text-decoration:none; cursor:pointer; flex-shrink:0;
+  }
+  .nav-links { display:flex; gap:1.75rem; align-items:center; }
+  .nav-links a {
+    color:var(--muted); text-decoration:none; font-size:.875rem;
+    font-weight:500; transition:color .2s;
+  }
+  .nav-links a:hover { color:var(--violet); }
+  .nav-back {
+    display:flex; align-items:center; gap:.4rem; color:var(--muted);
+    text-decoration:none; font-size:.875rem; font-weight:500; transition:color .2s;
+  }
+  .nav-back:hover { color:var(--violet); }
+  .btn-nav-cta {
+    padding:.55rem 1.25rem;
+    background:linear-gradient(135deg,var(--violet),var(--coral));
     color:white; border:none; border-radius:50px; font-size:.875rem; font-weight:600;
-    cursor:pointer; text-decoration:none; transition:transform .2s,box-shadow .2s; }
-  .btn-nav:hover { transform:translateY(-2px); box-shadow:0 6px 18px rgba(124,58,237,.3); }
+    cursor:pointer; text-decoration:none; font-family:'Plus Jakarta Sans',sans-serif;
+    transition:transform .2s,box-shadow .2s; display:inline-block;
+  }
+  .btn-nav-cta:hover { transform:translateY(-2px); box-shadow:0 6px 18px rgba(124,58,237,.3); }
+
 
   /* HERO */
   .hero { background:var(--dark); position:relative; overflow:hidden;
@@ -258,14 +286,17 @@
 
 <nav>
   <a class="logo" href="index.html">IniciaAí</a>
-  <div class="nav-right">
-    <a class="nav-link" href="index.html">Ver Vagas</a>
-    <a class="nav-link" href="cadastro-empresa.html">Para Empresas</a>
-    <a class="btn-nav" href="cadastro-candidato.html">Criar Perfil</a>
+  <div class="nav-links">
+    <a href="index.html">Ver Vagas</a>
+    <a href="sobre.html" style="color:var(--violet);font-weight:700">Sobre</a>
+    <a href="cadastro-empresa.html">Para Empresas</a>
   </div>
-  <button class="hamburger" id="hamburger" onclick="toggleMob()" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
+  <div style="display:flex;align-items:center;gap:.75rem">
+    <a class="btn-nav-cta" href="cadastro-candidato.html">Criar Perfil</a>
+    <button class="hamburger" id="hamburger" onclick="toggleMob()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 <div class="mobile-drawer" id="mob-drawer">
   <a class="mob-link" href="index.html">🏠 Ver Vagas</a>
@@ -571,11 +602,12 @@
   </div>
 </section>
 
-<footer>
+<footer style="background:var(--dark);border-top:1px solid rgba(255,255,255,.07);padding:2rem;text-align:center;font-size:.82rem;color:rgba(255,255,255,.35)">
   <p>
-    <strong style="color:rgba(255,255,255,.7)">IniciaAí</strong> · Feito com ❤️ para estudantes brasileiros ·
-    <a href="index.html">Ver vagas</a> ·
-    <a href="termos.html">Termos & Privacidade</a>
+    <strong style="color:rgba(255,255,255,.7)">IniciaAí</strong> &nbsp;·&nbsp;
+    <a href="index.html" style="color:rgba(255,255,255,.45);text-decoration:none">Ver vagas</a> &nbsp;·&nbsp;
+    <a href="sobre.html" style="color:rgba(255,255,255,.45);text-decoration:none">Sobre</a> &nbsp;·&nbsp;
+    <a href="termos.html" style="color:rgba(255,255,255,.45);text-decoration:none">Termos & Privacidade</a>
   </p>
 </footer>
 

@@ -25,10 +25,10 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
   :root {
-    --coral: #FF5C5C; --violet: #7C3AED; --cyan: #06B6D4;
-    --yellow: #FBBF24; --green: #10B981;
-    --bg: #F5F3FF; --dark: #0F0A1E; --text: #1E1B33;
-    --muted: #6B7280; --border: #E5E7EB;
+    --violet:#7C3AED; --coral:#FF5C5C; --cyan:#06B6D4;
+    --yellow:#FBBF24; --green:#10B981; --orange:#F97316;
+    --bg:#F5F3FF; --dark:#0F0A1E; --text:#1E1B33;
+    --muted:#6B7280; --border:#E5E7EB; --white:#FFFFFF;
   }
   * { margin:0; padding:0; box-sizing:border-box; }
   body { font-family:'Plus Jakarta Sans',sans-serif; background:var(--bg); color:var(--text); overflow-x:hidden; }
@@ -365,7 +365,7 @@
 <body>
 
 <nav>
-  <a class="logo" onclick="resetHome()" href="#" style="cursor:pointer">IniciaAí</a>
+  <a class="logo" onclick="resetHome()" href="#">IniciaAí</a>
   <div class="nav-links">
     <a href="#" onclick="resetHome()">Vagas</a>
     <a href="sobre.html">Sobre</a>
@@ -574,7 +574,14 @@
   </div>
 </div>
 
-<footer><p>Feito com ❤️ para estudantes brasileiros &nbsp;·&nbsp; <strong>IniciaAí</strong> © 2025 &nbsp;·&nbsp; <a href="termos.html" style="color:rgba(255,255,255,.5);text-decoration:none;font-weight:500">Termos & Privacidade</a></p></footer>
+<footer style="background:var(--dark);border-top:1px solid rgba(255,255,255,.07);padding:2rem;text-align:center;font-size:.82rem;color:rgba(255,255,255,.35)">
+  <p>
+    <strong style="color:rgba(255,255,255,.7)">IniciaAí</strong> &nbsp;·&nbsp;
+    <a href="index.html" style="color:rgba(255,255,255,.45);text-decoration:none">Ver vagas</a> &nbsp;·&nbsp;
+    <a href="sobre.html" style="color:rgba(255,255,255,.45);text-decoration:none">Sobre</a> &nbsp;·&nbsp;
+    <a href="termos.html" style="color:rgba(255,255,255,.45);text-decoration:none">Termos & Privacidade</a>
+  </p>
+</footer>
 
 <script>
 const SUPABASE_URL = 'https://hnhxxchhwhdlpuiceirz.supabase.co';

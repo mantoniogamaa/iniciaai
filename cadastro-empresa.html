@@ -25,17 +25,10 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
   :root {
-    --violet: #7C3AED;
-    --coral: #FF5C5C;
-    --green: #10B981;
-    --yellow: #FBBF24;
-    --bg: #F5F3FF;
-    --dark: #0F0A1E;
-    --text: #1E1B33;
-    --muted: #6B7280;
-    --border: #E5E7EB;
-    --white: #FFFFFF;
-    --error: #EF4444;
+    --violet:#7C3AED; --coral:#FF5C5C; --cyan:#06B6D4;
+    --yellow:#FBBF24; --green:#10B981; --orange:#F97316;
+    --bg:#F5F3FF; --dark:#0F0A1E; --text:#1E1B33;
+    --muted:#6B7280; --border:#E5E7EB; --white:#FFFFFF;
   }
 
   * { margin:0; padding:0; box-sizing:border-box; }
@@ -219,6 +212,34 @@
   .btn-next:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(124,58,237,0.3); }
 
   /* SUCCESS */
+
+  /* ── HERO INTERNO PADRÃO ── */
+  .page-hero {
+    background:var(--dark); padding:3rem 2rem 2.5rem; position:relative; overflow:hidden;
+  }
+  .page-hero::before {
+    content:''; position:absolute; inset:0;
+    background:radial-gradient(ellipse 70% 60% at 70% 0%, rgba(124,58,237,.3) 0%, transparent 65%),
+               radial-gradient(ellipse 40% 40% at 10% 100%, rgba(255,92,92,.15) 0%, transparent 60%);
+    pointer-events:none;
+  }
+  .page-hero-inner { max-width:860px; margin:0 auto; position:relative; z-index:1; }
+  .page-hero-badge {
+    display:inline-flex; align-items:center; gap:.4rem;
+    background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12);
+    border-radius:50px; padding:.3rem .9rem; font-size:.72rem; font-weight:700;
+    color:rgba(255,255,255,.55); margin-bottom:1rem; letter-spacing:.04em; text-transform:uppercase;
+  }
+  .page-hero h1 {
+    font-family:'Clash Display',sans-serif; font-size:clamp(1.75rem,4vw,2.75rem);
+    font-weight:700; color:white; line-height:1.15; margin-bottom:.6rem;
+  }
+  .page-hero h1 span {
+    background:linear-gradient(135deg,#A78BFA,#FB923C);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  }
+  .page-hero p { font-size:.95rem; color:rgba(255,255,255,.5); line-height:1.7; max-width:520px; }
+
   .success-screen {
     display: none; text-align: center; padding: 3rem 1rem;
   }
@@ -302,7 +323,7 @@
 <body>
 
 <nav>
-  <div class="logo">IniciaAí</div>
+  <a class="logo" href="index.html">IniciaAí</a>
   <a class="nav-back" href="index.html">← Voltar ao portal</a>
   <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
     <span></span><span></span><span></span>

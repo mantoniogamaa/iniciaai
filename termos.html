@@ -8,11 +8,41 @@
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --violet:#7C3AED; --coral:#FF5C5C;
-    --bg:#F5F3FF; --dark:#0F0A1E; --text:#1E1B33; --muted:#6B7280; --border:#E5E7EB;
+    --violet:#7C3AED; --coral:#FF5C5C; --cyan:#06B6D4;
+    --yellow:#FBBF24; --green:#10B981; --orange:#F97316;
+    --bg:#F5F3FF; --dark:#0F0A1E; --text:#1E1B33;
+    --muted:#6B7280; --border:#E5E7EB; --white:#FFFFFF;
   }
   * { margin:0; padding:0; box-sizing:border-box; }
   body { font-family:'Plus Jakarta Sans',sans-serif; background:var(--bg); color:var(--text); }
+
+
+  /* ── HERO INTERNO PADRÃO ── */
+  .page-hero {
+    background:var(--dark); padding:3rem 2rem 2.5rem; position:relative; overflow:hidden;
+  }
+  .page-hero::before {
+    content:''; position:absolute; inset:0;
+    background:radial-gradient(ellipse 70% 60% at 70% 0%, rgba(124,58,237,.3) 0%, transparent 65%),
+               radial-gradient(ellipse 40% 40% at 10% 100%, rgba(255,92,92,.15) 0%, transparent 60%);
+    pointer-events:none;
+  }
+  .page-hero-inner { max-width:860px; margin:0 auto; position:relative; z-index:1; }
+  .page-hero-badge {
+    display:inline-flex; align-items:center; gap:.4rem;
+    background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12);
+    border-radius:50px; padding:.3rem .9rem; font-size:.72rem; font-weight:700;
+    color:rgba(255,255,255,.55); margin-bottom:1rem; letter-spacing:.04em; text-transform:uppercase;
+  }
+  .page-hero h1 {
+    font-family:'Clash Display',sans-serif; font-size:clamp(1.75rem,4vw,2.75rem);
+    font-weight:700; color:white; line-height:1.15; margin-bottom:.6rem;
+  }
+  .page-hero h1 span {
+    background:linear-gradient(135deg,#A78BFA,#FB923C);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  }
+  .page-hero p { font-size:.95rem; color:rgba(255,255,255,.5); line-height:1.7; max-width:520px; }
 
   nav {
     position:sticky; top:0; z-index:50;
@@ -111,12 +141,19 @@
 
 <nav>
   <a class="logo" href="index.html">IniciaAí</a>
+  <div class="nav-links" style="display:flex;gap:1.75rem;align-items:center">
+    <a href="index.html" style="color:var(--muted);text-decoration:none;font-size:.875rem;font-weight:500">Ver Vagas</a>
+    <a href="sobre.html" style="color:var(--muted);text-decoration:none;font-size:.875rem;font-weight:500">Sobre</a>
+  </div>
   <a class="nav-back" href="index.html">← Voltar</a>
 </nav>
 
-<div class="doc-hero">
-  <h1>⚖️ Termos & Privacidade</h1>
-  <p>Transparência total sobre como o IniciaAí funciona e protege seus dados.</p>
+<div class="page-hero">
+  <div class="page-hero-inner" style="text-align:center">
+    <div class="page-hero-badge">⚖️ Legal</div>
+    <h1>Termos & <span>Privacidade</span></h1>
+    <p>Transparência total sobre como o IniciaAí funciona e protege seus dados.</p>
+  </div>
 </div>
 
 <div class="doc-wrap">
@@ -292,7 +329,7 @@
       <div class="contact-card">
         <h3>📧 Encarregado de Dados (DPO)</h3>
         <p>Para dúvidas, solicitações ou exercício dos seus direitos:<br>
-        <a href="mailto:privacidade@iniciaaí.com.br">privacidade@iniciaaí.com.br</a><br><br>
+        <a href="/cdn-cgi/l/email-protection#bfcfcdd6c9dedcd6dbdedbdaffd6d1d6dcd6dede7c1291dcd0d291ddcd">privacidade@iniciaaí.com.br</a><br><br>
         Prazo de resposta: até <strong>15 dias úteis</strong> conforme previsto na LGPD.</p>
       </div>
 
@@ -336,12 +373,16 @@
   </div>
 </div>
 
-<footer style="background:var(--dark);color:rgba(255,255,255,.4);text-align:center;padding:2rem;font-size:.82rem">
-  <strong style="color:white">IniciaAí</strong> · Feito com ❤️ para estudantes brasileiros ·
-  <a href="index.html" style="color:rgba(255,255,255,.4);text-decoration:none">Ver vagas</a>
+<footer style="background:var(--dark);border-top:1px solid rgba(255,255,255,.07);padding:2rem;text-align:center;font-size:.82rem;color:rgba(255,255,255,.35)">
+  <p>
+    <strong style="color:rgba(255,255,255,.7)">IniciaAí</strong> &nbsp;·&nbsp;
+    <a href="index.html" style="color:rgba(255,255,255,.45);text-decoration:none">Ver vagas</a> &nbsp;·&nbsp;
+    <a href="sobre.html" style="color:rgba(255,255,255,.45);text-decoration:none">Sobre</a> &nbsp;·&nbsp;
+    <a href="termos.html" style="color:rgba(255,255,255,.45);text-decoration:none">Termos & Privacidade</a>
+  </p>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 function switchDoc(tab) {
   // sections
   ['termos','privacidade','cookies'].forEach(t => {
@@ -353,11 +394,4 @@ function switchDoc(tab) {
   });
   // índice
   ['termos','privacidade','cookies'].forEach(t => {
-    document.getElementById('idx-' + t).classList.toggle('active', t === tab);
-  });
-  window.scrollTo({top:0, behavior:'smooth'});
-  return false;
-}
-</script>
-</body>
-</html>
+    document.getE
