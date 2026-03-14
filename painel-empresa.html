@@ -441,6 +441,13 @@
         <label class="modal-label">Prazo de inscrição</label>
         <input class="modal-input" type="text" id="edit-prazo" placeholder="Ex.: 30/06/2025">
       </div>
+      <div class="full" style="display:flex;align-items:center;gap:.75rem;background:rgba(124,58,237,.05);border:1.5px solid rgba(124,58,237,.15);border-radius:10px;padding:.85rem">
+        <input type="checkbox" id="edit-confidencial" style="width:16px;height:16px;accent-color:#7C3AED;cursor:pointer">
+        <div>
+          <div style="font-size:.85rem;font-weight:700">🔒 Vaga Confidencial</div>
+          <div style="font-size:.75rem;color:var(--muted)">Empresa aparece como "Empresa Confidencial" no portal</div>
+        </div>
+      </div>
       <div class="full">
         <label class="modal-label">Descrição</label>
         <textarea class="modal-input" id="edit-descricao" rows="3" placeholder="Descreva a vaga..."></textarea>
@@ -580,7 +587,7 @@ function renderVagas() {
       <div class="vaga-item-header">
         <div>
           <div class="vaga-title">${v.titulo}</div>
-          <div class="vaga-meta">${v.tipo} · ${v.area} · ${v.cidade} · R$ ${Number(v.bolsa||0).toLocaleString('pt-BR')}/mês</div>
+          <div class="vaga-meta">${v.tipo} · ${v.area} · ${v.cidade} · R$ ${Number(v.bolsa||0).toLocaleString('pt-BR')}/mês${v.confidencial ? ' · 🔒 Confidencial' : ''}</div>
         </div>
         <span class="badge ${statusClass[v.status]||''}">${statusLabel[v.status]||v.status}</span>
       </div>
@@ -607,6 +614,7 @@ function abrirEdicao(vagaId) {
   setVal('edit-descricao', v.descricao);
   setVal('edit-requisitos',v.requisitos);
   setVal('edit-prazo',     v.prazo);
+  const confEl = document.getElementById('edit-confidencial'); if(confEl) confEl.checked = !!v.confidencial;
   document.getElementById('msg-modal-edit').style.display = 'none';
   document.getElementById('modal-editar').classList.add('open');
 }
@@ -635,7 +643,8 @@ async function salvarEdicao() {
     num_vagas:   Number(gv('edit-numvagas')) || 1,
     descricao:   gv('edit-descricao'),
     requisitos:  gv('edit-requisitos'),
-    prazo:       gv('edit-prazo'),
+    prazo:        gv('edit-prazo'),
+    confidencial: document.getElementById('edit-confidencial')?.checked || false,
   };
 
   const { error } = await sb.from('vagas').update(updates).eq('id', vagaId);

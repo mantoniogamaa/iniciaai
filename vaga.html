@@ -352,15 +352,16 @@ async function init() {
 }
 
 function renderVaga(v) {
-  const emp = v.empresas?.nome_fantasia || v.empresas?.razao_social || '—';
-  const initial = emp.charAt(0).toUpperCase();
+  const isConf = v.confidencial;
+  const emp = isConf ? 'Empresa Confidencial' : (v.empresas?.nome_fantasia || v.empresas?.razao_social || '—');
+  const initial = isConf ? '🔒' : emp.charAt(0).toUpperCase();
   const isE = v.tipo === 'Estágio';
   const modColor = v.modalidade === 'Remoto' ? 'hb-remote' : v.modalidade === 'Híbrido' ? 'hb-hybrid' : 'hb-presential';
 
   // SEO dinâmico
   document.title = `${v.titulo} — ${emp} | IniciaAí`;
   document.querySelector('meta[name="description"]').setAttribute('content',
-    `${v.tipo} em ${v.area} na ${emp}. ${v.cidade} · R$ ${Number(v.bolsa||0).toLocaleString('pt-BR')}/mês. Candidate-se no IniciaAí.`);
+    `${v.tipo} em ${v.area}${isConf ? '' : ' na ' + emp}. ${v.cidade} · R$ ${Number(v.bolsa||0).toLocaleString('pt-BR')}/mês. Candidate-se no IniciaAí.`);
   document.querySelector('meta[property="og:title"]').setAttribute('content', `${v.titulo} — ${emp}`);
   document.querySelector('meta[property="og:description"]').setAttribute('content',
     `${v.tipo} · ${v.area} · ${v.cidade} · R$ ${Number(v.bolsa||0).toLocaleString('pt-BR')}/mês`);
@@ -380,6 +381,7 @@ function renderVaga(v) {
     <span class="hbadge hb-neutral">📂 ${v.area}</span>
     ${v.escolaridade ? `<span class="hbadge hb-neutral">🎓 ${v.escolaridade}</span>` : ''}
     ${v.periodo ? `<span class="hbadge hb-neutral">🕐 ${v.periodo}</span>` : ''}
+    ${isConf ? `<span class="hbadge" style="background:rgba(251,191,36,.15);color:#B45309;border:1px solid rgba(251,191,36,.3)">🔒 Empresa Confidencial</span>` : ''}
   `;
 
   document.getElementById('quick-bar').innerHTML = `

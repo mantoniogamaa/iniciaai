@@ -467,6 +467,20 @@
           <input type="number" id="f-numvagas" placeholder="Ex.: 2" min="1">
           <span class="error-msg" id="err-numvagas">Informe o número de vagas</span>
         </div>
+        <div class="form-group full" style="grid-column:1/-1">
+          <label>Vaga Confidencial?</label>
+          <div style="display:flex;align-items:flex-start;gap:1rem;background:rgba(124,58,237,.05);border:1.5px solid rgba(124,58,237,.15);border-radius:12px;padding:1rem;margin-top:.25rem">
+            <label class="confidencial-toggle" style="position:relative;display:inline-block;width:44px;height:24px;flex-shrink:0;margin-top:.1rem">
+              <input type="checkbox" id="f-confidencial" style="opacity:0;width:0;height:0" onchange="toggleConfidencial()">
+              <span style="position:absolute;cursor:pointer;inset:0;background:#E5E7EB;border-radius:50px;transition:.3s" id="toggle-track"></span>
+              <span style="position:absolute;content:'';height:18px;width:18px;left:3px;bottom:3px;background:white;border-radius:50%;transition:.3s;box-shadow:0 1px 4px rgba(0,0,0,.2)" id="toggle-thumb"></span>
+            </label>
+            <div>
+              <div style="font-weight:700;font-size:.9rem;color:#1E1B33">Ocultar nome da empresa</div>
+              <div style="font-size:.8rem;color:#6B7280;margin-top:.2rem">No portal, a empresa aparecerá como <strong>"Empresa Confidencial"</strong>. Apenas candidatos aprovados saberão o nome da empresa.</div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="form-actions">
         <button class="btn-back" onclick="goTo(1)">← Voltar</button>
@@ -669,6 +683,14 @@ function updateChar(inputId, countId, max) {
 // Chips
 function toggleChip(el) { el.classList.toggle('selected'); }
 
+function toggleConfidencial() {
+  const checked = document.getElementById('f-confidencial').checked;
+  const track = document.getElementById('toggle-track');
+  const thumb = document.getElementById('toggle-thumb');
+  track.style.background = checked ? '#7C3AED' : '#E5E7EB';
+  thumb.style.transform   = checked ? 'translateX(20px)' : 'translateX(0)';
+}
+
 function getSelectedChips() {
   return [...document.querySelectorAll('.chip.selected')].map(c => c.textContent).join(', ') || '—';
 }
@@ -693,6 +715,7 @@ function buildReview() {
         <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:0.75rem;">💼 VAGA</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;font-size:0.85rem;">
           <div style="grid-column:1/-1"><span style="color:var(--muted)">Título:</span> <strong>${v('f-titulo')}</strong></div>
+          <div style="grid-column:1/-1"><span style="color:var(--muted)">Confidencial:</span> <strong>${document.getElementById('f-confidencial').checked ? '🔒 Sim — empresa oculta no portal' : '🔓 Não — empresa visível'}</strong></div>
           <div><span style="color:var(--muted)">Tipo:</span> <strong>${v('f-tipo')}</strong></div>
           <div><span style="color:var(--muted)">Área:</span> <strong>${v('f-area')}</strong></div>
           <div><span style="color:var(--muted)">Modalidade:</span> <strong>${v('f-modalidade')}</strong></div>
@@ -758,6 +781,7 @@ async function submitForm() {
   const { error: vagaErr } = await sb.from('vagas').insert({
     empresa_id: empresaId,
     titulo: v('f-titulo'), tipo: v('f-tipo'), area: v('f-area'),
+    confidencial: document.getElementById('f-confidencial')?.checked || false,
     modalidade: v('f-modalidade'), cidade: v('f-cidade'), periodo: v('f-periodo'),
     horas: v('f-horas'), escolaridade: v('f-esc'),
     bolsa: Number(document.getElementById('f-bolsa')?.value || 0),

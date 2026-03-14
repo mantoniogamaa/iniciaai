@@ -470,8 +470,8 @@ function renderCard(j, delay=0) {
   const typeClass = isE ? 'card-estagio' : 'card-aprendiz';
   const badgeC = isE ? 'badge-type-estagio' : 'badge-type-aprendiz';
   const modC = j.modalidade === 'Remoto' ? 'badge-remote' : j.modalidade === 'Híbrido' ? 'badge-hybrid' : 'badge-presential';
-  const empresa = j.empresas?.nome_fantasia || j.empresas?.razao_social || '—';
-  const initial = empresa.charAt(0).toUpperCase();
+  const empresa = j.confidencial ? 'Empresa Confidencial' : (j.empresas?.nome_fantasia || j.empresas?.razao_social || '—');
+  const initial = j.confidencial ? '🔒' : empresa.charAt(0).toUpperCase();
   const date = new Date(j.created_at).toLocaleDateString('pt-BR');
 
   return `
