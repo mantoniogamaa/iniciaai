@@ -52,6 +52,96 @@
     display:inline-block; }
   .btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 20px rgba(124,58,237,.35); }
 
+
+  /* DROPDOWN ACESSAR */
+  .nav-access { position:relative; }
+  .btn-access { display:flex; align-items:center; gap:.45rem; padding:.55rem 1.2rem;
+    border:1.5px solid var(--border); border-radius:50px; background:white;
+    font-size:.875rem; font-weight:600; cursor:pointer; color:var(--text);
+    font-family:'Plus Jakarta Sans',sans-serif; transition:all .2s; }
+  .btn-access:hover { border-color:var(--violet); color:var(--violet); }
+  .btn-access svg { transition:transform .2s; }
+  .btn-access.open svg { transform:rotate(180deg); }
+
+  .access-dropdown { position:absolute; top:calc(100% + .6rem); right:0;
+    background:white; border-radius:16px; border:1.5px solid var(--border);
+    box-shadow:0 12px 40px rgba(0,0,0,.12); min-width:220px; z-index:200;
+    opacity:0; transform:translateY(-8px); pointer-events:none;
+    transition:all .2s; overflow:hidden; }
+  .access-dropdown.open { opacity:1; transform:translateY(0); pointer-events:all; }
+
+  .access-dropdown-header { padding:.75rem 1rem .5rem;
+    font-size:.7rem; font-weight:700; text-transform:uppercase;
+    letter-spacing:.08em; color:var(--muted); }
+  .access-item { display:flex; align-items:center; gap:.75rem;
+    padding:.75rem 1rem; cursor:pointer; transition:background .15s;
+    text-decoration:none; color:var(--text); }
+  .access-item:hover { background:var(--bg); }
+  .access-item:last-child { border-top:1px solid var(--border); }
+  .access-icon { width:36px; height:36px; border-radius:10px;
+    display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; }
+  .access-icon.cand  { background:rgba(124,58,237,.1); }
+  .access-icon.emp   { background:rgba(6,182,212,.1); }
+  .access-icon.new   { background:rgba(16,185,129,.1); }
+  .access-label { font-size:.875rem; font-weight:600; }
+  .access-sub   { font-size:.72rem; color:var(--muted); margin-top:.1rem; }
+
+  /* AVATAR LOGADO */
+  .nav-avatar { width:36px; height:36px; border-radius:50%;
+    background:linear-gradient(135deg,var(--violet),var(--coral));
+    display:flex; align-items:center; justify-content:center;
+    color:white; font-weight:700; font-size:.9rem; cursor:pointer;
+    font-family:'Clash Display',sans-serif; flex-shrink:0;
+    border:2px solid white; box-shadow:0 2px 8px rgba(124,58,237,.3); }
+  .nav-user-wrap { display:flex; align-items:center; gap:.6rem; }
+  .nav-user-name { font-size:.85rem; font-weight:600; color:var(--text); }
+
+  /* MODAL LOGIN */
+  .login-modal-overlay { position:fixed; inset:0; background:rgba(15,10,30,.55);
+    backdrop-filter:blur(6px); z-index:500; display:none;
+    align-items:center; justify-content:center; padding:1rem; }
+  .login-modal-overlay.open { display:flex; }
+  .login-modal { background:white; border-radius:24px; width:100%; max-width:420px;
+    padding:2rem; position:relative; animation:modalIn .3s ease; box-shadow:0 24px 60px rgba(0,0,0,.18); }
+  @keyframes modalIn { from{transform:scale(.95) translateY(10px);opacity:0} to{transform:scale(1) translateY(0);opacity:1} }
+  .login-modal-close { position:absolute; top:1rem; right:1rem; width:32px; height:32px;
+    border-radius:50%; border:none; background:var(--bg); cursor:pointer;
+    font-size:1rem; color:var(--muted); display:flex; align-items:center; justify-content:center; transition:background .2s; }
+  .login-modal-close:hover { background:var(--border); }
+
+  .login-modal-tabs { display:flex; background:var(--bg); border-radius:12px;
+    padding:.3rem; gap:.3rem; margin-bottom:1.5rem; }
+  .lm-tab { flex:1; padding:.55rem; border-radius:9px; border:none; cursor:pointer;
+    font-size:.82rem; font-weight:600; font-family:'Plus Jakarta Sans',sans-serif;
+    transition:all .2s; color:var(--muted); background:transparent; }
+  .lm-tab.active { background:white; color:var(--violet);
+    box-shadow:0 2px 8px rgba(0,0,0,.08); }
+
+  .lm-section { display:none; }
+  .lm-section.show { display:block; animation:fadeUp .25s ease both; }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+
+  .lm-title { font-family:'Clash Display',sans-serif; font-size:1.3rem; font-weight:700;
+    margin-bottom:1.25rem; color:var(--dark); }
+  .lm-field { margin-bottom:.85rem; }
+  .lm-field label { font-size:.78rem; font-weight:700; color:var(--text); display:block; margin-bottom:.35rem; }
+  .lm-field input { width:100%; padding:.75rem 1rem; border:1.5px solid var(--border);
+    border-radius:10px; font-size:.9rem; font-family:'Plus Jakarta Sans',sans-serif;
+    outline:none; background:var(--bg); color:var(--text); transition:border-color .2s; }
+  .lm-field input:focus { border-color:var(--violet); background:white; box-shadow:0 0 0 3px rgba(124,58,237,.08); }
+  .lm-btn { width:100%; padding:.9rem; background:linear-gradient(135deg,var(--violet),var(--coral));
+    color:white; border:none; border-radius:12px; font-size:.95rem; font-weight:700;
+    cursor:pointer; font-family:'Plus Jakarta Sans',sans-serif;
+    transition:transform .2s,box-shadow .2s; margin-top:.25rem; }
+  .lm-btn:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(124,58,237,.35); }
+  .lm-btn:disabled { opacity:.6; cursor:not-allowed; transform:none; }
+  .lm-msg { padding:.65rem .9rem; border-radius:9px; font-size:.82rem; font-weight:600;
+    margin-top:.75rem; text-align:center; display:none; }
+  .lm-msg.error   { background:rgba(255,92,92,.1);  color:var(--coral); display:block; }
+  .lm-msg.success { background:rgba(16,185,129,.1); color:var(--green); display:block; }
+  .lm-divider { text-align:center; font-size:.78rem; color:var(--muted); margin:.85rem 0; }
+  .lm-link { font-size:.82rem; color:var(--muted); text-align:center; margin-top:.85rem; }
+  .lm-link a { color:var(--violet); font-weight:600; text-decoration:none; }
   .hero { padding:120px 2rem 60px; text-align:center; position:relative; overflow:hidden; }
   .hero::before { content:''; position:absolute; top:-100px; left:50%; transform:translateX(-50%);
     width:800px; height:800px;
@@ -225,12 +315,96 @@
 <nav>
   <a class="logo" onclick="resetHome()" href="#" style="cursor:pointer">IniciaAí</a>
   <div class="nav-links">
-    <a href="#">Vagas</a>
-    <a href="cadastro-candidato.html">Cadastrar-se</a>
+    <a href="#" onclick="resetHome()">Vagas</a>
     <a href="cadastro-empresa.html">Para Empresas</a>
+    <a href="termos.html">Termos</a>
   </div>
-  <a class="btn-primary" href="cadastro-candidato.html">Criar Perfil</a>
+  <div style="display:flex;align-items:center;gap:.75rem">
+    <!-- Mostra avatar se logado, dropdown se não logado -->
+    <div id="nav-logado-cand" style="display:none">
+      <div class="nav-user-wrap">
+        <div class="nav-avatar" id="nav-avatar-cand" onclick="window.location.href='cadastro-candidato.html'">?</div>
+        <span class="nav-user-name" id="nav-user-name" style="display:none"></span>
+      </div>
+    </div>
+    <div id="nav-logado-emp" style="display:none">
+      <div class="nav-user-wrap">
+        <div class="nav-avatar" style="background:linear-gradient(135deg,var(--cyan),var(--violet))" onclick="window.location.href='painel-empresa.html'">🏢</div>
+      </div>
+    </div>
+    <div class="nav-access" id="nav-access-wrap">
+      <button class="btn-access" id="btn-access" onclick="toggleAccessDropdown()">
+        Acessar
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+      <div class="access-dropdown" id="access-dropdown">
+        <div class="access-dropdown-header">Entrar como</div>
+        <div class="access-item" onclick="openLoginModal('candidato')">
+          <div class="access-icon cand">🎓</div>
+          <div><div class="access-label">Candidato</div><div class="access-sub">Acesse seu perfil e candidaturas</div></div>
+        </div>
+        <div class="access-item" onclick="openLoginModal('empresa')">
+          <div class="access-icon emp">🏢</div>
+          <div><div class="access-label">Empresa</div><div class="access-sub">Gerencie vagas e candidatos</div></div>
+        </div>
+        <div class="access-dropdown-header" style="margin-top:.25rem">Novo por aqui?</div>
+        <a class="access-item" href="cadastro-candidato.html">
+          <div class="access-icon new">✨</div>
+          <div><div class="access-label">Criar perfil de candidato</div><div class="access-sub">É grátis e rápido</div></div>
+        </a>
+        <a class="access-item" href="cadastro-empresa.html">
+          <div class="access-icon" style="background:rgba(255,92,92,.1)">📋</div>
+          <div><div class="access-label">Cadastrar empresa</div><div class="access-sub">Publique vagas gratuitamente</div></div>
+        </a>
+      </div>
+    </div>
+  </div>
 </nav>
+
+<!-- MODAL LOGIN -->
+<div class="login-modal-overlay" id="login-modal-overlay" onclick="if(event.target===this)closeLoginModal()">
+  <div class="login-modal">
+    <button class="login-modal-close" onclick="closeLoginModal()">✕</button>
+
+    <div class="login-modal-tabs">
+      <button class="lm-tab active" id="lmt-candidato" onclick="switchLoginTab('candidato')">🎓 Candidato</button>
+      <button class="lm-tab" id="lmt-empresa" onclick="switchLoginTab('empresa')">🏢 Empresa</button>
+    </div>
+
+    <!-- CANDIDATO -->
+    <div class="lm-section show" id="lms-candidato">
+      <div class="lm-title">Bem-vindo de volta!</div>
+      <div class="lm-field">
+        <label>E-mail</label>
+        <input type="email" id="lm-c-email" placeholder="seu@email.com" onkeydown="if(event.key==='Enter')loginModal('candidato')">
+      </div>
+      <div class="lm-field">
+        <label>Senha</label>
+        <input type="password" id="lm-c-senha" placeholder="Sua senha" onkeydown="if(event.key==='Enter')loginModal('candidato')">
+      </div>
+      <button class="lm-btn" id="lm-btn-cand" onclick="loginModal('candidato')">Entrar →</button>
+      <div class="lm-msg" id="lm-msg-cand"></div>
+      <div class="lm-link">Não tem conta? <a href="cadastro-candidato.html">Criar perfil grátis →</a></div>
+    </div>
+
+    <!-- EMPRESA -->
+    <div class="lm-section" id="lms-empresa">
+      <div class="lm-title">Área da Empresa</div>
+      <div class="lm-field">
+        <label>E-mail</label>
+        <input type="email" id="lm-e-email" placeholder="rh@empresa.com.br" onkeydown="if(event.key==='Enter')loginModal('empresa')">
+      </div>
+      <div class="lm-field">
+        <label>Senha</label>
+        <input type="password" id="lm-e-senha" placeholder="Sua senha" onkeydown="if(event.key==='Enter')loginModal('empresa')">
+      </div>
+      <button class="lm-btn" id="lm-btn-emp" onclick="loginModal('empresa')">Entrar →</button>
+      <div class="lm-msg" id="lm-msg-emp"></div>
+      <div class="lm-link">Não tem conta? <a href="cadastro-empresa.html">Cadastrar empresa →</a></div>
+    </div>
+
+  </div>
+</div>
 
 <section class="hero">
   <div class="hero-badge"><span>🎓</span> O portal feito para quem está começando</div>
@@ -326,7 +500,6 @@ let allVagas = [];
 let filteredVagas = [];
 let currentPage = 1;
 const VAGAS_POR_PAGINA = 9;
-let candidatoLogado = JSON.parse(sessionStorage.getItem('candidato') || 'null');
 
 // ---- CARREGAR VAGAS ----
 async function loadVagas() {
@@ -583,6 +756,118 @@ async function candidatar(vagaId) {
 
 function closeModal(e) { if (e.target === document.getElementById('modal-overlay')) closeModalBtn(); }
 function closeModalBtn() { document.getElementById('modal-overlay').classList.remove('open'); document.body.style.overflow = ''; }
+
+
+// ---- SESSÕES ATIVAS ----
+const candidatoLogado = JSON.parse(sessionStorage.getItem('candidato') || 'null');
+const empresaLogada   = JSON.parse(sessionStorage.getItem('empresa')   || 'null');
+
+function checkNavSessions() {
+  if (candidatoLogado) {
+    document.getElementById('nav-access-wrap').style.display = 'none';
+    document.getElementById('nav-logado-cand').style.display = 'block';
+    const initial = candidatoLogado.nome?.charAt(0)?.toUpperCase() || '?';
+    document.getElementById('nav-avatar-cand').textContent = initial;
+    // Show name on larger screens
+    const nameEl = document.getElementById('nav-user-name');
+    if (window.innerWidth > 768) {
+      nameEl.textContent = candidatoLogado.nome?.split(' ')[0];
+      nameEl.style.display = 'block';
+    }
+  } else if (empresaLogada) {
+    document.getElementById('nav-access-wrap').style.display = 'none';
+    document.getElementById('nav-logado-emp').style.display = 'block';
+  }
+}
+
+// ---- DROPDOWN ----
+function toggleAccessDropdown() {
+  const btn = document.getElementById('btn-access');
+  const dd  = document.getElementById('access-dropdown');
+  btn.classList.toggle('open');
+  dd.classList.toggle('open');
+}
+// Fecha ao clicar fora
+document.addEventListener('click', e => {
+  if (!e.target.closest('.nav-access')) {
+    document.getElementById('btn-access')?.classList.remove('open');
+    document.getElementById('access-dropdown')?.classList.remove('open');
+  }
+});
+
+// ---- MODAL LOGIN ----
+function openLoginModal(tab) {
+  document.getElementById('access-dropdown').classList.remove('open');
+  document.getElementById('btn-access').classList.remove('open');
+  switchLoginTab(tab);
+  document.getElementById('login-modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => {
+    const inp = tab === 'candidato'
+      ? document.getElementById('lm-c-email')
+      : document.getElementById('lm-e-email');
+    inp?.focus();
+  }, 200);
+}
+
+function closeLoginModal() {
+  document.getElementById('login-modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function switchLoginTab(tab) {
+  ['candidato','empresa'].forEach(t => {
+    document.getElementById('lms-' + t).classList.toggle('show', t === tab);
+    document.getElementById('lmt-' + t).classList.toggle('active', t === tab);
+  });
+}
+
+async function loginModal(tipo) {
+  const isC  = tipo === 'candidato';
+  const email = document.getElementById(isC ? 'lm-c-email' : 'lm-e-email').value.trim();
+  const senha = document.getElementById(isC ? 'lm-c-senha' : 'lm-e-senha').value;
+  const btn   = document.getElementById(isC ? 'lm-btn-cand' : 'lm-btn-emp');
+  const msg   = document.getElementById(isC ? 'lm-msg-cand' : 'lm-msg-emp');
+
+  if (!email || !senha) { showLmMsg(msg, 'Preencha e-mail e senha.', 'error'); return; }
+
+  btn.disabled = true; btn.textContent = 'Entrando...';
+
+  // Hash da senha
+  const buf  = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(senha));
+  const hash = Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+
+  const table = isC ? 'candidatos' : 'empresas';
+  const { data, error } = await sb.from(table)
+    .select('*').eq('email', email).eq('senha_hash', hash).maybeSingle();
+
+  btn.disabled = false; btn.textContent = 'Entrar →';
+
+  if (error || !data) {
+    showLmMsg(msg, 'E-mail ou senha incorretos.', 'error');
+    return;
+  }
+
+  // Sessão salva
+  const key = isC ? 'candidato' : 'empresa';
+  sessionStorage.setItem(key, JSON.stringify(data));
+
+  showLmMsg(msg, '✅ Login realizado! Redirecionando...', 'success');
+  setTimeout(() => {
+    window.location.href = isC ? 'cadastro-candidato.html' : 'painel-empresa.html';
+  }, 900);
+}
+
+function showLmMsg(el, txt, type) { el.textContent = txt; el.className = 'lm-msg ' + type; }
+
+// ---- LOGOUT GLOBAL (se vier de outra página com ?logout=1) ----
+if (new URLSearchParams(window.location.search).get('logout') === '1') {
+  sessionStorage.removeItem('candidato');
+  sessionStorage.removeItem('empresa');
+  window.history.replaceState({}, '', window.location.pathname);
+}
+
+checkNavSessions();
 
 loadVagas();
 </script>
