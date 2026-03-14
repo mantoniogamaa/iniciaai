@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IniciaAí — Termos de Uso e Política de Privacidade</title>
+<meta name="description" content="Termos de uso e política de privacidade do IniciaAí — portal de vagas para estudantes.">
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --violet:#7C3AED; --coral:#FF5C5C;
+    --bg:#F5F3FF; --dark:#0F0A1E; --text:#1E1B33; --muted:#6B7280; --border:#E5E7EB;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Plus Jakarta Sans',sans-serif; background:var(--bg); color:var(--text); }
+
+  nav {
+    position:sticky; top:0; z-index:50;
+    background:rgba(245,243,255,.9); backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border);
+    height:64px; padding:0 2rem;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .logo { font-family:'Clash Display',sans-serif; font-size:1.4rem; font-weight:700;
+    background:linear-gradient(135deg,var(--violet),var(--coral));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    background-clip:text; text-decoration:none; }
+  .nav-back { color:var(--muted); text-decoration:none; font-size:.875rem; font-weight:500;
+    display:flex; align-items:center; gap:.4rem; transition:color .2s; }
+  .nav-back:hover { color:var(--violet); }
+
+  /* HERO */
+  .doc-hero {
+    background:var(--dark); padding:4rem 2rem 3rem; text-align:center; position:relative; overflow:hidden;
+  }
+  .doc-hero::before { content:''; position:absolute; inset:0;
+    background:radial-gradient(ellipse 70% 60% at 50% 0%, rgba(124,58,237,.3) 0%, transparent 70%);
+    pointer-events:none; }
+  .doc-hero h1 { font-family:'Clash Display',sans-serif; font-size:clamp(1.8rem,4vw,3rem);
+    font-weight:700; color:white; position:relative; z-index:1; margin-bottom:.75rem; }
+  .doc-hero p { color:rgba(255,255,255,.5); font-size:.9rem; position:relative; z-index:1; }
+
+  /* LAYOUT */
+  .doc-wrap { max-width:820px; margin:0 auto; padding:3rem 2rem 6rem;
+    display:grid; grid-template-columns:220px 1fr; gap:3rem; align-items:start; }
+
+  /* SIDEBAR ÍNDICE */
+  .doc-index { position:sticky; top:80px; }
+  .doc-index-title { font-size:.72rem; font-weight:700; text-transform:uppercase;
+    letter-spacing:.1em; color:var(--muted); margin-bottom:.85rem; }
+  .doc-index a { display:block; padding:.4rem .75rem; border-radius:8px; font-size:.82rem;
+    color:var(--muted); text-decoration:none; font-weight:500; transition:all .2s;
+    border-left:2px solid transparent; }
+  .doc-index a:hover { color:var(--violet); background:rgba(124,58,237,.06); border-left-color:var(--violet); }
+  .doc-index a.active { color:var(--violet); background:rgba(124,58,237,.08); border-left-color:var(--violet); font-weight:700; }
+
+  /* CONTEÚDO */
+  .doc-content {}
+  .doc-tab-bar { display:flex; background:white; border-radius:12px; padding:.3rem; gap:.3rem;
+    border:1px solid var(--border); margin-bottom:2rem; }
+  .doc-tab { flex:1; padding:.6rem; border-radius:9px; border:none; cursor:pointer;
+    font-size:.875rem; font-weight:600; font-family:'Plus Jakarta Sans',sans-serif;
+    transition:all .2s; color:var(--muted); background:transparent; }
+  .doc-tab.active { background:linear-gradient(135deg,var(--violet),var(--coral)); color:white; }
+
+  .doc-section { display:none; }
+  .doc-section.show { display:block; }
+
+  .doc-block { margin-bottom:2.5rem; }
+  .doc-block h2 { font-family:'Clash Display',sans-serif; font-size:1.2rem; font-weight:700;
+    color:var(--dark); margin-bottom:.85rem; padding-bottom:.6rem;
+    border-bottom:2px solid var(--bg); display:flex; align-items:center; gap:.5rem; }
+  .doc-block p { font-size:.9rem; line-height:1.8; color:var(--text); margin-bottom:.75rem; }
+  .doc-block ul, .doc-block ol { padding-left:1.4rem; margin-bottom:.75rem; }
+  .doc-block li { font-size:.9rem; line-height:1.8; color:var(--text); margin-bottom:.25rem; }
+  .doc-block strong { color:var(--dark); }
+
+  .highlight-box { background:rgba(124,58,237,.06); border:1.5px solid rgba(124,58,237,.15);
+    border-radius:12px; padding:1.1rem 1.25rem; margin:1rem 0; }
+  .highlight-box p { font-size:.875rem; margin:0; color:var(--text); }
+  .highlight-box strong { color:var(--violet); }
+
+  .warning-box { background:rgba(255,92,92,.06); border:1.5px solid rgba(255,92,92,.2);
+    border-radius:12px; padding:1.1rem 1.25rem; margin:1rem 0; }
+  .warning-box p { font-size:.875rem; margin:0; }
+
+  .data-table { width:100%; border-collapse:collapse; margin:1rem 0; font-size:.85rem; }
+  .data-table th { background:var(--bg); padding:.65rem 1rem; text-align:left;
+    font-weight:700; font-size:.75rem; text-transform:uppercase; letter-spacing:.06em;
+    color:var(--muted); border-bottom:1.5px solid var(--border); }
+  .data-table td { padding:.65rem 1rem; border-bottom:1px solid var(--border); color:var(--text); line-height:1.5; }
+  .data-table tr:last-child td { border-bottom:none; }
+
+  .update-chip { display:inline-flex; align-items:center; gap:.4rem; background:white;
+    border:1px solid var(--border); border-radius:50px; padding:.3rem .85rem;
+    font-size:.75rem; color:var(--muted); font-weight:500; margin-bottom:2rem; }
+
+  .contact-card { background:white; border-radius:14px; padding:1.25rem; border:1.5px solid var(--border);
+    margin-top:1.5rem; }
+  .contact-card h3 { font-family:'Clash Display',sans-serif; font-size:1rem; font-weight:700; margin-bottom:.75rem; }
+  .contact-card p { font-size:.875rem; color:var(--muted); line-height:1.7; }
+  .contact-card a { color:var(--violet); font-weight:600; text-decoration:none; }
+
+  @media(max-width:700px) {
+    .doc-wrap { grid-template-columns:1fr; }
+    .doc-index { display:none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="index.html">IniciaAí</a>
+  <a class="nav-back" href="index.html">← Voltar</a>
+</nav>
+
+<div class="doc-hero">
+  <h1>⚖️ Termos & Privacidade</h1>
+  <p>Transparência total sobre como o IniciaAí funciona e protege seus dados.</p>
+</div>
+
+<div class="doc-wrap">
+
+  <!-- ÍNDICE -->
+  <div class="doc-index">
+    <div class="doc-index-title">Nesta página</div>
+    <a href="#" onclick="switchDoc('termos')" id="idx-termos" class="active">📋 Termos de Uso</a>
+    <a href="#" onclick="switchDoc('privacidade')" id="idx-privacidade">🔒 Política de Privacidade</a>
+    <a href="#" onclick="switchDoc('cookies')" id="idx-cookies">🍪 Cookies</a>
+  </div>
+
+  <!-- CONTEÚDO -->
+  <div class="doc-content">
+    <div class="update-chip">📅 Última atualização: Janeiro de 2025</div>
+
+    <div class="doc-tab-bar">
+      <button class="doc-tab active" onclick="switchDoc('termos')">📋 Termos de Uso</button>
+      <button class="doc-tab" onclick="switchDoc('privacidade')">🔒 Privacidade</button>
+      <button class="doc-tab" onclick="switchDoc('cookies')">🍪 Cookies</button>
+    </div>
+
+    <!-- TERMOS DE USO -->
+    <div class="doc-section show" id="sec-termos">
+
+      <div class="doc-block">
+        <h2>1. Sobre o IniciaAí</h2>
+        <p>O <strong>IniciaAí</strong> é uma plataforma digital que conecta estudantes em busca de sua primeira oportunidade profissional com empresas que oferecem vagas de estágio e Jovem Aprendiz.</p>
+        <p>Ao acessar ou utilizar qualquer funcionalidade do IniciaAí, você concorda integralmente com estes Termos de Uso. Caso não concorde, não utilize a plataforma.</p>
+      </div>
+
+      <div class="doc-block">
+        <h2>2. Cadastro e Conta</h2>
+        <p>Para se candidatar a vagas ou publicar oportunidades, é necessário criar uma conta. Ao se cadastrar, você declara que:</p>
+        <ul>
+          <li>As informações fornecidas são verdadeiras, precisas e atualizadas.</li>
+          <li>É responsável pela guarda da sua senha e por toda atividade realizada em sua conta.</li>
+          <li>Notificará o IniciaAí imediatamente em caso de uso não autorizado da sua conta.</li>
+        </ul>
+        <div class="highlight-box">
+          <p><strong>Candidatos:</strong> devem ser estudantes (Ensino Médio, Técnico ou Superior) ou jovens entre 14 e 24 anos elegíveis ao programa Jovem Aprendiz.</p>
+        </div>
+      </div>
+
+      <div class="doc-block">
+        <h2>3. Responsabilidades das Empresas</h2>
+        <p>Empresas que cadastram vagas na plataforma comprometem-se a:</p>
+        <ul>
+          <li>Fornecer informações verdadeiras sobre a oportunidade ofertada.</li>
+          <li>Cumprir a legislação trabalhista vigente (CLT, Lei do Estágio nº 11.788/2008 e Lei do Aprendiz nº 10.097/2000).</li>
+          <li>Não discriminar candidatos por raça, gênero, religião, orientação sexual, deficiência ou qualquer outra característica protegida por lei.</li>
+          <li>Entrar em contato com candidatos selecionados dentro de prazo razoável.</li>
+        </ul>
+        <div class="warning-box">
+          <p>⚠️ O IniciaAí não é responsável pelo processo seletivo conduzido pelas empresas, pela efetivação das contratações ou por qualquer relação trabalhista estabelecida entre empresa e candidato.</p>
+        </div>
+      </div>
+
+      <div class="doc-block">
+        <h2>4. Responsabilidades dos Candidatos</h2>
+        <ul>
+          <li>Manter o perfil atualizado com informações verídicas.</li>
+          <li>Candidatar-se apenas a vagas para as quais possui os requisitos mínimos.</li>
+          <li>Não criar múltiplas contas para a mesma pessoa.</li>
+          <li>Não utilizar a plataforma para fins fraudulentos ou prejudiciais a terceiros.</li>
+        </ul>
+      </div>
+
+      <div class="doc-block">
+        <h2>5. Moderação de Conteúdo</h2>
+        <p>O IniciaAí reserva-se o direito de reprovar, remover ou suspender qualquer vaga ou conta que viole estes termos, contenha informações falsas, seja discriminatória, ou prejudique a experiência dos usuários. Vagas passam por revisão manual antes de serem publicadas.</p>
+      </div>
+
+      <div class="doc-block">
+        <h2>6. Propriedade Intelectual</h2>
+        <p>Todo o conteúdo da plataforma — incluindo logotipo, design, textos e código — é propriedade do IniciaAí. É proibida a reprodução, distribuição ou uso comercial sem autorização prévia por escrito.</p>
+      </div>
+
+      <div class="doc-block">
+        <h2>7. Limitação de Responsabilidade</h2>
+        <p>O IniciaAí não garante a disponibilidade contínua da plataforma e não se responsabiliza por danos decorrentes de interrupções, falhas técnicas ou uso indevido por terceiros. A plataforma é fornecida "como está".</p>
+      </div>
+
+      <div class="doc-block">
+        <h2>8. Alterações nos Termos</h2>
+        <p>Estes termos podem ser atualizados a qualquer momento. Alterações significativas serão comunicadas com antecedência. O uso continuado da plataforma após publicação de novos termos implica aceitação.</p>
+      </div>
+
+    </div>
+
+    <!-- POLÍTICA DE PRIVACIDADE -->
+    <div class="doc-section" id="sec-privacidade">
+
+      <div class="doc-block">
+        <h2>1. Compromisso com a LGPD</h2>
+        <p>O IniciaAí está comprometido com a <strong>Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018)</strong>. Esta política descreve quais dados coletamos, como os utilizamos, e quais são seus direitos como titular.</p>
+      </div>
+
+      <div class="doc-block">
+        <h2>2. Dados que Coletamos</h2>
+
+        <p><strong>De candidatos:</strong></p>
+        <table class="data-table">
+          <thead><tr><th>Dado</th><th>Finalidade</th><th>Base Legal</th></tr></thead>
+          <tbody>
+            <tr><td>Nome e e-mail</td><td>Identificação e comunicação</td><td>Execução de contrato</td></tr>
+            <tr><td>Telefone</td><td>Contato pelas empresas</td><td>Consentimento</td></tr>
+            <tr><td>Cidade/Estado</td><td>Filtro de vagas por localidade</td><td>Legítimo interesse</td></tr>
+            <tr><td>Formação e curso</td><td>Match com vagas adequadas</td><td>Consentimento</td></tr>
+            <tr><td>Data de nascimento</td><td>Elegibilidade ao Jovem Aprendiz</td><td>Execução de contrato</td></tr>
+            <tr><td>LinkedIn / Sobre</td><td>Perfil profissional para empresas</td><td>Consentimento</td></tr>
+          </tbody>
+        </table>
+
+        <p><strong>De empresas:</strong></p>
+        <table class="data-table">
+          <thead><tr><th>Dado</th><th>Finalidade</th></tr></thead>
+          <tbody>
+            <tr><td>Razão social e CNPJ</td><td>Identificação e verificação da empresa</td></tr>
+            <tr><td>E-mail e telefone</td><td>Comunicação e notificações</td></tr>
+            <tr><td>Dados das vagas</td><td>Publicação no portal</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="doc-block">
+        <h2>3. Como Usamos seus Dados</h2>
+        <ul>
+          <li>Exibir seu perfil para empresas ao se candidatar.</li>
+          <li>Enviar notificações sobre o status das suas candidaturas.</li>
+          <li>Melhorar a relevância das vagas sugeridas.</li>
+          <li>Cumprir obrigações legais e regulatórias.</li>
+        </ul>
+        <div class="highlight-box">
+          <p><strong>Não vendemos seus dados.</strong> O IniciaAí jamais comercializa dados pessoais com terceiros para fins publicitários ou comerciais.</p>
+        </div>
+      </div>
+
+      <div class="doc-block">
+        <h2>4. Compartilhamento de Dados</h2>
+        <p>Seus dados são compartilhados apenas:</p>
+        <ul>
+          <li><strong>Com empresas</strong> — quando você se candidata a uma vaga, a empresa visualiza os dados do seu perfil.</li>
+          <li><strong>Com provedores de infraestrutura</strong> — utilizamos o Supabase (banco de dados), que é certificado com padrões internacionais de segurança.</li>
+          <li><strong>Por obrigação legal</strong> — quando exigido por autoridade competente.</li>
+        </ul>
+      </div>
+
+      <div class="doc-block">
+        <h2>5. Seus Direitos (LGPD)</h2>
+        <p>Como titular dos dados, você tem direito a:</p>
+        <ul>
+          <li><strong>Acesso</strong> — saber quais dados temos sobre você.</li>
+          <li><strong>Correção</strong> — atualizar dados incompletos ou incorretos pelo próprio perfil.</li>
+          <li><strong>Exclusão</strong> — solicitar a exclusão dos seus dados da plataforma.</li>
+          <li><strong>Portabilidade</strong> — receber seus dados em formato estruturado.</li>
+          <li><strong>Revogação de consentimento</strong> — a qualquer momento, sem prejuízo.</li>
+          <li><strong>Oposição</strong> — contestar o uso dos seus dados.</li>
+        </ul>
+        <p>Para exercer qualquer desses direitos, entre em contato pelo e-mail abaixo.</p>
+      </div>
+
+      <div class="doc-block">
+        <h2>6. Retenção e Exclusão</h2>
+        <p>Seus dados são mantidos enquanto sua conta estiver ativa. Ao solicitar a exclusão, removemos seus dados em até <strong>30 dias</strong>, exceto quando houver obrigação legal de retenção.</p>
+      </div>
+
+      <div class="doc-block">
+        <h2>7. Segurança</h2>
+        <p>Adotamos medidas técnicas como criptografia de senhas (SHA-256), controle de acesso por autenticação e comunicação via HTTPS. Nenhum sistema é 100% seguro, mas fazemos todo o esforço para proteger seus dados.</p>
+      </div>
+
+      <div class="contact-card">
+        <h3>📧 Encarregado de Dados (DPO)</h3>
+        <p>Para dúvidas, solicitações ou exercício dos seus direitos:<br>
+        <a href="mailto:privacidade@iniciaaí.com.br">privacidade@iniciaaí.com.br</a><br><br>
+        Prazo de resposta: até <strong>15 dias úteis</strong> conforme previsto na LGPD.</p>
+      </div>
+
+    </div>
+
+    <!-- COOKIES -->
+    <div class="doc-section" id="sec-cookies">
+
+      <div class="doc-block">
+        <h2>🍪 O que são cookies?</h2>
+        <p>Cookies são pequenos arquivos de texto armazenados no seu navegador que permitem que sites lembrem de suas preferências e sessão de acesso.</p>
+      </div>
+
+      <div class="doc-block">
+        <h2>Cookies que utilizamos</h2>
+        <table class="data-table">
+          <thead><tr><th>Cookie</th><th>Tipo</th><th>Finalidade</th><th>Duração</th></tr></thead>
+          <tbody>
+            <tr><td><code>candidato</code></td><td>Sessão</td><td>Manter o candidato logado</td><td>Sessão do navegador</td></tr>
+            <tr><td><code>empresa</code></td><td>Sessão</td><td>Manter a empresa logada</td><td>Sessão do navegador</td></tr>
+            <tr><td><code>admin_data</code></td><td>Sessão</td><td>Manter o admin logado</td><td>Sessão do navegador</td></tr>
+          </tbody>
+        </table>
+        <div class="highlight-box">
+          <p>O IniciaAí utiliza apenas <strong>cookies de sessão essenciais</strong>. Não utilizamos cookies de rastreamento, publicidade ou analytics de terceiros.</p>
+        </div>
+      </div>
+
+      <div class="doc-block">
+        <h2>Como gerenciar cookies</h2>
+        <p>Você pode controlar ou excluir cookies diretamente nas configurações do seu navegador. Desativar os cookies de sessão impedirá que você permaneça logado na plataforma.</p>
+        <ul>
+          <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" style="color:var(--violet);font-weight:600">Chrome — Gerenciar cookies</a></li>
+          <li><a href="https://support.mozilla.org/pt-BR/kb/cookies-informacoes-sites-guardam-no-computador" target="_blank" style="color:var(--violet);font-weight:600">Firefox — Gerenciar cookies</a></li>
+          <li><a href="https://support.apple.com/pt-br/guide/safari/sfri11471/mac" target="_blank" style="color:var(--violet);font-weight:600">Safari — Gerenciar cookies</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<footer style="background:var(--dark);color:rgba(255,255,255,.4);text-align:center;padding:2rem;font-size:.82rem">
+  <strong style="color:white">IniciaAí</strong> · Feito com ❤️ para estudantes brasileiros ·
+  <a href="index.html" style="color:rgba(255,255,255,.4);text-decoration:none">Ver vagas</a>
+</footer>
+
+<script>
+function switchDoc(tab) {
+  // sections
+  ['termos','privacidade','cookies'].forEach(t => {
+    document.getElementById('sec-' + t).classList.toggle('show', t === tab);
+  });
+  // tabs
+  document.querySelectorAll('.doc-tab').forEach((b,i) => {
+    b.classList.toggle('active', ['termos','privacidade','cookies'][i] === tab);
+  });
+  // índice
+  ['termos','privacidade','cookies'].forEach(t => {
+    document.getElementById('idx-' + t).classList.toggle('active', t === tab);
+  });
+  window.scrollTo({top:0, behavior:'smooth'});
+  return false;
+}
+</script>
+</body>
+</html>
