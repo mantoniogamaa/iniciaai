@@ -456,7 +456,7 @@ async function loadCandidaturas() {
     return;
   }
 
-  const statusLabel = { em_analise:'⏳ Em análise', aprovado:'✅ Aprovado', recusado:'❌ Recusado' };
+  const statusLabel = { em_analise:'⏳ Em análise', aprovado:'✅ Aprovado', recusado:'❌ Recusado', convidado:'🎯 Convidado' };
   list.innerHTML = data.map(c => {
     const vg = c.vagas;
     const emp = vg?.empresas?.nome_fantasia || '—';

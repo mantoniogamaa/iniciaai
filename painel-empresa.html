@@ -198,6 +198,69 @@
   .btn-nova-vaga:hover { transform:translateY(-2px); }
   .section-header-row { display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem; }
 
+
+  /* BUSCA DE CANDIDATOS */
+  .painel-tabs { display:flex; background:white; border-radius:12px; padding:.3rem; gap:.3rem;
+    border:1px solid var(--border); margin-bottom:1.5rem; }
+  .painel-tab { flex:1; padding:.6rem; border-radius:9px; border:none; cursor:pointer;
+    font-size:.82rem; font-weight:600; font-family:'Plus Jakarta Sans',sans-serif;
+    transition:all .2s; color:var(--muted); background:transparent; }
+  .painel-tab.active { background:linear-gradient(135deg,var(--violet),var(--coral)); color:white; }
+
+  .tab-section { display:none; }
+  .tab-section.show { display:block; animation:fadeUp .3s ease both; }
+
+  /* FILTROS BUSCA */
+  .busca-filtros { background:white; border-radius:16px; padding:1.25rem;
+    border:1.5px solid var(--border); margin-bottom:1.25rem; }
+  .filtros-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(160px,1fr)); gap:.75rem; margin-bottom:.75rem; }
+  .filtro-input { width:100%; padding:.65rem 1rem; border:1.5px solid var(--border); border-radius:10px;
+    font-size:.85rem; font-family:'Plus Jakarta Sans',sans-serif; outline:none;
+    background:var(--bg); color:var(--text); transition:border-color .2s; }
+  .filtro-input:focus { border-color:var(--violet); background:white; }
+  .btn-buscar { width:100%; padding:.75rem; background:linear-gradient(135deg,var(--violet),var(--coral));
+    color:white; border:none; border-radius:10px; font-size:.875rem; font-weight:700;
+    cursor:pointer; font-family:'Plus Jakarta Sans',sans-serif; transition:transform .2s; }
+  .btn-buscar:hover { transform:translateY(-2px); }
+
+  /* CARDS CANDIDATOS BUSCA */
+  .busca-results-header { display:flex; align-items:center; justify-content:space-between;
+    margin-bottom:1rem; }
+  .busca-count { font-size:.85rem; color:var(--muted); font-weight:500; }
+
+  .cand-card-busca { background:white; border-radius:14px; padding:1.25rem;
+    border:1.5px solid var(--border); margin-bottom:.75rem;
+    transition:border-color .2s, box-shadow .2s; }
+  .cand-card-busca:hover { border-color:rgba(124,58,237,.25); box-shadow:0 4px 16px rgba(0,0,0,.07); }
+  .cand-card-top { display:flex; align-items:center; gap:1rem; margin-bottom:.85rem; }
+  .cand-card-avatar { width:48px; height:48px; border-radius:50%; flex-shrink:0;
+    background:linear-gradient(135deg,var(--violet),var(--coral));
+    display:flex; align-items:center; justify-content:center; color:white;
+    font-family:'Clash Display',sans-serif; font-weight:700; font-size:1.2rem; }
+  .cand-card-name { font-weight:700; font-size:.95rem; margin-bottom:.15rem; }
+  .cand-card-sub  { font-size:.78rem; color:var(--muted); }
+  .cand-card-tags { display:flex; gap:.4rem; flex-wrap:wrap; margin-bottom:.85rem; }
+  .cand-tag { padding:.25rem .7rem; border-radius:50px; font-size:.72rem; font-weight:600;
+    background:rgba(124,58,237,.08); color:var(--violet); }
+  .cand-tag.green  { background:rgba(16,185,129,.1); color:var(--green); }
+  .cand-tag.cyan   { background:rgba(6,182,212,.1); color:#0891B2; }
+  .cand-tag.yellow { background:rgba(251,191,36,.12); color:#B45309; }
+  .cand-card-sobre { font-size:.82rem; color:var(--muted); line-height:1.6;
+    font-style:italic; padding:.75rem; background:var(--bg); border-radius:8px; margin-bottom:.85rem; }
+  .cand-card-footer { display:flex; align-items:center; justify-content:space-between; gap:.75rem; }
+  .cand-card-contato { font-size:.78rem; color:var(--muted); }
+  .btn-convidar { padding:.45rem 1.1rem; background:linear-gradient(135deg,var(--violet),var(--coral));
+    color:white; border:none; border-radius:8px; font-size:.78rem; font-weight:700;
+    cursor:pointer; font-family:'Plus Jakarta Sans',sans-serif; transition:all .2s; }
+  .btn-convidar:hover { transform:translateY(-1px); box-shadow:0 4px 12px rgba(124,58,237,.3); }
+  .btn-convidar.invited { background:rgba(16,185,129,.15); color:var(--green); cursor:default; transform:none; box-shadow:none; }
+
+  /* MODAL CONVITE */
+  .modal-convite-body { display:flex; flex-direction:column; gap:1rem; }
+  .modal-convite-body textarea { width:100%; padding:.85rem 1rem; border:1.5px solid var(--border);
+    border-radius:10px; font-size:.875rem; font-family:'Plus Jakarta Sans',sans-serif;
+    outline:none; resize:vertical; min-height:100px; transition:border-color .2s; background:var(--bg); }
+  .modal-convite-body textarea:focus { border-color:var(--violet); background:white; }
   @media(max-width:600px) { .stats-row{grid-template-columns:1fr 1fr} .cand-actions{flex-direction:column} }
 </style>
 </head>
@@ -242,20 +305,73 @@
       <div class="stat-card"><div class="stat-num" id="s-analise">0</div><div class="stat-label">Em análise</div></div>
     </div>
 
-    <div class="vagas-section">
-      <div class="section-header-row">
-        <div class="section-title">Suas Vagas</div>
-        <a class="btn-nova-vaga" href="cadastro-empresa.html">+ Nova Vaga</a>
-      </div>
-      <div id="vagas-loading"><div class="spinner"></div></div>
-      <div id="vagas-list"></div>
+    <!-- TABS -->
+    <div class="painel-tabs">
+      <button class="painel-tab active" onclick="switchTab('vagas',this)">💼 Minhas Vagas</button>
+      <button class="painel-tab" onclick="switchTab('busca',this)">🔍 Buscar Candidatos</button>
     </div>
 
-    <div class="candidatos-panel" id="candidatos-panel" style="display:none">
-      <h3 id="cands-title">Candidatos</h3>
-      <div id="cands-loading2"><div class="spinner"></div></div>
-      <div id="cands-list"></div>
+    <!-- TAB: VAGAS -->
+    <div class="tab-section show" id="tab-vagas">
+      <div class="vagas-section">
+        <div class="section-header-row">
+          <div class="section-title">Suas Vagas</div>
+          <a class="btn-nova-vaga" href="cadastro-empresa.html">+ Nova Vaga</a>
+        </div>
+        <div id="vagas-loading"><div class="spinner"></div></div>
+        <div id="vagas-list"></div>
+      </div>
+      <div class="candidatos-panel" id="candidatos-panel" style="display:none">
+        <h3 id="cands-title">Candidatos</h3>
+        <div id="cands-loading2"><div class="spinner"></div></div>
+        <div id="cands-list"></div>
+      </div>
     </div>
+
+    <!-- TAB: BUSCA CANDIDATOS -->
+    <div class="tab-section" id="tab-busca">
+      <div class="busca-filtros">
+        <div class="filtros-grid">
+          <input class="filtro-input" type="text" id="b-nome" placeholder="🔍 Nome ou palavra-chave">
+          <input class="filtro-input" type="text" id="b-cidade" placeholder="📍 Cidade">
+          <select class="filtro-input" id="b-estado">
+            <option value="">🗺️ Estado</option>
+            <option>AC</option><option>AL</option><option>AP</option><option>AM</option><option>BA</option>
+            <option>CE</option><option>DF</option><option>ES</option><option>GO</option><option>MA</option>
+            <option>MT</option><option>MS</option><option>MG</option><option>PA</option><option>PB</option>
+            <option>PR</option><option>PE</option><option>PI</option><option>RJ</option><option>RN</option>
+            <option>RS</option><option>RO</option><option>RR</option><option>SC</option><option>SP</option>
+            <option>SE</option><option>TO</option>
+          </select>
+          <select class="filtro-input" id="b-esc">
+            <option value="">🎓 Escolaridade</option>
+            <option>Ensino Médio Incompleto</option>
+            <option>Ensino Médio Completo</option>
+            <option>Superior Incompleto</option>
+            <option>Superior Completo</option>
+          </select>
+          <select class="filtro-input" id="b-periodo">
+            <option value="">🕐 Período</option>
+            <option>Manhã</option><option>Tarde</option><option>Noite</option>
+            <option>Integral</option><option>Flexível</option>
+          </select>
+        </div>
+        <button class="btn-buscar" onclick="buscarCandidatos()">Buscar Candidatos</button>
+      </div>
+      <div id="busca-loading" style="display:none"><div class="spinner"></div></div>
+      <div id="busca-inicial" style="text-align:center;padding:2.5rem 1rem;color:var(--muted)">
+        <div style="font-size:2.5rem;margin-bottom:.75rem">🎓</div>
+        <strong>Encontre o candidato ideal</strong><br>
+        <span style="font-size:.85rem">Use os filtros acima e clique em Buscar Candidatos</span>
+      </div>
+      <div id="busca-results" style="display:none">
+        <div class="busca-results-header">
+          <div class="busca-count" id="busca-count"></div>
+        </div>
+        <div id="busca-list"></div>
+      </div>
+    </div>
+
   </div>
 
 </div>
@@ -338,6 +454,33 @@
     <div class="modal-footer">
       <button class="btn-modal-cancel" onclick="fecharEdicao()">Cancelar</button>
       <button class="btn-modal-save" id="btn-salvar-edicao" onclick="salvarEdicao()">Salvar alterações ✓</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL CONVITE -->
+<div class="modal-overlay" id="modal-convite" onclick="if(event.target===this)fecharConvite()">
+  <div class="modal-box" style="max-width:480px">
+    <button class="modal-close" onclick="fecharConvite()">✕</button>
+    <div class="modal-title">✉️ Convidar Candidato</div>
+    <input type="hidden" id="convite-cand-id">
+    <div class="modal-convite-body">
+      <div id="convite-cand-info" style="background:var(--bg);border-radius:10px;padding:1rem;font-size:.875rem"></div>
+      <div>
+        <label class="modal-label">Vaga de interesse</label>
+        <select class="modal-input" id="convite-vaga">
+          <option value="">Selecione uma vaga...</option>
+        </select>
+      </div>
+      <div>
+        <label class="modal-label">Mensagem (opcional)</label>
+        <textarea id="convite-msg" placeholder="Ex.: Olá! Seu perfil chamou nossa atenção para a vaga de Estágio em TI. Gostaríamos de conversar com você..."></textarea>
+      </div>
+      <div class="msg-modal" id="msg-convite"></div>
+      <div class="modal-footer" style="margin-top:0;padding-top:0;border-top:none">
+        <button class="btn-modal-cancel" onclick="fecharConvite()">Cancelar</button>
+        <button class="btn-modal-save" id="btn-enviar-convite" onclick="enviarConvite()">Enviar convite ✓</button>
+      </div>
     </div>
   </div>
 </div>
@@ -623,6 +766,165 @@ function showToast(msg, type='success') {
   t.textContent = msg; t.className = `toast ${type}`;
   void t.offsetWidth; t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'), 3000);
+}
+
+// ---- TABS ----
+function switchTab(tab, el) {
+  document.querySelectorAll('.tab-section').forEach(s => s.classList.remove('show'));
+  document.querySelectorAll('.painel-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('show');
+  el.classList.add('active');
+}
+
+// ---- BUSCA CANDIDATOS ----
+async function buscarCandidatos() {
+  const nome    = document.getElementById('b-nome').value.trim().toLowerCase();
+  const cidade  = document.getElementById('b-cidade').value.trim().toLowerCase();
+  const estado  = document.getElementById('b-estado').value;
+  const esc     = document.getElementById('b-esc').value;
+  const periodo = document.getElementById('b-periodo').value;
+
+  document.getElementById('busca-inicial').style.display = 'none';
+  document.getElementById('busca-results').style.display = 'none';
+  document.getElementById('busca-loading').style.display = 'block';
+
+  let query = sb.from('candidatos').select('*').order('created_at', { ascending: false });
+  if (estado)  query = query.eq('estado', estado);
+  if (esc)     query = query.eq('escolaridade', esc);
+  if (periodo) query = query.eq('periodo_disponivel', periodo);
+
+  const { data, error } = await query;
+  document.getElementById('busca-loading').style.display = 'none';
+
+  let results = data || [];
+
+  // Filtros client-side
+  if (nome)   results = results.filter(c =>
+    c.nome?.toLowerCase().includes(nome) ||
+    c.curso?.toLowerCase().includes(nome) ||
+    c.sobre?.toLowerCase().includes(nome) ||
+    c.instituicao?.toLowerCase().includes(nome)
+  );
+  if (cidade) results = results.filter(c => c.cidade?.toLowerCase().includes(cidade));
+
+  const count = document.getElementById('busca-count');
+  const list  = document.getElementById('busca-list');
+  const panel = document.getElementById('busca-results');
+
+  count.textContent = `${results.length} candidato${results.length !== 1 ? 's' : ''} encontrado${results.length !== 1 ? 's' : ''}`;
+
+  if (!results.length) {
+    list.innerHTML = '<div class="empty-msg"><div>👀</div>Nenhum candidato encontrado com esses filtros.</div>';
+  } else {
+    list.innerHTML = results.map(c => renderCandidatoCard(c)).join('');
+  }
+
+  panel.style.display = 'block';
+}
+
+function renderCandidatoCard(c) {
+  const initial = c.nome?.charAt(0)?.toUpperCase() || '?';
+  const tags = [
+    c.escolaridade ? `<span class="cand-tag">${c.escolaridade}</span>` : '',
+    c.curso        ? `<span class="cand-tag cyan">${c.curso}</span>` : '',
+    c.periodo_disponivel ? `<span class="cand-tag yellow">🕐 ${c.periodo_disponivel}</span>` : '',
+    c.cidade       ? `<span class="cand-tag green">📍 ${c.cidade}${c.estado ? ', ' + c.estado : ''}</span>` : '',
+  ].filter(Boolean).join('');
+
+  return `
+    <div class="cand-card-busca">
+      <div class="cand-card-top">
+        <div class="cand-card-avatar">${initial}</div>
+        <div style="flex:1">
+          <div class="cand-card-name">${c.nome}</div>
+          <div class="cand-card-sub">${c.instituicao || ''} ${c.curso ? '· ' + c.curso : ''}</div>
+        </div>
+        ${c.linkedin ? `<a href="${c.linkedin}" target="_blank" style="color:var(--violet);font-size:.78rem;font-weight:600;text-decoration:none">LinkedIn ↗</a>` : ''}
+      </div>
+      ${tags ? `<div class="cand-card-tags">${tags}</div>` : ''}
+      ${c.sobre ? `<div class="cand-card-sobre">"${c.sobre.substring(0, 180)}${c.sobre.length > 180 ? '...' : ''}"</div>` : ''}
+      <div class="cand-card-footer">
+        <div class="cand-card-contato">📧 ${c.email}</div>
+        <button class="btn-convidar" id="btn-inv-${c.id}" onclick="abrirConvite('${c.id}')">
+          ✉️ Convidar para vaga
+        </button>
+      </div>
+    </div>`;
+}
+
+// ---- CONVITE ----
+function abrirConvite(candId) {
+  const cands = document.querySelectorAll('.cand-card-busca');
+  // Pega dados do card
+  const btn = document.getElementById('btn-inv-' + candId);
+  const card = btn?.closest('.cand-card-busca');
+  const nome  = card?.querySelector('.cand-card-name')?.textContent || '—';
+  const email = card?.querySelector('.cand-card-contato')?.textContent?.replace('📧 ','') || '—';
+
+  document.getElementById('convite-cand-id').value = candId;
+  document.getElementById('convite-cand-info').innerHTML =
+    `<strong>${nome}</strong><br><span style="color:var(--muted)">${email}</span>`;
+
+  // Preenche select de vagas aprovadas
+  const sel = document.getElementById('convite-vaga');
+  sel.innerHTML = '<option value="">Selecione uma vaga...</option>';
+  todasVagas.filter(v => v.status === 'aprovada').forEach(v => {
+    sel.innerHTML += `<option value="${v.id}">${v.titulo} · ${v.cidade}</option>`;
+  });
+
+  document.getElementById('convite-msg').value = '';
+  document.getElementById('msg-convite').style.display = 'none';
+  document.getElementById('modal-convite').classList.add('open');
+}
+
+async function enviarConvite() {
+  const btn    = document.getElementById('btn-enviar-convite');
+  const msg    = document.getElementById('msg-convite');
+  const candId = document.getElementById('convite-cand-id').value;
+  const vagaId = document.getElementById('convite-vaga').value;
+
+  if (!vagaId) {
+    msg.textContent = 'Selecione uma vaga para convidar.';
+    msg.className = 'msg-modal error'; return;
+  }
+
+  btn.disabled = true; btn.textContent = 'Enviando...';
+
+  // Cria candidatura com status especial 'convidado'
+  const { error } = await sb.from('candidaturas').insert({
+    vaga_id: vagaId,
+    candidato_id: candId,
+    status: 'em_analise',
+    mensagem: document.getElementById('convite-msg').value.trim() || null
+  });
+
+  if (error && error.code === '23505') {
+    msg.textContent = '⚠️ Este candidato já se candidatou a esta vaga.';
+    msg.className = 'msg-modal error';
+    btn.disabled = false; btn.textContent = 'Enviar convite ✓';
+    return;
+  }
+
+  if (error) {
+    msg.textContent = 'Erro ao enviar convite. Tente novamente.';
+    msg.className = 'msg-modal error';
+    btn.disabled = false; btn.textContent = 'Enviar convite ✓';
+    return;
+  }
+
+  msg.textContent = '✅ Convite enviado! O candidato verá no painel dele.';
+  msg.className = 'msg-modal success';
+
+  // Marca botão como convidado
+  const invBtn = document.getElementById('btn-inv-' + candId);
+  if (invBtn) { invBtn.textContent = '✅ Convidado'; invBtn.classList.add('invited'); invBtn.disabled = true; }
+
+  btn.disabled = false; btn.textContent = 'Enviar convite ✓';
+  setTimeout(fecharConvite, 1500);
+}
+
+function fecharConvite() {
+  document.getElementById('modal-convite').classList.remove('open');
 }
 
 if (empresaLogada) showPainel();
