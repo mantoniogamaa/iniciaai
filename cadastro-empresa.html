@@ -333,6 +333,52 @@
   .mobile-nav-link:hover { background:white; }
   @media(max-width:768px) { .hamburger { display:flex; } .mobile-drawer { display:flex; } }
 
+
+  /* ── FUNDO ANHEMBI: Verde escuro + efeito network ── */
+  .hero, .page-hero, .vaga-hero, .doc-hero {
+    background: linear-gradient(135deg, #071F18 0%, #0C3D30 50%, #0A3528 100%) !important;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Padrão de pontos/grid sutil */
+  .hero::after, .page-hero::after, .vaga-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle, rgba(46,207,168,.15) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Linhas diagonais sutis */
+  .hero::before, .page-hero::before, .vaga-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(135deg, rgba(46,207,168,.08) 25%, transparent 25%,
+        transparent 50%, rgba(46,207,168,.08) 50%, rgba(46,207,168,.08) 75%,
+        transparent 75%, transparent),
+      radial-gradient(ellipse 80% 50% at 80% 50%, rgba(46,207,168,.12) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 10% 80%, rgba(12,61,48,.6) 0%, transparent 60%);
+    background-size: 60px 60px, 100% 100%, 100% 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Garante conteúdo interno acima dos pseudoelementos */
+  .hero > *, .page-hero > *, .vaga-hero > * {
+    position: relative;
+    z-index: 1;
+  }
+  .hero-inner, .page-hero-inner, .hero-inner * {
+    position: relative;
+    z-index: 2;
+  }
+
 </style>
 </head>
 <body>
