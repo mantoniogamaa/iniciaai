@@ -25,23 +25,25 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
   :root {
-    --primary: #D32F2F;      /* Vermelho Anhembi */
-    --primary-dark: #B71C1C; /* Vermelho escuro hover */
-    --primary-light: #FFEBEE;/* Vermelho bem claro bg */
-    --accent: #1C1C1E;       /* Quase preto */
-    --cyan: #0277BD;         /* Azul institucional */
-    --yellow: #F57F17;       /* Amarelo aviso */
-    --green: #2E7D32;        /* Verde sucesso */
-    --orange: #E65100;       /* Laranja */
-    --bg: #F8F8F8;           /* Fundo quase branco */
-    --dark: #1C1C1E;         /* Preto institucional */
-    --text: #1A1A2E;         /* Texto escuro */
-    --muted: #6B6B7B;        /* Texto secundário */
-    --border: #E0E0E0;       /* Bordas */
-    --white: #FFFFFF;
-    /* Aliases para compatibilidade com código existente */
-    --violet: #D32F2F;
-    --coral: #B71C1C;
+    --primary:       #0C3D30;   /* Verde escuro Anhembi */
+    --primary-dark:  #071F18;   /* Verde mais escuro */
+    --primary-mid:   #1A5C47;   /* Verde médio */
+    --accent:        #2ECFA8;   /* Verde menta/turquesa (botões CTA) */
+    --accent-dark:   #1EA888;   /* Menta escuro hover */
+    --accent-light:  #E6FAF5;   /* Menta bem claro bg */
+    --bg:            #F7FAF9;   /* Fundo levemente esverdeado */
+    --dark:          #0C3D30;   /* Dark = verde escuro */
+    --text:          #0A1A15;   /* Texto principal */
+    --muted:         #5C7A70;   /* Texto secundário */
+    --border:        #D4E5DF;   /* Bordas */
+    --white:         #FFFFFF;
+    --green:         #2ECFA8;   /* success = menta */
+    --orange:        #E65100;
+    --yellow:        #F57F17;
+    --cyan:          #2ECFA8;
+    /* Aliases para compatibilidade */
+    --violet:        #0C3D30;
+    --coral:         #1A5C47;
   }
   * { margin:0; padding:0; box-sizing:border-box; }
   body { font-family:'Plus Jakarta Sans',sans-serif; background:var(--bg); color:var(--text); overflow-x:hidden; }
@@ -53,17 +55,17 @@
     height:64px; display:flex; align-items:center; justify-content:space-between;
   }
   .logo { font-family:'Clash Display',sans-serif; font-size:1.5rem; font-weight:700;
-    background:linear-gradient(135deg,var(--primary),var(--primary-dark));
-    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    background:linear-gradient(135deg,var(--accent),var(--accent-dark));
+    -webkit-background-clip:text; -webkit-text-fill-color:var(--primary); background-clip:text;
     cursor:pointer; text-decoration:none; }
   .nav-links { display:flex; gap:2rem; align-items:center; }
   .nav-links a { color:var(--muted); text-decoration:none; font-size:.9rem; font-weight:500; transition:color .2s; }
   .nav-links a:hover { color:var(--violet); }
-  .btn-primary { background:linear-gradient(135deg,var(--primary),var(--primary-dark)); color:white; border:none;
+  .btn-primary { background:linear-gradient(135deg,var(--accent),var(--accent-dark)); color:white; border:none;
     padding:.6rem 1.4rem; border-radius:50px; font-size:.9rem; font-weight:600; cursor:pointer;
     transition:transform .2s,box-shadow .2s; font-family:'Plus Jakarta Sans',sans-serif; text-decoration:none;
     display:inline-block; }
-  .btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 20px rgba(211,47,47,.3); }
+  .btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 20px rgba(12,61,48,.45); }
 
 
   /* DROPDOWN ACESSAR */
@@ -93,7 +95,7 @@
   .access-item:last-child { border-top:1px solid var(--border); }
   .access-icon { width:36px; height:36px; border-radius:10px;
     display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; }
-  .access-icon.cand  { background:rgba(211,47,47,.08); }
+  .access-icon.cand  { background:rgba(12,61,48,.1); }
   .access-icon.emp   { background:rgba(6,182,212,.1); }
   .access-icon.new   { background:rgba(16,185,129,.1); }
   .access-label { font-size:.875rem; font-weight:600; }
@@ -101,11 +103,11 @@
 
   /* AVATAR LOGADO */
   .nav-avatar { width:36px; height:36px; border-radius:50%;
-    background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+    background:linear-gradient(135deg,var(--accent),var(--accent-dark));
     display:flex; align-items:center; justify-content:center;
     color:white; font-weight:700; font-size:.9rem; cursor:pointer;
     font-family:'Clash Display',sans-serif; flex-shrink:0;
-    border:2px solid white; box-shadow:0 2px 8px rgba(211,47,47,.25); }
+    border:2px solid white; box-shadow:0 2px 8px rgba(12,61,48,.4); }
   .nav-user-wrap { display:flex; align-items:center; gap:.6rem; }
   .nav-user-name { font-size:.85rem; font-weight:600; color:var(--text); }
 
@@ -141,12 +143,12 @@
   .lm-field input { width:100%; padding:.75rem 1rem; border:1.5px solid var(--border);
     border-radius:10px; font-size:.9rem; font-family:'Plus Jakarta Sans',sans-serif;
     outline:none; background:var(--bg); color:var(--text); transition:border-color .2s; }
-  .lm-field input:focus { border-color:var(--violet); background:white; box-shadow:0 0 0 3px rgba(211,47,47,.06); }
-  .lm-btn { width:100%; padding:.9rem; background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+  .lm-field input:focus { border-color:var(--violet); background:white; box-shadow:0 0 0 3px rgba(46,207,168,.08); }
+  .lm-btn { width:100%; padding:.9rem; background:linear-gradient(135deg,var(--accent),var(--accent-dark));
     color:white; border:none; border-radius:12px; font-size:.95rem; font-weight:700;
     cursor:pointer; font-family:'Plus Jakarta Sans',sans-serif;
     transition:transform .2s,box-shadow .2s; margin-top:.25rem; }
-  .lm-btn:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(211,47,47,.3); }
+  .lm-btn:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(12,61,48,.45); }
   .lm-btn:disabled { opacity:.6; cursor:not-allowed; transform:none; }
   .lm-msg { padding:.65rem .9rem; border-radius:9px; font-size:.82rem; font-weight:600;
     margin-top:.75rem; text-align:center; display:none; }
@@ -158,15 +160,14 @@
   .hero { padding:120px 2rem 60px; text-align:center; position:relative; overflow:hidden; }
   .hero::before { content:''; position:absolute; top:-100px; left:50%; transform:translateX(-50%);
     width:800px; height:800px;
-    background:radial-gradient(circle,rgba(211,47,47,.1) 0%,transparent 70%); pointer-events:none; }
+    background:radial-gradient(circle,rgba(12,61,48,.15) 0%,transparent 70%); pointer-events:none; }
   .hero-badge { display:inline-flex; align-items:center; gap:.5rem; background:white;
     border:1px solid var(--border); border-radius:50px; padding:.4rem 1rem;
     font-size:.8rem; font-weight:600; color:var(--violet); margin-bottom:1.5rem;
     box-shadow:0 2px 8px rgba(0,0,0,.06); animation:fadeDown .6s ease both; }
   h1 { font-family:'Clash Display',sans-serif; font-size:clamp(2.8rem,6vw,5rem);
     font-weight:700; line-height:1.05; margin-bottom:1rem; animation:fadeDown .6s .1s ease both; }
-  h1 .highlight { background:linear-gradient(135deg,var(--primary),var(--primary-dark));
-    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  h1 .highlight { color:var(--accent); }
   .hero p { font-size:1.1rem; color:var(--muted); max-width:520px; margin:0 auto 2.5rem;
     line-height:1.7; animation:fadeDown .6s .2s ease both; }
   .hero-stats { display:flex; justify-content:center; gap:3rem; margin-top:2.5rem; animation:fadeDown .6s .3s ease both; }
@@ -177,7 +178,7 @@
     margin:2rem auto; max-width:600px; animation:fadeDown .6s .25s ease both; }
   .tag { padding:.4rem 1rem; border-radius:50px; font-size:.8rem; font-weight:600; cursor:pointer; transition:transform .2s; }
   .tag:hover { transform:translateY(-2px); }
-  .tag-violet { background:rgba(211,47,47,.08); color:var(--violet); }
+  .tag-violet { background:rgba(12,61,48,.1); color:var(--violet); }
   .tag-coral  { background:rgba(255,92,92,.1); color:var(--coral); }
   .tag-cyan   { background:rgba(6,182,212,.1); color:var(--cyan); }
   .tag-green  { background:rgba(16,185,129,.1); color:var(--green); }
@@ -199,10 +200,10 @@
     background:var(--bg); color:var(--text); cursor:pointer; transition:border-color .2s;
     flex:1; min-width:140px; }
   .filter-select:focus { border-color:var(--violet); }
-  .btn-search { padding:.85rem 2rem; background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+  .btn-search { padding:.85rem 2rem; background:linear-gradient(135deg,var(--accent),var(--accent-dark));
     color:white; border:none; border-radius:12px; font-size:.95rem; font-weight:600; cursor:pointer;
     transition:transform .2s,box-shadow .2s; font-family:'Plus Jakarta Sans',sans-serif; white-space:nowrap; }
-  .btn-search:hover { transform:translateY(-2px); box-shadow:0 8px 20px rgba(211,47,47,.25); }
+  .btn-search:hover { transform:translateY(-2px); box-shadow:0 8px 20px rgba(12,61,48,.4); }
 
   .jobs-section { max-width:1100px; margin:0 auto; padding:0 2rem 5rem; }
   .section-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:1.5rem; }
@@ -222,14 +223,14 @@
   .card-aprendiz::before { background:linear-gradient(90deg,var(--coral),var(--yellow)); }
   .card-top { display:flex; align-items:flex-start; gap:1rem; margin-bottom:1rem; }
   .company-logo { width:48px; height:48px; border-radius:12px; display:flex; align-items:center;
-    justify-content:center; font-size:1.3rem; flex-shrink:0; background:rgba(211,47,47,.08);
+    justify-content:center; font-size:1.3rem; flex-shrink:0; background:rgba(12,61,48,.1);
     font-family:'Clash Display',sans-serif; font-weight:700; color:var(--violet); }
   .card-meta { flex:1; }
   .card-company { font-size:.8rem; color:var(--muted); font-weight:500; margin-bottom:.2rem; }
   .card-title { font-family:'Clash Display',sans-serif; font-size:1.05rem; font-weight:600; color:var(--dark); line-height:1.3; }
   .card-badges { display:flex; gap:.4rem; flex-wrap:wrap; margin-bottom:.85rem; }
   .badge { padding:.25rem .7rem; border-radius:50px; font-size:.72rem; font-weight:600; }
-  .badge-type-estagio { background:rgba(211,47,47,.08); color:var(--violet); }
+  .badge-type-estagio { background:rgba(12,61,48,.1); color:var(--violet); }
   .badge-type-aprendiz { background:rgba(255,92,92,.1); color:var(--coral); }
   .badge-remote    { background:rgba(6,182,212,.1); color:var(--cyan); }
   .badge-hybrid    { background:rgba(251,191,36,.12); color:#B45309; }
@@ -239,10 +240,10 @@
     padding-top:.85rem; border-top:1px solid var(--border); }
   .card-salary { font-weight:700; font-size:.95rem; color:var(--dark); }
   .card-date { font-size:.75rem; color:var(--muted); }
-  .btn-apply { padding:.45rem 1.1rem; background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+  .btn-apply { padding:.45rem 1.1rem; background:linear-gradient(135deg,var(--accent),var(--accent-dark));
     color:white; border:none; border-radius:8px; font-size:.8rem; font-weight:600; cursor:pointer;
     font-family:'Plus Jakarta Sans',sans-serif; transition:transform .2s,box-shadow .2s; }
-  .btn-apply:hover { transform:translateY(-1px); box-shadow:0 4px 12px rgba(211,47,47,.25); }
+  .btn-apply:hover { transform:translateY(-1px); box-shadow:0 4px 12px rgba(12,61,48,.4); }
 
   /* Loading */
   .loading { text-align:center; padding:4rem 2rem; }
@@ -269,7 +270,7 @@
   .modal-close:hover { background:var(--border); }
   .modal-company-row { display:flex; gap:1rem; align-items:center; margin-bottom:1rem; }
   .modal-logo { width:56px; height:56px; border-radius:14px; display:flex; align-items:center;
-    justify-content:center; font-size:1.5rem; background:rgba(211,47,47,.08); color:var(--violet);
+    justify-content:center; font-size:1.5rem; background:rgba(12,61,48,.1); color:var(--violet);
     font-family:'Clash Display',sans-serif; font-weight:700; font-size:1.4rem; }
   .modal-company-name { font-size:.9rem; color:var(--muted); font-weight:500; }
   .modal-title { font-family:'Clash Display',sans-serif; font-size:1.5rem; font-weight:700; line-height:1.2; }
@@ -284,10 +285,10 @@
   .modal-section ul { padding-left:1.2rem; }
   .modal-section li { margin-bottom:.25rem; }
   .btn-apply-full { width:100%; padding:1rem;
-    background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+    background:linear-gradient(135deg,var(--accent),var(--accent-dark));
     color:white; border:none; border-radius:12px; font-size:1rem; font-weight:700;
     cursor:pointer; font-family:'Plus Jakarta Sans',sans-serif; transition:transform .2s,box-shadow .2s; }
-  .btn-apply-full:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(211,47,47,.3); }
+  .btn-apply-full:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(12,61,48,.45); }
   .btn-apply-full:disabled { opacity:.6; cursor:not-allowed; transform:none; }
 
   /* Candidatura feedback */
@@ -308,7 +309,7 @@
     font-family:'Plus Jakarta Sans',sans-serif; color:var(--muted);
     transition:all .2s; display:flex; align-items:center; justify-content:center; }
   .page-btn:hover { border-color:var(--violet); color:var(--violet); }
-  .page-btn.active { background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+  .page-btn.active { background:linear-gradient(135deg,var(--accent),var(--accent-dark));
     color:white; border-color:transparent; }
   .page-btn.nav-btn { width:auto; padding:0 1rem; gap:.4rem; }
   .page-btn:disabled { opacity:.35; cursor:not-allowed; }
@@ -356,7 +357,7 @@
   .mobile-cta { display:flex; flex-direction:column; gap:.6rem; margin-top:.5rem; }
   .mobile-cta a { display:block; text-align:center; padding:.9rem; border-radius:12px;
     font-weight:700; font-size:.9rem; text-decoration:none; transition:all .2s; }
-  .mobile-cta .cta-primary { background:linear-gradient(135deg,var(--primary),var(--primary-dark)); color:white; }
+  .mobile-cta .cta-primary { background:linear-gradient(135deg,var(--accent),var(--accent-dark)); color:white; }
   .mobile-cta .cta-secondary { border:1.5px solid var(--border); color:var(--muted); }
   .mobile-cta .cta-secondary:hover { border-color:var(--violet); color:var(--violet); }
 
@@ -443,7 +444,7 @@
   <div class="mobile-access-title">Entrar como</div>
 
   <button class="mobile-access-btn" onclick="closeMobileMenu();openLoginModal('candidato')">
-    <div class="mobile-access-icon" style="background:rgba(211,47,47,.08)">🎓</div>
+    <div class="mobile-access-icon" style="background:rgba(12,61,48,.1)">🎓</div>
     <div><div class="mobile-access-label">Candidato</div><div class="mobile-access-sub">Acesse seu perfil e candidaturas</div></div>
   </button>
   <button class="mobile-access-btn" onclick="closeMobileMenu();openLoginModal('empresa')">

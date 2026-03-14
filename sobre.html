@@ -11,23 +11,25 @@
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --primary: #D32F2F;      /* Vermelho Anhembi */
-    --primary-dark: #B71C1C; /* Vermelho escuro hover */
-    --primary-light: #FFEBEE;/* Vermelho bem claro bg */
-    --accent: #1C1C1E;       /* Quase preto */
-    --cyan: #0277BD;         /* Azul institucional */
-    --yellow: #F57F17;       /* Amarelo aviso */
-    --green: #2E7D32;        /* Verde sucesso */
-    --orange: #E65100;       /* Laranja */
-    --bg: #F8F8F8;           /* Fundo quase branco */
-    --dark: #1C1C1E;         /* Preto institucional */
-    --text: #1A1A2E;         /* Texto escuro */
-    --muted: #6B6B7B;        /* Texto secundário */
-    --border: #E0E0E0;       /* Bordas */
-    --white: #FFFFFF;
-    /* Aliases para compatibilidade com código existente */
-    --violet: #D32F2F;
-    --coral: #B71C1C;
+    --primary:       #0C3D30;   /* Verde escuro Anhembi */
+    --primary-dark:  #071F18;   /* Verde mais escuro */
+    --primary-mid:   #1A5C47;   /* Verde médio */
+    --accent:        #2ECFA8;   /* Verde menta/turquesa (botões CTA) */
+    --accent-dark:   #1EA888;   /* Menta escuro hover */
+    --accent-light:  #E6FAF5;   /* Menta bem claro bg */
+    --bg:            #F7FAF9;   /* Fundo levemente esverdeado */
+    --dark:          #0C3D30;   /* Dark = verde escuro */
+    --text:          #0A1A15;   /* Texto principal */
+    --muted:         #5C7A70;   /* Texto secundário */
+    --border:        #D4E5DF;   /* Bordas */
+    --white:         #FFFFFF;
+    --green:         #2ECFA8;   /* success = menta */
+    --orange:        #E65100;
+    --yellow:        #F57F17;
+    --cyan:          #2ECFA8;
+    /* Aliases para compatibilidade */
+    --violet:        #0C3D30;
+    --coral:         #1A5C47;
   }
   * { margin:0; padding:0; box-sizing:border-box; }
   body { font-family:'Plus Jakarta Sans',sans-serif; background:var(--bg); color:var(--text); overflow-x:hidden; }
@@ -37,8 +39,8 @@
     backdrop-filter:blur(14px); border-bottom:1px solid var(--border);
     height:64px; padding:0 2rem; display:flex; align-items:center; justify-content:space-between; }
   .logo { font-family:'Clash Display',sans-serif; font-size:1.4rem; font-weight:700;
-    background:linear-gradient(135deg,var(--primary),var(--primary-dark));
-    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; text-decoration:none; }
+    background:linear-gradient(135deg,var(--accent),var(--accent-dark));
+    -webkit-background-clip:text; -webkit-text-fill-color:var(--primary); background-clip:text; text-decoration:none; }
 
   /* ── NAV PADRÃO ── */
   nav {
@@ -65,12 +67,12 @@
   .nav-back:hover { color:var(--violet); }
   .btn-nav-cta {
     padding:.55rem 1.25rem;
-    background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+    background:linear-gradient(135deg,var(--accent),var(--accent-dark));
     color:white; border:none; border-radius:50px; font-size:.875rem; font-weight:600;
     cursor:pointer; text-decoration:none; font-family:'Plus Jakarta Sans',sans-serif;
     transition:transform .2s,box-shadow .2s; display:inline-block;
   }
-  .btn-nav-cta:hover { transform:translateY(-2px); box-shadow:0 6px 18px rgba(211,47,47,.25); }
+  .btn-nav-cta:hover { transform:translateY(-2px); box-shadow:0 6px 18px rgba(12,61,48,.4); }
 
 
   /* HERO */
@@ -78,7 +80,7 @@
     padding:5rem 2rem 0; text-align:center; }
   .hero::before { content:''; position:absolute; inset:0;
     background:
-      radial-gradient(ellipse 80% 50% at 20% 50%, rgba(211,47,47,.3) 0%, transparent 60%),
+      radial-gradient(ellipse 80% 50% at 20% 50%, rgba(12,61,48,.45) 0%, transparent 60%),
       radial-gradient(ellipse 60% 40% at 80% 20%, rgba(255,92,92,.25) 0%, transparent 60%),
       radial-gradient(ellipse 40% 60% at 50% 100%, rgba(6,182,212,.2) 0%, transparent 70%);
     pointer-events:none; }
@@ -89,15 +91,15 @@
     color:rgba(255,255,255,.7); margin-bottom:1.5rem; backdrop-filter:blur(8px); }
   .hero h1 { font-family:'Clash Display',sans-serif; font-size:clamp(2.5rem,6vw,4.5rem);
     font-weight:700; color:white; line-height:1.08; margin-bottom:1.25rem; }
-  .hero h1 span { background:linear-gradient(135deg,#EF9A9A,#EF5350);
+  .hero h1 span { background:linear-gradient(135deg,#80DFCC,var(--accent));
     -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
   .hero p { font-size:1.1rem; color:rgba(255,255,255,.6); max-width:520px;
     margin:0 auto 3rem; line-height:1.75; }
   .hero-ctas { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-bottom:4rem; }
-  .btn-hero-primary { padding:.85rem 2rem; background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+  .btn-hero-primary { padding:.85rem 2rem; background:linear-gradient(135deg,var(--accent),var(--accent-dark));
     color:white; border:none; border-radius:50px; font-size:.95rem; font-weight:700;
     cursor:pointer; text-decoration:none; transition:transform .2s,box-shadow .2s; }
-  .btn-hero-primary:hover { transform:translateY(-3px); box-shadow:0 10px 28px rgba(211,47,47,.35); }
+  .btn-hero-primary:hover { transform:translateY(-3px); box-shadow:0 10px 28px rgba(46,207,168,.35); }
   .btn-hero-secondary { padding:.85rem 2rem; background:rgba(255,255,255,.1);
     color:white; border:1px solid rgba(255,255,255,.2); border-radius:50px;
     font-size:.95rem; font-weight:600; cursor:pointer; text-decoration:none;
@@ -120,19 +122,18 @@
   section { padding:5rem 2rem; }
   .container { max-width:1060px; margin:0 auto; }
   .section-badge { display:inline-flex; align-items:center; gap:.4rem;
-    background:rgba(211,47,47,.06); color:var(--violet); border-radius:50px;
+    background:rgba(46,207,168,.08); color:var(--violet); border-radius:50px;
     padding:.35rem .9rem; font-size:.75rem; font-weight:700; text-transform:uppercase;
     letter-spacing:.08em; margin-bottom:1rem; }
   .section-title { font-family:'Clash Display',sans-serif; font-size:clamp(1.8rem,4vw,2.8rem);
     font-weight:700; line-height:1.15; margin-bottom:1rem; color:var(--dark); }
-  .section-title span { background:linear-gradient(135deg,var(--primary),var(--primary-dark));
-    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .section-title span { color:var(--accent); }
   .section-sub { font-size:1rem; color:var(--muted); line-height:1.75; max-width:520px; }
 
   /* MISSÃO */
   .missao-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
   .missao-visual { position:relative; }
-  .missao-card-main { background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+  .missao-card-main { background:linear-gradient(135deg,var(--accent),var(--accent-dark));
     border-radius:24px; padding:2.5rem; color:white; position:relative; overflow:hidden; }
   .missao-card-main::after { content:'🚀'; position:absolute; right:1.5rem; bottom:1.5rem;
     font-size:5rem; opacity:.15; }
@@ -153,14 +154,14 @@
   .tab-how { flex:1; padding:.65rem; border-radius:10px; border:none; cursor:pointer;
     font-size:.875rem; font-weight:600; font-family:'Plus Jakarta Sans',sans-serif;
     transition:all .2s; color:var(--muted); background:transparent; }
-  .tab-how.active { background:linear-gradient(135deg,var(--primary),var(--primary-dark)); color:white; }
+  .tab-how.active { background:linear-gradient(135deg,var(--accent),var(--accent-dark)); color:white; }
   .how-section { display:none; }
   .how-section.show { display:block; }
   .steps-list { display:flex; flex-direction:column; gap:1.25rem; }
   .step-item { display:flex; gap:1.25rem; align-items:flex-start; }
   .step-dot { width:44px; height:44px; border-radius:14px; flex-shrink:0; display:flex;
     align-items:center; justify-content:center; font-size:1.3rem; }
-  .step-dot-v { background:linear-gradient(135deg,rgba(211,47,47,.12),rgba(211,47,47,.04)); }
+  .step-dot-v { background:linear-gradient(135deg,rgba(12,61,48,.2),rgba(46,207,168,.05)); }
   .step-dot-e { background:linear-gradient(135deg,rgba(6,182,212,.15),rgba(6,182,212,.05)); }
   .step-label { font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em;
     color:var(--muted); margin-bottom:.2rem; }
@@ -203,7 +204,7 @@
   .empresa-card { background:linear-gradient(135deg,#0F0A1E,#1a1040); border-radius:24px;
     padding:2.5rem; position:relative; overflow:hidden; }
   .empresa-card::before { content:''; position:absolute; inset:0;
-    background:radial-gradient(ellipse 70% 50% at 80% 20%, rgba(211,47,47,.25), transparent);
+    background:radial-gradient(ellipse 70% 50% at 80% 20%, rgba(12,61,48,.4), transparent);
     pointer-events:none; }
   .empresa-card h3 { font-family:'Clash Display',sans-serif; font-size:1.4rem;
     font-weight:700; color:white; margin-bottom:1rem; position:relative; z-index:1; }
@@ -219,7 +220,7 @@
   .faq-list { max-width:680px; display:flex; flex-direction:column; gap:.75rem; }
   .faq-item { background:var(--bg); border-radius:14px; border:1.5px solid var(--border);
     overflow:hidden; transition:border-color .2s; }
-  .faq-item.open { border-color:rgba(211,47,47,.25); }
+  .faq-item.open { border-color:rgba(12,61,48,.4); }
   .faq-q { padding:1.1rem 1.25rem; cursor:pointer; display:flex; align-items:center;
     justify-content:space-between; gap:1rem; font-weight:700; font-size:.9rem; color:var(--dark); }
   .faq-q svg { flex-shrink:0; transition:transform .25s; color:var(--muted); }
@@ -239,10 +240,10 @@
     font-weight:700; color:white; line-height:1.1; margin-bottom:1rem; }
   .cta-final p  { color:rgba(255,255,255,.55); margin-bottom:2.5rem; font-size:1rem; line-height:1.7; }
   .cta-btns { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
-  .cta-btn-a { padding:.9rem 2rem; background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+  .cta-btn-a { padding:.9rem 2rem; background:linear-gradient(135deg,var(--accent),var(--accent-dark));
     color:white; border:none; border-radius:50px; font-size:.95rem; font-weight:700;
     cursor:pointer; text-decoration:none; transition:transform .2s,box-shadow .2s; }
-  .cta-btn-a:hover { transform:translateY(-3px); box-shadow:0 10px 28px rgba(211,47,47,.35); }
+  .cta-btn-a:hover { transform:translateY(-3px); box-shadow:0 10px 28px rgba(46,207,168,.35); }
   .cta-btn-b { padding:.9rem 2rem; background:rgba(255,255,255,.1); color:white;
     border:1px solid rgba(255,255,255,.2); border-radius:50px; font-size:.95rem;
     font-weight:600; text-decoration:none; transition:all .2s; }
@@ -433,7 +434,7 @@
     </div>
     <div class="diff-grid">
       <div class="diff-card fade-in">
-        <div class="diff-icon" style="background:rgba(211,47,47,.08)">🧠</div>
+        <div class="diff-icon" style="background:rgba(12,61,48,.1)">🧠</div>
         <div class="diff-title">Teste de Perfil DISC</div>
         <div class="diff-desc">Candidatos podem fazer o teste comportamental DISC. Empresas filtram por perfil ideal, tornando o match muito mais preciso.</div>
       </div>
@@ -535,7 +536,7 @@
             <div><div class="benefit-title">Modo confidencial disponível</div><div class="benefit-desc">Oculte o nome da empresa durante o processo seletivo.</div></div>
           </div>
         </div>
-        <a href="cadastro-empresa.html" style="display:inline-block;margin-top:2rem;padding:.85rem 2rem;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:white;border-radius:50px;font-weight:700;font-size:.9rem;text-decoration:none;transition:transform .2s,box-shadow .2s" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 20px rgba(211,47,47,.3)'" onmouseout="this.style.transform='none';this.style.boxShadow='none'">
+        <a href="cadastro-empresa.html" style="display:inline-block;margin-top:2rem;padding:.85rem 2rem;background:linear-gradient(135deg,var(--accent),var(--accent-dark));color:white;border-radius:50px;font-weight:700;font-size:.9rem;text-decoration:none;transition:transform .2s,box-shadow .2s" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 20px rgba(12,61,48,.45)'" onmouseout="this.style.transform='none';this.style.boxShadow='none'">
           Cadastrar minha empresa →
         </a>
       </div>
@@ -604,7 +605,7 @@
 <!-- CTA FINAL -->
 <section class="cta-final">
   <div class="cta-final-inner fade-in">
-    <h2>Pronto para dar o<br><span style="background:linear-gradient(135deg,#EF9A9A,#EF5350);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">primeiro passo?</span></h2>
+    <h2>Pronto para dar o<br><span style="background:linear-gradient(135deg,#80DFCC,var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">primeiro passo?</span></h2>
     <p>Milhares de estudantes já encontraram sua oportunidade aqui. Sua vez pode ser agora.</p>
     <div class="cta-btns">
       <a class="cta-btn-a" href="cadastro-candidato.html">🎓 Criar perfil grátis</a>

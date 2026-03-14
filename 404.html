@@ -7,23 +7,25 @@
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --primary: #D32F2F;      /* Vermelho Anhembi */
-    --primary-dark: #B71C1C; /* Vermelho escuro hover */
-    --primary-light: #FFEBEE;/* Vermelho bem claro bg */
-    --accent: #1C1C1E;       /* Quase preto */
-    --cyan: #0277BD;         /* Azul institucional */
-    --yellow: #F57F17;       /* Amarelo aviso */
-    --green: #2E7D32;        /* Verde sucesso */
-    --orange: #E65100;       /* Laranja */
-    --bg: #F8F8F8;           /* Fundo quase branco */
-    --dark: #1C1C1E;         /* Preto institucional */
-    --text: #1A1A2E;         /* Texto escuro */
-    --muted: #6B6B7B;        /* Texto secundário */
-    --border: #E0E0E0;       /* Bordas */
-    --white: #FFFFFF;
-    /* Aliases para compatibilidade com código existente */
-    --violet: #D32F2F;
-    --coral: #B71C1C;
+    --primary:       #0C3D30;   /* Verde escuro Anhembi */
+    --primary-dark:  #071F18;   /* Verde mais escuro */
+    --primary-mid:   #1A5C47;   /* Verde médio */
+    --accent:        #2ECFA8;   /* Verde menta/turquesa (botões CTA) */
+    --accent-dark:   #1EA888;   /* Menta escuro hover */
+    --accent-light:  #E6FAF5;   /* Menta bem claro bg */
+    --bg:            #F7FAF9;   /* Fundo levemente esverdeado */
+    --dark:          #0C3D30;   /* Dark = verde escuro */
+    --text:          #0A1A15;   /* Texto principal */
+    --muted:         #5C7A70;   /* Texto secundário */
+    --border:        #D4E5DF;   /* Bordas */
+    --white:         #FFFFFF;
+    --green:         #2ECFA8;   /* success = menta */
+    --orange:        #E65100;
+    --yellow:        #F57F17;
+    --cyan:          #2ECFA8;
+    /* Aliases para compatibilidade */
+    --violet:        #0C3D30;
+    --coral:         #1A5C47;
   }
   * { margin:0; padding:0; box-sizing:border-box; }
   body {
@@ -55,8 +57,8 @@
     border-bottom:1px solid var(--border); z-index:10;
   }
   .logo { font-family:'Clash Display',sans-serif; font-size:1.4rem; font-weight:700;
-    background:linear-gradient(135deg,var(--primary),var(--primary-dark));
-    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    background:linear-gradient(135deg,var(--accent),var(--accent-dark));
+    -webkit-background-clip:text; -webkit-text-fill-color:var(--primary);
     background-clip:text; text-decoration:none; }
 
   .container {
@@ -97,12 +99,12 @@
 
   .btns { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
   .btn-home {
-    padding:.8rem 2rem; background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+    padding:.8rem 2rem; background:linear-gradient(135deg,var(--accent),var(--accent-dark));
     color:white; border:none; border-radius:50px; font-size:.95rem; font-weight:700;
     cursor:pointer; text-decoration:none; font-family:'Plus Jakarta Sans',sans-serif;
     transition:transform .2s,box-shadow .2s; display:inline-flex; align-items:center; gap:.5rem;
   }
-  .btn-home:hover { transform:translateY(-3px); box-shadow:0 10px 28px rgba(211,47,47,.3); }
+  .btn-home:hover { transform:translateY(-3px); box-shadow:0 10px 28px rgba(12,61,48,.45); }
   .btn-back {
     padding:.8rem 2rem; background:white; color:var(--muted);
     border:1.5px solid var(--border); border-radius:50px; font-size:.95rem; font-weight:600;
@@ -117,7 +119,7 @@
 
   .countdown-bar { width:200px; height:3px; background:var(--border); border-radius:50px;
     margin:1.5rem auto 0; overflow:hidden; }
-  .countdown-fill { height:100%; background:linear-gradient(90deg,var(--primary),var(--primary-dark));
+  .countdown-fill { height:100%; background:linear-gradient(90deg,var(--accent),var(--accent-dark));
     border-radius:50px; animation:shrink 10s linear forwards; }
   @keyframes shrink { from{width:100%} to{width:0%} }
   .countdown-text { font-size:.75rem; color:var(--muted); margin-top:.5rem; }

@@ -17,23 +17,25 @@
 
 <style>
   :root {
-    --primary: #D32F2F;      /* Vermelho Anhembi */
-    --primary-dark: #B71C1C; /* Vermelho escuro hover */
-    --primary-light: #FFEBEE;/* Vermelho bem claro bg */
-    --accent: #1C1C1E;       /* Quase preto */
-    --cyan: #0277BD;         /* Azul institucional */
-    --yellow: #F57F17;       /* Amarelo aviso */
-    --green: #2E7D32;        /* Verde sucesso */
-    --orange: #E65100;       /* Laranja */
-    --bg: #F8F8F8;           /* Fundo quase branco */
-    --dark: #1C1C1E;         /* Preto institucional */
-    --text: #1A1A2E;         /* Texto escuro */
-    --muted: #6B6B7B;        /* Texto secundário */
-    --border: #E0E0E0;       /* Bordas */
-    --white: #FFFFFF;
-    /* Aliases para compatibilidade com código existente */
-    --violet: #D32F2F;
-    --coral: #B71C1C;
+    --primary:       #0C3D30;   /* Verde escuro Anhembi */
+    --primary-dark:  #071F18;   /* Verde mais escuro */
+    --primary-mid:   #1A5C47;   /* Verde médio */
+    --accent:        #2ECFA8;   /* Verde menta/turquesa (botões CTA) */
+    --accent-dark:   #1EA888;   /* Menta escuro hover */
+    --accent-light:  #E6FAF5;   /* Menta bem claro bg */
+    --bg:            #F7FAF9;   /* Fundo levemente esverdeado */
+    --dark:          #0C3D30;   /* Dark = verde escuro */
+    --text:          #0A1A15;   /* Texto principal */
+    --muted:         #5C7A70;   /* Texto secundário */
+    --border:        #D4E5DF;   /* Bordas */
+    --white:         #FFFFFF;
+    --green:         #2ECFA8;   /* success = menta */
+    --orange:        #E65100;
+    --yellow:        #F57F17;
+    --cyan:          #2ECFA8;
+    /* Aliases para compatibilidade */
+    --violet:        #0C3D30;
+    --coral:         #1A5C47;
   }
   * { margin:0; padding:0; box-sizing:border-box; }
   body { font-family:'Plus Jakarta Sans',sans-serif; background:var(--bg); color:var(--text); }
@@ -47,8 +49,8 @@
     display:flex; align-items:center; justify-content:space-between;
   }
   .logo { font-family:'Clash Display',sans-serif; font-size:1.4rem; font-weight:700;
-    background:linear-gradient(135deg,var(--primary),var(--primary-dark));
-    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    background:linear-gradient(135deg,var(--accent),var(--accent-dark));
+    -webkit-background-clip:text; -webkit-text-fill-color:var(--primary); background-clip:text;
     text-decoration:none; }
   .nav-back { display:flex; align-items:center; gap:.5rem; color:var(--muted);
     text-decoration:none; font-size:.875rem; font-weight:500; transition:color .2s; }
@@ -76,7 +78,7 @@
   }
   .vaga-hero::before {
     content:''; position:absolute; inset:0;
-    background:radial-gradient(ellipse 80% 60% at 60% -10%, rgba(211,47,47,.3) 0%, transparent 70%),
+    background:radial-gradient(ellipse 80% 60% at 60% -10%, rgba(12,61,48,.45) 0%, transparent 70%),
                radial-gradient(ellipse 50% 40% at 10% 100%, rgba(255,92,92,.2) 0%, transparent 60%);
     pointer-events:none;
   }
@@ -89,7 +91,7 @@
 
   .hero-top { display:flex; align-items:flex-start; gap:1.25rem; margin-bottom:1.5rem; }
   .hero-logo { width:64px; height:64px; border-radius:16px; flex-shrink:0;
-    background:linear-gradient(135deg,rgba(211,47,47,.25),rgba(255,92,92,.2));
+    background:linear-gradient(135deg,rgba(12,61,48,.4),rgba(255,92,92,.2));
     border:1px solid rgba(255,255,255,.1);
     display:flex; align-items:center; justify-content:center;
     font-family:'Clash Display',sans-serif; font-weight:700; font-size:1.6rem; color:white; }
@@ -99,7 +101,7 @@
 
   .hero-badges { display:flex; gap:.5rem; flex-wrap:wrap; margin-bottom:2rem; }
   .hbadge { padding:.35rem .9rem; border-radius:50px; font-size:.78rem; font-weight:600; }
-  .hb-estagio  { background:rgba(124,58,237,.25); color:#FFCDD2; border:1px solid rgba(211,47,47,.25); }
+  .hb-estagio  { background:rgba(124,58,237,.25); color:#B2EFE3; border:1px solid rgba(12,61,48,.4); }
   .hb-aprendiz { background:rgba(255,92,92,.2);  color:#FCA5A5; border:1px solid rgba(255,92,92,.3); }
   .hb-remote   { background:rgba(6,182,212,.2);  color:#67E8F9; border:1px solid rgba(6,182,212,.3); }
   .hb-hybrid   { background:rgba(251,191,36,.15); color:#FDE68A; border:1px solid rgba(251,191,36,.3); }
@@ -136,7 +138,7 @@
   .content-section li { margin-bottom:.3rem; }
 
   .tags-wrap { display:flex; flex-wrap:wrap; gap:.4rem; }
-  .tag-chip { padding:.3rem .8rem; background:rgba(211,47,47,.06); color:var(--violet);
+  .tag-chip { padding:.3rem .8rem; background:rgba(46,207,168,.08); color:var(--violet);
     border-radius:50px; font-size:.78rem; font-weight:600; }
 
   /* SIDEBAR */
@@ -156,9 +158,9 @@
 
   .btn-apply-main { width:100%; padding:1rem; border:none; border-radius:12px; cursor:pointer;
     font-family:'Plus Jakarta Sans',sans-serif; font-size:1rem; font-weight:700;
-    background:linear-gradient(135deg,var(--primary),var(--primary-dark)); color:white;
+    background:linear-gradient(135deg,var(--accent),var(--accent-dark)); color:white;
     transition:transform .2s,box-shadow .2s; }
-  .btn-apply-main:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(211,47,47,.3); }
+  .btn-apply-main:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(12,61,48,.45); }
   .btn-apply-main:disabled { opacity:.6; cursor:not-allowed; transform:none; }
   .btn-login-hint { width:100%; padding:.85rem; border:1.5px solid var(--border); border-radius:12px;
     background:white; font-family:'Plus Jakarta Sans',sans-serif; font-size:.875rem;
@@ -169,7 +171,7 @@
     text-align:center; margin-top:.75rem; display:none; }
   .cand-feedback.success { background:rgba(16,185,129,.1); color:var(--green); display:block; }
   .cand-feedback.error   { background:rgba(255,92,92,.1); color:var(--coral); display:block; }
-  .cand-feedback.info    { background:rgba(211,47,47,.06); color:var(--violet); display:block; }
+  .cand-feedback.info    { background:rgba(46,207,168,.08); color:var(--violet); display:block; }
 
   /* SHARE CARD */
   .share-card { background:white; border-radius:16px; padding:1.25rem;
@@ -196,7 +198,7 @@
   /* EMPRESA CARD */
   .empresa-row { display:flex; align-items:center; gap:.85rem; }
   .empresa-avatar { width:48px; height:48px; border-radius:12px; flex-shrink:0;
-    background:linear-gradient(135deg,rgba(211,47,47,.12),rgba(255,92,92,.1));
+    background:linear-gradient(135deg,rgba(12,61,48,.2),rgba(255,92,92,.1));
     display:flex; align-items:center; justify-content:center;
     font-family:'Clash Display',sans-serif; font-weight:700; font-size:1.3rem; color:var(--violet); }
   .empresa-name { font-weight:700; font-size:.95rem; margin-bottom:.15rem; }
@@ -259,7 +261,7 @@
   <div class="icon">🔍</div>
   <h2>Vaga não encontrada</h2>
   <p>Esta vaga pode ter sido encerrada ou o link está incorreto.</p>
-  <a href="index.html" style="display:inline-block;padding:.75rem 1.75rem;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:white;border-radius:50px;font-weight:700;text-decoration:none;font-size:.9rem">
+  <a href="index.html" style="display:inline-block;padding:.75rem 1.75rem;background:linear-gradient(135deg,var(--accent),var(--accent-dark));color:white;border-radius:50px;font-weight:700;text-decoration:none;font-size:.9rem">
     Ver outras vagas →
   </a>
 </div>

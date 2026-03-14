@@ -7,23 +7,25 @@
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --primary: #D32F2F;      /* Vermelho Anhembi */
-    --primary-dark: #B71C1C; /* Vermelho escuro hover */
-    --primary-light: #FFEBEE;/* Vermelho bem claro bg */
-    --accent: #1C1C1E;       /* Quase preto */
-    --cyan: #0277BD;         /* Azul institucional */
-    --yellow: #F57F17;       /* Amarelo aviso */
-    --green: #2E7D32;        /* Verde sucesso */
-    --orange: #E65100;       /* Laranja */
-    --bg: #F8F8F8;           /* Fundo quase branco */
-    --dark: #1C1C1E;         /* Preto institucional */
-    --text: #1A1A2E;         /* Texto escuro */
-    --muted: #6B6B7B;        /* Texto secundário */
-    --border: #E0E0E0;       /* Bordas */
-    --white: #FFFFFF;
-    /* Aliases para compatibilidade com código existente */
-    --violet: #D32F2F;
-    --coral: #B71C1C;
+    --primary:       #0C3D30;   /* Verde escuro Anhembi */
+    --primary-dark:  #071F18;   /* Verde mais escuro */
+    --primary-mid:   #1A5C47;   /* Verde médio */
+    --accent:        #2ECFA8;   /* Verde menta/turquesa (botões CTA) */
+    --accent-dark:   #1EA888;   /* Menta escuro hover */
+    --accent-light:  #E6FAF5;   /* Menta bem claro bg */
+    --bg:            #F7FAF9;   /* Fundo levemente esverdeado */
+    --dark:          #0C3D30;   /* Dark = verde escuro */
+    --text:          #0A1A15;   /* Texto principal */
+    --muted:         #5C7A70;   /* Texto secundário */
+    --border:        #D4E5DF;   /* Bordas */
+    --white:         #FFFFFF;
+    --green:         #2ECFA8;   /* success = menta */
+    --orange:        #E65100;
+    --yellow:        #F57F17;
+    --cyan:          #2ECFA8;
+    /* Aliases para compatibilidade */
+    --violet:        #0C3D30;
+    --coral:         #1A5C47;
   }
 
   * { margin:0; padding:0; box-sizing:border-box; }
@@ -54,8 +56,8 @@
   .logo {
     font-family: 'Clash Display', sans-serif;
     font-size: 1.3rem; font-weight: 700;
-    background: linear-gradient(135deg, #EF9A9A, var(--coral));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    background: linear-gradient(135deg, #80DFCC, var(--coral));
+    -webkit-background-clip: text; -webkit-text-fill-color:var(--primary); background-clip: text;
     display: block; margin-bottom: 0.2rem;
   }
 
@@ -71,10 +73,10 @@
     position: relative;
   }
 
-  .nav-item:hover { background: rgba(167,139,250,0.08); color: #EF9A9A; }
+  .nav-item:hover { background: rgba(167,139,250,0.08); color: #80DFCC; }
 
   .nav-item.active {
-    background: rgba(167,139,250,0.15); color: #EF9A9A;
+    background: rgba(167,139,250,0.15); color: #80DFCC;
   }
 
   .nav-item .icon { font-size: 1rem; width: 20px; text-align: center; }
@@ -100,7 +102,7 @@
 
   .admin-avatar {
     width: 28px; height: 28px; border-radius: 50%;
-    background: linear-gradient(135deg, #EF9A9A, var(--coral));
+    background: linear-gradient(135deg, #80DFCC, var(--coral));
     display: flex; align-items: center; justify-content: center;
     font-size: 0.75rem; font-weight: 700; color: white; flex-shrink: 0;
   }
@@ -166,7 +168,7 @@
     opacity: 0.12; transform: translate(20px, -20px);
   }
 
-  .stat-card.c-violet::after { background: #EF9A9A; }
+  .stat-card.c-violet::after { background: #80DFCC; }
   .stat-card.c-coral::after { background: var(--coral); }
   .stat-card.c-green::after { background: var(--green); }
   .stat-card.c-yellow::after { background: var(--yellow); }
@@ -196,8 +198,8 @@
     cursor: pointer; border: 1px solid var(--border); color: var(--muted);
     background: transparent; transition: all 0.2s; font-family: 'Plus Jakarta Sans', sans-serif;
   }
-  .tab:hover { border-color: rgba(167,139,250,0.3); color: #EF9A9A; }
-  .tab.active { background: rgba(167,139,250,0.15); border-color: rgba(167,139,250,0.3); color: #EF9A9A; }
+  .tab:hover { border-color: rgba(167,139,250,0.3); color: #80DFCC; }
+  .tab.active { background: rgba(167,139,250,0.15); border-color: rgba(167,139,250,0.3); color: #80DFCC; }
 
   /* Job cards in admin */
   .job-list { display: flex; flex-direction: column; gap: 0.75rem; }
@@ -240,7 +242,7 @@
   .btn-reject { background: rgba(255,92,92,0.1); color: var(--coral); }
   .btn-reject:hover { background: var(--coral); color: white; }
 
-  .btn-view { background: rgba(167,139,250,0.1); color: #EF9A9A; }
+  .btn-view { background: rgba(167,139,250,0.1); color: #80DFCC; }
   .btn-view:hover { background: rgba(167,139,250,0.2); }
 
   .btn-delete { background: rgba(255,92,92,0.08); color: var(--coral); }
@@ -367,7 +369,7 @@
   .toast.info    { background: var(--violet); }
 
   .btn-primary-sm {
-    padding:.5rem 1.1rem;background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+    padding:.5rem 1.1rem;background:linear-gradient(135deg,var(--accent),var(--accent-dark));
     color:white;border:none;border-radius:8px;font-size:.82rem;font-weight:700;
     cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:transform .2s;
   }
@@ -404,7 +406,7 @@
 
   .login-icon {
     width: 64px; height: 64px; border-radius: 18px;
-    background: linear-gradient(135deg,var(--primary),var(--primary-dark));
+    background: linear-gradient(135deg,var(--accent),var(--accent-dark));
     display: flex; align-items: center; justify-content: center;
     font-size: 1.8rem; margin: 0 auto 1.25rem;
     box-shadow: 0 8px 24px rgba(124,58,237,0.35);
@@ -448,7 +450,7 @@
     background: none; border: none; cursor: pointer; color: var(--muted);
     font-size: 1rem; transition: color 0.2s;
   }
-  .eye-btn:hover { color: #EF9A9A; }
+  .eye-btn:hover { color: #80DFCC; }
 
   .login-error {
     font-size: 0.8rem; color: var(--coral); margin-bottom: 1rem;
@@ -458,7 +460,7 @@
 
   .btn-login {
     width: 100%; padding: 0.9rem;
-    background: linear-gradient(135deg,var(--primary),var(--primary-dark));
+    background: linear-gradient(135deg,var(--accent),var(--accent-dark));
     color: white; border: none; border-radius: 12px;
     font-size: 0.95rem; font-weight: 700; cursor: pointer;
     font-family: 'Plus Jakarta Sans', sans-serif;
@@ -569,7 +571,7 @@
         <input class="topbar-search" type="text" placeholder="Buscar vaga ou empresa..." id="topbar-search" oninput="filterJobs()">
       </div>
       <a href="cadastro-empresa.html" style="text-decoration:none;">
-        <button style="padding:0.5rem 1rem;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:white;border:none;border-radius:8px;font-size:0.8rem;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;">+ Nova Vaga</button>
+        <button style="padding:0.5rem 1rem;background:linear-gradient(135deg,var(--accent),var(--accent-dark));color:white;border:none;border-radius:8px;font-size:0.8rem;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;">+ Nova Vaga</button>
       </a>
     </div>
   </div>
@@ -661,7 +663,7 @@
               <input type="file" id="logo-file-input" accept=".png,.jpg,.jpeg,.svg,.webp" style="display:none" onchange="previewLogo(event)">
               <div style="display:flex;gap:.5rem">
                 <button onclick="document.getElementById('logo-file-input').click()" style="flex:1;padding:.5rem .9rem;background:rgba(167,139,250,.15);color:#A78BFA;border:1px solid rgba(167,139,250,.3);border-radius:8px;font-size:.78rem;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif">📁 Escolher arquivo</button>
-                <button id="btn-salvar-logo" onclick="salvarLogo()" style="flex:1;padding:.5rem .9rem;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:white;border:none;border-radius:8px;font-size:.78rem;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif" disabled>💾 Salvar logo</button>
+                <button id="btn-salvar-logo" onclick="salvarLogo()" style="flex:1;padding:.5rem .9rem;background:linear-gradient(135deg,var(--accent),var(--accent-dark));color:white;border:none;border-radius:8px;font-size:.78rem;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif" disabled>💾 Salvar logo</button>
               </div>
               <button onclick="removerLogo()" style="width:100%;margin-top:.4rem;padding:.4rem;background:rgba(255,92,92,.1);color:#FF5C5C;border:1px solid rgba(255,92,92,.2);border-radius:8px;font-size:.72rem;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif">✕ Remover logo</button>
               <div id="msg-logo" style="font-size:.78rem;font-weight:600;margin-top:.5rem;display:none"></div>
@@ -677,22 +679,22 @@
               <div>
                 <div style="font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:.5rem">Cor Principal</div>
                 <div style="display:flex;align-items:center;gap:.75rem">
-                  <input type="color" id="config-cor-primary" value="#D32F2F"
+                  <input type="color" id="config-cor-primary" value="var(--accent)"
                     style="width:44px;height:36px;border:none;border-radius:8px;cursor:pointer;background:none">
-                  <input type="text" id="config-cor-text" value="#D32F2F" placeholder="#D32F2F"
+                  <input type="text" id="config-cor-text" value="var(--accent)" placeholder="var(--accent)"
                     style="flex:1;padding:.6rem 1rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;font-size:.875rem;color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;outline:none"
                     oninput="document.getElementById('config-cor-primary').value=this.value">
                 </div>
                 <div style="display:flex;gap:.4rem;margin-top:.6rem;flex-wrap:wrap">
-                  <button onclick="setColor('#D32F2F')" style="width:28px;height:28px;background:#D32F2F;border:none;border-radius:6px;cursor:pointer;transition:transform .15s" title="Vermelho Anhembi" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='none'"></button>
-                  <button onclick="setColor('#1565C0')" style="width:28px;height:28px;background:#1565C0;border:none;border-radius:6px;cursor:pointer;transition:transform .15s" title="Azul" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='none'"></button>
+                  <button onclick="setColor('var(--accent)')" style="width:28px;height:28px;background:var(--accent);border:none;border-radius:6px;cursor:pointer;transition:transform .15s" title="Verde Anhembi" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='none'"></button>
+                  <button onclick="setColor('#1565C0')" style="width:28px;height:28px;background:#2ECFA8;border:none;border-radius:6px;cursor:pointer;transition:transform .15s" title="Verde Menta Anhembi" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='none'"></button>
                   <button onclick="setColor('#2E7D32')" style="width:28px;height:28px;background:#2E7D32;border:none;border-radius:6px;cursor:pointer;transition:transform .15s" title="Verde" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='none'"></button>
                   <button onclick="setColor('#6A1B9A')" style="width:28px;height:28px;background:#6A1B9A;border:none;border-radius:6px;cursor:pointer;transition:transform .15s" title="Roxo" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='none'"></button>
                   <button onclick="setColor('#E65100')" style="width:28px;height:28px;background:#E65100;border:none;border-radius:6px;cursor:pointer;transition:transform .15s" title="Laranja" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='none'"></button>
                   <button onclick="setColor('#1C1C1E')" style="width:28px;height:28px;background:#1C1C1E;border:none;border-radius:6px;cursor:pointer;transition:transform .15s" title="Preto" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='none'"></button>
                 </div>
               </div>
-              <button onclick="salvarConfiguracoes()" style="padding:.75rem;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:white;border:none;border-radius:10px;font-size:.875rem;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:transform .2s;margin-top:auto" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
+              <button onclick="salvarConfiguracoes()" style="padding:.75rem;background:linear-gradient(135deg,var(--accent),var(--accent-dark));color:white;border:none;border-radius:10px;font-size:.875rem;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:transform .2s;margin-top:auto" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
                 Salvar configurações do portal ✓
               </button>
             </div>
@@ -702,11 +704,11 @@
           <div style="margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid rgba(255,255,255,.08)">
             <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:.75rem">Prévia do nav do portal</div>
             <div id="nav-preview" style="background:rgba(248,248,248,.95);border-radius:12px;padding:.75rem 1.5rem;display:flex;align-items:center;justify-content:space-between;border:1px solid rgba(255,255,255,.1)">
-              <div id="nav-prev-logo" style="font-family:'Clash Display',sans-serif;font-size:1.3rem;font-weight:700;color:#D32F2F">IniciaAí</div>
+              <div id="nav-prev-logo" style="font-family:'Clash Display',sans-serif;font-size:1.3rem;font-weight:700;color:var(--accent)">IniciaAí</div>
               <div style="display:flex;gap:1.5rem">
                 <span style="font-size:.8rem;color:#6B6B7B;font-weight:500">Ver Vagas</span>
                 <span style="font-size:.8rem;color:#6B6B7B;font-weight:500">Sobre</span>
-                <span style="font-size:.8rem;padding:.4rem 1rem;background:#D32F2F;color:white;border-radius:50px;font-weight:600" id="nav-prev-btn">Criar Perfil</span>
+                <span style="font-size:.8rem;padding:.4rem 1rem;background:var(--accent);color:white;border-radius:50px;font-weight:600" id="nav-prev-btn">Criar Perfil</span>
               </div>
             </div>
           </div>
@@ -767,7 +769,7 @@
               <div class="setting-name">Adicionar vagas de demonstração</div>
               <div class="setting-desc">Popula o painel com dados fictícios para teste</div>
             </div>
-            <button onclick="addDemoData()" style="padding:0.4rem 0.9rem;background:rgba(167,139,250,0.15);color:#EF9A9A;border:1px solid rgba(167,139,250,0.3);border-radius:8px;font-size:0.78rem;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;">Adicionar</button>
+            <button onclick="addDemoData()" style="padding:0.4rem 0.9rem;background:rgba(167,139,250,0.15);color:#80DFCC;border:1px solid rgba(167,139,250,0.3);border-radius:8px;font-size:0.78rem;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;">Adicionar</button>
           </div>
         </div>
       </div>
@@ -806,7 +808,7 @@
           style="width:100%;padding:.75rem 1rem;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:10px;font-size:.9rem;color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;outline:none">
       </div>
       <div id="admin-modal-msg" style="font-size:.85rem;display:none;padding:.75rem;border-radius:8px;text-align:center"></div>
-      <button onclick="createAdmin()" style="width:100%;padding:.9rem;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:white;border:none;border-radius:12px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:transform .2s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
+      <button onclick="createAdmin()" style="width:100%;padding:.9rem;background:linear-gradient(135deg,var(--accent),var(--accent-dark));color:white;border:none;border-radius:12px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:transform .2s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
         Criar Administrador ✓
       </button>
     </div>
@@ -933,11 +935,11 @@ async function renderAdmins() {
 
   list.innerHTML = data.map(a => `
     <div class="admin-job-card">
-      <div class="ajc-logo" style="background:linear-gradient(135deg,rgba(211,47,47,.15),rgba(255,92,92,.2));font-family:'Clash Display',sans-serif;font-weight:700;color:#EF9A9A;font-size:1.2rem">
+      <div class="ajc-logo" style="background:linear-gradient(135deg,rgba(12,61,48,.3),rgba(255,92,92,.2));font-family:'Clash Display',sans-serif;font-weight:700;color:#80DFCC;font-size:1.2rem">
         ${a.nome.charAt(0).toUpperCase()}
       </div>
       <div class="ajc-info">
-        <div class="ajc-title">${a.nome} ${a.email === adminLogado?.email ? '<span style="font-size:.7rem;background:rgba(167,139,250,.2);color:#EF9A9A;padding:.15rem .5rem;border-radius:50px;font-weight:600">Você</span>' : ''}</div>
+        <div class="ajc-title">${a.nome} ${a.email === adminLogado?.email ? '<span style="font-size:.7rem;background:rgba(167,139,250,.2);color:#80DFCC;padding:.15rem .5rem;border-radius:50px;font-weight:600">Você</span>' : ''}</div>
         <div class="ajc-meta">
           <span>📧 ${a.email}</span>
           <span>📅 ${new Date(a.created_at).toLocaleDateString('pt-BR')}</span>

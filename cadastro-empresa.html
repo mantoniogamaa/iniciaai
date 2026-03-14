@@ -25,23 +25,25 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
   :root {
-    --primary: #D32F2F;      /* Vermelho Anhembi */
-    --primary-dark: #B71C1C; /* Vermelho escuro hover */
-    --primary-light: #FFEBEE;/* Vermelho bem claro bg */
-    --accent: #1C1C1E;       /* Quase preto */
-    --cyan: #0277BD;         /* Azul institucional */
-    --yellow: #F57F17;       /* Amarelo aviso */
-    --green: #2E7D32;        /* Verde sucesso */
-    --orange: #E65100;       /* Laranja */
-    --bg: #F8F8F8;           /* Fundo quase branco */
-    --dark: #1C1C1E;         /* Preto institucional */
-    --text: #1A1A2E;         /* Texto escuro */
-    --muted: #6B6B7B;        /* Texto secundário */
-    --border: #E0E0E0;       /* Bordas */
-    --white: #FFFFFF;
-    /* Aliases para compatibilidade com código existente */
-    --violet: #D32F2F;
-    --coral: #B71C1C;
+    --primary:       #0C3D30;   /* Verde escuro Anhembi */
+    --primary-dark:  #071F18;   /* Verde mais escuro */
+    --primary-mid:   #1A5C47;   /* Verde médio */
+    --accent:        #2ECFA8;   /* Verde menta/turquesa (botões CTA) */
+    --accent-dark:   #1EA888;   /* Menta escuro hover */
+    --accent-light:  #E6FAF5;   /* Menta bem claro bg */
+    --bg:            #F7FAF9;   /* Fundo levemente esverdeado */
+    --dark:          #0C3D30;   /* Dark = verde escuro */
+    --text:          #0A1A15;   /* Texto principal */
+    --muted:         #5C7A70;   /* Texto secundário */
+    --border:        #D4E5DF;   /* Bordas */
+    --white:         #FFFFFF;
+    --green:         #2ECFA8;   /* success = menta */
+    --orange:        #E65100;
+    --yellow:        #F57F17;
+    --cyan:          #2ECFA8;
+    /* Aliases para compatibilidade */
+    --violet:        #0C3D30;
+    --coral:         #1A5C47;
   }
 
   * { margin:0; padding:0; box-sizing:border-box; }
@@ -66,8 +68,8 @@
   .logo {
     font-family: 'Clash Display', sans-serif;
     font-size: 1.4rem; font-weight: 700;
-    background: linear-gradient(135deg,var(--primary),var(--primary-dark));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    background: linear-gradient(135deg,var(--accent),var(--accent-dark));
+    -webkit-background-clip: text; -webkit-text-fill-color:var(--primary); background-clip: text;
   }
 
   .nav-back {
@@ -217,7 +219,7 @@
 
   .btn-next {
     padding: 0.8rem 2rem; border: none; border-radius: 10px;
-    background: linear-gradient(135deg,var(--primary),var(--primary-dark));
+    background: linear-gradient(135deg,var(--accent),var(--accent-dark));
     color: white; font-size: 0.9rem; font-weight: 700; cursor: pointer;
     font-family: 'Plus Jakarta Sans', sans-serif; transition: transform 0.2s, box-shadow 0.2s;
     display: flex; align-items: center; gap: 0.5rem;
@@ -232,7 +234,7 @@
   }
   .page-hero::before {
     content:''; position:absolute; inset:0;
-    background:radial-gradient(ellipse 70% 60% at 70% 0%, rgba(211,47,47,.25) 0%, transparent 65%),
+    background:radial-gradient(ellipse 70% 60% at 70% 0%, rgba(12,61,48,.4) 0%, transparent 65%),
                radial-gradient(ellipse 40% 40% at 10% 100%, rgba(255,92,92,.15) 0%, transparent 60%);
     pointer-events:none;
   }
@@ -248,7 +250,7 @@
     font-weight:700; color:white; line-height:1.15; margin-bottom:.6rem;
   }
   .page-hero h1 span {
-    background:linear-gradient(135deg,#EF9A9A,#EF5350);
+    background:linear-gradient(135deg,#80DFCC,var(--accent));
     -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
   }
   .page-hero p { font-size:.95rem; color:rgba(255,255,255,.5); line-height:1.7; max-width:520px; }
@@ -291,7 +293,7 @@
 
   .btn-home {
     padding: 0.85rem 2rem; border: none; border-radius: 10px;
-    background: linear-gradient(135deg,var(--primary),var(--primary-dark));
+    background: linear-gradient(135deg,var(--accent),var(--accent-dark));
     color: white; font-size: 0.95rem; font-weight: 700; cursor: pointer;
     font-family: 'Plus Jakarta Sans', sans-serif;
     transition: transform 0.2s, box-shadow 0.2s;
@@ -529,7 +531,7 @@
         </div>
         <div class="form-group full" style="grid-column:1/-1">
           <label>Vaga Confidencial?</label>
-          <div style="display:flex;align-items:flex-start;gap:1rem;background:rgba(211,47,47,.04);border:1.5px solid rgba(211,47,47,.12);border-radius:12px;padding:1rem;margin-top:.25rem">
+          <div style="display:flex;align-items:flex-start;gap:1rem;background:rgba(46,207,168,.05);border:1.5px solid rgba(12,61,48,.2);border-radius:12px;padding:1rem;margin-top:.25rem">
             <label class="confidencial-toggle" style="position:relative;display:inline-block;width:44px;height:24px;flex-shrink:0;margin-top:.1rem">
               <input type="checkbox" id="f-confidencial" style="opacity:0;width:0;height:0" onchange="toggleConfidencial()">
               <span style="position:absolute;cursor:pointer;inset:0;background:#E5E7EB;border-radius:50px;transition:.3s" id="toggle-track"></span>
