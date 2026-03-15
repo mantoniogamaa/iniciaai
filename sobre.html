@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sobre o IniciaAí — O portal feito para quem está começando</title>
 <meta name="description" content="Conheça o IniciaAí, o portal que conecta estudantes com as melhores oportunidades de estágio e Jovem Aprendiz em Bauru.">
-<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ════════════════════════════════════════════════════════════════
    SOBRE.HTML — CSS ÚNICO E DEFINITIVO
@@ -14,23 +14,26 @@
 ════════════════════════════════════════════════════════════════ */
 
 :root {
-  --primary:      #007A5E;
-  --primary-dark: #005C47;
-  --accent:       #00A88E;
-  --accent-dark:  #008C76;
-  --accent-light: #E6F7F4;
-  --gray:         #76787B;
-  --bg:           #F4F8F7;
-  --dark:         #004D3D;
-  --text:         #1A2E28;
-  --muted:        #76787B;
-  --border:       #D0E8E0;
+  --primary:       #007A5E;
+  --primary-dark:  #005C47;
+  --primary-mid:   #006B52;
+  --accent:        #00A88E;
+  --accent-dark:   #008C76;
+  --accent-light:  #E6F7F4;
+  --gray:          #76787B;
+  --gray-light:    #F0F1F2;
+  --bg:            #F4F8F7;
+  --dark:          #004D3D;
+  --text:          #1A2E28;
+  --muted:         #76787B;
+  --border:        #C8DDD9;
+  --white:         #FFFFFF;
 }
 
 * { margin:0; padding:0; box-sizing:border-box; }
 
 body {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'DM Sans', 'Plus Jakarta Sans', sans-serif;
   background: #fff;
   color: var(--text);
   overflow-x: hidden;
@@ -52,7 +55,7 @@ nav {
 }
 .nav-links { display: flex; gap: 2rem; align-items: center; }
 .nav-links a {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'DM Sans', 'Plus Jakarta Sans', sans-serif;
   font-size: .875rem; font-weight: 500;
   color: var(--muted); text-decoration: none;
   transition: color .2s;
@@ -67,7 +70,7 @@ nav {
   padding: .55rem 1.4rem;
   background: var(--accent);
   color: white; border: none; border-radius: 50px;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'DM Sans', 'Plus Jakarta Sans', sans-serif;
   font-size: .875rem; font-weight: 700;
   cursor: pointer; text-decoration: none;
   transition: background .2s, transform .2s, box-shadow .2s;
@@ -146,22 +149,16 @@ nav {
 /* Símbolo AM decorativo — canto direito */
 .hero-am {
   position: absolute;
-  right: -5%; bottom: -8%;
-  width: min(380px, 40vw);
+  right: -2%; bottom: -5%;
+  width: min(280px, 28vw);
   aspect-ratio: 700/762;
-  background: url('symbol-am-white.png') no-repeat center / contain;
+  background: url('symbol-am-white.png') no-repeat right bottom / contain;
   pointer-events: none; z-index: 0;
   opacity: 1;
 }
 /* Símbolo AM secundário — canto esquerdo */
 .hero-am2 {
-  position: absolute;
-  left: -8%; top: -10%;
-  width: min(220px, 25vw);
-  aspect-ratio: 700/762;
-  background: url('symbol-am-white.png') no-repeat center / contain;
-  pointer-events: none; z-index: 0;
-  opacity: .35;
+  display: none;
 }
 .hero-inner {
   position: relative; z-index: 1;
@@ -200,7 +197,7 @@ nav {
   padding: .85rem 2.25rem;
   background: var(--accent);
   color: white; border: none; border-radius: 50px;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'DM Sans', 'Plus Jakarta Sans', sans-serif;
   font-size: .95rem; font-weight: 700;
   text-decoration: none; cursor: pointer;
   transition: background .2s, transform .2s, box-shadow .2s;
@@ -215,7 +212,7 @@ nav {
   background: rgba(255,255,255,.1);
   border: 1.5px solid rgba(255,255,255,.22);
   color: white; border-radius: 50px;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'DM Sans', 'Plus Jakarta Sans', sans-serif;
   font-size: .95rem; font-weight: 600;
   text-decoration: none; cursor: pointer;
   transition: all .2s; backdrop-filter: blur(8px);
@@ -313,7 +310,7 @@ section { padding: 5rem 2rem; }
 .tab-how {
   flex: 1; padding: .6rem 1rem; border-radius: 9px;
   border: none; cursor: pointer;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'DM Sans', 'Plus Jakarta Sans', sans-serif;
   font-size: .875rem; font-weight: 600;
   color: var(--muted); background: transparent;
   transition: all .2s; display: flex; align-items: center; gap: .4rem;
@@ -468,7 +465,7 @@ section { padding: 5rem 2rem; }
 .cta-btn-a {
   padding: .9rem 2.25rem; background: var(--accent);
   color: white; border: none; border-radius: 50px;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'DM Sans', 'Plus Jakarta Sans', sans-serif;
   font-size: .95rem; font-weight: 700;
   text-decoration: none; transition: all .2s;
 }
@@ -478,7 +475,7 @@ section { padding: 5rem 2rem; }
   background: rgba(255,255,255,.1);
   border: 1.5px solid rgba(255,255,255,.22);
   color: white; border-radius: 50px;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'DM Sans', 'Plus Jakarta Sans', sans-serif;
   font-size: .95rem; font-weight: 600;
   text-decoration: none; transition: all .2s;
 }
@@ -506,8 +503,7 @@ footer a:hover { color: white; }
   .hero-ctas { flex-direction: column; align-items: center; }
   .hero-ctas a { width: 100%; max-width: 280px; text-align: center; }
   .hero-numbers { grid-template-columns: 1fr 1fr 1fr; max-width: 100%; }
-  .hero-am { width: min(200px, 45vw); right: -3%; bottom: -5%; }
-  .hero-am2 { display: none; }
+  .hero-am { width: min(180px, 40vw) !important; right: -1% !important; bottom: -3% !important; }
 
   section { padding: 3rem 1.25rem; }
   .missao-grid { grid-template-columns: 1fr; gap: 2rem; }
@@ -529,130 +525,38 @@ footer a:hover { color: white; }
   .hero-num:last-child { border-bottom: none; }
 }
 
-  /* ── FIXES SOBRE ── */
-
-  /* Card float não deve sair do viewport */
-  .missao-card-float {
-    position: absolute;
-    bottom: -1.25rem; right: -.75rem;
-    max-width: 200px;
-    z-index: 10;
+  
+  /* ── HERO FINAL POLISH ── */
+  .hero-inner {
+    position: relative; z-index: 2 !important;
+    padding: 0 min(80px, 8vw); /* padding lateral para não sobrepor o símbolo AM */
   }
-
-  /* Container visual precisa de overflow visible */
-  .fade-in[style*="padding-bottom"] {
-    overflow: visible !important;
+  /* Símbolo AM — apenas decoração, sem interferir no texto */
+  .hero-am {
+    z-index: 0 !important;
+    /* Sutil o suficiente para não competir com o conteúdo */
+    opacity: .85 !important;
   }
-
-  /* Hero AM esquerdo não corta o layout */
-  .hero-am2 {
-    left: -6% !important;
-    top: -8% !important;
-    pointer-events: none;
-  }
-
-  /* Evitar overflow horizontal */
-  body { overflow-x: hidden; }
-  .hero { overflow: hidden; }
-
-  /* hero-numbers não ultrapassa a borda */
+  /* Numbers bar — dentro do hero, não overflow */
   .hero-numbers {
-    overflow: hidden;
-    margin-bottom: 0 !important;
+    max-width: 480px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    border-radius: 14px 14px 0 0 !important;
   }
+  /* Garantir overflow limpo */
+  .hero { overflow: hidden !important; }
 
-  /* ── ANIMAÇÕES HOVER ── */
-  .diff-card {
-    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease !important;
-  }
-  .diff-card:hover {
-    transform: translateY(-5px) !important;
-    box-shadow: 0 16px 40px rgba(0,122,94,.12) !important;
-  }
-
-  .step-item {
-    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease !important;
-  }
-  .step-item:hover {
-    transform: translateX(5px) !important;
-    box-shadow: 0 6px 20px rgba(0,122,94,.1) !important;
-    border-color: rgba(0,168,142,.3) !important;
-  }
-
-  .valor-card {
-    transition: background .2s ease, transform .2s ease !important;
-  }
-  .valor-card:hover {
-    background: rgba(255,255,255,.14) !important;
-    transform: translateY(-4px) !important;
-  }
-
-  .faq-item {
-    transition: border-color .2s ease, box-shadow .2s ease !important;
-  }
-  .faq-item:hover {
-    box-shadow: 0 4px 16px rgba(0,122,94,.08) !important;
-  }
-  .faq-item.open {
-    box-shadow: 0 6px 24px rgba(0,168,142,.12) !important;
-  }
-
-  .btn-hero-primary, .btn-hero-secondary {
-    transition: all .25s ease !important;
-  }
-  .btn-hero-primary:hover {
-    background: var(--accent-dark) !important;
-    transform: translateY(-3px) !important;
-    box-shadow: 0 10px 28px rgba(0,168,142,.35) !important;
-  }
-  .btn-hero-secondary:hover {
-    background: rgba(255,255,255,.2) !important;
-    transform: translateY(-2px) !important;
-  }
-
-  /* Empresa card */
-  .empresa-card { transition: box-shadow .3s ease !important; }
-  .empresa-card:hover { box-shadow: 0 24px 56px rgba(0,0,0,.25) !important; }
-
-  /* Benefit rows */
-  .benefit-row { transition: transform .2s ease !important; }
-  .benefit-row:hover { transform: translateX(4px) !important; }
-
-  /* CTA buttons */
-  .cta-btn-a, .cta-btn-b { transition: all .25s ease !important; }
-  .cta-btn-a:hover {
-    background: var(--accent-dark) !important;
-    transform: translateY(-3px) !important;
-    box-shadow: 0 10px 28px rgba(0,168,142,.35) !important;
-  }
-  .cta-btn-b:hover {
-    background: rgba(255,255,255,.2) !important;
-    transform: translateY(-2px) !important;
-  }
-
-  /* ── WAVE TRANSITION ENTRE SEÇÕES ── */
-  .section-wave {
-    display: block; width: 100%;
-    overflow: hidden; line-height: 0;
-    margin-bottom: -2px; margin-top: -2px;
-  }
-
-
-  /* ── LOGO BULLET-PROOF ── */
+  /* ── LOGO NO NAV ── */
   .logo {
-    display: inline-block !important;
-    width: 150px !important;
-    height: 48px !important;
+    width: 150px !important; height: 48px !important;
     background: url('logo-colorida.png') no-repeat left center / contain !important;
-    text-decoration: none !important;
-    font-size: 0 !important;
-    color: transparent !important;
+    display: inline-block !important;
+    font-size: 0 !important; color: transparent !important;
     -webkit-text-fill-color: transparent !important;
-    overflow: hidden !important;
-    flex-shrink: 0 !important;
+    overflow: hidden !important; flex-shrink: 0 !important;
   }
   .logo::before { display: none !important; }
-  /* Only the CSS background-image, no ::before pseudo */
 
 </style>
 </head>
@@ -694,7 +598,6 @@ footer a:hover { color: white; }
 <!-- ═══════ HERO ═══════ -->
 <div class="hero">
   <div class="hero-am" aria-hidden="true"></div>
-  <div class="hero-am2" aria-hidden="true"></div>
   <div class="hero-inner">
     <div class="hero-badge">
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
