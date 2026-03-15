@@ -491,102 +491,150 @@
   /* ════ PARCEIROS ADMIN ════ */
   .parceiros-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1rem;
-    margin-top: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.25rem;
+    margin-top: 1.25rem;
   }
   .parceiro-card {
-    background: rgba(255,255,255,.06);
-    border: 1.5px solid rgba(255,255,255,.1);
-    border-radius: 14px;
-    padding: 1.1rem;
+    background: #ffffff;
+    border: 1.5px solid #D8EAE6;
+    border-radius: 16px;
+    padding: 1.25rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: .75rem;
+    gap: 1rem;
     position: relative;
-    transition: border-color .2s, background .2s;
+    transition: border-color .2s, box-shadow .2s, transform .2s;
+    box-shadow: 0 2px 8px rgba(0,122,94,.06);
   }
   .parceiro-card:hover {
-    border-color: rgba(0,168,142,.4);
-    background: rgba(255,255,255,.09);
+    border-color: #00A88E;
+    box-shadow: 0 6px 24px rgba(0,168,142,.15);
+    transform: translateY(-2px);
   }
-  .parceiro-card.inactive { opacity: .45; }
+  .parceiro-card.inactive { opacity: .55; }
+  .parceiro-card-top {
+    display: flex; align-items: center; gap: .9rem;
+  }
   .parceiro-logo-wrap {
-    width: 100%; height: 60px;
-    background: rgba(255,255,255,.08);
-    border-radius: 10px;
+    width: 60px; height: 60px; flex-shrink: 0;
+    background: #F4F8F7;
+    border: 1.5px solid #D8EAE6;
+    border-radius: 12px;
     display: flex; align-items: center; justify-content: center;
-    overflow: hidden; padding: .5rem;
+    overflow: hidden; padding: .4rem;
   }
   .parceiro-logo-wrap img {
-    max-width: 100%; max-height: 50px;
-    object-fit: contain; filter: brightness(0) invert(1);
+    width: 100%; height: 100%;
+    object-fit: contain;
   }
   .parceiro-logo-wrap .parceiro-initial {
-    width: 42px; height: 42px; border-radius: 10px;
-    background: var(--accent, #00A88E);
+    width: 100%; height: 100%; border-radius: 8px;
+    background: linear-gradient(135deg, #007A5E, #00A88E);
     color: white; display: flex; align-items: center; justify-content: center;
     font-family: 'Clash Display', sans-serif;
-    font-size: 1.2rem; font-weight: 800;
+    font-size: 1.5rem; font-weight: 800;
   }
+  .parceiro-info { flex: 1; min-width: 0; }
   .parceiro-nome {
-    font-size: .82rem; font-weight: 700;
-    color: white; text-align: center;
+    font-size: .95rem; font-weight: 700;
+    color: #1A2E28;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    margin-bottom: .15rem;
+  }
+  .parceiro-site {
+    font-size: .72rem; color: #76787B;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .parceiro-status-badge {
+    display: inline-flex; align-items: center; gap: .25rem;
+    font-size: .68rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .04em; padding: .2rem .6rem;
+    border-radius: 50px; margin-top: .3rem;
+  }
+  .parceiro-status-badge.ativo { background: #EAF3DE; color: #27500A; }
+  .parceiro-status-badge.inativo { background: #F1EFE8; color: #5F5E5A; }
+  .parceiro-divider {
+    height: 1px; background: #EDF2F1; margin: 0 -.1rem;
   }
   .parceiro-actions {
-    display: flex; gap: .4rem; width: 100%;
+    display: flex; gap: .5rem;
   }
   .parceiro-actions button {
-    flex: 1; padding: .4rem;
-    border-radius: 8px; font-size: .72rem; font-weight: 700;
-    border: 1px solid rgba(255,255,255,.12);
-    background: rgba(255,255,255,.06);
-    color: rgba(255,255,255,.7);
+    flex: 1; padding: .5rem .4rem;
+    border-radius: 8px; font-size: .75rem; font-weight: 600;
+    border: 1.5px solid #D8EAE6;
+    background: #F4F8F7;
+    color: #2D5A4F;
     cursor: pointer; transition: all .2s;
+    display: flex; align-items: center; justify-content: center; gap: .3rem;
+    font-family: 'DM Sans', sans-serif;
   }
-  .parceiro-actions button:hover { background: rgba(255,255,255,.15); color: white; }
-  .parceiro-actions .btn-del { border-color: rgba(220,38,38,.3); color: #f87171; }
-  .parceiro-actions .btn-del:hover { background: rgba(220,38,38,.2); }
+  .parceiro-actions button:hover { background: #E6F7F4; border-color: #00A88E; color: #007A5E; }
+  .parceiro-actions .btn-del { border-color: #FECACA; color: #DC2626; background: #FFF5F5; }
+  .parceiro-actions .btn-del:hover { background: #FEE2E2; border-color: #DC2626; }
   .parceiro-add-card {
-    border: 2px dashed rgba(0,168,142,.3);
-    background: rgba(0,168,142,.04);
+    border: 2px dashed #B0D4CC;
+    background: #F4F8F7;
     cursor: pointer;
-    min-height: 140px;
+    min-height: 120px;
     justify-content: center;
-    transition: all .2s;
+    align-items: center;
+    gap: .6rem;
+    box-shadow: none;
   }
   .parceiro-add-card:hover {
-    border-color: rgba(0,168,142,.7);
-    background: rgba(0,168,142,.1);
+    border-color: #00A88E;
+    background: #E6F7F4;
+    transform: translateY(-2px);
   }
-  .parceiro-add-card svg { color: var(--accent, #00A88E); }
-  .parceiro-add-card span { font-size: .82rem; color: var(--accent, #00A88E); font-weight: 700; }
-  /* Modal parceiro */
-  .modal-parceiro-form { display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem; }
-  .modal-parceiro-form label { font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); display: block; margin-bottom: .35rem; }
+  .parceiro-add-card svg { color: #00A88E; opacity: .7; }
+  .parceiro-add-card span { font-size: .85rem; color: #007A5E; font-weight: 700; }
+  /* ── MODAL PARCEIRO ─────────────────────────────────────────── */
+  .modal-parceiro-form { display: flex; flex-direction: column; gap: 1.1rem; margin-top: 1.1rem; }
+  .modal-parceiro-form .field-group { display: flex; flex-direction: column; gap: .4rem; }
+  .modal-parceiro-form label {
+    font-size: .72rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .07em; color: #76787B; display: block;
+  }
   .modal-parceiro-form input[type="text"],
   .modal-parceiro-form input[type="url"] {
-    width: 100%; padding: .7rem 1rem;
-    background: rgba(255,255,255,.06);
-    border: 1.5px solid rgba(255,255,255,.12);
+    width: 100%; padding: .75rem 1rem;
+    background: #F4F8F7;
+    border: 1.5px solid #C8DDD9;
     border-radius: 10px;
-    color: white; font-size: .88rem;
+    color: #1A2E28; font-size: .9rem;
     font-family: 'DM Sans', sans-serif;
-    outline: none; transition: border-color .2s;
+    outline: none; transition: border-color .2s, box-shadow .2s;
   }
-  .modal-parceiro-form input:focus { border-color: var(--accent, #00A88E); }
-  .modal-parceiro-form input::placeholder { color: rgba(255,255,255,.3); }
+  .modal-parceiro-form input:focus {
+    border-color: #00A88E;
+    box-shadow: 0 0 0 3px rgba(0,168,142,.1);
+    background: #ffffff;
+  }
+  .modal-parceiro-form input::placeholder { color: #A0B5B0; }
   .logo-preview-box {
-    width: 100%; height: 70px;
-    background: rgba(255,255,255,.06);
-    border: 1.5px solid rgba(255,255,255,.1);
+    width: 100%; min-height: 80px;
+    background: #F4F8F7;
+    border: 1.5px dashed #C8DDD9;
     border-radius: 10px;
     display: flex; align-items: center; justify-content: center;
-    overflow: hidden; margin-top: .5rem;
+    overflow: hidden; margin-top: .4rem; padding: .75rem;
   }
-  .logo-preview-box img { max-width: 100%; max-height: 54px; object-fit: contain; }
-  .logo-preview-box span { font-size: .78rem; color: rgba(255,255,255,.3); }
+  .logo-preview-box img { max-width: 100%; max-height: 60px; object-fit: contain; }
+  .logo-preview-box span { font-size: .8rem; color: #A0B5B0; }
+  .modal-toggle-row {
+    display: flex; align-items: center; gap: .75rem;
+    padding: .75rem 1rem;
+    background: #F4F8F7; border-radius: 10px;
+    border: 1.5px solid #C8DDD9;
+  }
+  .modal-toggle-row label {
+    text-transform: none; letter-spacing: 0;
+    font-size: .88rem; color: #1A2E28;
+    font-weight: 500; margin: 0; cursor: pointer;
+  }
+  .modal-toggle-row small { font-size: .73rem; color: #76787B; display: block; margin-top: .1rem; }
 
 </style>
 </head>
@@ -1282,15 +1330,13 @@ function cardHTML(v, showActions) {
         <button class="btn-action btn-approve" onclick="event.stopPropagation();approveVaga('${id}')">Aprovar</button>
         <button class="btn-action btn-reject"  onclick="event.stopPropagation();rejectVaga('${id}')">Rejeitar</button>`;
     } else {
-      const destaqueLabel = v.destaque ? 'Destaque ON' : 'Destaque';
-      const destaqueStyle = v.destaque
-        ? 'background:rgba(0,168,142,.15);color:#00A88E;border-color:rgba(0,168,142,.4);font-weight:700;'
-        : '';
+      const destLabel = v.destaque ? 'Destaque ON' : 'Destaque';
+      const destStyle = v.destaque ? 'background:rgba(0,168,142,.12);color:#007A5E;border-color:rgba(0,168,142,.35);font-weight:700;' : '';
       actions = `
         <button class="btn-action btn-view"   onclick="event.stopPropagation();openDetail('${id}')">Ver</button>
-        <button class="btn-action" style="${destaqueStyle}" onclick="event.stopPropagation();toggleDestaque('${id}', ${v.destaque || false})" title="Exibir na secao de destaques da home">
+        <button class="btn-action" style="${destStyle}" onclick="event.stopPropagation();toggleDestaque('${id}', ${v.destaque || false})" title="Destacar na home">
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          ${destaqueLabel}
+          ${destLabel}
         </button>
         <button class="btn-action btn-delete" onclick="event.stopPropagation();deleteVaga('${id}')">Excluir</button>`;
     }
@@ -1346,12 +1392,12 @@ async function deleteVaga(id) {
 }
 
 async function toggleDestaque(id, isDestaque) {
-  const novoValor = !isDestaque;
-  const { error } = await sb.from('vagas').update({ destaque: novoValor }).eq('id', id);
-  if (error) { showToast('Erro ao atualizar destaque: ' + error.message, 'error'); return; }
+  const novo = !isDestaque;
+  const { error } = await sb.from('vagas').update({ destaque: novo }).eq('id', id);
+  if (error) { showToast('Erro: ' + error.message, 'error'); return; }
   const v = allVagas.find(x => x.id === id);
-  if (v) v.destaque = novoValor;
-  showToast(novoValor ? 'Vaga marcada como destaque!' : 'Destaque removido.', novoValor ? 'success' : 'info');
+  if (v) v.destaque = novo;
+  showToast(novo ? 'Vaga marcada como destaque!' : 'Destaque removido.', novo ? 'success' : 'info');
   render();
 }
 
@@ -1466,33 +1512,50 @@ function renderParceiros() {
   allParceiros.forEach(p => {
     const logoHtml = p.logo_url
       ? `<img src="${p.logo_url}" alt="${p.nome}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
-      + `<div class="parceiro-initial" style="display:none">${p.nome.charAt(0)}</div>`
-      : `<div class="parceiro-initial">${p.nome.charAt(0)}</div>`;
+        + `<div class="parceiro-initial" style="display:none">${p.nome.charAt(0).toUpperCase()}</div>`
+      : `<div class="parceiro-initial">${p.nome.charAt(0).toUpperCase()}</div>`;
+
+    const siteText = p.site_url
+      ? p.site_url.replace(/^https?:\/\//, '').replace(/\/$/, '')
+      : 'Sem site';
+
+    const statusClass = p.ativo ? 'ativo' : 'inativo';
+    const statusLabel = p.ativo ? 'Ativo' : 'Oculto';
+    const toggleLabel = p.ativo ? 'Ocultar' : 'Exibir';
+    const toggleSvg = p.ativo
+      ? `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>`
+      : `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`;
 
     html += `
     <div class="parceiro-card ${p.ativo ? '' : 'inactive'}" id="pcard-${p.id}">
-      <div class="parceiro-logo-wrap">${logoHtml}</div>
-      <div class="parceiro-nome">${p.nome}</div>
+      <div class="parceiro-card-top">
+        <div class="parceiro-logo-wrap">${logoHtml}</div>
+        <div class="parceiro-info">
+          <div class="parceiro-nome" title="${p.nome}">${p.nome}</div>
+          <div class="parceiro-site" title="${p.site_url || ''}">${siteText}</div>
+          <span class="parceiro-status-badge ${statusClass}">${statusLabel}</span>
+        </div>
+      </div>
+      <div class="parceiro-divider"></div>
       <div class="parceiro-actions">
         <button onclick="editarParceiro('${p.id}')">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
           Editar
         </button>
-        <button onclick="toggleParceiro('${p.id}', ${p.ativo})" title="${p.ativo ? 'Desativar' : 'Ativar'}">
-          ${p.ativo ? '⏸ Ocultar' : '▶ Exibir'}
+        <button onclick="toggleParceiro('${p.id}', ${p.ativo})">
+          ${toggleSvg} ${toggleLabel}
         </button>
         <button class="btn-del" onclick="deletarParceiro(this)" data-id="${p.id}" data-nome="${p.nome}">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
           Excluir
         </button>
       </div>
     </div>`;
   });
 
-  // Card de adicionar
   html += `
     <div class="parceiro-card parceiro-add-card" onclick="abrirModalParceiro()">
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
       <span>Adicionar empresa</span>
     </div>`;
 
@@ -1541,7 +1604,7 @@ function previewParceiroLogo() {
   if (url) {
     box.innerHTML = `<img src="${url}" style="max-width:100%;max-height:54px;object-fit:contain" onerror="this.parentElement.innerHTML='<span style=color:#f87171>URL inválida ou imagem não carregou</span>'">`;
   } else {
-    box.innerHTML = '<span>Pré-visualização da logo</span>';
+    box.innerHTML = '<div style="text-align:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C8DDD9" stroke-width="1.5" style="display:block;margin:0 auto .4rem"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Pre-visualizacao da logo</span></div>';
   }
 }
 
@@ -1604,42 +1667,59 @@ async function deletarParceiro(el) {
 
 <!-- MODAL PARCEIRO -->
 <div class="modal-overlay" id="modal-parceiro" style="display:none;align-items:center;justify-content:center" onclick="if(event.target===this)fecharModalParceiro()">
-  <div class="modal" style="max-width:460px;width:100%">
-    <button class="modal-close" onclick="fecharModalParceiro()">
+  <div class="modal" style="max-width:480px;width:100%;background:#fff;border-radius:20px;padding:2rem;box-shadow:0 24px 64px rgba(0,0,0,.18)">
+    <button class="modal-close" onclick="fecharModalParceiro()" style="background:none;border:none;cursor:pointer;position:absolute;top:1.25rem;right:1.25rem;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#76787B;transition:background .2s" onmouseover="this.style.background='#F4F8F7'" onmouseout="this.style.background='none'">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
-    <h2 style="font-family:'Clash Display',sans-serif;font-size:1.2rem;font-weight:700;margin-bottom:.25rem" id="modal-parceiro-title">Adicionar Parceiro</h2>
-    <p style="font-size:.8rem;color:var(--muted);margin-bottom:1rem">As logos aparecem no carrossel animado da página inicial.</p>
+
+    <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1.5rem">
+      <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#007A5E,#00A88E);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+      </div>
+      <div>
+        <h2 style="font-family:'Clash Display',sans-serif;font-size:1.1rem;font-weight:700;color:#1A2E28;margin:0;line-height:1.2" id="modal-parceiro-title">Adicionar Parceiro</h2>
+        <p style="font-size:.78rem;color:#76787B;margin:0">Logo exibida no carrossel da página inicial</p>
+      </div>
+    </div>
 
     <div class="modal-parceiro-form">
       <input type="hidden" id="parceiro-edit-id">
 
-      <div>
+      <div class="field-group">
         <label>Nome da empresa *</label>
-        <input type="text" id="parceiro-nome" placeholder="Ex: PagSeguro" maxlength="60">
+        <input type="text" id="parceiro-nome" placeholder="Ex: Sicredi, Bradesco, PagSeguro..." maxlength="60">
       </div>
 
-      <div>
-        <label>URL da logo (imagem)</label>
-        <input type="url" id="parceiro-logo-url" placeholder="https://..." oninput="previewParceiroLogo()">
+      <div class="field-group">
+        <label>URL da logo</label>
+        <input type="url" id="parceiro-logo-url" placeholder="https://empresa.com/logo.png" oninput="previewParceiroLogo()">
         <div class="logo-preview-box" id="parceiro-logo-preview">
-          <span>Pré-visualização da logo</span>
+          <div style="text-align:center">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C8DDD9" stroke-width="1.5" style="display:block;margin:0 auto .4rem"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span>Pré-visualização da logo</span>
+          </div>
         </div>
       </div>
 
-      <div>
-        <label>Site da empresa (opcional)</label>
+      <div class="field-group">
+        <label>Site da empresa <span style="font-weight:400;text-transform:none;letter-spacing:0;color:#A0B5B0">(opcional)</span></label>
         <input type="url" id="parceiro-site-url" placeholder="https://empresa.com.br">
       </div>
 
-      <div style="display:flex;align-items:center;gap:.5rem">
-        <input type="checkbox" id="parceiro-ativo" checked style="width:16px;height:16px;accent-color:var(--accent)">
-        <label style="text-transform:none;letter-spacing:0;font-size:.85rem;color:white;margin:0;cursor:pointer" for="parceiro-ativo">Exibir no carrossel</label>
+      <div class="modal-toggle-row">
+        <input type="checkbox" id="parceiro-ativo" checked style="width:16px;height:16px;accent-color:#00A88E;flex-shrink:0;cursor:pointer">
+        <div>
+          <label for="parceiro-ativo">Exibir no carrossel</label>
+          <small>Quando desmarcado, a empresa fica oculta no portal</small>
+        </div>
       </div>
 
-      <div id="parceiro-msg" style="font-size:.82rem;font-weight:600;min-height:1.2em;text-align:center"></div>
+      <div id="parceiro-msg" style="font-size:.82rem;font-weight:600;min-height:1.2em;text-align:center;padding:.5rem;border-radius:8px"></div>
 
-      <button class="btn-primary" onclick="salvarParceiro()" style="width:100%;padding:.85rem;font-size:.9rem" id="btn-salvar-parceiro">
+      <button onclick="salvarParceiro()" id="btn-salvar-parceiro"
+        style="width:100%;padding:.9rem;background:linear-gradient(135deg,#007A5E,#00A88E);color:white;border:none;border-radius:12px;font-size:.92rem;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 12px rgba(0,122,94,.25)"
+        onmouseover="this.style.transform='translateY(-1px)';this.style.boxShadow='0 8px 20px rgba(0,122,94,.35)'"
+        onmouseout="this.style.transform='none';this.style.boxShadow='0 4px 12px rgba(0,122,94,.25)'">
         Salvar parceiro
       </button>
     </div>
