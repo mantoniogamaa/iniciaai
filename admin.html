@@ -799,9 +799,9 @@
               <div>
                 <div style="font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:.5rem">Cor Principal</div>
                 <div style="display:flex;align-items:center;gap:.75rem">
-                  <input type="color" id="config-cor-primary" value="var(--accent)"
+                  <input type="color" id="config-cor-primary" value="#00A88E"
                     style="width:44px;height:36px;border:none;border-radius:8px;cursor:pointer;background:none">
-                  <input type="text" id="config-cor-text" value="var(--accent)" placeholder="var(--accent)"
+                  <input type="text" id="config-cor-text" value="#00A88E" placeholder="#00A88E"
                     style="flex:1;padding:.6rem 1rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;font-size:.875rem;color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;outline:none"
                     oninput="document.getElementById('config-cor-primary').value=this.value">
                 </div>
@@ -1116,7 +1116,7 @@ async function createAdmin() {
 
 async function toggleAdminStatus(id, ativo) {
   await sb.from('admins').update({ ativo: !ativo }).eq('id', id);
-  showToast(ativo ? '❌ Admin desativado.' : '✅ Admin ativado!', ativo ? 'error' : 'success');
+  showToast(ativo ? 'Admin desativado.' : 'Admin ativado com sucesso!', ativo ? 'error' : 'success');
   renderAdmins();
 }
 
@@ -1460,9 +1460,9 @@ function renderParceiros() {
           Editar
         </button>
         <button onclick="toggleParceiro('${p.id}', ${p.ativo})" title="${p.ativo ? 'Desativar' : 'Ativar'}">
-          ${p.ativo ? '⏸ Ocultar' : '▶ Exibir'}
+          ${p.ativo ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg> Ocultar' : '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg> Exibir'}
         </button>
-        <button class="btn-del" onclick="deletarParceiro('${p.id}', '${p.nome.replace(/'/g, '\\'')}')">
+        <button class="btn-del" onclick="deletarParceiro('${p.id}', '${p.nome.replace(/'/g, "&#39;")}')">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
           Excluir
         </button>
