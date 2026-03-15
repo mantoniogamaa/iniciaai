@@ -906,7 +906,7 @@
   </div>
 
     <!-- ════ PARCEIROS ════ -->
-    <div class="section-content" id="section-parceiros" style="display:none">
+    <div class="section" id="section-parceiros">
       <div class="panel-header">
         <div class="panel-title">
           <svg style="vertical-align:middle;flex-shrink:0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
@@ -1170,7 +1170,8 @@ const sectionTitles = {
   aprovadas: 'Vagas Aprovadas',
   empresas: 'Empresas Cadastradas',
   admins: 'Administradores',
-  configuracoes: 'Configurações'
+  configuracoes: 'Configurações',
+  parceiros: 'Empresas Parceiras'
 };
 
 function showSection(id) {
@@ -1200,6 +1201,7 @@ function render() {
   else if (currentSection === 'empresas') renderEmpresas();
   else if (currentSection === 'admins') renderAdmins();
   else if (currentSection === 'configuracoes') carregarConfiguracoes();
+  else if (currentSection === 'parceiros') loadParceiros();
 }
 
 function updateStats() {
