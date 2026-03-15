@@ -362,6 +362,19 @@
   .form-card { border-radius: 20px !important; }
   .section-label { letter-spacing: -.01em !important; }
 
+
+  /* ── SÍMBOLO AM — página interna ── */
+  .page-hero, .vaga-hero { position:relative; overflow:hidden; }
+  .page-am-deco {
+    position:absolute; right:-60px; bottom:-50px;
+    width:320px; height:348px;
+    background:url('symbol-am-white.png') no-repeat center/contain;
+    pointer-events:none; z-index:0;
+  }
+  @media(max-width:768px){
+    .page-am-deco { width:160px!important; right:-20px!important; }
+  }
+
 </style>
 </head>
 <body>
@@ -376,6 +389,7 @@
 </nav>
 
 <div class="page-hero">
+  <div class="page-am-deco" aria-hidden="true"></div>
   <div class="page-hero-inner" style="text-align:center">
     <div class="page-hero-badge">⚖️ Legal</div>
     <h1>Termos & <span>Privacidade</span></h1>

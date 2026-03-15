@@ -743,6 +743,37 @@
     .hero-stats { justify-content:space-around; }
   }
 
+
+  /* ── SÍMBOLO AM DECORATIVO — heróis ── */
+  .hero .hero-am-symbol,
+  .page-hero .hero-am-symbol,
+  .vaga-hero .hero-am-symbol {
+    position: absolute;
+    right: -80px; bottom: -60px;
+    width: 420px; height: auto;
+    opacity: 1;
+    pointer-events: none;
+    z-index: 0;
+    background: url('symbol-am-white.png') no-repeat center / contain;
+    aspect-ratio: 700/762;
+  }
+  @media(max-width:768px) {
+    .hero .hero-am-symbol,
+    .page-hero .hero-am-symbol { width:220px !important; right:-40px !important; bottom:-30px !important; }
+  }
+
+
+  /* AM symbol em seções claras */
+  .jobs-section { position:relative; overflow:hidden; }
+  .jobs-section::after {
+    content:''; position:absolute;
+    left:-100px; top:50%; transform:translateY(-50%);
+    width:320px; height:348px;
+    background:url('symbol-am-green.png') no-repeat center/contain;
+    pointer-events:none; z-index:0;
+  }
+  .jobs-section > * { position:relative; z-index:1; }
+
 </style>
 </head>
 <body>

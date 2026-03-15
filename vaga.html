@@ -552,6 +552,19 @@
     .quick-bar { grid-template-columns: 1fr 1fr !important; }
   }
 
+
+  /* ── SÍMBOLO AM — página interna ── */
+  .page-hero, .vaga-hero { position:relative; overflow:hidden; }
+  .page-am-deco {
+    position:absolute; right:-60px; bottom:-50px;
+    width:320px; height:348px;
+    background:url('symbol-am-white.png') no-repeat center/contain;
+    pointer-events:none; z-index:0;
+  }
+  @media(max-width:768px){
+    .page-am-deco { width:160px!important; right:-20px!important; }
+  }
+
 </style>
 </head>
 <body>
@@ -612,6 +625,7 @@
 
   <!-- HERO -->
   <div class="vaga-hero">
+  <div class="page-am-deco" aria-hidden="true"></div>
     <div class="hero-inner">
       <div class="hero-breadcrumb">
         <a href="index.html">Vagas</a>

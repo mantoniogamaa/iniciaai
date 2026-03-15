@@ -550,6 +550,79 @@
     .edit-section { animation:none !important; }
   }
 
+
+  /* ══ DISC MOBILE COMPLETO ══ */
+  @media(max-width: 600px) {
+
+    /* Intro do DISC */
+    .disc-step .form-card { padding: 1.25rem !important; }
+    .disc-intro .disc-icon { font-size: 2.5rem !important; }
+    .disc-intro h2 { font-size: 1.4rem !important; }
+    .disc-intro p  { font-size: .85rem !important; }
+
+    /* Progress */
+    .disc-progress-wrap { margin-bottom: 1.25rem !important; }
+    .disc-progress-text { font-size: .72rem !important; }
+
+    /* Question card */
+    .disc-question-card { padding: 1.1rem !important; border-radius: 14px !important; }
+    .disc-q-num  { font-size: .68rem !important; }
+    .disc-q-text { font-size: .95rem !important; line-height: 1.45 !important; margin-bottom: 1.1rem !important; }
+
+    /* Options — coluna única no mobile */
+    .disc-options {
+      grid-template-columns: 1fr !important;
+      gap: .5rem !important;
+    }
+    .disc-opt {
+      padding: .75rem 1rem !important;
+      font-size: .85rem !important;
+      border-radius: 10px !important;
+      text-align: left !important;
+    }
+
+    /* Prev/Next buttons */
+    #disc-prev-btn { font-size: .82rem !important; padding: .55rem 1rem !important; }
+    #disc-next-btn { font-size: .82rem !important; padding: .55rem 1.25rem !important; }
+
+    /* Resultado DISC */
+    .disc-result-card { padding: 1.5rem 1rem !important; border-radius: 16px !important; }
+    .disc-result-letter { font-size: 4rem !important; }
+    .disc-result-name   { font-size: 1.3rem !important; }
+    .disc-result-desc   { font-size: .82rem !important; }
+
+    /* Barras */
+    .disc-bars { padding: 1.1rem !important; border-radius: 14px !important; }
+    .disc-bar-row { gap: .5rem !important; }
+    .disc-bar-label { font-size: .78rem !important; width: 80px !important; }
+    .disc-bar-score { font-size: .72rem !important; }
+
+    /* Traits */
+    .disc-traits { gap: .3rem !important; }
+    .disc-trait  { font-size: .72rem !important; padding: .25rem .65rem !important; }
+
+    /* Painel DISC tab */
+    #tab-disc .form-card, #painel-disc-content .form-card { padding: 1.1rem !important; }
+    #painel-disc-content .disc-result-card { border-radius: 14px !important; }
+
+    /* DISC step wrap */
+    .disc-step { padding: 0 !important; }
+    .disc-step .form-card { margin: 0 !important; }
+  }
+
+
+  /* ── SÍMBOLO AM — página interna ── */
+  .page-hero, .vaga-hero { position:relative; overflow:hidden; }
+  .page-am-deco {
+    position:absolute; right:-60px; bottom:-50px;
+    width:320px; height:348px;
+    background:url('symbol-am-white.png') no-repeat center/contain;
+    pointer-events:none; z-index:0;
+  }
+  @media(max-width:768px){
+    .page-am-deco { width:160px!important; right:-20px!important; }
+  }
+
 </style>
 </head>
 <body>
@@ -568,6 +641,7 @@
 
 <div class="page-hero" id="auth-hero">
   <div class="page-hero-inner">
+  <div class="page-am-deco" aria-hidden="true"></div>
     <div class="page-hero-badge">🎓 Área do candidato</div>
     <h1>Sua carreira começa <span>aqui</span></h1>
     <p>Crie seu perfil, encontre vagas de estágio e Jovem Aprendiz, e dê o primeiro passo.</p>
