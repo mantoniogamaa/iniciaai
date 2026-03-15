@@ -774,12 +774,179 @@
   }
   .jobs-section > * { position:relative; z-index:1; }
 
+
+  /* ── CORREÇÕES ESPECÍFICAS ── */
+
+  /* Remove AM da seção de vagas */
+  .jobs-section::after { display: none !important; content: none !important; }
+
+  /* Transition hero → search: wave suave */
+  .hero-to-content {
+    height: 0 !important;
+    margin: 0 !important;
+  }
+  .search-section {
+    background: white !important;
+    position: relative;
+    margin-top: -1px;
+    box-shadow: none;
+  }
+  /* Card de busca flutua sobre o hero */
+  .search-card {
+    transform: translateY(-2.5rem);
+    box-shadow: 0 16px 48px rgba(0,0,0,.1) !important;
+    border: none !important;
+    border-radius: 20px !important;
+  }
+
+  /* Transição suave do hero para o search card */
+  .hero::before {
+    background-image:
+      repeating-linear-gradient(
+        -45deg,
+        transparent 0px, transparent 22px,
+        rgba(255,255,255,.022) 22px, rgba(255,255,255,.022) 23px
+      ) !important;
+  }
+
+  /* ── ANIMAÇÕES HOVER ── */
+
+  /* Job cards */
+  .job-card {
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease !important;
+  }
+  .job-card:hover {
+    transform: translateY(-6px) !important;
+    box-shadow: 0 20px 48px rgba(0,122,94,.14) !important;
+    border-color: rgba(0,168,142,.3) !important;
+  }
+  .job-card::before {
+    transition: opacity .3s ease !important;
+  }
+
+  /* Tags de área no hero */
+  .tag {
+    transition: all .2s ease !important;
+  }
+  .tag:hover {
+    background: var(--accent) !important;
+    border-color: var(--accent) !important;
+    color: white !important;
+    transform: translateY(-3px) scale(1.04) !important;
+    box-shadow: 0 6px 16px rgba(0,168,142,.35) !important;
+  }
+
+  /* Botão Buscar Vagas */
+  .btn-search {
+    transition: all .25s ease !important;
+  }
+  .btn-search:hover {
+    background: var(--accent-dark) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 24px rgba(0,168,142,.4) !important;
+  }
+
+  /* Stats no hero */
+  .hero-stats .stat { transition: transform .2s ease !important; }
+  .hero-stats .stat:hover { transform: scale(1.08) !important; }
+
+  /* Numbers do hero */
+  .hero-num { transition: background .2s ease !important; }
+  .hero-num:hover { background: rgba(255,255,255,.08) !important; }
+
+  /* Logo no nav */
+  .logo { transition: opacity .2s ease !important; }
+  .logo:hover { opacity: .85 !important; }
+
+  /* Botão Acessar */
+  .btn-access, .btn-nav-cta {
+    transition: all .25s ease !important;
+  }
+
+  /* Filter selects */
+  .filter-select {
+    transition: border-color .2s ease, box-shadow .2s ease !important;
+  }
+  .filter-select:hover {
+    border-color: var(--accent) !important;
+  }
+
+  /* ── ESTILO DE BLOCO TIPO SITE ANHEMBI ── */
+  /* Card de destaque (igual ao card verde da Imagem 1) */
+  .destaque-card {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    transition: transform .3s ease, box-shadow .3s ease;
+  }
+  .destaque-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 24px 56px rgba(0,122,94,.3);
+  }
+  .destaque-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 80% 20%, rgba(255,255,255,.12), transparent);
+    pointer-events: none;
+  }
+  .destaque-card .dc-icon {
+    margin-bottom: 1rem;
+    color: rgba(255,255,255,.7);
+  }
+  .destaque-card h3 {
+    font-family: 'Clash Display', sans-serif;
+    font-size: 1.5rem; font-weight: 700; margin-bottom: .5rem;
+  }
+  .destaque-card p { font-size: .9rem; opacity: .82; line-height: 1.65; }
+
+  /* ── SECTION TRANSITION (wave entre seções) ── */
+  .wave-sep {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    margin-bottom: -2px;
+  }
+
+
+  /* Banner 3 cards responsivo */
+  @media(max-width:768px) {
+    div[style*="grid-template-columns:repeat(3,1fr)"] {
+      grid-template-columns: 1fr !important;
+    }
+  }
+  @media(min-width:481px) and (max-width:768px) {
+    div[style*="grid-template-columns:repeat(3,1fr)"] {
+      grid-template-columns: 1fr 1fr !important;
+    }
+  }
+
+
+  /* ── LOGO BULLET-PROOF ── */
+  .logo {
+    display: inline-block !important;
+    width: 150px !important;
+    height: 48px !important;
+    background: url('logo-colorida.png') no-repeat left center / contain !important;
+    text-decoration: none !important;
+    font-size: 0 !important;
+    color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
+    overflow: hidden !important;
+    flex-shrink: 0 !important;
+  }
+  .logo::before { display: none !important; }
+  /* Only the CSS background-image, no ::before pseudo */
+
 </style>
 </head>
 <body>
 
 <nav>
-  <a class="logo" onclick="resetHome()" href="#"></a>
+  <a class="logo" onclick="resetHome()" href="#" aria-label="IniciaAí"></a>
   <div class="nav-links">
     <a href="#" onclick="resetHome()">Vagas</a>
     <a href="sobre.html">Sobre</a>
@@ -1007,7 +1174,9 @@
   </div>
 </section>
 
-<div class="hero-to-content"></div>
+<svg class="wave-sep" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 48" preserveAspectRatio="none">
+  <path fill="white" d="M0,24 C240,48 480,0 720,24 C960,48 1200,0 1440,24 L1440,48 L0,48 Z"/>
+</svg>
 <section class="search-section">
   <div class="search-card">
     <div class="search-row">
@@ -1055,6 +1224,35 @@
     </select>
   </div>
   <div id="loading" class="loading"><div class="spinner"></div><p style="color:var(--muted)">Buscando vagas...</p></div>
+
+  <!-- Destaque visual tipo Anhembi -->
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2rem">
+    <div style="background:linear-gradient(135deg,var(--primary) 0%,var(--accent-dark) 100%);border-radius:18px;padding:1.5rem 1.25rem;color:white;position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s;cursor:default"
+         onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 20px 48px rgba(0,122,94,.3)'"
+         onmouseout="this.style.transform='none';this.style.boxShadow='none'">
+      <div style="position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 80% 20%,rgba(255,255,255,.1),transparent);pointer-events:none"></div>
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.65)" stroke-width="1.5" style="margin-bottom:.75rem"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+      <div style="font-family:'Clash Display',sans-serif;font-size:1.25rem;font-weight:700;margin-bottom:.35rem;position:relative">100% Gratuito</div>
+      <div style="font-size:.82rem;opacity:.8;line-height:1.6;position:relative">Para candidatos. Nenhuma taxa para se candidatar às vagas.</div>
+    </div>
+    <div style="background:linear-gradient(135deg,var(--accent) 0%,var(--primary) 100%);border-radius:18px;padding:1.5rem 1.25rem;color:white;position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s;cursor:default"
+         onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 20px 48px rgba(0,168,142,.3)'"
+         onmouseout="this.style.transform='none';this.style.boxShadow='none'">
+      <div style="position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 80% 20%,rgba(255,255,255,.1),transparent);pointer-events:none"></div>
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.65)" stroke-width="1.5" style="margin-bottom:.75rem"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      <div style="font-family:'Clash Display',sans-serif;font-size:1.25rem;font-weight:700;margin-bottom:.35rem;position:relative">Vagas Verificadas</div>
+      <div style="font-size:.82rem;opacity:.8;line-height:1.6;position:relative">Toda vaga é revisada manualmente antes de ser publicada no portal.</div>
+    </div>
+    <div style="background:linear-gradient(135deg,#005C47 0%,var(--accent) 100%);border-radius:18px;padding:1.5rem 1.25rem;color:white;position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s;cursor:default"
+         onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 20px 48px rgba(0,92,71,.3)'"
+         onmouseout="this.style.transform='none';this.style.boxShadow='none'">
+      <div style="position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 80% 20%,rgba(255,255,255,.1),transparent);pointer-events:none"></div>
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.65)" stroke-width="1.5" style="margin-bottom:.75rem"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+      <div style="font-family:'Clash Display',sans-serif;font-size:1.25rem;font-weight:700;margin-bottom:.35rem;position:relative">Perfil DISC</div>
+      <div style="font-size:.82rem;opacity:.8;line-height:1.6;position:relative">Destaque-se com o teste comportamental e seja encontrado pelas empresas certas.</div>
+    </div>
+  </div>
+
   <div class="jobs-grid" id="jobs-grid"></div>
   <div id="pagination" class="pagination"></div>
   <div class="empty-state" id="empty-state">

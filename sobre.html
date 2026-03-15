@@ -528,6 +528,132 @@ footer a:hover { color: white; }
   .hero-num { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,.08); }
   .hero-num:last-child { border-bottom: none; }
 }
+
+  /* ── FIXES SOBRE ── */
+
+  /* Card float não deve sair do viewport */
+  .missao-card-float {
+    position: absolute;
+    bottom: -1.25rem; right: -.75rem;
+    max-width: 200px;
+    z-index: 10;
+  }
+
+  /* Container visual precisa de overflow visible */
+  .fade-in[style*="padding-bottom"] {
+    overflow: visible !important;
+  }
+
+  /* Hero AM esquerdo não corta o layout */
+  .hero-am2 {
+    left: -6% !important;
+    top: -8% !important;
+    pointer-events: none;
+  }
+
+  /* Evitar overflow horizontal */
+  body { overflow-x: hidden; }
+  .hero { overflow: hidden; }
+
+  /* hero-numbers não ultrapassa a borda */
+  .hero-numbers {
+    overflow: hidden;
+    margin-bottom: 0 !important;
+  }
+
+  /* ── ANIMAÇÕES HOVER ── */
+  .diff-card {
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease !important;
+  }
+  .diff-card:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 16px 40px rgba(0,122,94,.12) !important;
+  }
+
+  .step-item {
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease !important;
+  }
+  .step-item:hover {
+    transform: translateX(5px) !important;
+    box-shadow: 0 6px 20px rgba(0,122,94,.1) !important;
+    border-color: rgba(0,168,142,.3) !important;
+  }
+
+  .valor-card {
+    transition: background .2s ease, transform .2s ease !important;
+  }
+  .valor-card:hover {
+    background: rgba(255,255,255,.14) !important;
+    transform: translateY(-4px) !important;
+  }
+
+  .faq-item {
+    transition: border-color .2s ease, box-shadow .2s ease !important;
+  }
+  .faq-item:hover {
+    box-shadow: 0 4px 16px rgba(0,122,94,.08) !important;
+  }
+  .faq-item.open {
+    box-shadow: 0 6px 24px rgba(0,168,142,.12) !important;
+  }
+
+  .btn-hero-primary, .btn-hero-secondary {
+    transition: all .25s ease !important;
+  }
+  .btn-hero-primary:hover {
+    background: var(--accent-dark) !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 10px 28px rgba(0,168,142,.35) !important;
+  }
+  .btn-hero-secondary:hover {
+    background: rgba(255,255,255,.2) !important;
+    transform: translateY(-2px) !important;
+  }
+
+  /* Empresa card */
+  .empresa-card { transition: box-shadow .3s ease !important; }
+  .empresa-card:hover { box-shadow: 0 24px 56px rgba(0,0,0,.25) !important; }
+
+  /* Benefit rows */
+  .benefit-row { transition: transform .2s ease !important; }
+  .benefit-row:hover { transform: translateX(4px) !important; }
+
+  /* CTA buttons */
+  .cta-btn-a, .cta-btn-b { transition: all .25s ease !important; }
+  .cta-btn-a:hover {
+    background: var(--accent-dark) !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 10px 28px rgba(0,168,142,.35) !important;
+  }
+  .cta-btn-b:hover {
+    background: rgba(255,255,255,.2) !important;
+    transform: translateY(-2px) !important;
+  }
+
+  /* ── WAVE TRANSITION ENTRE SEÇÕES ── */
+  .section-wave {
+    display: block; width: 100%;
+    overflow: hidden; line-height: 0;
+    margin-bottom: -2px; margin-top: -2px;
+  }
+
+
+  /* ── LOGO BULLET-PROOF ── */
+  .logo {
+    display: inline-block !important;
+    width: 150px !important;
+    height: 48px !important;
+    background: url('logo-colorida.png') no-repeat left center / contain !important;
+    text-decoration: none !important;
+    font-size: 0 !important;
+    color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
+    overflow: hidden !important;
+    flex-shrink: 0 !important;
+  }
+  .logo::before { display: none !important; }
+  /* Only the CSS background-image, no ::before pseudo */
+
 </style>
 </head>
 <body>
@@ -596,6 +722,9 @@ footer a:hover { color: white; }
     </div>
   </div>
 </div>
+<svg class="section-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 40" preserveAspectRatio="none">
+  <path fill="white" d="M0,20 C360,40 1080,0 1440,20 L1440,40 L0,40 Z"/>
+</svg>
 
 <!-- ═══════ MISSÃO ═══════ -->
 <section>
@@ -735,6 +864,9 @@ footer a:hover { color: white; }
   </div>
 </section>
 
+<svg class="section-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 40" preserveAspectRatio="none">
+  <path fill="#004D3D" d="M0,20 C360,40 1080,0 1440,20 L1440,40 L0,40 Z"/>
+</svg>
 <!-- ═══════ NOSSOS VALORES ═══════ -->
 <section class="quem-bg">
   <div class="container">
@@ -780,7 +912,9 @@ footer a:hover { color: white; }
     </div>
   </div>
 </section>
-
+<svg class="section-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 40" preserveAspectRatio="none">
+  <path fill="white" d="M0,20 C360,40 1080,0 1440,20 L1440,40 L0,40 Z"/>
+</svg>
 <!-- ═══════ PARA EMPRESAS ═══════ -->
 <section>
   <div class="container">

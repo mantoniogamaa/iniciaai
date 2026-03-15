@@ -360,6 +360,51 @@
     .page-am-deco { width:min(140px, 35vw)!important; right:-2%!important; }
   }
 
+
+  /* ── ANIMAÇÕES HOVER GLOBAIS ── */
+  /* Botões primários */
+  .btn-submit, .btn-save, .btn-apply-full, .btn-next,
+  .btn-nova-vaga, .btn-modal-approve {
+    transition: all .25s ease !important;
+  }
+  .btn-submit:hover, .btn-save:hover, .btn-apply-full:hover,
+  .btn-next:hover, .btn-nova-vaga:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 24px rgba(0,168,142,.35) !important;
+  }
+
+  /* Cards genéricos */
+  .form-card, .card, .stat-card {
+    transition: box-shadow .25s ease !important;
+  }
+
+  /* Nav links */
+  .nav-links a, .nav-back, .mob-link {
+    transition: color .2s ease !important;
+  }
+
+  /* Input focus glow */
+  input:focus, select:focus, textarea:focus {
+    transition: border-color .2s, box-shadow .2s !important;
+  }
+
+
+  /* ── LOGO BULLET-PROOF ── */
+  .logo {
+    display: inline-block !important;
+    width: 150px !important;
+    height: 48px !important;
+    background: url('logo-colorida.png') no-repeat left center / contain !important;
+    text-decoration: none !important;
+    font-size: 0 !important;
+    color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
+    overflow: hidden !important;
+    flex-shrink: 0 !important;
+  }
+  .logo::before { display: none !important; }
+  /* Only the CSS background-image, no ::before pseudo */
+
 </style>
 </head>
 <body>
