@@ -137,7 +137,7 @@
   .missao-visual { position:relative; }
   .missao-card-main { background:linear-gradient(135deg,var(--accent),var(--accent-dark));
     border-radius:24px; padding:2.5rem; color:white; position:relative; overflow:hidden; }
-  .missao-card-main::after { content:'🚀'; position:absolute; right:1.5rem; bottom:1.5rem;
+  .missao-card-main::after { content:''; position:absolute; right:1.5rem; bottom:1.5rem;
     font-size:5rem; opacity:.15; }
   .missao-card-main h3 { font-family:'Clash Display',sans-serif; font-size:1.5rem;
     font-weight:700; margin-bottom:.75rem; }
@@ -767,10 +767,10 @@
   </div>
 </nav>
 <div class="mobile-drawer" id="mob-drawer">
-  <a class="mob-link" href="index.html">🏠 Ver Vagas</a>
-  <a class="mob-link" href="cadastro-candidato.html">🎓 Criar Perfil</a>
-  <a class="mob-link" href="cadastro-empresa.html">🏢 Para Empresas</a>
-  <a class="mob-link" href="termos.html">⚖️ Termos & Privacidade</a>
+  <a class="mob-link" href="index.html">Ver Vagas</a>
+  <a class="mob-link" href="cadastro-candidato.html"> Criar Perfil</a>
+  <a class="mob-link" href="cadastro-empresa.html">Para Empresas</a>
+  <a class="mob-link" href="termos.html">Termos & Privacidade</a>
 </div>
 
 <!-- HERO -->
@@ -811,7 +811,7 @@
   <div class="container">
     <div class="missao-grid">
       <div class="fade-in">
-        <div class="section-badge">🎯 Nossa Missão</div>
+        <div class="section-badge"><svg style="vertical-align:middle;flex-shrink:0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> Nossa Missão</div>
         <h2 class="section-title">Democratizar o acesso às <span>primeiras oportunidades</span></h2>
         <p class="section-sub" style="margin-bottom:1.5rem">No Brasil, conseguir o primeiro emprego ainda é um desafio enorme. Criamos o IniciaAí para mudar isso — conectando estudantes motivados com empresas que valorizam o potencial humano acima da experiência.</p>
         <p class="section-sub">Acreditamos que todo jovem merece uma chance real. Nossa plataforma é o elo que faltava entre o talento de quem quer aprender e as empresas que precisam de gente comprometida.</p>
@@ -834,12 +834,12 @@
 <section class="como-funciona" id="como-funciona">
   <div class="container">
     <div class="fade-in" style="margin-bottom:2.5rem">
-      <div class="section-badge">⚙️ Como Funciona</div>
+      <div class="section-badge"><svg style="vertical-align:middle;flex-shrink:0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg> Como Funciona</div>
       <h2 class="section-title">Simples para <span>candidatos</span> e <span>empresas</span></h2>
     </div>
     <div class="tabs-how">
-      <button class="tab-how active" onclick="switchHow('cand',this)">🎓 Candidatos</button>
-      <button class="tab-how" onclick="switchHow('emp',this)">🏢 Empresas</button>
+      <button class="tab-how active" onclick="switchHow('cand',this)"><svg style="vertical-align:middle;flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Candidatos</button>
+      <button class="tab-how" onclick="switchHow('emp',this)"><svg style="vertical-align:middle;flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg> Empresas</button>
     </div>
     <div class="how-section show" id="how-cand">
       <div class="steps-list">
@@ -888,37 +888,37 @@
 <section>
   <div class="container">
     <div class="fade-in" style="margin-bottom:2.5rem">
-      <div class="section-badge">⭐ Diferenciais</div>
+      <div class="section-badge"><svg style="vertical-align:middle;flex-shrink:0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Diferenciais</div>
       <h2 class="section-title">Por que escolher o <span>IniciaAí?</span></h2>
     </div>
     <div class="diff-grid">
       <div class="diff-card fade-in">
-        <div class="diff-icon" style="background:rgba(12,61,48,.1)">🧠</div>
+        <div class="diff-icon" style="background:rgba(0,122,94,.1)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-1.14z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-1.14z"/></svg></div>
         <div class="diff-title">Teste de Perfil DISC</div>
         <div class="diff-desc">Candidatos podem fazer o teste comportamental DISC. Empresas filtram por perfil ideal, tornando o match muito mais preciso.</div>
       </div>
       <div class="diff-card fade-in">
-        <div class="diff-icon" style="background:rgba(16,185,129,.1)">✅</div>
+        <div class="diff-icon" style="background:rgba(0,168,142,.1)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
         <div class="diff-title">Vagas Revisadas Manualmente</div>
         <div class="diff-desc">Nenhuma vaga entra no portal sem aprovação humana. Isso garante qualidade e evita anúncios falsos ou enganosos.</div>
       </div>
       <div class="diff-card fade-in">
-        <div class="diff-icon" style="background:rgba(6,182,212,.1)">🔒</div>
+        <div class="diff-icon" style="background:rgba(0,122,94,.08)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
         <div class="diff-title">Vagas Confidenciais</div>
         <div class="diff-desc">Empresas podem publicar vagas sem revelar o nome, exibindo apenas "Empresa Confidencial" até o processo avançar.</div>
       </div>
       <div class="diff-card fade-in">
-        <div class="diff-icon" style="background:rgba(255,92,92,.1)">📄</div>
+        <div class="diff-icon" style="background:rgba(0,122,94,.08)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
         <div class="diff-title">Currículo PDF Integrado</div>
         <div class="diff-desc">Candidatos fazem upload do currículo diretamente na plataforma. Empresas baixam com um clique, sem e-mail.</div>
       </div>
       <div class="diff-card fade-in">
-        <div class="diff-icon" style="background:rgba(251,191,36,.12)">💬</div>
+        <div class="diff-icon" style="background:rgba(0,122,94,.08)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
         <div class="diff-title">Contato via WhatsApp</div>
         <div class="diff-desc">Com um clique, a empresa abre o WhatsApp com mensagem pré-preenchida para o candidato. Rápido e direto ao ponto.</div>
       </div>
       <div class="diff-card fade-in">
-        <div class="diff-icon" style="background:rgba(249,115,22,.1)">🇧🇷</div>
+        <div class="diff-icon" style="background:rgba(0,122,94,.08)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="3" x2="12" y2="21"/><path d="M3 9l9-6 9 6"/><path d="M6 12L3 9v6a3 3 0 0 0 6 0V9L6 12z"/><path d="M18 12l3-3v6a3 3 0 0 1-6 0V9l3 3z"/></svg></div>
         <div class="diff-title">Feito para a Lei Brasileira</div>
         <div class="diff-desc">Focado em estágio (Lei 11.788/2008) e Jovem Aprendiz (Lei 10.097/2000), seguindo a legislação trabalhista vigente.</div>
       </div>
@@ -930,38 +930,38 @@
 <section class="quem-bg">
   <div class="container">
     <div class="quem-inner fade-in">
-      <div class="section-badge" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.7)">💜 Nossos Valores</div>
+      <div class="section-badge" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.7)"><svg style="vertical-align:middle;flex-shrink:0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> Nossos Valores</div>
       <h2 class="section-title" style="color:white">Guiados por propósito,<br><span>movidos por impacto</span></h2>
       <p class="section-sub">Construímos o IniciaAí com valores que acreditamos de verdade — não como decoração de site, mas como critérios que guiam cada decisão que tomamos.</p>
     </div>
     <div class="valores-grid fade-in">
       <div class="valor-card">
-        <div class="valor-icon">🎯</div>
+        <div class="valor-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
         <div class="valor-name">Oportunidade Igual</div>
         <div class="valor-desc">Acreditamos que todo jovem merece acesso às melhores oportunidades, independentemente de onde vem.</div>
       </div>
       <div class="valor-card">
-        <div class="valor-icon">🔐</div>
+        <div class="valor-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
         <div class="valor-name">Privacidade Primeiro</div>
         <div class="valor-desc">Dados pessoais são sagrados. Seguimos a LGPD à risca e nunca vendemos informações de ninguém.</div>
       </div>
       <div class="valor-card">
-        <div class="valor-icon">💡</div>
+        <div class="valor-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="9" y1="18" x2="15" y2="18"/><line x1="10" y1="22" x2="14" y2="22"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg></div>
         <div class="valor-name">Transparência Total</div>
         <div class="valor-desc">Vagas claras, processos visíveis, sem surpresas. Estudantes merecem saber exatamente para onde estão se candidatando.</div>
       </div>
       <div class="valor-card">
-        <div class="valor-icon">🤝</div>
+        <div class="valor-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 7.65l7.42 7.42 7.42-7.42a5.4 5.4 0 0 0 1-7.65z"/></svg></div>
         <div class="valor-name">Parceria Genuína</div>
         <div class="valor-desc">Não somos só um quadro de vagas — somos parceiros de empresas comprometidas com o desenvolvimento jovem.</div>
       </div>
       <div class="valor-card">
-        <div class="valor-icon">🚀</div>
+        <div class="valor-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg></div>
         <div class="valor-name">Evolução Constante</div>
         <div class="valor-desc">A plataforma cresce com o feedback de quem usa. Cada sugestão é uma oportunidade de melhorar.</div>
       </div>
       <div class="valor-card">
-        <div class="valor-icon">❤️</div>
+        <div class="valor-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
         <div class="valor-name">Impacto Social Real</div>
         <div class="valor-desc">Cada contratação via IniciaAí representa uma família que mudou de patamar. Isso nos motiva todo dia.</div>
       </div>
@@ -974,24 +974,24 @@
   <div class="container">
     <div class="empresa-split">
       <div class="fade-in">
-        <div class="section-badge">🏢 Para Empresas</div>
+        <div class="section-badge"><svg style="vertical-align:middle;flex-shrink:0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg> Para Empresas</div>
         <h2 class="section-title">Encontre o candidato <span>certo mais rápido</span></h2>
         <p class="section-sub" style="margin-bottom:2rem">Publicar vagas é gratuito. Nossa plataforma entrega candidatos qualificados e motivados, com perfil DISC e currículo à disposição.</p>
         <div class="empresa-benefits">
           <div class="benefit-row">
-            <div class="benefit-check">✅</div>
+            <div class="benefit-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
             <div><div class="benefit-title">Publicação gratuita e ilimitada</div><div class="benefit-desc">Sem mensalidades ou planos pagos. Publique quantas vagas precisar.</div></div>
           </div>
           <div class="benefit-row">
-            <div class="benefit-check">🧠</div>
+            <div class="benefit-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-1.14z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-1.14z"/></svg></div>
             <div><div class="benefit-title">Filtro por perfil DISC</div><div class="benefit-desc">Encontre candidatos com o comportamento ideal para cada função.</div></div>
           </div>
           <div class="benefit-row">
-            <div class="benefit-check">💬</div>
+            <div class="benefit-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
             <div><div class="benefit-title">Contato direto via WhatsApp</div><div class="benefit-desc">Zero burocracia. Fale com o candidato com um clique.</div></div>
           </div>
           <div class="benefit-row">
-            <div class="benefit-check">🔒</div>
+            <div class="benefit-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
             <div><div class="benefit-title">Modo confidencial disponível</div><div class="benefit-desc">Oculte o nome da empresa durante o processo seletivo.</div></div>
           </div>
         </div>
@@ -1017,7 +1017,7 @@
 <section style="background:var(--bg)">
   <div class="container">
     <div class="fade-in" style="margin-bottom:2.5rem">
-      <div class="section-badge">❓ Dúvidas Frequentes</div>
+      <div class="section-badge"><svg style="vertical-align:middle;flex-shrink:0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Dúvidas Frequentes</div>
       <h2 class="section-title">Perguntas que <span>todo mundo faz</span></h2>
     </div>
     <div class="faq-list">
@@ -1067,8 +1067,8 @@
     <h2>Pronto para dar o<br><span style="background:linear-gradient(135deg,#80DFCC,var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">primeiro passo?</span></h2>
     <p>Milhares de estudantes já encontraram sua oportunidade aqui. Sua vez pode ser agora.</p>
     <div class="cta-btns">
-      <a class="cta-btn-a" href="cadastro-candidato.html">🎓 Criar perfil grátis</a>
-      <a class="cta-btn-b" href="cadastro-empresa.html">🏢 Cadastrar empresa</a>
+      <a class="cta-btn-a" href="cadastro-candidato.html"> Criar perfil grátis</a>
+      <a class="cta-btn-b" href="cadastro-empresa.html"> Cadastrar empresa</a>
     </div>
   </div>
 </section>

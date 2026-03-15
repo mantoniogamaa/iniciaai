@@ -517,8 +517,8 @@
   </button>
 </nav>
 <div class="mobile-drawer" id="mobile-drawer">
-    <a class="mobile-nav-link" href="index.html">🏠 Portal de Vagas</a>
-    <a class="mobile-nav-link" href="cadastro-empresa.html">📋 Cadastrar Nova Vaga</a>
+    <a class="mobile-nav-link" href="index.html">Portal de Vagas</a>
+    <a class="mobile-nav-link" href="cadastro-empresa.html"> Cadastrar Nova Vaga</a>
 </div>
 
 <div class="page-wrap">
@@ -527,7 +527,7 @@
   <div id="login-section">
     <div class="login-wrap">
       <div class="login-header">
-        <h1>🏢 Área da Empresa</h1>
+        <h1><svg style="vertical-align:middle;flex-shrink:0" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg> Área da Empresa</h1>
         <p>Acesse para gerenciar suas vagas e visualizar os candidatos.</p>
       </div>
       <div class="form-card">
@@ -558,8 +558,8 @@
 
     <!-- TABS -->
     <div class="painel-tabs">
-      <button class="painel-tab active" onclick="switchTab('vagas',this)">💼 Minhas Vagas</button>
-      <button class="painel-tab" onclick="switchTab('busca',this)">🔍 Buscar Candidatos</button>
+      <button class="painel-tab active" onclick="switchTab('vagas',this)"><svg style="vertical-align:middle;flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="12"/></svg> Minhas Vagas</button>
+      <button class="painel-tab" onclick="switchTab('busca',this)"><svg style="vertical-align:middle;flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Buscar Candidatos</button>
     </div>
 
     <!-- TAB: VAGAS -->
@@ -583,10 +583,10 @@
     <div class="tab-section" id="tab-busca">
       <div class="busca-filtros">
         <div class="filtros-grid">
-          <input class="filtro-input" type="text" id="b-nome" placeholder="🔍 Nome ou palavra-chave">
-          <input class="filtro-input" type="text" id="b-cidade" placeholder="📍 Cidade">
+          <input class="filtro-input" type="text" id="b-nome" placeholder="Nome ou palavra-chave">
+          <input class="filtro-input" type="text" id="b-cidade" placeholder="Cidade">
           <select class="filtro-input" id="b-estado">
-            <option value="">🗺️ Estado</option>
+            <option value="">Estado</option>
             <option>AC</option><option>AL</option><option>AP</option><option>AM</option><option>BA</option>
             <option>CE</option><option>DF</option><option>ES</option><option>GO</option><option>MA</option>
             <option>MT</option><option>MS</option><option>MG</option><option>PA</option><option>PB</option>
@@ -595,30 +595,30 @@
             <option>SE</option><option>TO</option>
           </select>
           <select class="filtro-input" id="b-esc">
-            <option value="">🎓 Escolaridade</option>
+            <option value="">Escolaridade</option>
             <option>Ensino Médio Incompleto</option>
             <option>Ensino Médio Completo</option>
             <option>Superior Incompleto</option>
             <option>Superior Completo</option>
           </select>
           <select class="filtro-input" id="b-periodo">
-            <option value="">🕐 Período</option>
+            <option value="">Período</option>
             <option>Manhã</option><option>Tarde</option><option>Noite</option>
             <option>Integral</option><option>Flexível</option>
           </select>
           <select class="filtro-input" id="b-disc">
-            <option value="">🧠 Perfil DISC</option>
-            <option value="D">🦁 Dominante</option>
-            <option value="I">🌟 Influente</option>
-            <option value="S">🌿 Estável</option>
-            <option value="C">🔬 Conscencioso</option>
+            <option value="">Perfil DISC</option>
+            <option value="D">Dominante</option>
+            <option value="I">Influente</option>
+            <option value="S">Estável</option>
+            <option value="C">Conscencioso</option>
           </select>
         </div>
         <button class="btn-buscar" onclick="buscarCandidatos()">Buscar Candidatos</button>
       </div>
       <div id="busca-loading" style="display:none"><div class="spinner"></div></div>
       <div id="busca-inicial" style="text-align:center;padding:2.5rem 1rem;color:var(--muted)">
-        <div style="font-size:2.5rem;margin-bottom:.75rem">🎓</div>
+        <div style="font-size:2.5rem;margin-bottom:.75rem"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
         <strong>Encontre o candidato ideal</strong><br>
         <span style="font-size:.85rem">Use os filtros acima e clique em Buscar Candidatos</span>
       </div>
@@ -637,8 +637,8 @@
 <!-- MODAL EDITAR VAGA -->
 <div class="modal-overlay" id="modal-editar" onclick="if(event.target===this)fecharEdicao()">
   <div class="modal-box">
-    <button class="modal-close" onclick="fecharEdicao()">✕</button>
-    <div class="modal-title">✏️ Editar Vaga</div>
+    <button class="modal-close" onclick="fecharEdicao()">×</button>
+    <div class="modal-title"><svg style="vertical-align:middle;flex-shrink:0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg> Editar Vaga</div>
     <input type="hidden" id="edit-vaga-id">
     <div class="form-grid-2">
       <div class="full">
@@ -702,7 +702,7 @@
       <div class="full" style="display:flex;align-items:center;gap:.75rem;background:rgba(46,207,168,.05);border:1.5px solid rgba(12,61,48,.2);border-radius:10px;padding:.85rem">
         <input type="checkbox" id="edit-confidencial" style="width:16px;height:16px;accent-color:var(--primary);cursor:pointer">
         <div>
-          <div style="font-size:.85rem;font-weight:700">🔒 Vaga Confidencial</div>
+          <div style="font-size:.85rem;font-weight:700"><svg style="vertical-align:middle;flex-shrink:0" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Vaga Confidencial</div>
           <div style="font-size:.75rem;color:var(--muted)">Empresa aparece como "Empresa Confidencial" no portal</div>
         </div>
       </div>
@@ -726,8 +726,8 @@
 <!-- MODAL CONVITE -->
 <div class="modal-overlay" id="modal-convite" onclick="if(event.target===this)fecharConvite()">
   <div class="modal-box" style="max-width:480px">
-    <button class="modal-close" onclick="fecharConvite()">✕</button>
-    <div class="modal-title">✉️ Convidar Candidato</div>
+    <button class="modal-close" onclick="fecharConvite()">×</button>
+    <div class="modal-title"><svg style="vertical-align:middle;flex-shrink:0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> Convidar Candidato</div>
     <input type="hidden" id="convite-cand-id">
     <div class="modal-convite-body">
       <div id="convite-cand-info" style="background:var(--bg);border-radius:10px;padding:1rem;font-size:.875rem"></div>
@@ -863,29 +863,29 @@ async function loadAllStats() {
 function renderVagas() {
   const list = document.getElementById('vagas-list');
   if (!todasVagas.length) {
-    list.innerHTML = `<div class="empty-msg"><div>📭</div>Nenhuma vaga cadastrada ainda.<br><a href="cadastro-empresa.html" style="color:var(--violet);font-weight:600;">Cadastrar nova vaga →</a></div>`;
+    list.innerHTML = `<div class="empty-msg"><div><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg></div>Nenhuma vaga cadastrada ainda.<br><a href="cadastro-empresa.html" style="color:var(--violet);font-weight:600;">Cadastrar nova vaga →</a></div>`;
     return;
   }
-  const statusLabel = {pendente:'⏳ Pendente', aprovada:'✅ Aprovada', rejeitada:'❌ Rejeitada', encerrada:'🔒 Encerrada'};
+  const statusLabel = {pendente:'Pendente', aprovada:'Aprovada', rejeitada:'Rejeitada', encerrada:'Encerrada'};
   const statusClass = {pendente:'b-pendente', aprovada:'b-aprovada', rejeitada:'b-rejeitada', encerrada:'b-encerrada'};
   list.innerHTML = todasVagas.map(v => {
     const actions = `
       <div class="vaga-actions" onclick="event.stopPropagation()">
-        <button class="btn-vaga-action btn-edit" onclick="abrirEdicao('${v.id}')">✏️ Editar</button>
+        <button class="btn-vaga-action btn-edit" onclick="abrirEdicao('${v.id}')"><svg style="vertical-align:middle;flex-shrink:0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg> Editar</button>
         ${v.status === 'aprovada'
-          ? `<button class="btn-vaga-action btn-close" onclick="encerrarVaga('${v.id}')">🔒 Encerrar</button>`
+          ? `<button class="btn-vaga-action btn-close" onclick="encerrarVaga('${v.id}')"><svg style="vertical-align:middle;flex-shrink:0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Encerrar</button>`
           : v.status === 'encerrada'
-          ? `<button class="btn-vaga-action btn-reopen" onclick="reabrirVaga('${v.id}')">🔓 Reabrir</button>`
+          ? `<button class="btn-vaga-action btn-reopen" onclick="reabrirVaga('${v.id}')"><svg style="vertical-align:middle;flex-shrink:0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg> Reabrir</button>`
           : ''}
-        <button class="btn-vaga-action btn-del" onclick="excluirVaga('${v.id}')">🗑️ Excluir</button>
-        <button class="btn-vaga-action btn-edit" style="border-color:rgba(6,182,212,.3);color:#0891B2;background:rgba(6,182,212,.06)" onclick="selectVaga('${v.id}')">👥 Candidatos</button>
+        <button class="btn-vaga-action btn-del" onclick="excluirVaga('${v.id}')"><svg style="vertical-align:middle;flex-shrink:0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg> Excluir</button>
+        <button class="btn-vaga-action btn-edit" style="border-color:rgba(6,182,212,.3);color:#0891B2;background:rgba(6,182,212,.06)" onclick="selectVaga('${v.id}')"><svg style="vertical-align:middle;flex-shrink:0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Candidatos</button>
       </div>`;
     return `
     <div class="vaga-item ${vagaSelecionada===v.id?'selected':''}">
       <div class="vaga-item-header">
         <div>
           <div class="vaga-title">${v.titulo}</div>
-          <div class="vaga-meta">${v.tipo} · ${v.area} · ${v.cidade} · R$ ${Number(v.bolsa||0).toLocaleString('pt-BR')}/mês${v.confidencial ? ' · 🔒 Confidencial' : ''}</div>
+          <div class="vaga-meta">${v.tipo} · ${v.area} · ${v.cidade} · R$ ${Number(v.bolsa||0).toLocaleString('pt-BR')}/mês${v.confidencial ? ' · Confidencial' : ''}</div>
         </div>
         <span class="badge ${statusClass[v.status]||''}">${statusLabel[v.status]||v.status}</span>
       </div>
@@ -956,7 +956,7 @@ async function salvarEdicao() {
   const idx = todasVagas.findIndex(v => v.id === vagaId);
   if (idx !== -1) todasVagas[idx] = { ...todasVagas[idx], ...updates };
 
-  showMsgModal(msg, '✅ Vaga atualizada com sucesso!', 'success');
+  showMsgModal(msg, 'Vaga atualizada com sucesso!', 'success');
   btn.disabled = false; btn.textContent = 'Salvar alterações ✓';
   renderVagas();
   setTimeout(() => fecharEdicao(), 1200);
@@ -973,7 +973,7 @@ async function encerrarVaga(vagaId) {
   if (error) { showToast('Erro ao encerrar.', 'error'); return; }
   const v = todasVagas.find(x => x.id === vagaId);
   if (v) v.status = 'encerrada';
-  showToast('🔒 Vaga encerrada.', 'success');
+  showToast('Vaga encerrada.', 'success');
   renderVagas(); loadAllStats();
 }
 
@@ -983,7 +983,7 @@ async function reabrirVaga(vagaId) {
   if (error) { showToast('Erro ao reabrir.', 'error'); return; }
   const v = todasVagas.find(x => x.id === vagaId);
   if (v) v.status = 'aprovada';
-  showToast('🔓 Vaga reaberta!', 'success');
+  showToast('Vaga reaberta!', 'success');
   renderVagas(); loadAllStats();
 }
 
@@ -997,7 +997,7 @@ async function excluirVaga(vagaId) {
     vagaSelecionada = null;
     document.getElementById('candidatos-panel').style.display = 'none';
   }
-  showToast('🗑️ Vaga excluída.', 'error');
+  showToast('Vaga excluída.', 'error');
   renderVagas(); loadAllStats();
 }
 
@@ -1024,17 +1024,17 @@ async function selectVaga(vagaId) {
   const list = document.getElementById('cands-list');
 
   if (error || !data?.length) {
-    list.innerHTML = '<div class="empty-msg"><div>👀</div>Nenhum candidato ainda para esta vaga.</div>';
+    list.innerHTML = '<div class="empty-msg"><div><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>Nenhum candidato ainda para esta vaga.</div>';
     return;
   }
 
-  const statusLabel = {em_analise:'⏳ Em análise', aprovado:'✅ Aprovado', recusado:'❌ Recusado'};
+  const statusLabel = {em_analise:'Em análise', aprovado:'Aprovado', recusado:'Recusado'};
   list.innerHTML = data.map(c => {
     const cd = c.candidatos;
     const initial = cd?.nome?.charAt(0)?.toUpperCase() || '?';
     const statusActions = c.status === 'em_analise'
-      ? `<button class="btn-sm btn-approve" onclick="updateCand('${c.id}','aprovado')">✅ Aprovar</button>
-         <button class="btn-sm btn-reject"  onclick="updateCand('${c.id}','recusado')">❌ Recusar</button>`
+      ? `<button class="btn-sm btn-approve" onclick="updateCand('${c.id}','aprovado')"><svg style="vertical-align:middle;flex-shrink:0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Aprovar</button>
+         <button class="btn-sm btn-reject"  onclick="updateCand('${c.id}','recusado')"><svg style="vertical-align:middle;flex-shrink:0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Recusar</button>`
       : `<span class="status-badge s-${c.status}">${statusLabel[c.status]}</span>`;
 
     const waLink = cd?.telefone
@@ -1056,9 +1056,9 @@ async function selectVaga(vagaId) {
             ${cd?.disc_perfil ? discBadge(cd.disc_perfil) : ''}
           </div>
           <div class="cand-meta">
-            📧 ${cd?.email||'—'} · 📍 ${cd?.cidade||'—'}${cd?.estado?', '+cd.estado:''}<br>
-            🎓 ${cd?.escolaridade||'—'}${cd?.curso?' · '+cd.curso:''} · 🕐 ${cd?.periodo_disponivel||'—'}
-            ${cd?.cv_url ? ` · <a href="${cd.cv_url}" target="_blank" style="color:#DC2626;font-weight:700;text-decoration:none">📄 Currículo</a>` : ''}
+            ${cd?.email||'—'} · ${cd?.cidade||'—'}${cd?.estado?', '+cd.estado:''}<br>
+            ${cd?.escolaridade||'—'}${cd?.curso?' · '+cd.curso:''} · ${cd?.periodo_disponivel||'—'}
+            ${cd?.cv_url ? ` · <a href="${cd.cv_url}" target="_blank" style="color:#DC2626;font-weight:700;text-decoration:none"> Currículo</a>` : ''}
           </div>
           ${cd?.sobre ? `<div style="font-size:.78rem;color:var(--muted);margin-top:.3rem;font-style:italic">"${cd.sobre.substring(0,100)}${cd.sobre.length>100?'...':''}"</div>` : ''}
           <div style="display:flex;gap:.4rem;margin-top:.6rem;flex-wrap:wrap">
@@ -1073,7 +1073,7 @@ async function selectVaga(vagaId) {
 async function updateCand(candId, newStatus) {
   const { error } = await sb.from('candidaturas').update({status: newStatus}).eq('id', candId);
   if (error) { showToast('Erro ao atualizar.','error'); return; }
-  showToast(newStatus==='aprovado' ? '✅ Candidato aprovado!' : '❌ Candidato recusado.', newStatus==='aprovado'?'success':'error');
+  showToast(newStatus==='aprovado' ? 'Candidato aprovado!' : 'Candidato recusado.', newStatus==='aprovado'?'success':'error');
   selectVaga(vagaSelecionada);
   loadAllStats();
 }
@@ -1140,7 +1140,7 @@ async function buscarCandidatos() {
   count.textContent = `${results.length} candidato${results.length !== 1 ? 's' : ''} encontrado${results.length !== 1 ? 's' : ''}`;
 
   if (!results.length) {
-    list.innerHTML = '<div class="empty-msg"><div>👀</div>Nenhum candidato encontrado com esses filtros.</div>';
+    list.innerHTML = '<div class="empty-msg"><div><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>Nenhum candidato encontrado com esses filtros.</div>';
   } else {
     list.innerHTML = results.map(c => renderCandidatoCard(c)).join('');
   }
@@ -1153,10 +1153,10 @@ function renderCandidatoCard(c) {
   const tags = [
     c.escolaridade ? `<span class="cand-tag">${c.escolaridade}</span>` : '',
     c.curso        ? `<span class="cand-tag cyan">${c.curso}</span>` : '',
-    c.periodo_disponivel ? `<span class="cand-tag yellow">🕐 ${c.periodo_disponivel}</span>` : '',
-    c.cidade       ? `<span class="cand-tag green">📍 ${c.cidade}${c.estado ? ', ' + c.estado : ''}</span>` : '',
+    c.periodo_disponivel ? `<span class="cand-tag yellow">${c.periodo_disponivel}</span>` : '',
+    c.cidade       ? `<span class="cand-tag green">${c.cidade}${c.estado ? ', ' + c.estado : ''}</span>` : '',
     c.disc_perfil  ? discBadge(c.disc_perfil) : '',
-    c.cv_url       ? `<a href="${c.cv_url}" target="_blank" class="cand-tag" style="background:rgba(239,68,68,.1);color:#DC2626;text-decoration:none">📄 Ver currículo</a>` : '',
+    c.cv_url       ? `<a href="${c.cv_url}" target="_blank" class="cand-tag" style="background:rgba(239,68,68,.1);color:#DC2626;text-decoration:none"> Ver currículo</a>` : '',
   ].filter(Boolean).join('');
 
   return `
@@ -1172,7 +1172,7 @@ function renderCandidatoCard(c) {
       ${tags ? `<div class="cand-card-tags">${tags}</div>` : ''}
       ${c.sobre ? `<div class="cand-card-sobre">"${c.sobre.substring(0, 180)}${c.sobre.length > 180 ? '...' : ''}"</div>` : ''}
       <div class="cand-card-footer" style="flex-wrap:wrap;gap:.5rem">
-        <div class="cand-card-contato">📧 ${c.email}</div>
+        <div class="cand-card-contato">${c.email}</div>
         <div style="display:flex;gap:.4rem;flex-wrap:wrap">
           ${c.telefone ? `<a href="https://wa.me/55${c.telefone.replace(/\D/g,'')}&text=${encodeURIComponent('Olá ' + c.nome + '! Vi seu perfil no IniciaAí e gostaria de conversar sobre uma oportunidade. Podemos falar?')}" target="_blank" class="btn-convidar" style="background:linear-gradient(135deg,#25D366,#128C7E);text-decoration:none;display:inline-flex;align-items:center;gap:.3rem">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.554 4.122 1.523 5.856L.057 23.882l6.197-1.624A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.894a9.886 9.886 0 01-5.032-1.371l-.361-.214-3.735.979 1.004-3.648-.235-.374A9.86 9.86 0 012.106 12C2.106 6.58 6.58 2.106 12 2.106c5.42 0 9.894 4.474 9.894 9.894 0 5.42-4.474 9.894-9.894 9.894z"/></svg>
@@ -1197,7 +1197,7 @@ function abrirConvite(candId) {
   const btn = document.getElementById('btn-inv-' + candId);
   const card = btn?.closest('.cand-card-busca');
   const nome  = card?.querySelector('.cand-card-name')?.textContent || '—';
-  const email = card?.querySelector('.cand-card-contato')?.textContent?.replace('📧 ','') || '—';
+  const email = card?.querySelector('.cand-card-contato')?.textContent?.replace('','') || '—';
 
   document.getElementById('convite-cand-id').value = candId;
   document.getElementById('convite-cand-info').innerHTML =
@@ -1237,7 +1237,7 @@ async function enviarConvite() {
   });
 
   if (error && error.code === '23505') {
-    msg.textContent = '⚠️ Este candidato já se candidatou a esta vaga.';
+    msg.textContent = 'Este candidato já se candidatou a esta vaga.';
     msg.className = 'msg-modal error';
     btn.disabled = false; btn.textContent = 'Enviar convite ✓';
     return;
@@ -1250,7 +1250,7 @@ async function enviarConvite() {
     return;
   }
 
-  msg.textContent = '✅ Convite enviado! O candidato verá no painel dele.';
+  msg.textContent = 'Convite enviado! O candidato verá no painel dele.';
   msg.className = 'msg-modal success';
 
   // Marca botão como convidado
@@ -1268,7 +1268,7 @@ function fecharConvite() {
 
 function discBadge(perfil) {
   if (!perfil) return '';
-  const labels = {D:'🦁 Dominante',I:'🌟 Influente',S:'🌿 Estável',C:'🔬 Conscencioso'};
+  const labels = {D:'Dominante',I:'Influente',S:'Estável',C:'Conscencioso'};
   return `<span class="disc-badge disc-${perfil}">${labels[perfil]||perfil}</span>`;
 }
 

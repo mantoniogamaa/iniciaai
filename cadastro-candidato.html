@@ -135,7 +135,7 @@
 
   .welcome-card { background:linear-gradient(135deg,var(--accent),var(--accent-dark)); border-radius:20px;
     padding:1.75rem; color:white; margin-bottom:1.5rem; position:relative; overflow:hidden; }
-  .welcome-card::after { content:'🎓'; position:absolute; right:1.5rem; top:50%; transform:translateY(-50%);
+  .welcome-card::after { content:''; position:absolute; right:1.5rem; top:50%; transform:translateY(-50%);
     font-size:4rem; opacity:.2; }
   .welcome-card h2 { font-family:'Clash Display',sans-serif; font-size:1.5rem; margin-bottom:.25rem; }
   .welcome-card p { opacity:.85; font-size:.9rem; }
@@ -194,7 +194,7 @@
   .profile-header { background:linear-gradient(135deg,var(--accent),var(--accent-dark));
     border-radius:16px; padding:1.5rem; color:white; margin-bottom:1.5rem;
     display:flex; align-items:center; gap:1rem; position:relative; overflow:hidden; }
-  .profile-header::after { content:'✏️'; position:absolute; right:1.25rem; top:50%;
+  .profile-header::after { content:''; position:absolute; right:1.25rem; top:50%;
     transform:translateY(-50%); font-size:2rem; opacity:.25; }
   .profile-avatar { width:56px; height:56px; border-radius:50%;
     background:rgba(255,255,255,.25); display:flex; align-items:center; justify-content:center;
@@ -635,14 +635,14 @@
   <a class="nav-back" href="index.html">← Ver vagas</a>
 </nav>
 <div class="mobile-drawer" id="mobile-drawer">
-    <a class="mobile-nav-link" href="index.html">🏠 Portal de Vagas</a>
-    <a class="mobile-nav-link" href="cadastro-empresa.html">🏢 Para Empresas</a>
+    <a class="mobile-nav-link" href="index.html">Portal de Vagas</a>
+    <a class="mobile-nav-link" href="cadastro-empresa.html">Para Empresas</a>
 </div>
 
 <div class="page-hero" id="auth-hero">
   <div class="page-hero-inner">
   <div class="page-am-deco" aria-hidden="true"></div>
-    <div class="page-hero-badge">🎓 Área do candidato</div>
+    <div class="page-hero-badge"><svg style="vertical-align:middle;flex-shrink:0" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Área do candidato</div>
     <h1>Sua carreira começa <span>aqui</span></h1>
     <p>Crie seu perfil, encontre vagas de estágio e Jovem Aprendiz, e dê o primeiro passo.</p>
   </div>
@@ -659,7 +659,7 @@
   <!-- CADASTRO -->
   <div id="tab-cadastro">
     <div class="form-card">
-      <div class="section-label">👤 Dados Pessoais</div>
+      <div class="section-label"><svg style="vertical-align:middle;flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Dados Pessoais</div>
       <div class="form-grid">
         <div class="form-group"><label>Nome completo <span class="req">*</span></label><input type="text" id="c-nome" placeholder="Seu nome completo"></div>
         <div class="form-group"><label>E-mail <span class="req">*</span></label><input type="email" id="c-email" placeholder="seu@email.com"></div>
@@ -686,7 +686,7 @@
         </div>
       </div>
       <hr class="divider">
-      <div class="section-label">🎓 Formação</div>
+      <div class="section-label"><svg style="vertical-align:middle;flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg> Formação</div>
       <div class="form-grid">
         <div class="form-group"><label>Escolaridade</label>
           <select id="c-esc">
@@ -702,7 +702,7 @@
           <textarea id="c-sobre" rows="3" placeholder="Fale um pouco sobre seus objetivos, habilidades e o que busca numa oportunidade..."></textarea>
         </div>
       </div>
-      <button class="btn-submit" id="btn-cadastrar" onclick="cadastrar()">Criar minha conta 🚀</button>
+      <button class="btn-submit" id="btn-cadastrar" onclick="cadastrar()">Criar minha conta</button>
       <div class="msg-box" id="msg-cadastro"></div>
     </div>
   </div>
@@ -711,7 +711,7 @@
   <div class="disc-step" id="disc-step">
     <div class="form-card">
       <div class="disc-intro" id="disc-intro">
-        <div class="disc-icon">🧠</div>
+        <div class="disc-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-1.14z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-1.14z"/></svg></div>
         <h2>Teste de Perfil DISC</h2>
         <p>20 perguntas rápidas para identificar seu perfil comportamental. Empresas usam isso para encontrar o candidato certo. Leva cerca de <strong>3 minutos</strong>.</p>
         <button class="btn-submit" style="max-width:280px;margin:0 auto" onclick="iniciarDISC()">Começar teste →</button>
@@ -737,7 +737,7 @@
   <!-- LOGIN -->
   <div id="tab-login" style="display:none">
     <div class="form-card">
-      <div class="section-label">🔐 Entrar na sua conta</div>
+      <div class="section-label"><svg style="vertical-align:middle;flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Entrar na sua conta</div>
       <div class="form-grid full" style="grid-template-columns:1fr">
         <div class="form-group"><label>E-mail <span class="req">*</span></label><input type="email" id="l-email" placeholder="seu@email.com" onkeydown="if(event.key==='Enter')login()"></div>
         <div class="form-group"><label>Senha <span class="req">*</span></label><input type="password" id="l-senha" placeholder="Sua senha" onkeydown="if(event.key==='Enter')login()"></div>
@@ -750,17 +750,17 @@
   <!-- PAINEL LOGADO -->
   <div class="painel" id="painel">
     <div class="welcome-card">
-      <h2>Olá, <span id="painel-nome">Candidato</span>! 👋</h2>
+      <h2>Olá, <span id="painel-nome">Candidato</span>!</h2>
       <p>Gerencie seu perfil e acompanhe suas candidaturas.</p>
       <button class="btn-logout" onclick="logout()">Sair da conta</button>
     </div>
 
     <!-- TABS INTERNAS -->
     <div class="painel-tabs" style="flex-wrap:wrap">
-      <button class="painel-tab-btn active" onclick="switchPainelTab('candidaturas',this)">📋 Candidaturas</button>
-      <button class="painel-tab-btn" onclick="switchPainelTab('disc',this)">🧠 Perfil DISC</button>
-      <button class="painel-tab-btn" onclick="switchPainelTab('perfil',this)">👤 Editar Perfil</button>
-      <button class="painel-tab-btn" onclick="switchPainelTab('senha',this)">🔐 Alterar Senha</button>
+      <button class="painel-tab-btn active" onclick="switchPainelTab('candidaturas',this)"><svg style="vertical-align:middle;flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/></svg> Candidaturas</button>
+      <button class="painel-tab-btn" onclick="switchPainelTab('disc',this)"><svg style="vertical-align:middle;flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-1.14z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-1.14z"/></svg> Perfil DISC</button>
+      <button class="painel-tab-btn" onclick="switchPainelTab('perfil',this)"><svg style="vertical-align:middle;flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Editar Perfil</button>
+      <button class="painel-tab-btn" onclick="switchPainelTab('senha',this)"><svg style="vertical-align:middle;flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Alterar Senha</button>
     </div>
 
     <!-- CANDIDATURAS -->
@@ -785,7 +785,7 @@
         </div>
       </div>
       <div class="form-card">
-        <div class="section-label">👤 Dados Pessoais</div>
+        <div class="section-label"><svg style="vertical-align:middle;flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Dados Pessoais</div>
         <div class="form-grid">
           <div class="form-group"><label>Nome completo <span class="req">*</span></label><input type="text" id="e-nome"></div>
           <div class="form-group"><label>Telefone / WhatsApp</label><input type="tel" id="e-tel"></div>
@@ -810,7 +810,7 @@
           </div>
         </div>
         <hr class="divider">
-        <div class="section-label">🎓 Formação</div>
+        <div class="section-label"><svg style="vertical-align:middle;flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg> Formação</div>
         <div class="form-grid">
           <div class="form-group"><label>Escolaridade</label>
             <select id="e-esc">
@@ -832,7 +832,7 @@
               ondragleave="this.classList.remove('drag')"
               ondrop="handleCvDrop(event)">
               <input type="file" id="cv-file-input" accept=".pdf" onchange="handleCvSelect(event)">
-              <div class="upload-icon">📄</div>
+              <div class="upload-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
               <div class="upload-title">Arraste seu PDF aqui ou clique para selecionar</div>
               <div class="upload-sub">Apenas arquivos PDF · Máximo 5MB</div>
             </div>
@@ -853,7 +853,7 @@
     <!-- ALTERAR SENHA -->
     <div class="edit-section" id="tab-senha">
       <div class="form-card">
-        <div class="section-label">🔐 Alterar Senha</div>
+        <div class="section-label"><svg style="vertical-align:middle;flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Alterar Senha</div>
         <div class="form-grid" style="grid-template-columns:1fr">
           <div class="form-group"><label>Senha atual <span class="req">*</span></label>
             <input type="password" id="s-atual" placeholder="Digite sua senha atual">
@@ -957,13 +957,13 @@ async function cadastrar() {
   if (error) {
     const msg_txt = error.code === '23505' ? 'Este e-mail já está cadastrado. Faça login.' : 'Erro ao criar conta. Tente novamente.';
     showMsg(msg, msg_txt, 'error');
-    btn.disabled = false; btn.textContent = 'Criar minha conta 🚀';
+    btn.disabled = false; btn.textContent = 'Criar minha conta';
     return;
   }
 
   sessionStorage.setItem('candidato', JSON.stringify(data));
   candidatoLogado = data;
-  showMsg(msg, '✅ Conta criada! Agora faça o teste de perfil 🧠', 'success');
+  showMsg(msg, '✅ Conta criada! Agora faça o teste de perfil', 'success');
   setTimeout(() => {
     document.getElementById('tab-cadastro').style.display = 'none';
     document.getElementById('tabs').style.display = 'none';
@@ -1030,11 +1030,11 @@ async function loadCandidaturas() {
   const list = document.getElementById('cands-list');
 
   if (error || !data?.length) {
-    list.innerHTML = `<div class="empty-cands"><div>📭</div><strong>Nenhuma candidatura ainda</strong><br><span style="font-size:.85rem">Explore as vagas e candidate-se!</span><br><br><a href="index.html" style="color:var(--violet);font-weight:600;">Ver vagas →</a></div>`;
+    list.innerHTML = `<div class="empty-cands"><div><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg></div><strong>Nenhuma candidatura ainda</strong><br><span style="font-size:.85rem">Explore as vagas e candidate-se!</span><br><br><a href="index.html" style="color:var(--violet);font-weight:600;">Ver vagas →</a></div>`;
     return;
   }
 
-  const statusLabel = { em_analise:'⏳ Em análise', aprovado:'✅ Aprovado', recusado:'❌ Recusado', convidado:'🎯 Convidado' };
+  const statusLabel = { em_analise:'Em análise', aprovado:'Aprovado', recusado:'Recusado', convidado:'Convidado' };
   list.innerHTML = data.map(c => {
     const vg = c.vagas;
     const emp = vg?.empresas?.nome_fantasia || '—';
@@ -1217,7 +1217,7 @@ function renderCvPreview(name, size, url) {
   const wrap = document.getElementById('cv-preview-wrap');
   wrap.innerHTML = `
     <div class="cv-preview">
-      <div class="cv-icon">📄</div>
+      <div class="cv-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
       <div style="flex:1;min-width:0">
         <div class="cv-name">${name}</div>
         <div class="cv-size">${size}</div>
@@ -1535,7 +1535,7 @@ function renderDiscResultado(perfil, scores, total, containerId, showCTA) {
     ${showCTA ? `
     <div style="text-align:center;margin-top:1.5rem">
       <button class="btn-submit" style="max-width:280px;margin:0 auto" onclick="showPainel()">
-        Ir para meu painel 🚀
+        Ir para meu painel
       </button>
     </div>` : ''}
   `;
@@ -1551,7 +1551,7 @@ function renderPainelDISC() {
   if (!perfil) {
     container.innerHTML = `
       <div class="form-card" style="text-align:center;padding:2.5rem">
-        <div style="font-size:3rem;margin-bottom:.75rem">🧠</div>
+        <div style="font-size:3rem;margin-bottom:.75rem"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-1.14z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-1.14z"/></svg></div>
         <h3 style="font-family:'Clash Display',sans-serif;font-size:1.3rem;margin-bottom:.5rem">Você ainda não fez o teste DISC</h3>
         <p style="color:var(--muted);margin-bottom:1.5rem;font-size:.9rem">Leva só 3 minutos e ajuda empresas a entenderem melhor seu perfil.</p>
         <button class="btn-submit" style="max-width:220px;margin:0 auto" onclick="
@@ -1577,7 +1577,7 @@ function renderPainelDISC() {
   container.innerHTML += `
     <div style="text-align:center;margin-top:1rem">
       <button onclick="refazerDISC()" style="background:none;border:1.5px solid var(--border);border-radius:10px;padding:.6rem 1.5rem;font-size:.85rem;font-weight:600;cursor:pointer;color:var(--muted);font-family:'Plus Jakarta Sans',sans-serif">
-        🔄 Refazer o teste
+        Refazer o teste
       </button>
     </div>`;
 }

@@ -512,11 +512,11 @@
       <input class="login-input" type="password" id="login-input"
         placeholder="Sua senha..." style="padding-left:2.8rem"
         onkeydown="if(event.key==='Enter')tryLogin()">
-      <button class="eye-btn" onclick="toggleEye()" id="eye-btn" title="Mostrar/ocultar">👁️</button>
+      <button class="eye-btn" onclick="toggleEye()" id="eye-btn" title="Mostrar/ocultar" aria-label="Mostrar senha"><svg style="vertical-align:middle;flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
     </div>
 
-    <div class="login-error" id="login-error">⚠️ E-mail ou senha incorretos.</div>
-    <div class="locked-msg" id="locked-msg">🔒 Muitas tentativas. Aguarde <span id="countdown">30</span> segundos.</div>
+    <div class="login-error" id="login-error"> E-mail ou senha incorretos.</div>
+    <div class="locked-msg" id="locked-msg"> Muitas tentativas. Aguarde <span id="countdown">30</span> segundos.</div>
 
     <button class="btn-login" id="btn-login" onclick="tryLogin()">
       Entrar no Painel →
@@ -567,7 +567,7 @@
         <div class="admin-name" id="sidebar-nome">Administrador</div>
         <div class="admin-role" id="sidebar-email">admin</div>
       </div>
-      <button onclick="logout()" title="Sair" style="background:none;border:none;cursor:pointer;color:var(--muted);font-size:1rem;transition:color 0.2s;" onmouseover="this.style.color='var(--primary-dark)'" onmouseout="this.style.color='var(--muted)'">⏏️</button>
+      <button onclick="logout()" title="Sair" style="background:none;border:none;cursor:pointer;color:var(--muted);font-size:1rem;transition:color 0.2s;" onmouseover="this.style.color='var(--primary-dark)'" onmouseout="this.style.color='var(--muted)'"><svg style="vertical-align:middle;flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     </div>
   </div>
 </aside>
@@ -597,25 +597,25 @@
     <div class="section active" id="section-dashboard">
       <div class="stats-grid">
         <div class="stat-card c-yellow">
-          <div class="stat-icon">⏳</div>
+          <div class="stat-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
           <div class="stat-num" id="dash-pendente">0</div>
           <div class="stat-label">Aguardando Aprovação</div>
           <div class="stat-delta delta-pend">Vagas pendentes</div>
         </div>
         <div class="stat-card c-green">
-          <div class="stat-icon">✅</div>
+          <div class="stat-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
           <div class="stat-num" id="dash-aprovada">0</div>
           <div class="stat-label">Vagas Aprovadas</div>
           <div class="stat-delta delta-up">Publicadas no portal</div>
         </div>
         <div class="stat-card c-coral">
-          <div class="stat-icon">❌</div>
+          <div class="stat-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></div>
           <div class="stat-num" id="dash-rejeitada">0</div>
           <div class="stat-label">Vagas Rejeitadas</div>
           <div class="stat-delta" style="color:var(--muted)">Reprovadas</div>
         </div>
         <div class="stat-card c-violet">
-          <div class="stat-icon">🏢</div>
+          <div class="stat-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
           <div class="stat-num" id="dash-empresas">0</div>
           <div class="stat-label">Empresas Cadastradas</div>
           <div class="stat-delta delta-up">Total de empresas</div>
@@ -623,7 +623,7 @@
       </div>
 
       <div class="panel-header">
-        <div class="panel-title">🔔 Últimas Submissões</div>
+        <div class="panel-title"><svg style="vertical-align:middle;flex-shrink:0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg> Últimas Submissões</div>
         <button class="tab active" onclick="showSection('vagas')">Ver todas →</button>
       </div>
       <div class="job-list" id="dashboard-recent"></div>
@@ -632,7 +632,7 @@
     <!-- VAGAS PENDENTES -->
     <div class="section" id="section-vagas">
       <div class="panel-header">
-        <div class="panel-title">💼 Gerenciar Vagas</div>
+        <div class="panel-title"><svg style="vertical-align:middle;flex-shrink:0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="12"/></svg> Gerenciar Vagas</div>
         <div class="filter-tabs">
           <button class="tab active" onclick="setFilter('todas',this)">Todas</button>
           <button class="tab" onclick="setFilter('pendente',this)">Pendentes</button>
@@ -646,7 +646,7 @@
     <!-- APROVADAS -->
     <div class="section" id="section-aprovadas">
       <div class="panel-header">
-        <div class="panel-title">✅ Vagas Aprovadas</div>
+        <div class="panel-title"><svg style="vertical-align:middle;flex-shrink:0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Vagas Aprovadas</div>
       </div>
       <div class="job-list" id="aprovadas-list"></div>
     </div>
@@ -654,7 +654,7 @@
     <!-- EMPRESAS -->
     <div class="section" id="section-empresas">
       <div class="panel-header">
-        <div class="panel-title">🏢 Empresas Cadastradas</div>
+        <div class="panel-title"><svg style="vertical-align:middle;flex-shrink:0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg> Empresas Cadastradas</div>
       </div>
       <div class="companies-grid" id="companies-grid"></div>
     </div>
@@ -663,7 +663,7 @@
     <div class="section" id="section-configuracoes">
       <div class="settings-grid">
         <div class="settings-card" style="grid-column:1/-1">
-          <h3>🎨 Identidade Visual do Portal</h3>
+          <h3><svg style="vertical-align:middle;flex-shrink:0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Identidade Visual do Portal</h3>
           <p style="font-size:.82rem;color:var(--muted);margin-bottom:1.5rem">Personalize a aparência do portal público. Alterações são salvas no banco e aplicadas imediatamente.</p>
 
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem">
@@ -677,10 +677,10 @@
               </div>
               <input type="file" id="logo-file-input" accept=".png,.jpg,.jpeg,.svg,.webp" style="display:none" onchange="previewLogo(event)">
               <div style="display:flex;gap:.5rem">
-                <button onclick="document.getElementById('logo-file-input').click()" style="flex:1;padding:.5rem .9rem;background:rgba(167,139,250,.15);color:#A78BFA;border:1px solid rgba(167,139,250,.3);border-radius:8px;font-size:.78rem;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif">📁 Escolher arquivo</button>
-                <button id="btn-salvar-logo" onclick="salvarLogo()" style="flex:1;padding:.5rem .9rem;background:linear-gradient(135deg,var(--accent),var(--accent-dark));color:white;border:none;border-radius:8px;font-size:.78rem;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif" disabled>💾 Salvar logo</button>
+                <button onclick="document.getElementById('logo-file-input').click()" style="flex:1;padding:.5rem .9rem;background:rgba(167,139,250,.15);color:#A78BFA;border:1px solid rgba(167,139,250,.3);border-radius:8px;font-size:.78rem;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif"><svg style="vertical-align:middle;flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg> Escolher arquivo</button>
+                <button id="btn-salvar-logo" onclick="salvarLogo()" style="flex:1;padding:.5rem .9rem;background:linear-gradient(135deg,var(--accent),var(--accent-dark));color:white;border:none;border-radius:8px;font-size:.78rem;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif" disabled><svg style="vertical-align:middle;flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Salvar logo</button>
               </div>
-              <button onclick="removerLogo()" style="width:100%;margin-top:.4rem;padding:.4rem;background:rgba(255,92,92,.1);color:#FF5C5C;border:1px solid rgba(255,92,92,.2);border-radius:8px;font-size:.72rem;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif">✕ Remover logo</button>
+              <button onclick="removerLogo()" style="width:100%;margin-top:.4rem;padding:.4rem;background:rgba(255,92,92,.1);color:#FF5C5C;border:1px solid rgba(255,92,92,.2);border-radius:8px;font-size:.72rem;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif"> Remover logo</button>
               <div id="msg-logo" style="font-size:.78rem;font-weight:600;margin-top:.5rem;display:none"></div>
             </div>
 
@@ -730,7 +730,7 @@
         </div>
 
         <div class="settings-card">
-          <h3>🔔 Notificações</h3>
+          <h3><svg style="vertical-align:middle;flex-shrink:0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg> Notificações</h3>
           <div class="setting-row">
             <div class="setting-info">
               <div class="setting-name">E-mail ao receber vaga</div>
@@ -747,7 +747,7 @@
           </div>
         </div>
         <div class="settings-card">
-          <h3>⚙️ Portal</h3>
+          <h3><svg style="vertical-align:middle;flex-shrink:0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg> Portal</h3>
           <div class="setting-row">
             <div class="setting-info">
               <div class="setting-name">Aprovação automática</div>
@@ -771,7 +771,7 @@
           </div>
         </div>
         <div class="settings-card">
-          <h3>🗑️ Dados</h3>
+          <h3><svg style="vertical-align:middle;flex-shrink:0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg> Dados</h3>
           <div class="setting-row">
             <div class="setting-info">
               <div class="setting-name">Limpar vagas rejeitadas</div>
@@ -792,7 +792,7 @@
     <!-- ADMINS -->
     <div class="section" id="section-admins">
       <div class="panel-header">
-        <div class="panel-title">👤 Administradores</div>
+        <div class="panel-title"><svg style="vertical-align:middle;flex-shrink:0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Administradores</div>
         <button class="btn-primary-sm" onclick="openAdminModal()">+ Novo Admin</button>
       </div>
       <div class="job-list" id="admins-list"></div>
@@ -804,8 +804,8 @@
 <!-- MODAL ADMINS -->
 <div class="modal-overlay" id="modal-admin-overlay" onclick="if(event.target===this)closeAdminModal()">
   <div class="modal" style="max-width:420px">
-    <button class="modal-close" onclick="closeAdminModal()">✕</button>
-    <h2 style="font-family:'Clash Display',sans-serif;font-size:1.3rem;margin-bottom:1.5rem">➕ Novo Administrador</h2>
+    <button class="modal-close" onclick="closeAdminModal()">×</button>
+    <h2 style="font-family:'Clash Display',sans-serif;font-size:1.3rem;margin-bottom:1.5rem"><svg style="vertical-align:middle;flex-shrink:0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Novo Administrador</h2>
     <div style="display:flex;flex-direction:column;gap:1rem">
       <div>
         <label style="font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:block;margin-bottom:.4rem">Nome</label>
@@ -833,7 +833,7 @@
 <!-- MODAL DETALHES -->
 <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
   <div class="modal">
-    <button class="modal-close" onclick="closeModalBtn()">✕</button>
+    <button class="modal-close" onclick="closeModalBtn()">×</button>
     <div id="modal-body"></div>
   </div>
 </div>
@@ -929,8 +929,8 @@ function updateSidebarAdmin() {
 function toggleEye() {
   const inp = document.getElementById('login-input');
   const btn = document.getElementById('eye-btn');
-  if (inp.type === 'password') { inp.type = 'text'; btn.textContent = '🙈'; }
-  else { inp.type = 'password'; btn.textContent = '👁️'; }
+  if (inp.type === 'password') { inp.type = 'text'; btn.textContent = '···'; }
+  else { inp.type = 'password'; btn.textContent = '···'; }
 }
 
 function logout() {
@@ -956,11 +956,11 @@ async function renderAdmins() {
       <div class="ajc-info">
         <div class="ajc-title">${a.nome} ${a.email === adminLogado?.email ? '<span style="font-size:.7rem;background:rgba(167,139,250,.2);color:#80DFCC;padding:.15rem .5rem;border-radius:50px;font-weight:600">Você</span>' : ''}</div>
         <div class="ajc-meta">
-          <span>📧 ${a.email}</span>
-          <span>📅 ${new Date(a.created_at).toLocaleDateString('pt-BR')}</span>
+          <span> ${a.email}</span>
+          <span> ${new Date(a.created_at).toLocaleDateString('pt-BR')}</span>
         </div>
       </div>
-      <span class="status-badge ${a.ativo ? 'status-aprovada' : 'status-rejeitada'}">${a.ativo ? '✅ Ativo' : '❌ Inativo'}</span>
+      <span class="status-badge ${a.ativo ? 'status-aprovada' : 'status-rejeitada'}">${a.ativo ? 'Ativo' : 'Inativo'}</span>
       <div class="ajc-actions">
         ${a.email !== adminLogado?.email ? `
           <button class="btn-action ${a.ativo ? 'btn-reject' : 'btn-approve'}" onclick="toggleAdminStatus('${a.id}', ${a.ativo})">
@@ -989,7 +989,7 @@ async function createAdmin() {
     return;
   }
 
-  showAdminMsg('✅ Administrador criado com sucesso!', 'success');
+  showAdminMsg('Administrador criado com sucesso!', 'success');
   setTimeout(() => { closeAdminModal(); renderAdmins(); }, 1500);
 }
 
@@ -1002,7 +1002,7 @@ async function toggleAdminStatus(id, ativo) {
 async function deleteAdmin(id, nome) {
   if (!confirm(`Tem certeza que deseja excluir o admin "${nome}"?`)) return;
   await sb.from('admins').delete().eq('id', id);
-  showToast('🗑️ Admin excluído.', 'info');
+  showToast('Admin excluído.', 'info');
   renderAdmins();
 }
 
@@ -1130,17 +1130,17 @@ function renderEmpresas() {
   c.innerHTML = empresas.length ? empresas.map(v => `
     <div class="company-card">
       <div class="cc-header">
-        <div class="cc-avatar">🏢</div>
+        <div class="cc-avatar"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
         <div>
           <div class="cc-name">${v.empresas?.nome_fantasia || '—'}</div>
           <div class="cc-setor">${v.empresas?.setor || '—'}</div>
         </div>
       </div>
       <div class="cc-meta">
-        <span>📧 ${v.empresas?.email || '—'}</span>
-        <span>📞 ${v.empresas?.telefone || '—'}</span>
-        <span>🪪 CNPJ: ${v.empresas?.cnpj || '—'}</span>
-        <span>💼 ${allVagas.filter(x => x.empresa_id === v.empresa_id).length} vaga(s)</span>
+        <span> ${v.empresas?.email || '—'}</span>
+        <span> ${v.empresas?.telefone || '—'}</span>
+        <span> CNPJ: ${v.empresas?.cnpj || '—'}</span>
+        <span> ${allVagas.filter(x => x.empresa_id === v.empresa_id).length} vaga(s)</span>
       </div>
     </div>
   `).join('') : emptyHTML('Nenhuma empresa', 'As empresas que cadastrarem vagas aparecerão aqui.');
@@ -1148,7 +1148,7 @@ function renderEmpresas() {
 
 function cardHTML(v, showActions) {
   const badgeClass = `status-${v.status}`;
-  const badgeText  = v.status === 'pendente' ? '⏳ Pendente' : v.status === 'aprovada' ? '✅ Aprovada' : '❌ Rejeitada';
+  const badgeText  = v.status === 'pendente' ? 'Pendente' : v.status === 'aprovada' ? 'Aprovada' : 'Rejeitada';
   const date = new Date(v.created_at).toLocaleDateString('pt-BR');
   const emp  = v.empresas?.nome_fantasia || '—';
   const id   = v.id;
@@ -1169,14 +1169,14 @@ function cardHTML(v, showActions) {
 
   return `
     <div class="admin-job-card" onclick="openDetail('${id}')">
-      <div class="ajc-logo" style="background:rgba(167,139,250,0.1)">💼</div>
+      <div class="ajc-logo" style="background:rgba(0,122,94,.1)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="12"/></svg></div>
       <div class="ajc-info">
         <div class="ajc-title">${v.titulo || 'Sem título'}</div>
         <div class="ajc-meta">
-          <span>🏢 ${emp}</span>
-          <span>📂 ${v.area || '—'}</span>
-          <span>📍 ${v.cidade || '—'}</span>
-          <span>📅 ${date}</span>
+          <span> ${emp}</span>
+          <span> ${v.area || '—'}</span>
+          <span> ${v.cidade || '—'}</span>
+          <span> ${date}</span>
         </div>
       </div>
       <span class="status-badge ${badgeClass}">${badgeText}</span>
@@ -1185,7 +1185,7 @@ function cardHTML(v, showActions) {
 }
 
 function emptyHTML(title, sub) {
-  return `<div class="empty-list"><div>📭</div><strong>${title}</strong><br><span style="font-size:0.8rem">${sub}</span></div>`;
+  return `<div class="empty-list"><div><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg></div><strong>${title}</strong><br><span style="font-size:0.8rem">${sub}</span></div>`;
 }
 
 // ---- ACTIONS (Supabase) ----
@@ -1194,7 +1194,7 @@ async function approveVaga(id) {
   if (error) { showToast('Erro ao aprovar.', 'error'); return; }
   const v = allVagas.find(x => x.id === id);
   if (v) v.status = 'aprovada';
-  showToast('✅ Vaga aprovada e publicada!', 'success');
+  showToast('Vaga aprovada e publicada!', 'success');
   render();
 }
 
@@ -1203,7 +1203,7 @@ async function rejectVaga(id) {
   if (error) { showToast('Erro ao rejeitar.', 'error'); return; }
   const v = allVagas.find(x => x.id === id);
   if (v) v.status = 'rejeitada';
-  showToast('❌ Vaga rejeitada.', 'error');
+  showToast('Vaga rejeitada.', 'error');
   render();
 }
 
@@ -1212,7 +1212,7 @@ async function deleteVaga(id) {
   const { error } = await sb.from('vagas').delete().eq('id', id);
   if (error) { showToast('Erro ao excluir.', 'error'); return; }
   allVagas = allVagas.filter(v => v.id !== id);
-  showToast('🗑️ Vaga excluída.', 'info');
+  showToast('Vaga excluída.', 'info');
   render();
 }
 
@@ -1221,7 +1221,7 @@ async function clearRejected() {
   if (!ids.length) { showToast('Nenhuma vaga rejeitada.', 'info'); return; }
   await sb.from('vagas').delete().in('id', ids);
   allVagas = allVagas.filter(v => v.status !== 'rejeitada');
-  showToast('🗑️ Vagas rejeitadas removidas.', 'info');
+  showToast('Vagas rejeitadas removidas.', 'info');
   render();
 }
 
@@ -1233,7 +1233,7 @@ function openDetail(id) {
   const v = allVagas.find(x => x.id === id);
   if (!v) return;
   const statusClass = `status-${v.status}`;
-  const statusText  = v.status === 'pendente' ? '⏳ Pendente' : v.status === 'aprovada' ? '✅ Aprovada' : '❌ Rejeitada';
+  const statusText  = v.status === 'pendente' ? 'Pendente' : v.status === 'aprovada' ? 'Aprovada' : 'Rejeitada';
 
   document.getElementById('modal-body').innerHTML = `
     <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem;">
@@ -1244,7 +1244,7 @@ function openDetail(id) {
       <span class="status-badge ${statusClass}">${statusText}</span>
     </div>
 
-    <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:0.5rem;">🏢 EMPRESA</div>
+    <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:0.5rem;">EMPRESA</div>
     <div class="detail-grid" style="margin-bottom:1.25rem;">
       <div class="detail-item"><div class="detail-label">Nome Fantasia</div><div class="detail-value">${v.empresas?.nome_fantasia || '—'}</div></div>
       <div class="detail-item"><div class="detail-label">CNPJ</div><div class="detail-value">${v.empresas?.cnpj || '—'}</div></div>
@@ -1252,7 +1252,7 @@ function openDetail(id) {
       <div class="detail-item"><div class="detail-label">Telefone</div><div class="detail-value">${v.empresas?.telefone || '—'}</div></div>
     </div>
 
-    <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:0.5rem;">💼 VAGA</div>
+    <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:0.5rem;">VAGA</div>
     <div class="detail-grid" style="margin-bottom:1.25rem;">
       <div class="detail-item"><div class="detail-label">Tipo</div><div class="detail-value">${v.tipo || '—'}</div></div>
       <div class="detail-item"><div class="detail-label">Área</div><div class="detail-value">${v.area || '—'}</div></div>
@@ -1262,19 +1262,19 @@ function openDetail(id) {
       <div class="detail-item"><div class="detail-label">Bolsa</div><div class="detail-value">R$ ${Number(v.bolsa||0).toLocaleString('pt-BR')}/mês</div></div>
     </div>
 
-    <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:0.4rem;">📝 DESCRIÇÃO</div>
+    <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:0.4rem;">DESCRIÇÃO</div>
     <div style="background:rgba(255,255,255,0.04);border-radius:10px;padding:1rem;font-size:0.85rem;line-height:1.7;margin-bottom:1rem;">${v.descricao || '—'}</div>
 
-    <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:0.4rem;">📋 REQUISITOS</div>
+    <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:0.4rem;">REQUISITOS</div>
     <div style="background:rgba(255,255,255,0.04);border-radius:10px;padding:1rem;font-size:0.85rem;line-height:1.7;margin-bottom:1rem;">${v.requisitos || '—'}</div>
 
-    <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:0.4rem;">🎁 BENEFÍCIOS</div>
+    <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:0.4rem;">BENEFÍCIOS</div>
     <div style="background:rgba(255,255,255,0.04);border-radius:10px;padding:1rem;font-size:0.85rem;margin-bottom:1.5rem;">${v.beneficios || '—'}</div>
 
     ${v.status === 'pendente' ? `
     <div class="modal-actions">
-      <button class="btn-modal-approve" onclick="approveVaga('${v.id}');closeModalBtn()">✅ Aprovar e Publicar</button>
-      <button class="btn-modal-reject"  onclick="rejectVaga('${v.id}');closeModalBtn()">❌ Rejeitar</button>
+      <button class="btn-modal-approve" onclick="approveVaga('${v.id}');closeModalBtn()"><svg style="vertical-align:middle;flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Aprovar e Publicar</button>
+      <button class="btn-modal-reject"  onclick="rejectVaga('${v.id}');closeModalBtn()"><svg style="vertical-align:middle;flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Rejeitar</button>
     </div>` : ''}
   `;
 

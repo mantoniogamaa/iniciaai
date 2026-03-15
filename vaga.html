@@ -612,7 +612,7 @@
 
 <!-- NOT FOUND -->
 <div class="not-found" id="not-found" style="display:none">
-  <div class="icon">🔍</div>
+  <div class="icon"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
   <h2>Vaga não encontrada</h2>
   <p>Esta vaga pode ter sido encerrada ou o link está incorreto.</p>
   <a href="index.html" style="display:inline-block;padding:.75rem 1.75rem;background:linear-gradient(135deg,var(--accent),var(--accent-dark));color:white;border-radius:50px;font-weight:700;text-decoration:none;font-size:.9rem">
@@ -653,23 +653,23 @@
     <div class="content-col">
 
       <div class="content-section" style="animation-delay:0ms">
-        <h3>📋 Sobre a vaga</h3>
+        <h3><svg style="vertical-align:middle;flex-shrink:0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Sobre a vaga</h3>
         <p id="vaga-descricao">—</p>
-        <div class="prazo-chip" id="vaga-prazo" style="display:none">📅 Inscrições até: <span id="prazo-val"></span></div>
+        <div class="prazo-chip" id="vaga-prazo" style="display:none"> Inscrições até: <span id="prazo-val"></span></div>
       </div>
 
       <div class="content-section" id="sec-requisitos" style="animation-delay:60ms">
-        <h3>✅ Requisitos</h3>
+        <h3><svg style="vertical-align:middle;flex-shrink:0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Requisitos</h3>
         <ul id="vaga-requisitos"></ul>
       </div>
 
       <div class="content-section" id="sec-beneficios" style="animation-delay:120ms">
-        <h3>🎁 Benefícios</h3>
+        <h3><svg style="vertical-align:middle;flex-shrink:0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg> Benefícios</h3>
         <div class="tags-wrap" id="vaga-beneficios"></div>
       </div>
 
       <div class="content-section" style="animation-delay:180ms">
-        <h3>🏢 Sobre a empresa</h3>
+        <h3><svg style="vertical-align:middle;flex-shrink:0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg> Sobre a empresa</h3>
         <div class="empresa-row">
           <div class="empresa-avatar" id="emp-avatar">?</div>
           <div>
@@ -680,7 +680,7 @@
       </div>
 
       <div class="content-section" id="sec-tags" style="animation-delay:240ms;display:none">
-        <h3>🏷️ Tags</h3>
+        <h3><svg style="vertical-align:middle;flex-shrink:0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg> Tags</h3>
         <div class="tags-wrap" id="vaga-tags"></div>
       </div>
 
@@ -694,7 +694,7 @@
         <div class="apply-salary-label">por mês</div>
         <div class="apply-meta" id="apply-meta"></div>
         <button class="btn-apply-main" id="btn-candidatar" onclick="candidatar()">
-          Candidatar-se agora 🚀
+          Candidatar-se agora
         </button>
         <button class="btn-login-hint" id="btn-criar-perfil" onclick="window.location.href='cadastro-candidato.html'" style="display:none">
           Crie seu perfil para se candidatar
@@ -707,10 +707,10 @@
         <div class="share-url" id="share-url-display"></div>
         <div class="share-btns">
           <button class="share-btn" id="btn-copy" onclick="copyLink()">
-            <span>📋</span> Copiar link
+            <svg style="vertical-align:middle;flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Copiar link
           </button>
           <button class="share-btn" onclick="shareWhatsApp()">
-            <span>💬</span> WhatsApp
+            <svg style="vertical-align:middle;flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> WhatsApp
           </button>
         </div>
       </div>
@@ -792,7 +792,7 @@ async function init() {
 function renderVaga(v) {
   const isConf = v.confidencial;
   const emp = isConf ? 'Empresa Confidencial' : (v.empresas?.nome_fantasia || v.empresas?.razao_social || '—');
-  const initial = isConf ? '🔒' : emp.charAt(0).toUpperCase();
+  const initial = isConf ? '' : emp.charAt(0).toUpperCase();
   const isE = v.tipo === 'Estágio';
   const modColor = v.modalidade === 'Remoto' ? 'hb-remote' : v.modalidade === 'Híbrido' ? 'hb-hybrid' : 'hb-presential';
 
@@ -816,10 +816,10 @@ function renderVaga(v) {
   document.getElementById('hero-badges').innerHTML = `
     <span class="hbadge ${isE ? 'hb-estagio' : 'hb-aprendiz'}">${v.tipo}</span>
     <span class="hbadge ${modColor}">${v.modalidade}</span>
-    <span class="hbadge hb-neutral">📂 ${v.area}</span>
-    ${v.escolaridade ? `<span class="hbadge hb-neutral">🎓 ${v.escolaridade}</span>` : ''}
-    ${v.periodo ? `<span class="hbadge hb-neutral">🕐 ${v.periodo}</span>` : ''}
-    ${isConf ? `<span class="hbadge" style="background:rgba(251,191,36,.15);color:#B45309;border:1px solid rgba(251,191,36,.3)">🔒 Empresa Confidencial</span>` : ''}
+    <span class="hbadge hb-neutral"> ${v.area}</span>
+    ${v.escolaridade ? `<span class="hbadge hb-neutral"> ${v.escolaridade}</span>` : ''}
+    ${v.periodo ? `<span class="hbadge hb-neutral"> ${v.periodo}</span>` : ''}
+    ${isConf ? `<span class="hbadge" style="background:rgba(251,191,36,.15);color:#B45309;border:1px solid rgba(251,191,36,.3)"> Empresa Confidencial</span>` : ''}
   `;
 
   document.getElementById('quick-bar').innerHTML = `
@@ -861,10 +861,10 @@ function renderVaga(v) {
   // Sidebar
   document.getElementById('apply-salary').textContent = `R$ ${Number(v.bolsa||0).toLocaleString('pt-BR')}`;
   document.getElementById('apply-meta').innerHTML = `
-    <div class="apply-meta-row"><div class="icon">📍</div><div><div class="apply-meta-label">Local</div><div class="apply-meta-val">${v.cidade}</div></div></div>
-    <div class="apply-meta-row"><div class="icon">⏱</div><div><div class="apply-meta-label">Carga horária</div><div class="apply-meta-val">${v.horas || '—'}</div></div></div>
-    <div class="apply-meta-row"><div class="icon">🕐</div><div><div class="apply-meta-label">Período</div><div class="apply-meta-val">${v.periodo || '—'}</div></div></div>
-    <div class="apply-meta-row"><div class="icon">👥</div><div><div class="apply-meta-label">Vagas abertas</div><div class="apply-meta-val">${v.num_vagas || 1}</div></div></div>
+    <div class="apply-meta-row"><div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><div class="apply-meta-label">Local</div><div class="apply-meta-val">${v.cidade}</div></div></div>
+    <div class="apply-meta-row"><div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><div class="apply-meta-label">Carga horária</div><div class="apply-meta-val">${v.horas || '—'}</div></div></div>
+    <div class="apply-meta-row"><div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><div class="apply-meta-label">Período</div><div class="apply-meta-val">${v.periodo || '—'}</div></div></div>
+    <div class="apply-meta-row"><div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div><div class="apply-meta-label">Vagas abertas</div><div class="apply-meta-val">${v.num_vagas || 1}</div></div></div>
   `;
 
   // Share
@@ -893,7 +893,7 @@ async function setupCandidaturaBtn() {
 
   if (data) {
     btn.disabled = true;
-    btn.textContent = '✅ Candidatura já enviada';
+    btn.textContent = 'Candidatura já enviada';
     showFeedback('Você já se candidatou a esta vaga!', 'info');
   }
 }
@@ -910,9 +910,9 @@ async function candidatar() {
 
   if (error) {
     showFeedback('Erro ao enviar. Tente novamente.', 'error');
-    btn.disabled = false; btn.textContent = 'Candidatar-se agora 🚀';
+    btn.disabled = false; btn.textContent = 'Candidatar-se agora';
   } else {
-    btn.textContent = '✅ Candidatura enviada!';
+    btn.textContent = 'Candidatura enviada!';
     showFeedback('Boa sorte! A empresa entrará em contato.', 'success');
   }
 }
@@ -932,13 +932,13 @@ async function copyLink() {
   await navigator.clipboard.writeText(window.location.href);
   const btn = document.getElementById('btn-copy');
   btn.classList.add('copied');
-  btn.innerHTML = '<span>✅</span> Copiado!';
-  setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = '<span>📋</span> Copiar link'; }, 2000);
+  btn.innerHTML = 'Copiado!';
+  setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = '<svg style="vertical-align:middle;flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Copiar link'; }, 2000);
 }
 
 function shareWhatsApp() {
   const emp = vagaAtual?.empresas?.nome_fantasia || '';
-  const txt = encodeURIComponent(`🎯 *${vagaAtual?.titulo}* — ${emp}\n\nVaga de ${vagaAtual?.tipo} no IniciaAí!\n📍 ${vagaAtual?.cidade} · 💰 R$ ${Number(vagaAtual?.bolsa||0).toLocaleString('pt-BR')}/mês\n\n🔗 ${window.location.href}`);
+  const txt = encodeURIComponent(`*${vagaAtual?.titulo}* — ${emp}\n\nVaga de ${vagaAtual?.tipo} no IniciaAí!\n${vagaAtual?.cidade} · R$ ${Number(vagaAtual?.bolsa||0).toLocaleString('pt-BR')}/mês\n\n${window.location.href}`);
   window.open(`https://wa.me/?text=${txt}`, '_blank');
 }
 
