@@ -686,7 +686,7 @@
     <a href="index.html" style="color:var(--muted);text-decoration:none;font-size:.875rem;font-weight:500">Ver Vagas</a>
     <a href="sobre.html" style="color:var(--muted);text-decoration:none;font-size:.875rem;font-weight:500">Sobre</a>
   </div>
-  <a class="nav-back" href="index.html">← Ver vagas</a>
+  <a class="nav-back" href="vagas.html">← Ver vagas</a>
 </nav>
 <div class="mobile-drawer" id="mobile-drawer">
     <a class="mobile-nav-link" href="index.html">Portal de Vagas</a>
@@ -939,7 +939,7 @@
     <img src="logo-branca.png" alt="Conecta — Polo Bauru-Centro" style="height:40px;object-fit:contain;filter:brightness(0) invert(1);opacity:.85">
   </div>
   <p style="font-size:.8rem;color:rgba(255,255,255,.35)">
-    <a href="index.html" style="color:rgba(255,255,255,.45);text-decoration:none">Ver vagas</a> &nbsp;·&nbsp;
+    <a href="vagas.html" style="color:rgba(255,255,255,.45);text-decoration:none">Ver vagas</a> &nbsp;·&nbsp;
     <a href="sobre.html" style="color:rgba(255,255,255,.45);text-decoration:none">Sobre</a> &nbsp;·&nbsp;
     <a href="termos.html" style="color:rgba(255,255,255,.45);text-decoration:none">Termos & Privacidade</a>
   </p>
@@ -1102,7 +1102,7 @@ async function loadCandidaturas() {
   const list = document.getElementById('cands-list');
 
   if (error || !data?.length) {
-    list.innerHTML = `<div class="empty-cands"><div><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg></div><strong>Nenhuma candidatura ainda</strong><br><span style="font-size:.85rem">Explore as vagas e candidate-se!</span><br><br><a href="index.html" style="color:var(--violet);font-weight:600;">Ver vagas →</a></div>`;
+    list.innerHTML = `<div class="empty-cands"><div><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg></div><strong>Nenhuma candidatura ainda</strong><br><span style="font-size:.85rem">Explore as vagas e candidate-se!</span><br><br><a href="vagas.html" style="color:var(--violet);font-weight:600;">Ver vagas →</a></div>`;
     return;
   }
 
