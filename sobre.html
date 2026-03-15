@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sobre o Conecta — Portal de oportunidades do Polo Bauru Centro</title>
-<meta name="description" content="Conheça o Conecta, o portal do Polo Bauru Centro da Universidade Anhembi Morumbi que conecta estudantes com oportunidades de estágio e Jovem Aprendiz.">
+<title>Sobre o IniciaAí — O portal feito para quem está começando</title>
+<meta name="description" content="Conheça o IniciaAí, o portal que conecta estudantes com as melhores oportunidades de estágio e Jovem Aprendiz em Bauru.">
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
 <style>
   /* ══ MOBILE FIX ══ */
@@ -304,98 +304,46 @@ section { padding: 5rem 2rem; }
 
 /* ── COMO FUNCIONA ───────────────────────────────────────────── */
 .como-funciona { background: var(--bg); }
-.how-columns {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem;
+.tabs-how {
+  display: flex; gap: .35rem;
+  background: white; padding: .35rem;
+  border-radius: 12px; border: 1px solid var(--border);
+  max-width: 380px; margin-bottom: 2.5rem;
 }
-.how-col {
-  display: flex; flex-direction: column; gap: 0;
+.tab-how {
+  flex: 1; padding: .6rem 1rem; border-radius: 9px;
+  border: none; cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-size: .875rem; font-weight: 600;
+  color: var(--muted); background: transparent;
+  transition: all .2s; display: flex; align-items: center; gap: .4rem;
 }
-.how-col-header {
-  display: flex; align-items: center; gap: .65rem;
-  padding: 1rem 1.25rem;
-  border-radius: 14px 14px 0 0;
-  font-family: 'Clash Display', sans-serif;
-  font-size: 1.05rem; font-weight: 700;
-  letter-spacing: -.01em;
-  position: relative;
-}
-.how-col-header svg { flex-shrink: 0; }
-.how-col-cand .how-col-header {
-  background: linear-gradient(135deg, rgba(0,122,94,.1), rgba(0,122,94,.05));
-  color: var(--primary);
-  border: 1.5px solid rgba(0,122,94,.18);
-  border-bottom: none;
-}
-.how-col-emp .how-col-header {
-  background: linear-gradient(135deg, rgba(0,168,142,.1), rgba(0,168,142,.05));
-  color: var(--accent);
-  border: 1.5px solid rgba(0,168,142,.18);
-  border-bottom: none;
-}
-.how-col-body {
-  display: flex; flex-direction: column; gap: 0;
-  background: white;
-  border-radius: 0 0 14px 14px;
-  overflow: hidden;
-}
-.how-col-cand .how-col-body { border: 1.5px solid rgba(0,122,94,.18); border-top: none; }
-.how-col-emp .how-col-body { border: 1.5px solid rgba(0,168,142,.18); border-top: none; }
-
+.tab-how:hover { color: var(--primary); background: var(--accent-light); }
+.tab-how.active { background: var(--accent); color: white; }
+.how-section { display: none; }
+.how-section.show { display: block; }
+.steps-list { display: flex; flex-direction: column; gap: 1rem; max-width: 600px; }
 .step-item {
-  display: flex; gap: 1rem; align-items: flex-start;
-  padding: 1.15rem 1.25rem;
-  position: relative;
-  transition: background .3s, transform .3s;
-  cursor: default;
+  display: flex; gap: 1.1rem; align-items: flex-start;
+  background: white; border-radius: 14px; padding: 1.25rem;
+  border: 1.5px solid var(--border);
+  transition: transform .2s, box-shadow .2s, border-color .2s;
 }
-.step-item:not(:last-child)::after {
-  content: '';
-  position: absolute; bottom: 0; left: 1.25rem; right: 1.25rem;
-  height: 1px;
-  background: var(--border);
-}
-.how-col-cand .step-item:hover {
-  background: rgba(0,122,94,.04);
-}
-.how-col-emp .step-item:hover {
-  background: rgba(0,168,142,.04);
-}
-.step-item:hover .step-dot {
-  transform: scale(1.12) rotate(-4deg);
-}
-.step-item:hover .step-title {
-  letter-spacing: 0;
-}
-.step-item:hover .step-num {
-  transform: scale(1.15);
+.step-item:hover {
+  transform: translateX(4px);
+  box-shadow: 0 6px 20px rgba(0,122,94,.1);
+  border-color: rgba(0,122,94,.25);
 }
 .step-dot {
-  width: 42px; height: 42px; border-radius: 11px;
+  width: 44px; height: 44px; border-radius: 12px;
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
-  transition: transform .3s cubic-bezier(.34,1.56,.64,1), background .3s;
 }
 .step-dot-v { background: rgba(0,122,94,.1); }
 .step-dot-e { background: rgba(0,168,142,.1); }
-.step-num {
-  width: 22px; height: 22px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: .65rem; font-weight: 800;
-  flex-shrink: 0;
-  transition: transform .3s cubic-bezier(.34,1.56,.64,1);
-}
-.how-col-cand .step-num { background: var(--primary); color: white; }
-.how-col-emp .step-num { background: var(--accent); color: white; }
-.step-label { font-size: .68rem; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; margin-bottom: .15rem; }
-.how-col-cand .step-label { color: var(--primary); }
-.how-col-emp .step-label { color: var(--accent); }
-.step-title {
-  font-family: 'Clash Display', sans-serif; font-size: .92rem; font-weight: 700;
-  color: var(--text); margin-bottom: .2rem; letter-spacing: -.01em;
-  transition: letter-spacing .3s;
-}
-.step-desc { font-size: .82rem; color: var(--muted); line-height: 1.6; }
-.step-content { flex: 1; min-width: 0; }
+.step-label { font-size: .68rem; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); margin-bottom: .2rem; }
+.step-title { font-family: 'Clash Display', sans-serif; font-size: .95rem; font-weight: 700; color: var(--primary); margin-bottom: .3rem; letter-spacing: -.01em; }
+.step-desc  { font-size: .84rem; color: var(--muted); line-height: 1.65; }
 
 /* ── DIFERENCIAIS ────────────────────────────────────────────── */
 .diff-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1.25rem; }
@@ -537,27 +485,11 @@ section { padding: 5rem 2rem; }
 .cta-btn-b:hover { background: rgba(255,255,255,.18); transform: translateY(-2px); }
 
 /* ── FOOTER ──────────────────────────────────────────────────── */
-footer {
-  background: #001A12;
-  padding: 2.5rem 2rem 2rem;
-  text-align: center;
-  position: relative;
-}
-footer::before {
-  content: '';
-  position: absolute; top: 0; left: 5%; right: 5%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(0,168,142,.35), transparent);
-}
-footer img { height: 38px; object-fit: contain; filter: brightness(0) invert(1); opacity: .85; margin-bottom: 1.25rem; }
-footer .footer-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: .75rem; }
-footer a {
-  color: rgba(255,255,255,.5); text-decoration: none;
-  font-size: .82rem; font-weight: 500;
-  transition: color .2s;
-}
-footer a:hover { color: var(--accent); }
-footer .footer-copy { font-size: .72rem; color: rgba(255,255,255,.2); margin-top: .5rem; }
+footer { background: var(--dark); border-top: 1px solid rgba(255,255,255,.08); padding: 2rem; text-align: center; }
+footer img { height: 38px; object-fit: contain; filter: brightness(0) invert(1); opacity: .8; margin-bottom: 1rem; }
+footer p { font-size: .8rem; color: rgba(255,255,255,.35); }
+footer a { color: rgba(255,255,255,.45); text-decoration: none; transition: color .2s; }
+footer a:hover { color: white; }
 
 /* ── RESPONSIVE ──────────────────────────────────────────────── */
 @media(max-width: 768px) {
@@ -584,7 +516,6 @@ footer .footer-copy { font-size: .72rem; color: rgba(255,255,255,.2); margin-top
   .valores-grid { grid-template-columns: 1fr 1fr; }
   .diff-grid { grid-template-columns: 1fr; }
   .steps-list { max-width: 100%; }
-  .how-columns { grid-template-columns: 1fr; gap: 2rem; }
   .faq-list { max-width: 100%; }
   .section-title { font-size: 1.65rem; }
   .cta-btns { flex-direction: column; align-items: center; }
@@ -604,12 +535,11 @@ footer .footer-copy { font-size: .72rem; color: rgba(255,255,255,.2); margin-top
 <body>
 
 <nav>
-  <a class="logo" href="index.html" aria-label="Conecta - Página inicial"></a>
+  <a class="logo" href="index.html" aria-label="IniciaAí - Página inicial"></a>
   <div class="nav-links">
-    <a href="vagas.html">Vagas</a>
+    <a href="index.html">Ver Vagas</a>
     <a href="sobre.html" class="active">Sobre</a>
     <a href="cadastro-empresa.html">Para Empresas</a>
-    <a href="termos.html">Termos</a>
   </div>
   <div style="display:flex;align-items:center;gap:.75rem">
     <a class="btn-nav-cta" href="cadastro-candidato.html">Criar Perfil</a>
@@ -645,8 +575,8 @@ footer .footer-copy { font-size: .72rem; color: rgba(255,255,255,.2); margin-top
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
       Portal oficial — Anhembi Morumbi Bauru-Centro
     </div>
-    <h1>O portal que <span>conecta</span> talentos<br>a oportunidades</h1>
-    <p class="hero-sub">O Conecta é o portal de estágio e Jovem Aprendiz do Polo Bauru Centro da Universidade Anhembi Morumbi. Aqui, estudantes encontram oportunidades reais e empresas descobrem talentos comprometidos.</p>
+    <h1>O portal que coloca<br>o <span>estudante em primeiro</span></h1>
+    <p class="hero-sub">Conectamos jovens talentos com empresas que acreditam no potencial de quem está dando os primeiros passos na carreira.</p>
     <div class="hero-ctas">
       <a class="btn-hero-primary" href="cadastro-candidato.html">Criar meu perfil grátis →</a>
       <a class="btn-hero-secondary" href="#como-funciona">Como funciona</a>
@@ -681,13 +611,13 @@ footer .footer-copy { font-size: .72rem; color: rgba(255,255,255,.2); margin-top
           Nossa Missão
         </div>
         <h2 class="section-title">Democratizar o acesso às <span>primeiras oportunidades</span></h2>
-        <p class="section-sub" style="margin-bottom:1.25rem">No Brasil, conseguir o primeiro emprego ainda é um desafio enorme. O Conecta nasceu no Polo Bauru Centro para mudar essa realidade — criando uma ponte direta entre estudantes motivados e empresas que valorizam o potencial humano acima da experiência.</p>
+        <p class="section-sub" style="margin-bottom:1.25rem">No Brasil, conseguir o primeiro emprego ainda é um desafio enorme. Criamos o IniciaAí para mudar isso — conectando estudantes motivados com empresas que valorizam o potencial humano acima da experiência.</p>
         <p class="section-sub">Acreditamos que todo jovem merece uma chance real. Nossa plataforma é o elo que faltava entre o talento de quem quer aprender e as empresas que precisam de gente comprometida.</p>
       </div>
       <div class="fade-in" style="padding-bottom:2.5rem">
         <div class="missao-card-main">
-          <h3>Por que o nome Conecta?</h3>
-          <p>Conectar é a nossa essência: ligar talentos a oportunidades, aproximar empresas de estudantes, e integrar o Polo Bauru Centro ao mercado de trabalho regional. O nome traduz exatamente o propósito da plataforma.</p>
+          <h3>Por que o IniciaAí existe?</h3>
+          <p>Milhões de estudantes brasileiros enfrentam o paradoxo cruel: precisam de experiência para conseguir emprego, mas precisam de emprego para ter experiência. O estágio e o Jovem Aprendiz são a porta de entrada — e nós abrimos ela.</p>
         </div>
         <div class="missao-card-float">
           <div>
@@ -704,70 +634,60 @@ footer .footer-copy { font-size: .72rem; color: rgba(255,255,255,.2); margin-top
 <!-- ═══════ COMO FUNCIONA ═══════ -->
 <section class="como-funciona" id="como-funciona">
   <div class="container">
-    <div class="fade-in" style="margin-bottom:2.25rem;text-align:center">
-      <div class="section-badge" style="margin:0 auto .75rem">
+    <div class="fade-in" style="margin-bottom:2.25rem">
+      <div class="section-badge">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
         Como Funciona
       </div>
       <h2 class="section-title">Simples para <span>candidatos</span> e <span>empresas</span></h2>
     </div>
-    <div class="how-columns fade-in">
-      <!-- COLUNA CANDIDATOS -->
-      <div class="how-col how-col-cand">
-        <div class="how-col-header">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          Para Candidatos
+    <div class="tabs-how">
+      <button class="tab-how active" onclick="switchHow('cand',this)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Candidatos
+      </button>
+      <button class="tab-how" onclick="switchHow('emp',this)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+        Empresas
+      </button>
+    </div>
+    <div class="how-section show" id="how-cand">
+      <div class="steps-list">
+        <div class="step-item fade-in">
+          <div class="step-dot step-dot-v"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg></div>
+          <div><div class="step-label">Passo 1</div><div class="step-title">Crie seu perfil em minutos</div><div class="step-desc">Cadastro gratuito com dados básicos, formação e objetivo profissional. Opcionalmente faça o teste de perfil DISC para se destacar.</div></div>
         </div>
-        <div class="how-col-body">
-          <div class="step-item">
-            <div class="step-num">1</div>
-            <div class="step-dot step-dot-v"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg></div>
-            <div class="step-content"><div class="step-label">Passo 1</div><div class="step-title">Crie seu perfil em minutos</div><div class="step-desc">Cadastro gratuito com dados básicos, formação e objetivo profissional. Opcionalmente faça o teste de perfil DISC para se destacar.</div></div>
-          </div>
-          <div class="step-item">
-            <div class="step-num">2</div>
-            <div class="step-dot step-dot-v"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
-            <div class="step-content"><div class="step-label">Passo 2</div><div class="step-title">Explore vagas com filtros avançados</div><div class="step-desc">Filtre por área, modalidade, período, cidade e bolsa. Cada vaga tem página própria com todos os detalhes.</div></div>
-          </div>
-          <div class="step-item">
-            <div class="step-num">3</div>
-            <div class="step-dot step-dot-v"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
-            <div class="step-content"><div class="step-label">Passo 3</div><div class="step-title">Candidate-se com um clique</div><div class="step-desc">Sua candidatura chega diretamente para o RH da empresa. Acompanhe o status em tempo real no seu painel.</div></div>
-          </div>
-          <div class="step-item">
-            <div class="step-num">4</div>
-            <div class="step-dot step-dot-v"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
-            <div class="step-content"><div class="step-label">Passo 4</div><div class="step-title">Receba o contato da empresa</div><div class="step-desc">Se aprovado, a empresa entra em contato pelo WhatsApp ou LinkedIn cadastrados no seu perfil.</div></div>
-          </div>
+        <div class="step-item fade-in">
+          <div class="step-dot step-dot-v"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+          <div><div class="step-label">Passo 2</div><div class="step-title">Explore vagas com filtros avançados</div><div class="step-desc">Filtre por área, modalidade, período, cidade e bolsa. Cada vaga tem página própria com todos os detalhes.</div></div>
+        </div>
+        <div class="step-item fade-in">
+          <div class="step-dot step-dot-v"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+          <div><div class="step-label">Passo 3</div><div class="step-title">Candidate-se com um clique</div><div class="step-desc">Sua candidatura chega diretamente para o RH da empresa. Acompanhe o status em tempo real no seu painel.</div></div>
+        </div>
+        <div class="step-item fade-in">
+          <div class="step-dot step-dot-v"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+          <div><div class="step-label">Passo 4</div><div class="step-title">Receba o contato da empresa</div><div class="step-desc">Se aprovado, a empresa entra em contato pelo WhatsApp ou LinkedIn cadastrados no seu perfil. É só aparecer!</div></div>
         </div>
       </div>
-      <!-- COLUNA EMPRESAS -->
-      <div class="how-col how-col-emp">
-        <div class="how-col-header">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
-          Para Empresas
+    </div>
+    <div class="how-section" id="how-emp">
+      <div class="steps-list">
+        <div class="step-item fade-in">
+          <div class="step-dot step-dot-e"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
+          <div><div class="step-label">Passo 1</div><div class="step-title">Cadastre sua empresa</div><div class="step-desc">Informe os dados da empresa e crie sua conta. O processo é rápido e completamente gratuito.</div></div>
         </div>
-        <div class="how-col-body">
-          <div class="step-item">
-            <div class="step-num">1</div>
-            <div class="step-dot step-dot-e"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
-            <div class="step-content"><div class="step-label">Passo 1</div><div class="step-title">Cadastre sua empresa</div><div class="step-desc">Informe os dados da empresa e crie sua conta. O processo é rápido e completamente gratuito.</div></div>
-          </div>
-          <div class="step-item">
-            <div class="step-num">2</div>
-            <div class="step-dot step-dot-e"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
-            <div class="step-content"><div class="step-label">Passo 2</div><div class="step-title">Publique sua vaga</div><div class="step-desc">Preencha o formulário detalhado com cargo, benefícios, requisitos e bolsa. Pode manter confidencial se quiser.</div></div>
-          </div>
-          <div class="step-item">
-            <div class="step-num">3</div>
-            <div class="step-dot step-dot-e"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg></div>
-            <div class="step-content"><div class="step-label">Passo 3</div><div class="step-title">Vaga revisada e publicada</div><div class="step-desc">Nossa equipe revisa e aprova em até 24h. Vagas com informações completas são aprovadas mais rápido.</div></div>
-          </div>
-          <div class="step-item">
-            <div class="step-num">4</div>
-            <div class="step-dot step-dot-e"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-            <div class="step-content"><div class="step-label">Passo 4</div><div class="step-title">Gerencie candidatos no painel</div><div class="step-desc">Visualize currículos, perfis DISC, contacte diretamente pelo WhatsApp e registre o status de cada candidato.</div></div>
-          </div>
+        <div class="step-item fade-in">
+          <div class="step-dot step-dot-e"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+          <div><div class="step-label">Passo 2</div><div class="step-title">Publique sua vaga</div><div class="step-desc">Preencha o formulário detalhado com cargo, benefícios, requisitos e bolsa. Pode manter confidencial se quiser.</div></div>
+        </div>
+        <div class="step-item fade-in">
+          <div class="step-dot step-dot-e"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg></div>
+          <div><div class="step-label">Passo 3</div><div class="step-title">Vaga revisada e publicada</div><div class="step-desc">Nossa equipe revisa e aprova em até 24h. Vagas com informações completas são aprovadas mais rápido.</div></div>
+        </div>
+        <div class="step-item fade-in">
+          <div class="step-dot step-dot-e"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <div><div class="step-label">Passo 4</div><div class="step-title">Gerencie candidatos no painel</div><div class="step-desc">Visualize currículos, perfis DISC, contacte diretamente pelo WhatsApp ou LinkedIn e registre o status de cada candidato.</div></div>
         </div>
       </div>
     </div>
@@ -782,7 +702,7 @@ footer .footer-copy { font-size: .72rem; color: rgba(255,255,255,.2); margin-top
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
         Diferenciais
       </div>
-      <h2 class="section-title">Por que escolher o <span>Conecta?</span></h2>
+      <h2 class="section-title">Por que escolher o <span>IniciaAí?</span></h2>
     </div>
     <div class="diff-grid">
       <div class="diff-card fade-in">
@@ -831,7 +751,7 @@ footer .footer-copy { font-size: .72rem; color: rgba(255,255,255,.2); margin-top
         Nossos Valores
       </div>
       <h2 class="section-title">Guiados por propósito,<br><span>movidos por impacto</span></h2>
-      <p class="section-sub">Construímos o Conecta com valores que acreditamos de verdade — não como decoração de site, mas como critérios que guiam cada decisão que tomamos.</p>
+      <p class="section-sub">Construímos o IniciaAí com valores que acreditamos de verdade — não como decoração de site, mas como critérios que guiam cada decisão que tomamos.</p>
     </div>
     <div class="valores-grid fade-in">
       <div class="valor-card">
@@ -862,7 +782,7 @@ footer .footer-copy { font-size: .72rem; color: rgba(255,255,255,.2); margin-top
       <div class="valor-card">
         <div class="valor-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
         <div class="valor-name">Impacto Social Real</div>
-        <div class="valor-desc">Cada contratação via Conecta representa uma família que mudou de patamar. Isso nos motiva todo dia.</div>
+        <div class="valor-desc">Cada contratação via IniciaAí representa uma família que mudou de patamar. Isso nos motiva todo dia.</div>
       </div>
     </div>
   </div>
@@ -929,7 +849,7 @@ footer .footer-copy { font-size: .72rem; color: rgba(255,255,255,.2); margin-top
     </div>
     <div class="faq-list">
       <div class="faq-item" onclick="toggleFaq(this)">
-        <div class="faq-q">O Conecta é gratuito para candidatos?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-q">O IniciaAí é gratuito para candidatos?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></div>
         <div class="faq-a"><p>Sim, 100% gratuito para candidatos, sem exceções. Criar perfil, fazer o teste DISC, se candidatar a vagas e fazer upload do currículo — tudo sem custo nenhum.</p></div>
       </div>
       <div class="faq-item" onclick="toggleFaq(this)">
@@ -941,7 +861,7 @@ footer .footer-copy { font-size: .72rem; color: rgba(255,255,255,.2); margin-top
         <div class="faq-a"><p>O DISC é um teste comportamental muito usado em RH que classifica seu perfil em Dominante, Influente, Estável ou Conscencioso. Candidatos com DISC têm seu badge exibido no perfil, o que aumenta muito as chances de ser encontrado por empresas que buscam um perfil específico. Leva apenas 3 minutos.</p></div>
       </div>
       <div class="faq-item" onclick="toggleFaq(this)">
-        <div class="faq-q">O Conecta garante contratação?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-q">O IniciaAí garante contratação?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></div>
         <div class="faq-a"><p>Não garantimos contratação — somos um portal de conexão. O processo seletivo é conduzido pela empresa. O que garantimos é que todas as vagas são reais, revisadas e publicadas por empresas verificadas.</p></div>
       </div>
       <div class="faq-item" onclick="toggleFaq(this)">
@@ -969,16 +889,23 @@ footer .footer-copy { font-size: .72rem; color: rgba(255,255,255,.2); margin-top
 </section>
 
 <footer>
-  <div><img src="logobranca.png" alt="Conecta — Polo Bauru-Centro"></div>
-  <div class="footer-links">
-    <a href="vagas.html">Ver vagas</a>
-    <a href="sobre.html">Sobre</a>
+  <div><img src="logobranca.png" alt="Universidade Anhembi Morumbi — Polo Bauru-Centro"></div>
+  <p>
+    <a href="index.html">Ver vagas</a> &nbsp;·&nbsp;
+    <a href="sobre.html">Sobre</a> &nbsp;·&nbsp;
     <a href="termos.html">Termos & Privacidade</a>
-  </div>
-  <p class="footer-copy">© 2025 Universidade Anhembi Morumbi — Polo Bauru-Centro. Todos os direitos reservados.</p>
+  </p>
+  <p style="margin-top:.5rem;font-size:.72rem;color:rgba(255,255,255,.2)">© 2025 Universidade Anhembi Morumbi — Polo Bauru-Centro. Todos os direitos reservados.</p>
 </footer>
 
 <script>
+function switchHow(tab, el) {
+  document.querySelectorAll('.how-section').forEach(s => s.classList.remove('show'));
+  document.querySelectorAll('.tab-how').forEach(b => b.classList.remove('active'));
+  document.getElementById('how-' + tab).classList.add('show');
+  el.classList.add('active');
+}
+
 function toggleFaq(el) {
   const isOpen = el.classList.contains('open');
   document.querySelectorAll('.faq-item').forEach(f => {

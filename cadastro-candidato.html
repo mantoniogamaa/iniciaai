@@ -3,24 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Conecta — Área do Candidato</title>
-<meta name="description" content="Crie seu perfil, candidate-se a vagas e acompanhe suas candidaturas no Conecta.">
+<title>IniciaAí — Área do Candidato</title>
+<meta name="description" content="Crie seu perfil, candidate-se a vagas e acompanhe suas candidaturas no IniciaAí.">
 <meta name="robots" content="index, follow">
-<meta name="author" content="Conecta">
+<meta name="author" content="IniciaAí">
 <meta name="theme-color" content="var(--primary)">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Conecta">
+<meta property="og:site_name" content="IniciaAí">
 <meta property="og:locale" content="pt_BR">
 <meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:site" content="@conectabauru">
-<meta property="og:title" content="Conecta — Área do Candidato">
-<meta property="og:description" content="Crie seu perfil, candidate-se a vagas e acompanhe suas candidaturas no Conecta.">
-<meta property="og:image" content="https://mantoniogamaa.github.io/iniciaai/og-image.png">
-<meta property="og:url" content="https://mantoniogamaa.github.io/iniciaai/cadastro-candidato.html">
-<meta property="twitter:title" content="Conecta — Área do Candidato">
-<meta property="twitter:description" content="Crie seu perfil, candidate-se a vagas e acompanhe suas candidaturas no Conecta.">
-<meta property="twitter:image" content="https://mantoniogamaa.github.io/iniciaai/og-image.png">
-<link rel="canonical" href="https://mantoniogamaa.github.io/iniciaai/cadastro-candidato.html">
+<meta property="twitter:site" content="@iniciaaí">
+<meta property="og:title" content="IniciaAí — Área do Candidato">
+<meta property="og:description" content="Crie seu perfil, candidate-se a vagas e acompanhe suas candidaturas no IniciaAí.">
+<meta property="og:image" content="https://mantoniogamaa.github.io/iniciaaí/og-image.png">
+<meta property="og:url" content="https://mantoniogamaa.github.io/iniciaaí/cadastro-candidato.html">
+<meta property="twitter:title" content="IniciaAí — Área do Candidato">
+<meta property="twitter:description" content="Crie seu perfil, candidate-se a vagas e acompanhe suas candidaturas no IniciaAí.">
+<meta property="twitter:image" content="https://mantoniogamaa.github.io/iniciaaí/og-image.png">
+<link rel="canonical" href="https://mantoniogamaa.github.io/iniciaaí/cadastro-candidato.html">
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
@@ -40,8 +40,8 @@
     --border:        #C8DDD9;   /* Bordas esverdeadas */
     --white:         #FFFFFF;
     --green:         #00A88E;
-    --orange:        #005C47;
-    --yellow:        #008C76;
+    --orange:        #E65100;
+    --yellow:        #F57F17;
     --cyan:          #00A88E;
     /* Aliases */
     --violet:        #007A5E;
@@ -686,7 +686,7 @@
     <a href="index.html" style="color:var(--muted);text-decoration:none;font-size:.875rem;font-weight:500">Ver Vagas</a>
     <a href="sobre.html" style="color:var(--muted);text-decoration:none;font-size:.875rem;font-weight:500">Sobre</a>
   </div>
-  <a class="nav-back" href="vagas.html">← Ver vagas</a>
+  <a class="nav-back" href="index.html">← Ver vagas</a>
 </nav>
 <div class="mobile-drawer" id="mobile-drawer">
     <a class="mobile-nav-link" href="index.html">Portal de Vagas</a>
@@ -939,7 +939,7 @@
     <img src="logobranca.png" alt="Conecta — Polo Bauru-Centro" style="height:40px;object-fit:contain;filter:brightness(0) invert(1);opacity:.85">
   </div>
   <p style="font-size:.8rem;color:rgba(255,255,255,.35)">
-    <a href="vagas.html" style="color:rgba(255,255,255,.45);text-decoration:none">Ver vagas</a> &nbsp;·&nbsp;
+    <a href="index.html" style="color:rgba(255,255,255,.45);text-decoration:none">Ver vagas</a> &nbsp;·&nbsp;
     <a href="sobre.html" style="color:rgba(255,255,255,.45);text-decoration:none">Sobre</a> &nbsp;·&nbsp;
     <a href="termos.html" style="color:rgba(255,255,255,.45);text-decoration:none">Termos & Privacidade</a>
   </p>
@@ -1035,7 +1035,7 @@ async function cadastrar() {
 
   sessionStorage.setItem('candidato', JSON.stringify(data));
   candidatoLogado = data;
-  showMsg(msg, 'Conta criada com sucesso! Agora faça o teste de perfil', 'success');
+  showMsg(msg, '✅ Conta criada! Agora faça o teste de perfil', 'success');
   setTimeout(() => {
     document.getElementById('tab-cadastro').style.display = 'none';
     document.getElementById('tabs').style.display = 'none';
@@ -1102,7 +1102,7 @@ async function loadCandidaturas() {
   const list = document.getElementById('cands-list');
 
   if (error || !data?.length) {
-    list.innerHTML = `<div class="empty-cands"><div><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg></div><strong>Nenhuma candidatura ainda</strong><br><span style="font-size:.85rem">Explore as vagas e candidate-se!</span><br><br><a href="vagas.html" style="color:var(--violet);font-weight:600;">Ver vagas →</a></div>`;
+    list.innerHTML = `<div class="empty-cands"><div><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg></div><strong>Nenhuma candidatura ainda</strong><br><span style="font-size:.85rem">Explore as vagas e candidate-se!</span><br><br><a href="index.html" style="color:var(--violet);font-weight:600;">Ver vagas →</a></div>`;
     return;
   }
 
@@ -1199,7 +1199,7 @@ async function salvarPerfil() {
   sessionStorage.setItem('candidato', JSON.stringify(data));
   document.getElementById('painel-nome').textContent = data.nome.split(' ')[0];
   preencherFormPerfil();
-  showMsgInline(msg,'Perfil atualizado com sucesso!','success');
+  showMsgInline(msg,'✅ Perfil atualizado com sucesso!','success');
   btn.disabled = false; btn.textContent = 'Salvar alterações ✓';
 }
 
@@ -1235,7 +1235,7 @@ async function alterarSenha() {
   if (error) {
     showMsgInline(msg,'Erro ao alterar senha.','error');
   } else {
-    showMsgInline(msg,'Senha alterada com sucesso!','success');
+    showMsgInline(msg,'✅ Senha alterada com sucesso!','success');
     document.getElementById('s-atual').value = '';
     document.getElementById('s-nova').value = '';
     document.getElementById('s-confirma').value = '';
