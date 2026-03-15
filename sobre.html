@@ -51,9 +51,9 @@ nav {
   display: flex; align-items: center; justify-content: space-between;
 }
 .logo {
-  width: 140px; height: 42px;
-  background: url('logocolorida.png') no-repeat center/contain;
-  display: block; flex-shrink: 0;
+  display: block; width: 150px; height: 44px; flex-shrink: 0;
+  background: url('logocolorida.png') no-repeat left center / contain;
+  text-decoration: none; font-size: 0;
 }
 .nav-links { display: flex; gap: 2rem; align-items: center; }
 .nav-links a {
@@ -605,11 +605,10 @@ footer .footer-copy { font-size: .72rem; color: rgba(255,255,255,.2); margin-top
 
 <nav>
   <a class="logo" href="index.html" aria-label="Conecta - Página inicial"></a>
-    <div class="nav-links">
-    <a href="vagas.html">Vagas</a>
+  <div class="nav-links">
+    <a href="index.html">Ver Vagas</a>
     <a href="sobre.html" class="active">Sobre</a>
     <a href="cadastro-empresa.html">Para Empresas</a>
-    <a href="termos.html">Termos</a>
   </div>
   <div style="display:flex;align-items:center;gap:.75rem">
     <a class="btn-nav-cta" href="cadastro-candidato.html">Criar Perfil</a>
@@ -969,14 +968,13 @@ footer .footer-copy { font-size: .72rem; color: rgba(255,255,255,.2); margin-top
 </section>
 
 <footer>
-  <div><img src="logobranca.png" alt="Conecta — Polo Bauru-Centro" style="height:38px;object-fit:contain;filter:brightness(0) invert(1);opacity:.85"></div>
-  <div style="display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-bottom:.75rem">
-    <a href="index.html">Inicio</a>
-    <a href="vagas.html">Vagas</a>
+  <div><img src="logobranca.png" alt="Conecta — Polo Bauru-Centro"></div>
+  <div class="footer-links">
+    <a href="index.html">Ver vagas</a>
     <a href="sobre.html">Sobre</a>
     <a href="termos.html">Termos & Privacidade</a>
   </div>
-  <p style="font-size:.72rem;color:rgba(255,255,255,.2);margin-top:.5rem">© 2025 Universidade Anhembi Morumbi — Polo Bauru-Centro. Todos os direitos reservados.</p>
+  <p class="footer-copy">© 2025 Universidade Anhembi Morumbi — Polo Bauru-Centro. Todos os direitos reservados.</p>
 </footer>
 
 <script>

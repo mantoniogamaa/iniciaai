@@ -238,8 +238,12 @@
   .badge-hybrid    { background:rgba(251,191,36,.12); color:#B45309; }
   .badge-presential{ background:rgba(16,185,129,.1); color:var(--green); }
   .card-info { display:flex; gap:1rem; font-size:.8rem; color:var(--muted); margin-bottom:1rem; flex-wrap:wrap; }
-  .card-footer { display:flex; align-items:center; justify-content:space-between;
-    padding-top:.85rem; border-top:1px solid var(--border); }
+  .card-footer img { height: 38px; object-fit: contain; filter: brightness(0) invert(1); opacity: .85; margin-bottom: 1.25rem; }
+footer {
+
+  background: #001A12; padding: 2.5rem 2rem 2rem;
+  text-align: center; position: relative;
+}
   .card-salary { font-weight:700; font-size:.95rem; color:var(--dark); }
   .card-date { font-size:.75rem; color:var(--muted); }
   .btn-apply { padding:.45rem 1.1rem; background:linear-gradient(135deg,var(--accent),var(--accent-dark));
@@ -522,12 +526,12 @@
     display: block;
     width: 160px;
     height: 44px;
-    background: url('logo-colorida.png') no-repeat center/contain;
+    background: url('logocolorida.png') no-repeat center/contain;
   }
   /* Logo branca nos heróis (quando nav está sobre fundo escuro) */
   .hero-logo-wrap .logo::before,
   .vaga-hero .logo::before {
-    background-image: url('logo-branca.png');
+    background-image: url('logobranca.png');
   }
 
 
@@ -548,7 +552,7 @@
     display: block;
     width: 140px;
     height: 48px;
-    background: url('logo-colorida.png') no-repeat left center / contain;
+    background: url('logocolorida.png') no-repeat left center / contain;
   }
 
   /* ── NAV ── */
@@ -591,7 +595,7 @@
     position: absolute;
     bottom: -20px; left: -40px;
     width: 420px; height: 120px;
-    background: url('logo-branca.png') no-repeat left center / contain;
+    background: url('logobranca.png') no-repeat left center / contain;
     opacity: .05;
     pointer-events: none;
     z-index: 0;
@@ -653,7 +657,7 @@
     top: 50%; right: -60px;
     transform: translateY(-50%);
     width: 380px; height: 110px;
-    background: url('logo-colorida.png') no-repeat center / contain;
+    background: url('logocolorida.png') no-repeat center / contain;
     opacity: .035;
     pointer-events: none;
     z-index: 0;
@@ -966,7 +970,7 @@
     display: inline-block !important;
     width: 150px !important;
     height: 48px !important;
-    background: url('logo-colorida.png') no-repeat left center / contain !important;
+    background: url('logocolorida.png') no-repeat left center / contain !important;
     text-decoration: none !important;
     font-size: 0 !important;
     color: transparent !important;
@@ -1390,7 +1394,7 @@
 <footer style="background:#001A12;padding:2.5rem 2rem 2rem;text-align:center;position:relative">
   <div style="position:absolute;top:0;left:5%;right:5%;height:1px;background:linear-gradient(90deg,transparent,rgba(0,168,142,.35),transparent)"></div>
   <div style="margin-bottom:1.25rem">
-    <img src="logo-branca.png" alt="Conecta — Polo Bauru-Centro" style="height:40px;object-fit:contain;filter:brightness(0) invert(1);opacity:.85">
+    <img src="logobranca.png" alt="Conecta — Polo Bauru-Centro" style="height:40px;object-fit:contain;filter:brightness(0) invert(1);opacity:.85">
   </div>
   <div style="display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-bottom:.75rem">
     <a href="vagas.html" style="color:rgba(255,255,255,.5);text-decoration:none;font-size:.82rem;font-weight:500;transition:color .2s">Ver vagas</a>
