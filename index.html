@@ -941,105 +941,93 @@
   .logo::before { display: none !important; }
   /* Only the CSS background-image, no ::before pseudo */
 
+  html, body { overflow-x: hidden; }
+  *, *::before, *::after { box-sizing: border-box; }
 
-  /* ════ CARROSSEL EMPRESAS ════ */
+  /* ════ CARROSSEL PARCEIROS ════ */
   .companies-section {
     background: var(--bg, #F4F8F7);
-    padding: 3.5rem 0;
+    padding: 4rem 0 3.5rem;
     overflow: hidden;
   }
   .companies-header {
     text-align: center;
-    margin-bottom: 2.25rem;
+    margin-bottom: 2.5rem;
     padding: 0 2rem;
   }
-  .companies-header .eyebrow {
+  .companies-eyebrow {
     display: inline-flex; align-items: center; gap: .4rem;
     background: var(--accent-light, #E6F7F4);
     color: var(--primary, #007A5E);
     border: 1px solid rgba(0,122,94,.18);
-    border-radius: 50px;
-    padding: .3rem .9rem;
+    border-radius: 50px; padding: .3rem .9rem;
     font-size: .72rem; font-weight: 800;
     text-transform: uppercase; letter-spacing: .08em;
-    margin-bottom: .9rem;
+    margin-bottom: 1rem;
   }
   .companies-header h2 {
     font-family: 'Clash Display', 'Plus Jakarta Sans', sans-serif;
-    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
     font-weight: 700; letter-spacing: -.02em;
-    color: var(--text, #1A2E28);
+    color: var(--text, #1A2E28); margin: 0;
   }
   .companies-header h2 span { color: var(--accent, #00A88E); }
-
-  /* Track + scroll animation */
-  .carousel-track-wrap {
-    position: relative;
-    width: 100%;
-    /* fade edges */
-    -webkit-mask-image: linear-gradient(
-      to right,
-      transparent 0%,
-      black 8%,
-      black 92%,
-      transparent 100%
-    );
-    mask-image: linear-gradient(
-      to right,
-      transparent 0%,
-      black 8%,
-      black 92%,
-      transparent 100%
-    );
+  .carousel-outer {
+    position: relative; width: 100%;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 7%, black 93%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 7%, black 93%, transparent 100%);
   }
   .carousel-track {
-    display: flex;
-    gap: 1.5rem;
+    display: flex; gap: 1.25rem;
     width: max-content;
-    animation: marquee 32s linear infinite;
-    padding: .5rem 0;
+    padding: .5rem .5rem 1rem;
+    animation: marquee-scroll 35s linear infinite;
+    will-change: transform;
   }
   .carousel-track:hover { animation-play-state: paused; }
-  @keyframes marquee {
+  @keyframes marquee-scroll {
     0%   { transform: translateX(0); }
     100% { transform: translateX(-50%); }
   }
-
-  /* Cada logo card */
-  .company-logo-card {
+  .parceiro-item {
     flex-shrink: 0;
-    width: 160px; height: 80px;
-    background: white;
-    border-radius: 14px;
+    width: 164px; height: 84px;
+    background: white; border-radius: 16px;
     border: 1.5px solid var(--border, #C8DDD9);
     display: flex; align-items: center; justify-content: center;
-    padding: .75rem 1.25rem;
+    padding: .75rem 1.1rem;
+    text-decoration: none;
     transition: border-color .25s, box-shadow .25s, transform .25s;
-    cursor: default;
   }
-  .company-logo-card:hover {
+  .parceiro-item:hover {
     border-color: var(--accent, #00A88E);
-    box-shadow: 0 6px 24px rgba(0,168,142,.14);
-    transform: translateY(-3px);
+    box-shadow: 0 6px 24px rgba(0,168,142,.15);
+    transform: translateY(-4px);
   }
-  /* Logo text fallback */
-  .company-logo-card .logo-text {
+  .parceiro-item img {
+    max-width: 100%; max-height: 46px;
+    object-fit: contain;
+    filter: grayscale(80%) opacity(.7);
+    transition: filter .3s;
+  }
+  .parceiro-item:hover img { filter: grayscale(0%) opacity(1); }
+  .parceiro-item .p-text {
     font-family: 'Clash Display', 'Plus Jakarta Sans', sans-serif;
-    font-weight: 700; font-size: .85rem;
+    font-weight: 700; font-size: .78rem;
     color: var(--primary, #007A5E);
-    text-align: center; letter-spacing: -.01em;
-    line-height: 1.2;
+    text-align: center; line-height: 1.3;
   }
-  .company-logo-card img {
-    max-width: 100%; max-height: 44px;
-    object-fit: contain; filter: grayscale(100%);
-    transition: filter .25s;
+  .p-initial {
+    width: 36px; height: 36px; border-radius: 9px;
+    background: var(--primary, #007A5E);
+    color: white; display: flex; align-items: center;
+    justify-content: center; font-weight: 800; font-size: 1rem;
+    font-family: 'Clash Display', sans-serif;
+    margin: 0 auto .3rem;
   }
-  .company-logo-card:hover img { filter: grayscale(0%); }
-
   @media (max-width: 768px) {
     .companies-section { padding: 2.5rem 0; }
-    .company-logo-card { width: 130px; height: 68px; }
+    .parceiro-item { width: 136px; height: 72px; }
     .carousel-track { gap: 1rem; }
   }
 
@@ -1367,159 +1355,14 @@
 <!-- ════ EMPRESAS PARCEIRAS ════ -->
 <section class="companies-section">
   <div class="companies-header">
-    <div class="eyebrow">
+    <div class="companies-eyebrow">
       <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
       Empresas Parceiras
     </div>
     <h2>Empresas que já contrataram <span>alunos do polo</span></h2>
   </div>
-  <div class="carousel-track-wrap">
-    <div class="carousel-track">
-      <div class="company-logo-card">
-          <div class="logo-text">
-            <div style="width:32px;height:32px;border-radius:8px;background:#007A5E;color:white;display:flex;align-items:center;justify-content:center;font-size:.95rem;font-weight:800;margin:0 auto .35rem">P</div>
-            PagSeguro
-          </div>
-        </div>
-        <div class="company-logo-card">
-          <div class="logo-text">
-            <div style="width:32px;height:32px;border-radius:8px;background:#005C47;color:white;display:flex;align-items:center;justify-content:center;font-size:.95rem;font-weight:800;margin:0 auto .35rem">H</div>
-            Hospital São L…
-          </div>
-        </div>
-        <div class="company-logo-card">
-          <div class="logo-text">
-            <div style="width:32px;height:32px;border-radius:8px;background:#007A5E;color:white;display:flex;align-items:center;justify-content:center;font-size:.95rem;font-weight:800;margin:0 auto .35rem">Y</div>
-            Ypê
-          </div>
-        </div>
-        <div class="company-logo-card">
-          <div class="logo-text">
-            <div style="width:32px;height:32px;border-radius:8px;background:#005C47;color:white;display:flex;align-items:center;justify-content:center;font-size:.95rem;font-weight:800;margin:0 auto .35rem">C</div>
-            Correios
-          </div>
-        </div>
-        <div class="company-logo-card">
-          <div class="logo-text">
-            <div style="width:32px;height:32px;border-radius:8px;background:#007A5E;color:white;display:flex;align-items:center;justify-content:center;font-size:.95rem;font-weight:800;margin:0 auto .35rem">B</div>
-            Bradesco
-          </div>
-        </div>
-        <div class="company-logo-card">
-          <div class="logo-text">
-            <div style="width:32px;height:32px;border-radius:8px;background:#005C47;color:white;display:flex;align-items:center;justify-content:center;font-size:.95rem;font-weight:800;margin:0 auto .35rem">V</div>
-            Votorantim
-          </div>
-        </div>
-        <div class="company-logo-card">
-          <div class="logo-text">
-            <div style="width:32px;height:32px;border-radius:8px;background:#007A5E;color:white;display:flex;align-items:center;justify-content:center;font-size:.95rem;font-weight:800;margin:0 auto .35rem">A</div>
-            Ambev
-          </div>
-        </div>
-        <div class="company-logo-card">
-          <div class="logo-text">
-            <div style="width:32px;height:32px;border-radius:8px;background:#005C47;color:white;display:flex;align-items:center;justify-content:center;font-size:.95rem;font-weight:800;margin:0 auto .35rem">S</div>
-            SESI
-          </div>
-        </div>
-        <div class="company-logo-card">
-          <div class="logo-text">
-            <div style="width:32px;height:32px;border-radius:8px;background:#007A5E;color:white;display:flex;align-items:center;justify-content:center;font-size:.95rem;font-weight:800;margin:0 auto .35rem">S</div>
-            SENAI
-          </div>
-        </div>
-        <div class="company-logo-card">
-          <div class="logo-text">
-            <div style="width:32px;height:32px;border-radius:8px;background:#005C47;color:white;display:flex;align-items:center;justify-content:center;font-size:.95rem;font-weight:800;margin:0 auto .35rem">U</div>
-            Unimed
-          </div>
-        </div>
-        <div class="company-logo-card">
-          <div class="logo-text">
-            <div style="width:32px;height:32px;border-radius:8px;background:#007A5E;color:white;display:flex;align-items:center;justify-content:center;font-size:.95rem;font-weight:800;margin:0 auto .35rem">M</div>
-            Magazine Luiza
-          </div>
-        </div>
-        <div class="company-logo-card">
-          <div class="logo-text">
-            <div style="width:32px;height:32px;border-radius:8px;background:#005C47;color:white;display:flex;align-items:center;justify-content:center;font-size:.95rem;font-weight:800;margin:0 auto .35rem">C</div>
-            Claro
-          </div>
-        </div>
-        <div class="company-logo-card">
-          <div class="logo-text">
-            <div style="width:32px;height:32px;border-radius:8px;background:#007A5E;color:white;display:flex;align-items:center;justify-content:center;font-size:.95rem;font-weight:800;margin:0 auto .35rem">P</div>
-            PagSeguro
-          </div>
-        </div>
-        <div class="company-logo-card">
-          <div class="logo-text">
-            <div style="width:32px;height:32px;border-radius:8px;background:#005C47;color:white;display:flex;align-items:center;justify-content:center;font-size:.95rem;font-weight:800;margin:0 auto .35rem">H</div>
-            Hospital São L…
-          </div>
-        </div>
-        <div class="company-logo-card">
-          <div class="logo-text">
-            <div style="width:32px;height:32px;border-radius:8px;background:#007A5E;color:white;display:flex;align-items:center;justify-content:center;font-size:.95rem;font-weight:800;margin:0 auto .35rem">Y</div>
-            Ypê
-          </div>
-        </div>
-        <div class="company-logo-card">
-          <div class="logo-text">
-            <div style="width:32px;height:32px;border-radius:8px;background:#005C47;color:white;display:flex;align-items:center;justify-content:center;font-size:.95rem;font-weight:800;margin:0 auto .35rem">C</div>
-            Correios
-          </div>
-        </div>
-        <div class="company-logo-card">
-          <div class="logo-text">
-            <div style="width:32px;height:32px;border-radius:8px;background:#007A5E;color:white;display:flex;align-items:center;justify-content:center;font-size:.95rem;font-weight:800;margin:0 auto .35rem">B</div>
-            Bradesco
-          </div>
-        </div>
-        <div class="company-logo-card">
-          <div class="logo-text">
-            <div style="width:32px;height:32px;border-radius:8px;background:#005C47;color:white;display:flex;align-items:center;justify-content:center;font-size:.95rem;font-weight:800;margin:0 auto .35rem">V</div>
-            Votorantim
-          </div>
-        </div>
-        <div class="company-logo-card">
-          <div class="logo-text">
-            <div style="width:32px;height:32px;border-radius:8px;background:#007A5E;color:white;display:flex;align-items:center;justify-content:center;font-size:.95rem;font-weight:800;margin:0 auto .35rem">A</div>
-            Ambev
-          </div>
-        </div>
-        <div class="company-logo-card">
-          <div class="logo-text">
-            <div style="width:32px;height:32px;border-radius:8px;background:#005C47;color:white;display:flex;align-items:center;justify-content:center;font-size:.95rem;font-weight:800;margin:0 auto .35rem">S</div>
-            SESI
-          </div>
-        </div>
-        <div class="company-logo-card">
-          <div class="logo-text">
-            <div style="width:32px;height:32px;border-radius:8px;background:#007A5E;color:white;display:flex;align-items:center;justify-content:center;font-size:.95rem;font-weight:800;margin:0 auto .35rem">S</div>
-            SENAI
-          </div>
-        </div>
-        <div class="company-logo-card">
-          <div class="logo-text">
-            <div style="width:32px;height:32px;border-radius:8px;background:#005C47;color:white;display:flex;align-items:center;justify-content:center;font-size:.95rem;font-weight:800;margin:0 auto .35rem">U</div>
-            Unimed
-          </div>
-        </div>
-        <div class="company-logo-card">
-          <div class="logo-text">
-            <div style="width:32px;height:32px;border-radius:8px;background:#007A5E;color:white;display:flex;align-items:center;justify-content:center;font-size:.95rem;font-weight:800;margin:0 auto .35rem">M</div>
-            Magazine Luiza
-          </div>
-        </div>
-        <div class="company-logo-card">
-          <div class="logo-text">
-            <div style="width:32px;height:32px;border-radius:8px;background:#005C47;color:white;display:flex;align-items:center;justify-content:center;font-size:.95rem;font-weight:800;margin:0 auto .35rem">C</div>
-            Claro
-          </div>
-        </div>
-    </div>
+  <div class="carousel-outer" id="carousel-outer" style="display:none">
+    <div class="carousel-track" id="carousel-track"></div>
   </div>
 </section>
 
@@ -1984,6 +1827,50 @@ window.addEventListener('resize', () => {
 });
 
 loadVagas();
+
+
+// ════ CARROSSEL PARCEIROS (Supabase) ════
+async function loadCarouselParceiros() {
+  try {
+    const res = await fetch(
+      'https://hnhxxchhwhdlpuiceirz.supabase.co/rest/v1/parceiros?select=id,nome,logo_url,site_url&ativo=eq.true&order=ordem.asc,created_at.asc',
+      { headers: {
+        'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhuaHh4Y2hod2hkbHB1aWNlaXJ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM0MjY4MDMsImV4cCI6MjA4OTAwMjgwM30._N9DBrCq7lXW6tpfpcXHHcaH21AqEAcinPPIE-_-Ik8',
+        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhuaHh4Y2hod2hkbHB1aWNlaXJ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM0MjY4MDMsImV4cCI6MjA4OTAwMjgwM30._N9DBrCq7lXW6tpfpcXHHcaH21AqEAcinPPIE-_-Ik8'
+      } }
+    );
+    if (!res.ok) return;
+    const data = await res.json();
+    if (!Array.isArray(data) || data.length === 0) return;
+
+    const track = document.getElementById('carousel-track');
+    const outer = document.getElementById('carousel-outer');
+    if (!track || !outer) return;
+
+    function makeCard(p) {
+      const tag   = p.site_url ? 'a' : 'div';
+      const href  = p.site_url ? ` href="${p.site_url}" target="_blank" rel="noopener noreferrer"` : '';
+      const inner = p.logo_url
+        ? `<img src="${p.logo_url}" alt="${p.nome}" loading="lazy"
+              onerror="this.style.display='none';this.nextSibling.style.display='block'"
+           ><div class="p-text" style="display:none"><div class="p-initial">${p.nome.charAt(0)}</div>${p.nome.length>14?p.nome.slice(0,14)+'…':p.nome}</div>`
+        : `<div class="p-text"><div class="p-initial">${p.nome.charAt(0)}</div>${p.nome.length>14?p.nome.slice(0,14)+'…':p.nome}</div>`;
+      return `<${tag} class="parceiro-item"${href}>${inner}</${tag}>`;
+    }
+
+    const cards = data.map(makeCard).join('');
+    track.innerHTML = cards + cards; // duplica para loop infinito
+    outer.style.display = 'block';
+
+    // Velocidade proporcional ao número de empresas
+    track.style.animationDuration = Math.max(20, data.length * 3.5) + 's';
+  } catch(e) {
+    // Silently fail — carrossel é enhancement, não essencial
+    console.warn('Parceiros:', e.message);
+  }
+}
+loadCarouselParceiros();
+
 </script>
 </body>
 </html>
