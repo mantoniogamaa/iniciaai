@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- SEO / Open Graph — preenchido dinamicamente pelo JS -->
-<title>IniciaAí — Carregando vaga...</title>
-<meta name="description" content="Encontre vagas de estágio e Jovem Aprendiz no IniciaAí.">
-<meta property="og:title" content="IniciaAí — Vaga">
-<meta property="og:description" content="Encontre vagas de estágio e Jovem Aprendiz no IniciaAí.">
+<title>Conecta — Carregando vaga...</title>
+<meta name="description" content="Encontre vagas de estágio e Jovem Aprendiz no Conecta.">
+<meta property="og:title" content="Conecta — Vaga">
+<meta property="og:description" content="Encontre vagas de estágio e Jovem Aprendiz no Conecta.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://mantoniogamaa.github.io/iniciaaí/og-image.png">
+<meta property="og:image" content="https://mantoniogamaa.github.io/iniciaai/og-image.png">
 
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -905,9 +905,9 @@ function renderVaga(v) {
   const modColor = v.modalidade === 'Remoto' ? 'hb-remote' : v.modalidade === 'Híbrido' ? 'hb-hybrid' : 'hb-presential';
 
   // SEO dinâmico
-  document.title = `${v.titulo} — ${emp} | IniciaAí`;
+  document.title = `${v.titulo} — ${emp} | Conecta`;
   document.querySelector('meta[name="description"]').setAttribute('content',
-    `${v.tipo} em ${v.area}${isConf ? '' : ' na ' + emp}. ${v.cidade} · R$ ${Number(v.bolsa||0).toLocaleString('pt-BR')}/mês. Candidate-se no IniciaAí.`);
+    `${v.tipo} em ${v.area}${isConf ? '' : ' na ' + emp}. ${v.cidade} · R$ ${Number(v.bolsa||0).toLocaleString('pt-BR')}/mês. Candidate-se no Conecta.`);
   document.querySelector('meta[property="og:title"]').setAttribute('content', `${v.titulo} — ${emp}`);
   document.querySelector('meta[property="og:description"]').setAttribute('content',
     `${v.tipo} · ${v.area} · ${v.cidade} · R$ ${Number(v.bolsa||0).toLocaleString('pt-BR')}/mês`);
@@ -1046,7 +1046,7 @@ async function copyLink() {
 
 function shareWhatsApp() {
   const emp = vagaAtual?.empresas?.nome_fantasia || '';
-  const txt = encodeURIComponent(`*${vagaAtual?.titulo}* — ${emp}\n\nVaga de ${vagaAtual?.tipo} no IniciaAí!\n${vagaAtual?.cidade} · R$ ${Number(vagaAtual?.bolsa||0).toLocaleString('pt-BR')}/mês\n\n${window.location.href}`);
+  const txt = encodeURIComponent(`*${vagaAtual?.titulo}* — ${emp}\n\nVaga de ${vagaAtual?.tipo} no Conecta!\n${vagaAtual?.cidade} · R$ ${Number(vagaAtual?.bolsa||0).toLocaleString('pt-BR')}/mês\n\n${window.location.href}`);
   window.open(`https://wa.me/?text=${txt}`, '_blank');
 }
 
