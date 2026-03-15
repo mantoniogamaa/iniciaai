@@ -763,14 +763,14 @@
   }
 
 
-  /* AM symbol em seções claras */
+  /* AM symbol seção vagas — sutil */
   .jobs-section { position:relative; overflow:hidden; }
   .jobs-section::after {
     content:''; position:absolute;
-    left:-100px; top:50%; transform:translateY(-50%);
-    width:320px; height:348px;
+    left:-60px; top:50%; transform:translateY(-50%);
+    width:min(240px, 22vw); height:auto; aspect-ratio:700/762;
     background:url('symbol-am-green.png') no-repeat center/contain;
-    pointer-events:none; z-index:0;
+    pointer-events:none; z-index:0; opacity:.6;
   }
   .jobs-section > * { position:relative; z-index:1; }
 
