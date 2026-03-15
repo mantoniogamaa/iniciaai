@@ -3,1208 +3,1045 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IniciaAí — Vagas de Estágio e Jovem Aprendiz para Estudantes</title>
-<meta name="description" content="Encontre vagas de estágio e Jovem Aprendiz em todo o Brasil. O portal feito para quem está dando o primeiro passo na carreira.">
-<meta name="robots" content="index, follow">
-<meta name="author" content="IniciaAí">
-<meta name="theme-color" content="var(--primary)">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="IniciaAí">
-<meta property="og:locale" content="pt_BR">
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:site" content="@iniciaaí">
-<meta property="og:title" content="IniciaAí — Vagas de Estágio e Jovem Aprendiz para Estudantes">
-<meta property="og:description" content="Encontre vagas de estágio e Jovem Aprendiz em todo o Brasil. O portal feito para quem está dando o primeiro passo na carreira.">
-<meta property="og:image" content="https://mantoniogamaa.github.io/iniciaaí/og-image.png">
-<meta property="og:url" content="https://mantoniogamaa.github.io/iniciaaí/">
-<meta property="twitter:title" content="IniciaAí — Vagas de Estágio e Jovem Aprendiz para Estudantes">
-<meta property="twitter:description" content="Encontre vagas de estágio e Jovem Aprendiz em todo o Brasil. O portal feito para quem está dando o primeiro passo na carreira.">
-<meta property="twitter:image" content="https://mantoniogamaa.github.io/iniciaaí/og-image.png">
-<link rel="canonical" href="https://mantoniogamaa.github.io/iniciaaí/">
-<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>Conecta — Vagas de Estágio e Jovem Aprendiz para Estudantes</title>
+<meta name="description" content="Portal oficial de vagas de estágio e Jovem Aprendiz da Universidade Anhembi Morumbi — Polo Bauru-Centro.">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
+/*
+ * ════════════════════════════════════════════════════════════════
+ *  INICIAAÍ — DESIGN SYSTEM UNIFICADO
+ *  Paleta oficial Anhembi Morumbi — Polo Bauru-Centro
+ *  PANTONE 7719C (#007A5E) · PANTONE 3285C (#00A88E) · Gray 10C (#76787B)
+ * ════════════════════════════════════════════════════════════════
+ */
+
+/* ── TOKENS ──────────────────────────────────────────────────── */
+:root {
+  /* Cores Pantone */
+  --c-green:        #007A5E;   /* PANTONE 7719C */
+  --c-green-dark:   #005C47;
+  --c-green-mid:    #006B52;
+  --c-mint:         #00A88E;   /* PANTONE 3285C */
+  --c-mint-dark:    #008C76;
+  --c-mint-light:   #E6F7F4;
+  --c-gray:         #76787B;   /* PANTONE Cool Gray 10C */
+
+  /* Superfícies */
+  --surface-hero:   #003528;   /* hero background base */
+  --surface-dark:   #004D3D;   /* dark sections */
+  --surface-bg:     #F4F8F7;   /* page background */
+  --surface-white:  #FFFFFF;
+  --surface-card:   #FFFFFF;
+
+  /* Texto */
+  --text-primary:   #1A2E28;
+  --text-secondary: #76787B;
+  --text-disabled:  #B0BFB8;
+  --text-on-dark:   rgba(255,255,255,.9);
+  --text-muted-dark:rgba(255,255,255,.6);
+
+  /* Bordas */
+  --border-light:   #D4E5DF;
+  --border-card:    #E0EDEA;
+
+  /* Sombras */
+  --shadow-sm:  0 2px 8px rgba(0,90,70,.07);
+  --shadow-md:  0 8px 24px rgba(0,90,70,.1);
+  --shadow-lg:  0 20px 48px rgba(0,90,70,.14);
+  --shadow-xl:  0 32px 64px rgba(0,90,70,.18);
+
+  /* Bordas arredondadas */
+  --r-sm:  8px;
+  --r-md:  14px;
+  --r-lg:  20px;
+  --r-xl:  28px;
+  --r-pill:50px;
+
+  /* Espaçamento */
+  --space-xs:  .375rem;
+  --space-sm:  .75rem;
+  --space-md:  1.5rem;
+  --space-lg:  2.5rem;
+  --space-xl:  4rem;
+  --space-2xl: 6rem;
+
+  /* Transições */
+  --t-fast:   .15s ease;
+  --t-base:   .25s ease;
+  --t-slow:   .4s ease;
+
+  /* Aliases para compatibilidade com código existente */
+  --primary:      var(--c-green);
+  --primary-dark: var(--c-green-dark);
+  --primary-mid:  var(--c-green-mid);
+  --accent:       var(--c-mint);
+  --accent-dark:  var(--c-mint-dark);
+  --accent-light: var(--c-mint-light);
+  --gray:         var(--c-gray);
+  --gray-light:   #F0F1F2;
+  --bg:           var(--surface-bg);
+  --dark:         var(--surface-dark);
+  --text:         var(--text-primary);
+  --muted:        var(--text-secondary);
+  --border:       var(--border-light);
+  --white:        var(--surface-white);
+  --green:        var(--c-mint);
+  --orange:       #E65100;
+  --yellow:       #F5A623;
+  --cyan:         var(--c-mint);
+  --violet:       var(--c-green);
+  --coral:        var(--c-green-dark);
+}
+
+/* ── RESET & BASE ────────────────────────────────────────────── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', 'Plus Jakarta Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background: var(--surface-bg);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* ── TIPOGRAFIA ──────────────────────────────────────────────── */
+h1, h2, h3, h4 {
+  font-family: 'Clash Display', sans-serif;
+  letter-spacing: -.025em;
+  line-height: 1.1;
+}
+
+/* ── CONTAINER ───────────────────────────────────────────────── */
+.container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+@media(max-width:600px) { .container { padding: 0 1.25rem; } }
+
+/* ── NAV ─────────────────────────────────────────────────────── */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  height: 72px;
+  background: rgba(255,255,255,.97);
+  border-bottom: 1px solid var(--border-light);
+  box-shadow: 0 1px 0 rgba(0,122,94,.06);
+  backdrop-filter: blur(12px);
+  display: flex; align-items: center;
+  padding: 0 2rem;
+  gap: 2rem;
+}
+
+/* Logo */
+.nav-logo {
+  display: block;
+  width: 194px; height: 55px; flex-shrink: 0;
+  background: url('logo-conecta-color.png') no-repeat left center / contain;
+  font-size: 0; color: transparent;
+  text-decoration: none;
+  transition: opacity var(--t-base);
+}
+.nav-logo:hover { opacity: .8; }
+
+/* Links centrais */
+.nav-links {
+  flex: 1;
+  display: flex; align-items: center;
+  justify-content: center;
+  gap: 2.25rem;
+}
+.nav-links a {
+  font-size: .875rem; font-weight: 500;
+  color: var(--text-secondary); text-decoration: none;
+  transition: color var(--t-fast);
+  position: relative; padding-bottom: 2px;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute; bottom: -2px; left: 0; right: 0; height: 2px;
+  background: var(--c-mint); border-radius: 2px;
+  transform: scaleX(0); transition: transform var(--t-base);
+}
+.nav-links a:hover { color: var(--c-green); }
+.nav-links a:hover::after { transform: scaleX(1); }
+.nav-links a.active { color: var(--c-green); font-weight: 700; }
+.nav-links a.active::after { transform: scaleX(1); }
+
+/* CTA button */
+.nav-cta {
+  padding: .55rem 1.4rem;
+  background: var(--c-mint);
+  color: white; border: none; border-radius: var(--r-pill);
+  font-size: .875rem; font-weight: 700;
+  text-decoration: none; cursor: pointer;
+  transition: background var(--t-base), transform var(--t-base), box-shadow var(--t-base);
+  white-space: nowrap;
+}
+.nav-cta:hover {
+  background: var(--c-mint-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(0,168,142,.3);
+}
+
+/* Mobile hamburger */
+.nav-burger {
+  display: none;
+  flex-direction: column; gap: 5px;
+  background: none; border: none;
+  cursor: pointer; padding: .35rem;
+  margin-left: auto;
+}
+.nav-burger span {
+  display: block; width: 22px; height: 2px;
+  background: var(--text-primary); border-radius: 2px;
+  transition: all var(--t-base);
+}
+.nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile drawer */
+.nav-mobile {
+  display: none;
+  position: fixed;
+  top: 72px; left: 0; right: 0; bottom: 0;
+  background: rgba(255,255,255,.98);
+  backdrop-filter: blur(16px);
+  z-index: 99;
+  flex-direction: column;
+  padding: 1.5rem 1.5rem;
+  gap: .25rem;
+  border-top: 1px solid var(--border-light);
+  transform: translateX(100%);
+  transition: transform .3s cubic-bezier(.4,0,.2,1);
+}
+.nav-mobile.open { transform: translateX(0); }
+.nav-mobile-link {
+  display: flex; align-items: center; gap: .75rem;
+  padding: .9rem 1rem; border-radius: var(--r-md);
+  font-size: .95rem; font-weight: 600;
+  color: var(--text-primary); text-decoration: none;
+  transition: background var(--t-fast);
+}
+.nav-mobile-link:hover { background: var(--c-mint-light); color: var(--c-green); }
+.nav-mobile-link svg { color: var(--c-green); flex-shrink: 0; }
+
+/* ── HERO BASE (dark green) ──────────────────────────────────── */
+.hero {
+  position: relative; overflow: hidden;
+  background: linear-gradient(158deg, #002E22 0%, #006B52 55%, #003D2E 100%);
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  text-align: center;
+  padding: 5rem 2rem 0;
+  min-height: calc(100svh - 72px);
+}
+
+/* Listras diagonais sutis */
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent 0px, transparent 28px,
+    rgba(255,255,255,.018) 28px, rgba(255,255,255,.018) 29px
+  );
+  pointer-events: none; z-index: 0;
+}
+
+/* Glow central */
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 35%; left: 50%; transform: translate(-50%, -50%);
+  width: 70%; height: 320px;
+  background: radial-gradient(ellipse, rgba(0,168,142,.18) 0%, transparent 65%);
+  pointer-events: none; z-index: 0;
+}
+
+/* Símbolo AM decorativo */
+.hero-deco {
+  position: absolute;
+  right: -2%; bottom: -4%;
+  width: min(260px, 26vw);
+  aspect-ratio: 700/762;
+  background: url('symbol-am-white.png') no-repeat right bottom / contain;
+  pointer-events: none; z-index: 0;
+  opacity: .9;
+}
+
+/* Conteúdo do hero */
+.hero-content {
+  position: relative; z-index: 1;
+  width: 100%; max-width: 780px;
+}
+
+.hero-tag {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .4rem 1.1rem;
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: var(--r-pill);
+  font-size: .72rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .08em;
+  color: rgba(255,255,255,.82);
+  margin-bottom: 1.5rem;
+}
+
+.hero h1 {
+  font-size: clamp(2.6rem, 6vw, 4.5rem);
+  color: white; font-weight: 700;
+  margin-bottom: 1.25rem;
+}
+.hero h1 .accent { color: var(--c-mint); }
+
+.hero-sub {
+  font-size: clamp(.95rem, 1.8vw, 1.1rem);
+  color: rgba(255,255,255,.68);
+  line-height: 1.75;
+  max-width: 520px; margin: 0 auto 2.5rem;
+}
+
+/* Hero CTAs */
+.hero-ctas {
+  display: flex; gap: 1rem;
+  justify-content: center; flex-wrap: wrap;
+  margin-bottom: 3.5rem;
+}
+.btn-hero-primary {
+  padding: .9rem 2.25rem;
+  background: var(--c-mint); color: white;
+  border: none; border-radius: var(--r-pill);
+  font-weight: 700; font-size: .95rem;
+  text-decoration: none; cursor: pointer;
+  transition: background var(--t-base), transform var(--t-base), box-shadow var(--t-base);
+}
+.btn-hero-primary:hover {
+  background: var(--c-mint-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0,168,142,.35);
+}
+.btn-hero-ghost {
+  padding: .9rem 2.25rem;
+  background: rgba(255,255,255,.1);
+  border: 1.5px solid rgba(255,255,255,.22);
+  color: white; border-radius: var(--r-pill);
+  font-weight: 600; font-size: .95rem;
+  text-decoration: none; cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: all var(--t-base);
+}
+.btn-hero-ghost:hover {
+  background: rgba(255,255,255,.2);
+  transform: translateY(-2px);
+}
+
+/* Stats bar */
+.hero-stats {
+  position: relative; z-index: 1;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  max-width: 480px; margin: 0 auto;
+  background: rgba(0,0,0,.22);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: var(--r-lg) var(--r-lg) 0 0;
+  backdrop-filter: blur(12px);
+  overflow: hidden;
+}
+.hero-stat {
+  padding: 1.4rem 1rem; text-align: center;
+  border-right: 1px solid rgba(255,255,255,.08);
+  transition: background var(--t-fast);
+}
+.hero-stat:last-child { border-right: none; }
+.hero-stat:hover { background: rgba(255,255,255,.07); }
+.hero-stat-val {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 2rem; font-weight: 700; color: white; line-height: 1;
+  margin-bottom: .3rem;
+}
+.hero-stat-lbl { font-size: .7rem; color: rgba(255,255,255,.5); font-weight: 500; }
+
+/* ── WAVE SEPARATOR ──────────────────────────────────────────── */
+/* Transição suave de seção: hero escuro → conteúdo branco */
+.section-transition {
+  display: block; line-height: 0;
+  overflow: hidden;
+  background: var(--surface-hero);  /* match seção acima */
+  margin-bottom: -2px;
+}
+.section-transition svg { display: block; width: 100%; }
+
+/* ── SECTION BASE ────────────────────────────────────────────── */
+.section {
+  padding: var(--space-2xl) 0;
+}
+.section-sm { padding: var(--space-xl) 0; }
+.section-dark {
+  background: var(--surface-dark);
+  padding: var(--space-2xl) 0;
+}
+
+/* Section header */
+.section-badge {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .35rem 1rem;
+  background: var(--c-mint-light);
+  border: 1px solid rgba(0,168,142,.2);
+  color: var(--c-green); border-radius: var(--r-pill);
+  font-size: .7rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .09em;
+  margin-bottom: .875rem;
+}
+.section-badge-dark {
+  background: rgba(255,255,255,.1);
+  border-color: rgba(255,255,255,.15);
+  color: rgba(255,255,255,.75);
+}
+
+.section-title {
+  font-size: clamp(1.75rem, 3.5vw, 2.6rem);
+  color: var(--text-primary); margin-bottom: .75rem;
+}
+.section-title .accent { color: var(--c-mint); }
+.section-title-dark { color: white; }
+.section-title-dark .accent { color: var(--c-mint); }
+
+.section-desc {
+  font-size: 1rem; color: var(--text-secondary);
+  line-height: 1.75; max-width: 540px;
+}
+.section-desc-dark { color: rgba(255,255,255,.58); }
+
+/* ── CARDS ───────────────────────────────────────────────────── */
+.card {
+  background: var(--surface-card);
+  border: 1.5px solid var(--border-card);
+  border-radius: var(--r-lg);
+  padding: var(--space-lg);
+  transition: transform var(--t-base), box-shadow var(--t-base), border-color var(--t-base);
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(0,168,142,.3);
+}
+
+/* Highlight card (gradiente verde) */
+.card-highlight {
+  background: linear-gradient(135deg, var(--c-green) 0%, var(--c-mint-dark) 100%);
+  border: none; border-radius: var(--r-lg);
+  padding: var(--space-lg);
+  color: white; position: relative; overflow: hidden;
+  transition: transform var(--t-base), box-shadow var(--t-base);
+}
+.card-highlight::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 85% 15%, rgba(255,255,255,.12), transparent);
+  pointer-events: none;
+}
+.card-highlight:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 48px rgba(0,90,70,.3);
+}
+.card-highlight > * { position: relative; z-index: 1; }
+.card-highlight .card-icon { color: rgba(255,255,255,.65); margin-bottom: .875rem; }
+.card-highlight h3 {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 1.25rem; font-weight: 700; margin-bottom: .4rem;
+}
+.card-highlight p { font-size: .85rem; opacity: .82; line-height: 1.65; }
+
+/* ── BUTTONS ─────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .75rem 1.75rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: .9rem; font-weight: 700;
+  border: none; border-radius: var(--r-pill);
+  cursor: pointer; text-decoration: none;
+  transition: all var(--t-base);
+}
+.btn-primary {
+  background: var(--c-mint); color: white;
+}
+.btn-primary:hover {
+  background: var(--c-mint-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,168,142,.32);
+}
+.btn-secondary {
+  background: white; color: var(--c-green);
+  border: 1.5px solid var(--border-card);
+}
+.btn-secondary:hover {
+  border-color: var(--c-mint);
+  color: var(--c-mint);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+.btn-ghost-dark {
+  background: rgba(255,255,255,.1);
+  border: 1.5px solid rgba(255,255,255,.2);
+  color: white;
+  backdrop-filter: blur(8px);
+}
+.btn-ghost-dark:hover {
+  background: rgba(255,255,255,.2);
+  transform: translateY(-2px);
+}
+.btn-danger {
+  background: rgba(183,28,28,.08); color: #B71C1C;
+  border: 1.5px solid rgba(183,28,28,.2);
+}
+.btn-danger:hover { background: #B71C1C; color: white; }
+.btn-sm { padding: .5rem 1.1rem; font-size: .82rem; }
+.btn-lg { padding: 1rem 2.5rem; font-size: 1rem; }
+.btn-block { width: 100%; justify-content: center; }
+
+/* ── FORMS ───────────────────────────────────────────────────── */
+.form-group { margin-bottom: 1.25rem; }
+.form-label {
+  display: block;
+  font-size: .78rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .06em;
+  color: var(--text-secondary);
+  margin-bottom: .5rem;
+}
+.form-input, .form-select, .form-textarea {
+  width: 100%; padding: .8rem 1.1rem;
+  background: white;
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--r-md);
+  font-size: .9rem; color: var(--text-primary);
+  transition: border-color var(--t-fast), box-shadow var(--t-fast);
+  outline: none;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--c-mint);
+  box-shadow: 0 0 0 3px rgba(0,168,142,.12);
+}
+.form-input::placeholder { color: var(--text-disabled); }
+
+/* ── BADGES / CHIPS ──────────────────────────────────────────── */
+.badge {
+  display: inline-flex; align-items: center; gap: .3rem;
+  padding: .25rem .75rem;
+  border-radius: var(--r-pill);
+  font-size: .72rem; font-weight: 700;
+}
+.badge-green   { background: rgba(0,168,142,.12); color: var(--c-mint-dark); }
+.badge-primary { background: rgba(0,122,94,.1);   color: var(--c-green); }
+.badge-gray    { background: rgba(118,120,123,.12); color: var(--c-gray); }
+.badge-yellow  { background: rgba(245,166,35,.12);  color: #92620A; }
+.badge-red     { background: rgba(183,28,28,.1);   color: #B71C1C; }
+
+/* ── TOGGLE ──────────────────────────────────────────────────── */
+.toggle {
+  width: 44px; height: 24px; border-radius: 50px;
+  border: none; cursor: pointer; flex-shrink: 0;
+  background: var(--border-light);
+  position: relative; transition: background var(--t-base);
+}
+.toggle::after {
+  content: ''; position: absolute;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: white; top: 3px; left: 3px;
+  transition: transform var(--t-base);
+  box-shadow: 0 1px 4px rgba(0,0,0,.2);
+}
+.toggle.on { background: var(--c-mint); }
+.toggle.on::after { transform: translateX(20px); }
+
+/* ── FADE-IN SCROLL ANIMATION ────────────────────────────────── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .6s cubic-bezier(.4,0,.2,1), transform .6s cubic-bezier(.4,0,.2,1);
+}
+.fade-up.visible { opacity: 1; transform: none; }
+
+/* ── TOAST ───────────────────────────────────────────────────── */
+.toast {
+  position: fixed; bottom: 1.5rem; right: 1.5rem;
+  padding: .875rem 1.25rem;
+  border-radius: var(--r-md);
+  font-size: .85rem; font-weight: 600; color: white;
+  box-shadow: 0 8px 24px rgba(0,0,0,.2);
+  transform: translateY(80px); opacity: 0;
+  transition: all .3s cubic-bezier(.4,0,.2,1);
+  z-index: 300; max-width: 320px;
+}
+.toast.show { transform: translateY(0); opacity: 1; }
+.toast.success { background: var(--c-mint); }
+.toast.error   { background: #B71C1C; }
+.toast.info    { background: var(--c-green); }
+
+/* ── FOOTER ──────────────────────────────────────────────────── */
+.footer {
+  background: var(--surface-dark);
+  border-top: 1px solid rgba(255,255,255,.08);
+  padding: 2.5rem 2rem;
+  text-align: center;
+}
+.footer-logo {
+  height: 44px; object-fit: contain;
+  opacity: .92;
+  margin: 0 auto 1.25rem;
+}
+.footer-links {
+  display: flex; gap: 1.5rem;
+  justify-content: center; flex-wrap: wrap;
+  margin-bottom: .75rem;
+}
+.footer-links a {
+  font-size: .82rem; color: rgba(255,255,255,.45);
+  text-decoration: none; transition: color var(--t-fast);
+}
+.footer-links a:hover { color: rgba(255,255,255,.85); }
+.footer-copy { font-size: .72rem; color: rgba(255,255,255,.22); }
+
+/* ── RESPONSIVE ──────────────────────────────────────────────── */
+@media(max-width: 768px) {
   :root {
-    --primary:       #007A5E;   /* PANTONE 7719C — Verde Escuro Anhembi */
-    --primary-dark:  #005C47;   /* Verde mais escuro hover */
-    --primary-mid:   #006B52;   /* Verde médio */
-    --accent:        #00A88E;   /* PANTONE 3285C — Verde Claro/Menta */
-    --accent-dark:   #008C76;   /* Menta escuro hover */
-    --accent-light:  #E6F7F4;   /* Menta bem claro fundo */
-    --gray:          #76787B;   /* PANTONE Cool Gray 10C */
-    --gray-light:    #F0F1F2;   /* Cinza claro */
-    --bg:            #F4F8F7;   /* Fundo levemente esverdeado */
-    --dark:          #007A5E;   /* Dark = verde escuro */
-    --text:          #1A2E28;   /* Texto principal */
-    --muted:         #76787B;   /* Cinza médio Anhembi */
-    --border:        #C8DDD9;   /* Bordas esverdeadas */
-    --white:         #FFFFFF;
-    --green:         #00A88E;
-    --orange:        #E65100;
-    --yellow:        #F57F17;
-    --cyan:          #00A88E;
-    /* Aliases */
-    --violet:        #007A5E;
-    --coral:         #005C47;
-  }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family:'Plus Jakarta Sans',sans-serif; background:var(--bg); color:var(--text); overflow-x:hidden; }
-
-  nav {
-    position:fixed; top:0; left:0; right:0; z-index:100;
-    background:rgba(245,243,255,0.85); backdrop-filter:blur(12px);
-    border-bottom:1px solid var(--border); padding:0 2rem;
-    height:64px; display:flex; align-items:center; justify-content:space-between;
-  }
-  .logo { font-family:'Clash Display',sans-serif; font-size:1.5rem; font-weight:700;
-    background:linear-gradient(135deg,var(--accent),var(--accent-dark));
-    -webkit-background-clip:text; -webkit-text-fill-color:var(--primary); background-clip:text;
-    cursor:pointer; text-decoration:none; }
-  .nav-links { display:flex; gap:2rem; align-items:center; }
-  .nav-links a { color:var(--muted); text-decoration:none; font-size:.9rem; font-weight:500; transition:color .2s; }
-  .nav-links a:hover { color:var(--violet); }
-  .btn-primary { background:linear-gradient(135deg,var(--accent),var(--accent-dark)); color:white; border:none;
-    padding:.6rem 1.4rem; border-radius:50px; font-size:.9rem; font-weight:600; cursor:pointer;
-    transition:transform .2s,box-shadow .2s; font-family:'Plus Jakarta Sans',sans-serif; text-decoration:none;
-    display:inline-block; }
-  .btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 20px rgba(12,61,48,.45); }
-
-
-  /* DROPDOWN ACESSAR */
-  .nav-access { position:relative; }
-  .btn-access { display:flex; align-items:center; gap:.45rem; padding:.55rem 1.2rem;
-    border:1.5px solid var(--border); border-radius:50px; background:white;
-    font-size:.875rem; font-weight:600; cursor:pointer; color:var(--text);
-    font-family:'Plus Jakarta Sans',sans-serif; transition:all .2s; }
-  .btn-access:hover { border-color:var(--violet); color:var(--violet); }
-  .btn-access svg { transition:transform .2s; }
-  .btn-access.open svg { transform:rotate(180deg); }
-
-  .access-dropdown { position:absolute; top:calc(100% + .6rem); right:0;
-    background:white; border-radius:16px; border:1.5px solid var(--border);
-    box-shadow:0 12px 40px rgba(0,0,0,.12); min-width:220px; z-index:200;
-    opacity:0; transform:translateY(-8px); pointer-events:none;
-    transition:all .2s; overflow:hidden; }
-  .access-dropdown.open { opacity:1; transform:translateY(0); pointer-events:all; }
-
-  .access-dropdown-header { padding:.75rem 1rem .5rem;
-    font-size:.7rem; font-weight:700; text-transform:uppercase;
-    letter-spacing:.08em; color:var(--muted); }
-  .access-item { display:flex; align-items:center; gap:.75rem;
-    padding:.75rem 1rem; cursor:pointer; transition:background .15s;
-    text-decoration:none; color:var(--text); }
-  .access-item:hover { background:var(--bg); }
-  .access-item:last-child { border-top:1px solid var(--border); }
-  .access-icon { width:36px; height:36px; border-radius:10px;
-    display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; }
-  .access-icon.cand  { background:rgba(12,61,48,.1); }
-  .access-icon.emp   { background:rgba(6,182,212,.1); }
-  .access-icon.new   { background:rgba(16,185,129,.1); }
-  .access-label { font-size:.875rem; font-weight:600; }
-  .access-sub   { font-size:.72rem; color:var(--muted); margin-top:.1rem; }
-
-  /* AVATAR LOGADO */
-  .nav-avatar { width:36px; height:36px; border-radius:50%;
-    background:linear-gradient(135deg,var(--accent),var(--accent-dark));
-    display:flex; align-items:center; justify-content:center;
-    color:white; font-weight:700; font-size:.9rem; cursor:pointer;
-    font-family:'Clash Display',sans-serif; flex-shrink:0;
-    border:2px solid white; box-shadow:0 2px 8px rgba(12,61,48,.4); }
-  .nav-user-wrap { display:flex; align-items:center; gap:.6rem; }
-  .nav-user-name { font-size:.85rem; font-weight:600; color:var(--text); }
-
-  /* MODAL LOGIN */
-  .login-modal-overlay { position:fixed; inset:0; background:rgba(15,10,30,.55);
-    backdrop-filter:blur(6px); z-index:500; display:none;
-    align-items:center; justify-content:center; padding:1rem; }
-  .login-modal-overlay.open { display:flex; }
-  .login-modal { background:white; border-radius:24px; width:100%; max-width:420px;
-    padding:2rem; position:relative; animation:modalIn .3s ease; box-shadow:0 24px 60px rgba(0,0,0,.18); }
-  @keyframes modalIn { from{transform:scale(.95) translateY(10px);opacity:0} to{transform:scale(1) translateY(0);opacity:1} }
-  .login-modal-close { position:absolute; top:1rem; right:1rem; width:32px; height:32px;
-    border-radius:50%; border:none; background:var(--bg); cursor:pointer;
-    font-size:1rem; color:var(--muted); display:flex; align-items:center; justify-content:center; transition:background .2s; }
-  .login-modal-close:hover { background:var(--border); }
-
-  .login-modal-tabs { display:flex; background:var(--bg); border-radius:12px;
-    padding:.3rem; gap:.3rem; margin-bottom:1.5rem; }
-  .lm-tab { flex:1; padding:.55rem; border-radius:9px; border:none; cursor:pointer;
-    font-size:.82rem; font-weight:600; font-family:'Plus Jakarta Sans',sans-serif;
-    transition:all .2s; color:var(--muted); background:transparent; }
-  .lm-tab.active { background:white; color:var(--violet);
-    box-shadow:0 2px 8px rgba(0,0,0,.08); }
-
-  .lm-section { display:none; }
-  .lm-section.show { display:block; animation:fadeUp .25s ease both; }
-  @keyframes fadeUp { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
-
-  .lm-title { font-family:'Clash Display',sans-serif; font-size:1.3rem; font-weight:700;
-    margin-bottom:1.25rem; color:var(--dark); }
-  .lm-field { margin-bottom:.85rem; }
-  .lm-field label { font-size:.78rem; font-weight:700; color:var(--text); display:block; margin-bottom:.35rem; }
-  .lm-field input { width:100%; padding:.75rem 1rem; border:1.5px solid var(--border);
-    border-radius:10px; font-size:.9rem; font-family:'Plus Jakarta Sans',sans-serif;
-    outline:none; background:var(--bg); color:var(--text); transition:border-color .2s; }
-  .lm-field input:focus { border-color:var(--violet); background:white; box-shadow:0 0 0 3px rgba(46,207,168,.08); }
-  .lm-btn { width:100%; padding:.9rem; background:linear-gradient(135deg,var(--accent),var(--accent-dark));
-    color:white; border:none; border-radius:12px; font-size:.95rem; font-weight:700;
-    cursor:pointer; font-family:'Plus Jakarta Sans',sans-serif;
-    transition:transform .2s,box-shadow .2s; margin-top:.25rem; }
-  .lm-btn:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(12,61,48,.45); }
-  .lm-btn:disabled { opacity:.6; cursor:not-allowed; transform:none; }
-  .lm-msg { padding:.65rem .9rem; border-radius:9px; font-size:.82rem; font-weight:600;
-    margin-top:.75rem; text-align:center; display:none; }
-  .lm-msg.error   { background:rgba(255,92,92,.1);  color:var(--coral); display:block; }
-  .lm-msg.success { background:rgba(16,185,129,.1); color:var(--green); display:block; }
-  .lm-divider { text-align:center; font-size:.78rem; color:var(--muted); margin:.85rem 0; }
-  .lm-link { font-size:.82rem; color:var(--muted); text-align:center; margin-top:.85rem; }
-  .lm-link a { color:var(--violet); font-weight:600; text-decoration:none; }
-  .hero { padding:120px 2rem 60px; text-align:center; position:relative; overflow:hidden; }
-  .hero::before { content:''; position:absolute; top:-100px; left:50%; transform:translateX(-50%);
-    width:800px; height:800px;
-    background:radial-gradient(circle,rgba(12,61,48,.15) 0%,transparent 70%); pointer-events:none; }
-  .hero-badge { display:inline-flex; align-items:center; gap:.5rem; background:white;
-    border:1px solid var(--border); border-radius:50px; padding:.4rem 1rem;
-    font-size:.8rem; font-weight:600; color:var(--violet); margin-bottom:1.5rem;
-    box-shadow:0 2px 8px rgba(0,0,0,.06); animation:fadeDown .6s ease both; }
-  h1 { font-family:'Clash Display',sans-serif; font-size:clamp(2.8rem,6vw,5rem);
-    font-weight:700; line-height:1.05; margin-bottom:1rem; animation:fadeDown .6s .1s ease both; }
-  h1 .highlight { color:var(--accent); }
-  .hero p { font-size:1.1rem; color:var(--muted); max-width:520px; margin:0 auto 2.5rem;
-    line-height:1.7; animation:fadeDown .6s .2s ease both; }
-  .hero-stats { display:flex; justify-content:center; gap:3rem; margin-top:2.5rem; animation:fadeDown .6s .3s ease both; }
-  .stat { text-align:center; }
-  .stat-num { font-family:'Clash Display',sans-serif; font-size:2rem; font-weight:700; color:var(--violet); }
-  .stat-label { font-size:.8rem; color:var(--muted); }
-  .floating-tags { display:flex; flex-wrap:wrap; justify-content:center; gap:.5rem;
-    margin:2rem auto; max-width:600px; animation:fadeDown .6s .25s ease both; }
-  .tag { padding:.4rem 1rem; border-radius:50px; font-size:.8rem; font-weight:600; cursor:pointer; transition:transform .2s; }
-  .tag:hover { transform:translateY(-2px); }
-  .tag-violet { background:rgba(12,61,48,.1); color:var(--violet); }
-  .tag-coral  { background:rgba(255,255,255,.12); color:white; border:1px solid rgba(255,255,255,.2); }
-  .tag-cyan   { background:rgba(255,255,255,.12); color:white; border:1px solid rgba(255,255,255,.2); }
-  .tag-green  { background:rgba(255,255,255,.12); color:white; border:1px solid rgba(255,255,255,.2); }
-  .tag-yellow { background:rgba(255,255,255,.12); color:white; border:1px solid rgba(255,255,255,.2); }
-
-  .search-section { max-width:900px; margin:0 auto; padding:0 2rem 3rem; animation:fadeDown .6s .4s ease both; }
-  .search-card { background:white; border-radius:20px; padding:1.5rem; box-shadow:0 8px 40px rgba(0,0,0,.1); }
-  .search-row { display:flex; gap:1rem; margin-bottom:1rem; }
-  .search-input-wrap { flex:1; position:relative; }
-  .search-input-wrap svg { position:absolute; left:1rem; top:50%; transform:translateY(-50%); color:var(--muted); }
-  .search-input { width:100%; padding:.85rem 1rem .85rem 2.8rem; border:1.5px solid var(--border);
-    border-radius:12px; font-size:.95rem; font-family:'Plus Jakarta Sans',sans-serif;
-    outline:none; transition:border-color .2s; background:var(--bg); color:var(--text); }
-  .search-input:focus { border-color:var(--violet); }
-  .search-input::placeholder { color:var(--muted); }
-  .filters-row { display:flex; gap:.75rem; flex-wrap:wrap; }
-  .filter-select { padding:.7rem 1rem; border:1.5px solid var(--border); border-radius:10px;
-    font-size:.85rem; font-family:'Plus Jakarta Sans',sans-serif; outline:none;
-    background:var(--bg); color:var(--text); cursor:pointer; transition:border-color .2s;
-    flex:1; min-width:140px; }
-  .filter-select:focus { border-color:var(--accent); box-shadow:0 0 0 3px rgba(0,168,142,.1); }
-  .btn-search { padding:.85rem 2rem; background:linear-gradient(135deg,var(--accent),var(--accent-dark));
-    color:white; border:none; border-radius:12px; font-size:.95rem; font-weight:600; cursor:pointer;
-    transition:transform .2s,box-shadow .2s; font-family:'Plus Jakarta Sans',sans-serif; white-space:nowrap; }
-  .btn-search:hover { transform:translateY(-2px); box-shadow:0 8px 20px rgba(12,61,48,.4); }
-
-  .jobs-section { max-width:1100px; margin:0 auto; padding:0 2rem 5rem; }
-  .section-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:1.5rem; }
-  .section-title { font-family:'Clash Display',sans-serif; font-size:1.6rem; font-weight:700; }
-  .results-count { font-size:.9rem; color:var(--muted); font-weight:500; }
-  .sort-select { padding:.5rem 1rem; border:1.5px solid var(--border); border-radius:8px;
-    font-size:.85rem; font-family:'Plus Jakarta Sans',sans-serif; outline:none; background:white; color:var(--text); cursor:pointer; }
-  .jobs-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:1.25rem; }
-
-  .job-card { background:white; border-radius:16px; padding:1.5rem; border:1.5px solid var(--border);
-    transition:transform .2s,box-shadow .2s,border-color .2s; cursor:pointer; position:relative; overflow:hidden;
-    animation:cardIn .4s ease both; }
-  .job-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; opacity:0; transition:opacity .2s; }
-  .job-card:hover { transform:translateY(-4px); box-shadow:0 12px 35px rgba(0,0,0,.1); border-color:transparent; }
-  .job-card:hover::before { opacity:1; }
-  .card-estagio::before { background:linear-gradient(90deg,var(--violet),var(--cyan)); }
-  .card-aprendiz::before { background:linear-gradient(90deg,var(--coral),var(--yellow)); }
-  .card-top { display:flex; align-items:flex-start; gap:1rem; margin-bottom:1rem; }
-  .company-logo { width:48px; height:48px; border-radius:12px; display:flex; align-items:center;
-    justify-content:center; font-size:1.3rem; flex-shrink:0; background:rgba(12,61,48,.1);
-    font-family:'Clash Display',sans-serif; font-weight:700; color:var(--violet); }
-  .card-meta { flex:1; }
-  .card-company { font-size:.8rem; color:var(--muted); font-weight:500; margin-bottom:.2rem; }
-  .card-title { font-family:'Clash Display',sans-serif; font-size:1.05rem; font-weight:600; color:var(--dark); line-height:1.3; }
-  .card-badges { display:flex; gap:.4rem; flex-wrap:wrap; margin-bottom:.85rem; }
-  .badge { padding:.25rem .7rem; border-radius:50px; font-size:.72rem; font-weight:600; }
-  .badge-type-estagio { background:rgba(12,61,48,.1); color:var(--violet); }
-  .badge-type-aprendiz { background:rgba(255,92,92,.1); color:var(--coral); }
-  .badge-remote    { background:rgba(6,182,212,.1); color:var(--cyan); }
-  .badge-hybrid    { background:rgba(251,191,36,.12); color:#B45309; }
-  .badge-presential{ background:rgba(16,185,129,.1); color:var(--green); }
-  .card-info { display:flex; gap:1rem; font-size:.8rem; color:var(--muted); margin-bottom:1rem; flex-wrap:wrap; }
-  .card-footer { display:flex; align-items:center; justify-content:space-between;
-    padding-top:.85rem; border-top:1px solid var(--border); }
-  .card-salary { font-weight:700; font-size:.95rem; color:var(--dark); }
-  .card-date { font-size:.75rem; color:var(--muted); }
-  .btn-apply { padding:.45rem 1.1rem; background:linear-gradient(135deg,var(--accent),var(--accent-dark));
-    color:white; border:none; border-radius:8px; font-size:.8rem; font-weight:600; cursor:pointer;
-    font-family:'Plus Jakarta Sans',sans-serif; transition:transform .2s,box-shadow .2s; }
-  .btn-apply:hover { transform:translateY(-1px); box-shadow:0 4px 12px rgba(12,61,48,.4); }
-
-  /* Loading */
-  .loading { text-align:center; padding:4rem 2rem; }
-  .spinner { width:40px; height:40px; border:3px solid var(--border); border-top-color:var(--violet);
-    border-radius:50%; animation:spin 0.8s linear infinite; margin:0 auto 1rem; }
-  @keyframes spin { to { transform:rotate(360deg); } }
-
-  .empty-state { text-align:center; padding:4rem 2rem; display:none; }
-  .empty-state.visible { display:block; }
-  .empty-icon { font-size:3rem; margin-bottom:1rem; }
-  .empty-state h3 { font-family:'Clash Display',sans-serif; font-size:1.4rem; margin-bottom:.5rem; }
-  .empty-state p { color:var(--muted); }
-
-  /* MODAL */
-  .modal-overlay { position:fixed; inset:0; background:rgba(15,10,30,.6); backdrop-filter:blur(4px);
-    z-index:200; display:none; align-items:center; justify-content:center; padding:1rem; }
-  .modal-overlay.open { display:flex; }
-  .modal { background:white; border-radius:24px; width:100%; max-width:580px; max-height:90vh;
-    overflow-y:auto; padding:2rem; position:relative; animation:modalIn .3s ease; }
-  @keyframes modalIn { from{transform:scale(.95) translateY(10px);opacity:0} to{transform:scale(1) translateY(0);opacity:1} }
-  .modal-close { position:absolute; top:1.25rem; right:1.25rem; background:var(--bg); border:none;
-    width:32px; height:32px; border-radius:50%; cursor:pointer; font-size:1rem;
-    display:flex; align-items:center; justify-content:center; color:var(--muted); transition:background .2s; }
-  .modal-close:hover { background:var(--border); }
-  .modal-company-row { display:flex; gap:1rem; align-items:center; margin-bottom:1rem; }
-  .modal-logo { width:56px; height:56px; border-radius:14px; display:flex; align-items:center;
-    justify-content:center; font-size:1.5rem; background:rgba(12,61,48,.1); color:var(--violet);
-    font-family:'Clash Display',sans-serif; font-weight:700; font-size:1.4rem; }
-  .modal-company-name { font-size:.9rem; color:var(--muted); font-weight:500; }
-  .modal-title { font-family:'Clash Display',sans-serif; font-size:1.5rem; font-weight:700; line-height:1.2; }
-  .modal-badges { display:flex; gap:.5rem; flex-wrap:wrap; margin-top:.75rem; }
-  .modal-info-grid { display:grid; grid-template-columns:1fr 1fr; gap:.75rem; margin:1.25rem 0; }
-  .modal-info-item { background:var(--bg); border-radius:10px; padding:.75rem; }
-  .modal-info-label { font-size:.72rem; color:var(--muted); font-weight:600; text-transform:uppercase; letter-spacing:.06em; }
-  .modal-info-value { font-size:.95rem; font-weight:600; color:var(--dark); margin-top:.2rem; }
-  .modal-section { margin-bottom:1.25rem; }
-  .modal-section h4 { font-size:.8rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); margin-bottom:.5rem; }
-  .modal-section p, .modal-section li { font-size:.9rem; line-height:1.7; color:var(--text); }
-  .modal-section ul { padding-left:1.2rem; }
-  .modal-section li { margin-bottom:.25rem; }
-  .btn-apply-full { width:100%; padding:1rem;
-    background:linear-gradient(135deg,var(--accent),var(--accent-dark));
-    color:white; border:none; border-radius:12px; font-size:1rem; font-weight:700;
-    cursor:pointer; font-family:'Plus Jakarta Sans',sans-serif; transition:transform .2s,box-shadow .2s; }
-  .btn-apply-full:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(12,61,48,.45); }
-  .btn-apply-full:disabled { opacity:.6; cursor:not-allowed; transform:none; }
-
-  /* Candidatura feedback */
-  .candidatura-msg { padding:.85rem 1rem; border-radius:10px; font-size:.85rem; font-weight:600;
-    margin-bottom:1rem; display:none; text-align:center; }
-  .candidatura-msg.success { background:rgba(16,185,129,.1); color:var(--green); display:block; }
-  .candidatura-msg.error   { background:rgba(255,92,92,.1); color:var(--coral); display:block; }
-
-  @keyframes fadeDown { from{opacity:0;transform:translateY(-16px)} to{opacity:1;transform:translateY(0)} }
-  @keyframes cardIn   { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
-
-
-  /* PAGINAÇÃO */
-  .pagination { display:flex; align-items:center; justify-content:center;
-    gap:.5rem; padding:2rem 0 1rem; flex-wrap:wrap; }
-  .page-btn { width:38px; height:38px; border-radius:10px; border:1.5px solid var(--border);
-    background:white; font-size:.85rem; font-weight:600; cursor:pointer;
-    font-family:'Plus Jakarta Sans',sans-serif; color:var(--muted);
-    transition:all .2s; display:flex; align-items:center; justify-content:center; }
-  .page-btn:hover { border-color:var(--violet); color:var(--violet); }
-  .page-btn.active { background:linear-gradient(135deg,var(--accent),var(--accent-dark));
-    color:white; border-color:transparent; }
-  .page-btn.nav-btn { width:auto; padding:0 1rem; gap:.4rem; }
-  .page-btn:disabled { opacity:.35; cursor:not-allowed; }
-  .page-info { font-size:.82rem; color:var(--muted); font-weight:500; padding:0 .5rem; }
-
-  footer { background:var(--dark); color:rgba(255,255,255,.5); text-align:center; padding:2rem; font-size:.85rem; }
-  footer strong { color:white; }
-
-  /* HAMBURGUER */
-  .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer;
-    background:none; border:none; padding:.4rem; z-index:110; }
-  .hamburger span { display:block; width:22px; height:2px; background:var(--text);
-    border-radius:2px; transition:all .3s; }
-  .hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
-  .hamburger.open span:nth-child(2) { opacity:0; }
-  .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
-
-  /* DRAWER MOBILE */
-  .mobile-drawer { display:none; position:fixed; top:64px; left:0; right:0; bottom:0;
-    background:rgba(245,243,255,.98); backdrop-filter:blur(16px);
-    z-index:99; flex-direction:column; padding:1.5rem 2rem;
-    border-top:1px solid var(--border); overflow-y:auto;
-    transform:translateX(100%); transition:transform .3s ease; }
-  .mobile-drawer.open { transform:translateX(0); }
-
-  .mobile-nav-links { display:flex; flex-direction:column; gap:.25rem; margin-bottom:1.5rem; }
-  .mobile-nav-links a { padding:.85rem 1rem; border-radius:12px; font-size:1rem; font-weight:600;
-    color:var(--text); text-decoration:none; transition:background .2s; display:flex; align-items:center; gap:.6rem; }
-  .mobile-nav-links a:hover { background:white; }
-
-  .mobile-divider { height:1px; background:var(--border); margin:.75rem 0; }
-
-  .mobile-access-title { font-size:.72rem; font-weight:700; text-transform:uppercase;
-    letter-spacing:.1em; color:var(--muted); margin-bottom:.75rem; }
-
-  .mobile-access-btn { display:flex; align-items:center; gap:.85rem; width:100%;
-    padding:1rem; border-radius:14px; border:1.5px solid var(--border); background:white;
-    cursor:pointer; font-family:'Plus Jakarta Sans',sans-serif; transition:all .2s; margin-bottom:.6rem; }
-  .mobile-access-btn:hover { border-color:var(--violet); }
-  .mobile-access-icon { width:40px; height:40px; border-radius:10px;
-    display:flex; align-items:center; justify-content:center; font-size:1.2rem; flex-shrink:0; }
-  .mobile-access-label { font-size:.9rem; font-weight:700; color:var(--text); }
-  .mobile-access-sub   { font-size:.75rem; color:var(--muted); margin-top:.1rem; }
-
-  .mobile-cta { display:flex; flex-direction:column; gap:.6rem; margin-top:.5rem; }
-  .mobile-cta a { display:block; text-align:center; padding:.9rem; border-radius:12px;
-    font-weight:700; font-size:.9rem; text-decoration:none; transition:all .2s; }
-  .mobile-cta .cta-primary { background:linear-gradient(135deg,var(--accent),var(--accent-dark)); color:white; }
-  .mobile-cta .cta-secondary { border:1.5px solid var(--border); color:var(--muted); }
-  .mobile-cta .cta-secondary:hover { border-color:var(--violet); color:var(--violet); }
-
-  @media(max-width:768px) {
-    .nav-links { display:none; }
-    .hamburger { display:flex; }
-    .mobile-drawer { display:flex; }
-    .hero-stats { gap:1.5rem; }
-    .jobs-grid { grid-template-columns:1fr; }
-    .modal-info-grid { grid-template-columns:1fr; }
-    .btn-access span:not(.hamburger span) { }
-  }
-  @media(max-width:600px) {
-    .search-row { flex-direction:column; }
-    .nav-user-name { display:none !important; }
+    --space-xl:  3rem;
+    --space-2xl: 4rem;
   }
 
-  
-  .hero, .page-hero, .vaga-hero, .doc-hero {
-    background: linear-gradient(135deg, #071F18 0%, #0C3D30 50%, #0A3528 100%) !important;
-    position: relative;
-    overflow: hidden;
-  }
+  .nav { padding: 0 1.25rem; height: 64px; }
+  .nav-logo { width: 130px; height: 40px; }
+  .nav-links { display: none !important; }
+  .nav-cta  { display: none !important; }
+  .nav-burger { display: flex !important; }
+  .nav-mobile { display: flex !important; }
 
-  /* Padrão de pontos/grid sutil */
-  .hero::after, .page-hero::after, .vaga-hero::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image:
-      radial-gradient(circle, rgba(46,207,168,.15) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none;
-    z-index: 0;
-  }
+  .hero { padding: 3.5rem 1.25rem 0; min-height: 90svh; }
+  .hero h1 { font-size: clamp(2rem, 8vw, 2.8rem); }
+  .hero-ctas { flex-direction: column; align-items: center; }
+  .hero-ctas a, .hero-ctas button { width: 100%; max-width: 280px; text-align: center; justify-content: center; }
+  .hero-deco { width: min(160px, 38vw); right: -1%; }
+  .hero-stats { grid-template-columns: 1fr 1fr 1fr; max-width: 100%; }
 
-  /* Linhas diagonais sutis */
-  .hero::before, .page-hero::before, .vaga-hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(135deg, rgba(46,207,168,.08) 25%, transparent 25%,
-        transparent 50%, rgba(46,207,168,.08) 50%, rgba(46,207,168,.08) 75%,
-        transparent 75%, transparent),
-      radial-gradient(ellipse 80% 50% at 80% 50%, rgba(46,207,168,.12) 0%, transparent 70%),
-      radial-gradient(ellipse 40% 60% at 10% 80%, rgba(12,61,48,.6) 0%, transparent 60%);
-    background-size: 60px 60px, 100% 100%, 100% 100%;
-    pointer-events: none;
-    z-index: 0;
-  }
+  .section { padding: 3rem 0; }
+  .section-dark { padding: 3rem 0; }
 
-  /* Garante conteúdo interno acima dos pseudoelementos */
-  .hero > *, .page-hero > *, .vaga-hero > * {
-    position: relative;
-    z-index: 1;
-  }
-  .hero-inner, .page-hero-inner, .hero-inner * {
-    position: relative;
-    z-index: 2;
-  }
+  .section-title { font-size: 1.65rem; }
+}
+
+@media(max-width: 480px) {
+  .hero-stats { grid-template-columns: 1fr; }
+  .hero-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,.08); }
+  .hero-stat:last-child { border-bottom: none; }
+}
 
 
-  
-  /* ── HERO PANTONE ANHEMBI ── */
-  .hero {
-    background: linear-gradient(155deg, #004D3D 0%, #007A5E 50%, #005C47 100%);
-    padding: 120px 2rem 60px;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero-bg-pattern {
-    position: absolute; inset: 0;
-    width: 100%; height: 100%;
-    z-index: 0; pointer-events: none;
-  }
-  .hero::after {
-    content: '';
-    position: absolute; top: -60px; right: -60px;
-    width: 480px; height: 480px;
-    background: radial-gradient(circle, rgba(0,168,142,.3) 0%, transparent 65%);
-    pointer-events: none; z-index: 0;
-  }
-  .hero > *:not(.hero-bg-pattern) { position: relative; z-index: 1; }
-  .hero h1 { color: white !important; }
-  .hero h1 .highlight { color: var(--accent) !important; -webkit-text-fill-color: var(--accent) !important; background: none !important; }
-  .hero p { color: rgba(255,255,255,.72) !important; }
-  .hero-badge { background: rgba(255,255,255,.12) !important; border-color: rgba(255,255,255,.2) !important; color: rgba(255,255,255,.9) !important; }
-  .hero .stat-num { color: var(--accent) !important; }
-  .hero .stat-label { color: rgba(255,255,255,.55) !important; }
-  .hero .tag { background: rgba(255,255,255,.1) !important; color: rgba(255,255,255,.9) !important; border: 1px solid rgba(255,255,255,.2) !important; }
-  .hero .tag:hover { background: rgba(0,168,142,.3) !important; color: white !important; }
-  .logo { color: var(--primary) !important; -webkit-text-fill-color: var(--primary) !important; background: none !important; }
-  nav { background: rgba(255,255,255,.97) !important; box-shadow: 0 1px 12px rgba(0,122,94,.1) !important; }
+/* ═══ INDEX — PAGE-SPECIFIC ═══ */
 
-  /* Tags no hero - fundo semi-transparente branco */
-  .hero .tag { background: rgba(255,255,255,.12) !important; color: white !important; border: 1px solid rgba(255,255,255,.2); }
-  .hero .tag:hover { background: rgba(46,207,168,.25) !important; color: var(--accent) !important; }
+/* ── SEARCH SECTION ── */
+.search-section {
+  background: white;
+  padding: 0 2rem 3rem;
+}
+.search-card {
+  max-width: 900px; margin: 0 auto;
+  background: white; border-radius: var(--r-xl);
+  padding: 1.75rem 2rem;
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--border-card);
+  transform: translateY(-2.5rem);
+  position: relative; z-index: 10;
+}
+.search-row {
+  display: flex; gap: .75rem; margin-bottom: .875rem;
+  align-items: center;
+}
+.search-input-wrap {
+  flex: 1; position: relative;
+}
+.search-input-wrap svg {
+  position: absolute; left: .9rem; top: 50%; transform: translateY(-50%);
+  color: var(--text-secondary); pointer-events: none;
+}
+.search-input {
+  width: 100%; padding: .8rem 1rem .8rem 2.6rem;
+  border: 1.5px solid var(--border-light); border-radius: var(--r-md);
+  font-size: .9rem; color: var(--text-primary);
+  background: var(--surface-bg); outline: none;
+  transition: border-color var(--t-fast), box-shadow var(--t-fast);
+}
+.search-input:focus {
+  border-color: var(--c-mint);
+  box-shadow: 0 0 0 3px rgba(0,168,142,.1);
+  background: white;
+}
+.city-wrap { position: relative; max-width: 220px; }
+.city-wrap svg { position: absolute; left: .9rem; top: 50%; transform: translateY(-50%); color: var(--text-secondary); pointer-events: none; }
+.search-input.city { padding-left: 2.6rem; max-width: 220px; }
+.btn-search {
+  padding: .8rem 1.75rem;
+  background: var(--c-mint); color: white;
+  border: none; border-radius: var(--r-md);
+  font-weight: 700; font-size: .9rem;
+  cursor: pointer; white-space: nowrap;
+  transition: all var(--t-base);
+}
+.btn-search:hover {
+  background: var(--c-mint-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,168,142,.32);
+}
+.filters-row { display: flex; gap: .625rem; flex-wrap: wrap; }
+.filter-select {
+  flex: 1; min-width: 130px; padding: .65rem .9rem;
+  border: 1.5px solid var(--border-light); border-radius: var(--r-sm);
+  background: white; font-size: .84rem; color: var(--text-primary);
+  cursor: pointer; outline: none;
+  transition: border-color var(--t-fast);
+}
+.filter-select:hover { border-color: var(--c-mint); }
+.filter-select:focus { border-color: var(--c-mint); box-shadow: 0 0 0 3px rgba(0,168,142,.1); }
 
-  /* Logo - verde escuro no nav claro, sem vermelho */
-  .logo { color: var(--primary) !important; -webkit-text-fill-color: var(--primary) !important; background: none !important; }
+/* ── HIGHLIGHT CARDS (bloco estilo Anhembi) ── */
+.highlight-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1.1rem; margin-bottom: 2.5rem;
+}
 
-  /* Nav fundo claro - logo verde escuro */
-  nav { background: rgba(255,255,255,.96) !important; }
+/* ── JOBS SECTION ── */
+.jobs-section { padding: 0 2rem 4rem; background: white; }
+.section-header {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-bottom: 1.75rem; gap: 1rem; flex-wrap: wrap;
+}
+.section-header h2 {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 1.6rem; color: var(--text-primary); letter-spacing: -.02em;
+}
+.results-count { font-size: .82rem; color: var(--text-secondary); margin-top: .2rem; }
+.sort-select {
+  padding: .5rem .9rem; border: 1.5px solid var(--border-light);
+  border-radius: var(--r-sm); font-size: .82rem;
+  background: white; color: var(--text-primary); cursor: pointer;
+  outline: none; transition: border-color var(--t-fast);
+}
+.sort-select:hover { border-color: var(--c-mint); }
 
-  /* Seção de vagas - fundo claro, texto escuro normal */
-  .jobs-section, .search-section { background: var(--bg); }
-  .section-title { color: var(--text) !important; }
-  .results-count { color: var(--muted) !important; }
+/* ── JOB CARDS ── */
+.jobs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
 
+.job-card {
+  background: white; border-radius: var(--r-lg);
+  border: 1.5px solid var(--border-card);
+  padding: 1.5rem;
+  display: flex; flex-direction: column;
+  cursor: pointer; position: relative; overflow: hidden;
+  transition: transform var(--t-base), box-shadow var(--t-base), border-color var(--t-base);
+}
+.job-card::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+  border-radius: var(--r-lg) var(--r-lg) 0 0;
+  opacity: 0; transition: opacity var(--t-base);
+}
+.job-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(0,168,142,.25);
+}
+.job-card:hover::before { opacity: 1; }
+.card-estagio::before { background: linear-gradient(90deg, var(--c-green), var(--c-mint)); }
+.card-aprendiz::before { background: linear-gradient(90deg, var(--c-mint), #00C4A7); }
 
-  /* ── LOGO IMAGEM ANHEMBI ── */
-  .logo {
-    display: inline-flex;
-    align-items: center;
-    text-decoration: none;
-    cursor: pointer;
-    color: transparent !important;
-    -webkit-text-fill-color: transparent !important;
-    background: none !important;
-    font-size: 0 !important;
-  }
-  .logo::before {
-    content: '';
-    display: block;
-    width: 160px;
-    height: 44px;
-    background: url('logo-colorida.png') no-repeat center/contain;
-  }
-  /* Logo branca nos heróis (quando nav está sobre fundo escuro) */
-  .hero-logo-wrap .logo::before,
-  .vaga-hero .logo::before {
-    background-image: url('logo-branca.png');
-  }
+.card-header { display: flex; gap: .875rem; align-items: flex-start; margin-bottom: 1rem; }
+.company-logo {
+  width: 44px; height: 44px; border-radius: var(--r-sm);
+  background: var(--c-mint-light); color: var(--c-green);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Clash Display', sans-serif;
+  font-size: 1.1rem; font-weight: 700; flex-shrink: 0;
+}
+.card-company {
+  font-size: .7rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .07em;
+  color: var(--text-secondary); margin-bottom: .2rem;
+}
+.card-title {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 1rem; font-weight: 700;
+  color: var(--text-primary); letter-spacing: -.01em; line-height: 1.3;
+}
+.card-badges { display: flex; flex-wrap: wrap; gap: .35rem; margin-bottom: .875rem; }
+.card-info {
+  display: flex; flex-wrap: wrap; gap: .5rem 1rem;
+  font-size: .78rem; color: var(--text-secondary);
+  margin-bottom: 1rem; padding-bottom: .875rem;
+  border-bottom: 1px solid var(--border-card);
+}
+.card-info span { display: flex; align-items: center; gap: .3rem; }
+.card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; gap: .75rem; }
+.card-salary {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 1.15rem; font-weight: 700; color: var(--c-green);
+}
+.card-salary-sub { font-size: .7rem; color: var(--text-secondary); font-weight: 400; }
+.card-date { font-size: .72rem; color: var(--text-disabled); margin-top: .25rem; }
+.btn-card {
+  padding: .55rem 1.25rem;
+  background: var(--c-mint); color: white;
+  border: none; border-radius: var(--r-pill);
+  font-size: .82rem; font-weight: 700;
+  cursor: pointer; white-space: nowrap; flex-shrink: 0;
+  transition: all var(--t-base);
+}
+.btn-card:hover { background: var(--c-mint-dark); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,168,142,.3); }
 
+/* Empty state */
+.empty-state {
+  text-align: center; padding: 4rem 2rem;
+  color: var(--text-secondary);
+}
+.empty-state svg { margin: 0 auto 1rem; opacity: .4; }
+.empty-state h3 { font-family: 'Clash Display', sans-serif; font-size: 1.15rem; color: var(--text-primary); margin-bottom: .4rem; }
 
-  /* ── LOGO ANHEMBI ── */
-  .logo {
-    display: inline-flex;
-    align-items: center;
-    text-decoration: none;
-    cursor: pointer;
-    font-size: 0 !important;
-    color: transparent !important;
-    -webkit-text-fill-color: transparent !important;
-    background: none !important;
-    line-height: 1;
-  }
-  .logo::before {
-    content: '';
-    display: block;
-    width: 140px;
-    height: 48px;
-    background: url('logo-colorida.png') no-repeat left center / contain;
-  }
+/* Pagination */
+.pagination { display: flex; gap: .4rem; justify-content: center; margin-top: 2.5rem; }
+.page-btn {
+  width: 38px; height: 38px; border-radius: var(--r-sm);
+  border: 1.5px solid var(--border-light); background: white;
+  font-size: .84rem; font-weight: 700; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-secondary);
+  transition: all var(--t-fast);
+}
+.page-btn:hover { border-color: var(--c-mint); color: var(--c-mint); }
+.page-btn.active { background: var(--c-mint); border-color: var(--c-mint); color: white; }
+.page-btn.nav-btn { width: auto; padding: 0 .9rem; }
 
-  /* ── NAV ── */
-  nav {
-    background: rgba(255,255,255,.97) !important;
-    box-shadow: 0 1px 16px rgba(0,122,94,.12) !important;
-    height: 72px !important;
-  }
+/* Login modal */
+.lm-tab { display: flex; background: var(--surface-bg); padding: .3rem; border-radius: var(--r-md); gap: .3rem; margin-bottom: 1.25rem; }
+.lm-tab-btn {
+  flex: 1; padding: .55rem; border-radius: var(--r-sm);
+  border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;
+  font-size: .84rem; font-weight: 700; background: transparent;
+  color: var(--text-secondary); transition: all var(--t-fast);
+}
+.lm-tab-btn.active { background: var(--c-mint); color: white; }
+.lm-title { font-family: 'Clash Display', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--text-primary); margin-bottom: .2rem; }
+.lm-sub { font-size: .82rem; color: var(--text-secondary); margin-bottom: 1.25rem; }
+.lm-field { margin-bottom: .875rem; }
+.lm-field label { display: block; font-size: .75rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; letter-spacing: .06em; margin-bottom: .4rem; }
+.lm-btn { width: 100%; padding: .85rem; background: var(--c-mint); color: white; border: none; border-radius: var(--r-md); font-family: 'DM Sans', sans-serif; font-size: .9rem; font-weight: 700; cursor: pointer; transition: all var(--t-base); }
+.lm-btn:hover { background: var(--c-mint-dark); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,168,142,.3); }
+.lm-msg { font-size: .8rem; font-weight: 600; margin-top: .5rem; display: none; }
+.lm-footer { padding-top: .875rem; border-top: 1px solid var(--border-card); text-align: center; font-size: .8rem; color: var(--text-secondary); }
+.lm-footer a { color: var(--c-mint); font-weight: 700; text-decoration: none; }
 
-  /* ── HERO MELHORADO ── */
-  .hero {
-    background-image: 
-      linear-gradient(155deg, rgba(0,38,28,.92) 0%, rgba(0,90,70,.82) 50%, rgba(0,50,40,.9) 100%),
-      url('bg-grid-neon.jpg');
-    background-size: cover;
-    background-position: center top;
-    padding: 100px 2rem 0;
-    position: relative;
-    overflow: hidden;
-    min-height: 520px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .hero-bg-pattern {
-    position: absolute; inset: 0;
-    width: 100%; height: 100%;
-    z-index: 0; pointer-events: none;
-  }
-  .hero::after {
-    content: '';
-    position: absolute; top: -80px; right: -80px;
-    width: 550px; height: 550px;
-    background: radial-gradient(circle, rgba(0,168,142,.28) 0%, transparent 65%);
-    pointer-events: none; z-index: 0;
-  }
-  /* Marca d'água no hero */
-  .hero::before {
-    content: '';
-    position: absolute;
-    bottom: -20px; left: -40px;
-    width: 420px; height: 120px;
-    background: url('logo-branca.png') no-repeat left center / contain;
-    opacity: .05;
-    pointer-events: none;
-    z-index: 0;
-  }
-  .hero > *:not(.hero-bg-pattern) { position: relative; z-index: 1; }
+/* Login dropdown */
+.login-dropdown { position: absolute; top: 100%; right: 2rem; margin-top: .5rem; background: white; border-radius: var(--r-xl); padding: 1.75rem; width: 340px; box-shadow: var(--shadow-xl); border: 1px solid var(--border-card); z-index: 200; display: none; }
+.login-dropdown.open { display: block; animation: dropIn .2s cubic-bezier(.4,0,.2,1); }
+@keyframes dropIn { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:none; } }
 
-  /* Textos do hero */
-  .hero h1 { color: white !important; font-size: clamp(2.4rem,5.5vw,4.2rem); }
-  .hero h1 .highlight { color: var(--accent) !important; -webkit-text-fill-color: var(--accent) !important; background: none !important; }
-  .hero p { color: rgba(255,255,255,.75) !important; }
-  .hero-badge { background: rgba(255,255,255,.12) !important; border-color: rgba(255,255,255,.2) !important; color: rgba(255,255,255,.9) !important; }
+/* Access options (candidato/empresa) */
+.access-opts { display: flex; flex-direction: column; gap: .6rem; margin-bottom: 1rem; }
+.access-opt {
+  display: flex; align-items: center; gap: .875rem; padding: .875rem 1rem;
+  background: var(--surface-bg); border-radius: var(--r-md); border: 1.5px solid var(--border-card);
+  cursor: pointer; text-decoration: none; color: var(--text-primary);
+  transition: all var(--t-fast);
+}
+.access-opt:hover { border-color: var(--c-mint); background: var(--c-mint-light); }
+.access-icon { width: 40px; height: 40px; border-radius: var(--r-sm); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.access-icon.cand { background: rgba(0,168,142,.1); color: var(--c-green); }
+.access-icon.emp  { background: rgba(0,122,94,.1); color: var(--c-green); }
+.access-icon.new  { background: rgba(0,168,142,.08); color: var(--c-mint); }
+.access-name { font-weight: 700; font-size: .88rem; margin-bottom: .1rem; }
+.access-desc { font-size: .75rem; color: var(--text-secondary); }
 
-  /* STATS — brancos e em negrito */
-  .hero-stats { margin-top: 2rem; }
-  .stat-num {
-    font-family: 'Clash Display', sans-serif;
-    font-size: 2.4rem !important;
-    font-weight: 800 !important;
-    color: white !important;
-    text-shadow: 0 2px 12px rgba(0,0,0,.25);
-  }
-  .stat-label { color: rgba(255,255,255,.65) !important; font-weight: 500 !important; }
-
-  /* Tags modernas */
-  .tag {
-    background: rgba(255,255,255,.1) !important;
-    color: white !important;
-    border: 1px solid rgba(255,255,255,.2) !important;
-    backdrop-filter: blur(8px);
-    border-radius: 50px !important;
-    padding: .45rem 1.1rem !important;
-    font-size: .82rem !important;
-    font-weight: 600 !important;
-    transition: all .25s !important;
-  }
-  .tag:hover {
-    background: var(--accent) !important;
-    border-color: var(--accent) !important;
-    color: white !important;
-    transform: translateY(-2px) !important;
-    box-shadow: 0 4px 14px rgba(0,168,142,.35) !important;
-  }
-
-  /* Transição suave hero → conteúdo */
-  .hero-to-content {
-    height: 56px;
-    background: linear-gradient(to bottom, #005C47, var(--bg));
-    margin-bottom: -1px;
-  }
-
-  /* ── MARCA D'ÁGUA SEÇÃO VAGAS ── */
-  .jobs-section {
-    position: relative;
-    overflow: hidden;
-  }
-  .jobs-section::before {
-    content: '';
-    position: absolute;
-    top: 50%; right: -60px;
-    transform: translateY(-50%);
-    width: 380px; height: 110px;
-    background: url('logo-colorida.png') no-repeat center / contain;
-    opacity: .035;
-    pointer-events: none;
-    z-index: 0;
-  }
-  .jobs-section > * { position: relative; z-index: 1; }
-
-  /* ── ELIMINAR VERMELHO RESIDUAL ── */
-  .section-badge { background: var(--accent-light) !important; color: var(--primary) !important; border: 1px solid rgba(0,122,94,.2); }
-  .btn-search { background: var(--accent) !important; }
-  .btn-search:hover { background: var(--accent-dark) !important; box-shadow: 0 8px 20px rgba(0,168,142,.35) !important; }
-  .btn-primary, .btn-apply, .btn-apply-full, .btn-nav-cta {
-    background: var(--accent) !important;
-  }
-  .btn-primary:hover, .btn-apply:hover, .btn-apply-full:hover {
-    box-shadow: 0 8px 20px rgba(0,168,142,.35) !important;
-  }
-  .badge-type-estagio { background: rgba(0,122,94,.1) !important; color: var(--primary) !important; }
-  .badge-type-aprendiz { background: rgba(0,168,142,.12) !important; color: var(--accent-dark) !important; }
-  .badge-remote { background: rgba(0,168,142,.1) !important; color: var(--accent-dark) !important; }
-  .card-salary { color: var(--primary) !important; }
-  .job-card:hover::before { opacity: 1 !important; }
-  .card-estagio::before { background: linear-gradient(90deg, var(--primary), var(--accent)) !important; }
-  .card-aprendiz::before { background: linear-gradient(90deg, var(--accent), var(--primary)) !important; }
-  .results-count { color: var(--muted) !important; }
-  .section-title { color: var(--text) !important; }
-  .company-logo { background: rgba(0,122,94,.08) !important; color: var(--primary) !important; }
-
-  /* Paginação */
-  .page-btn.active { background: var(--accent) !important; }
-  .page-btn:hover { border-color: var(--accent) !important; color: var(--accent) !important; }
-
-  /* Sort select */
-  .sort-select:focus { border-color: var(--accent) !important; }
-
-
-  /* ── TYPOGRAPHY UPGRADE ── */
-  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap');
-  body { font-family: 'DM Sans', 'Plus Jakarta Sans', sans-serif; }
-
-  /* ── HERO BADGE FIX — não deve esticar full width ── */
-  .hero-badge {
-    display: inline-flex !important;
-    width: auto !important;
-    max-width: fit-content !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    align-self: center !important;
-  }
-  /* Centro o hero content */
-  .hero { text-align: center; }
-  .hero > * { margin-left: auto; margin-right: auto; }
-
-  /* ── HERO TITLE — mais impacto ── */
-  .hero h1 {
-    font-family: 'Clash Display', sans-serif !important;
-    font-size: clamp(2.8rem, 6vw, 5rem) !important;
-    letter-spacing: -0.02em !important;
-    line-height: 1.05 !important;
-    font-weight: 700 !important;
-  }
-
-  /* ── SEARCH CARD — ícones nos selects ── */
-  .search-card { border-radius: 20px !important; box-shadow: 0 12px 40px rgba(0,122,94,.12) !important; }
-
-  /* ── SECTION TITLE — mais peso ── */
-  .section-title {
-    font-family: 'Clash Display', sans-serif !important;
-    font-size: 1.75rem !important;
-    letter-spacing: -.02em !important;
-  }
-
-  /* ── JOB CARDS — mais refinados ── */
-  .job-card { border-radius: 18px !important; }
-  .card-title { font-family: 'Clash Display', sans-serif !important; font-size: 1.05rem !important; letter-spacing: -.01em !important; }
-  .card-company { font-size: .78rem !important; font-weight: 600 !important; letter-spacing: .04em !important; text-transform: uppercase !important; }
-
-  /* ── PAGINATION ── */
-  .page-btn { border-radius: 10px !important; font-weight: 700 !important; }
-
-
-  /* ══ INDEX MOBILE ══ */
-  @media(max-width:768px) {
-    nav { padding:0 1rem; height:60px; }
-    .logo::before { width:110px !important; height:38px !important; }
-    .nav-links { display:none !important; }
-    .btn-access { display:none !important; }
-    #nav-logado-cand .nav-user-name { display:none !important; }
-
-    .hero { padding:80px 1rem 40px !important; min-height:auto !important; }
-    .hero h1 { font-size:clamp(2rem,8vw,3rem) !important; }
-    .hero-badge { font-size:.72rem !important; padding:.35rem .85rem !important; }
-    .hero-stats { gap:1.5rem !important; flex-wrap:wrap; }
-    .stat-num { font-size:1.8rem !important; }
-    .floating-tags { gap:.4rem !important; }
-    .tag { font-size:.75rem !important; padding:.35rem .85rem !important; }
-
-    .search-section { padding:0 1rem 2rem !important; }
-    .search-card { padding:1.1rem !important; border-radius:16px !important; }
-    .search-row { flex-direction:column !important; gap:.65rem !important; }
-    .search-row > * { max-width:100% !important; }
-    .filters-row { gap:.5rem !important; }
-    .filter-select { min-width:calc(50% - .25rem) !important; flex:1 1 45% !important; font-size:.8rem !important; padding:.6rem .75rem !important; }
-
-    .jobs-section { padding:0 1rem 3rem !important; }
-    .section-header { flex-direction:column !important; align-items:flex-start !important; gap:.5rem !important; }
-    .jobs-grid { grid-template-columns:1fr !important; }
-    .job-card { padding:1.1rem !important; }
-    .card-title { font-size:.95rem !important; }
-
-    .pagination { gap:.35rem !important; }
-    .page-btn { width:34px !important; height:34px !important; font-size:.78rem !important; }
-    .page-btn.nav-btn { padding:0 .75rem !important; }
-
-    /* Login modal */
-    .login-modal { padding:1.5rem !important; border-radius:18px !important; }
-    .lm-title { font-size:1.2rem !important; }
-  }
-
-  @media(max-width:400px) {
-    .hero h1 { font-size:1.9rem !important; }
-    .filter-select { min-width:100% !important; }
-    .hero-stats { justify-content:space-around; }
-  }
-
-
-  /* ── SÍMBOLO AM DECORATIVO — heróis ── */
-  .hero .hero-am-symbol,
-  .page-hero .hero-am-symbol,
-  .vaga-hero .hero-am-symbol {
-    position: absolute;
-    right: -80px; bottom: -60px;
-    width: 420px; height: auto;
-    opacity: 1;
-    pointer-events: none;
-    z-index: 0;
-    background: url('symbol-am-white.png') no-repeat center / contain;
-    aspect-ratio: 700/762;
-  }
-  @media(max-width:768px) {
-    .hero .hero-am-symbol,
-    .page-hero .hero-am-symbol { width:220px !important; right:-40px !important; bottom:-30px !important; }
-  }
-
-
-  /* AM symbol seção vagas — sutil */
-  .jobs-section { position:relative; overflow:hidden; }
-  .jobs-section::after {
-    content:''; position:absolute;
-    left:-60px; top:50%; transform:translateY(-50%);
-    width:min(240px, 22vw); height:auto; aspect-ratio:700/762;
-    background:url('symbol-am-green.png') no-repeat center/contain;
-    pointer-events:none; z-index:0; opacity:.6;
-  }
-  .jobs-section > * { position:relative; z-index:1; }
-
-
-  /* ── CORREÇÕES ESPECÍFICAS ── */
-
-  /* Remove AM da seção de vagas */
-  .jobs-section::after { display: none !important; content: none !important; }
-
-  /* Transition hero → search: wave suave */
-  .hero-to-content {
-    height: 0 !important;
-    margin: 0 !important;
-  }
-  .search-section {
-    background: white !important;
-    position: relative;
-    margin-top: -1px;
-    box-shadow: none;
-  }
-  /* Card de busca flutua sobre o hero */
-  .search-card {
-    transform: translateY(-2.5rem);
-    box-shadow: 0 16px 48px rgba(0,0,0,.1) !important;
-    border: none !important;
-    border-radius: 20px !important;
-  }
-
-  /* Transição suave do hero para o search card */
-  .hero::before {
-    background-image:
-      repeating-linear-gradient(
-        -45deg,
-        transparent 0px, transparent 22px,
-        rgba(255,255,255,.022) 22px, rgba(255,255,255,.022) 23px
-      ) !important;
-  }
-
-  /* ── ANIMAÇÕES HOVER ── */
-
-  /* Job cards */
-  .job-card {
-    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease !important;
-  }
-  .job-card:hover {
-    transform: translateY(-6px) !important;
-    box-shadow: 0 20px 48px rgba(0,122,94,.14) !important;
-    border-color: rgba(0,168,142,.3) !important;
-  }
-  .job-card::before {
-    transition: opacity .3s ease !important;
-  }
-
-  /* Tags de área no hero */
-  .tag {
-    transition: all .2s ease !important;
-  }
-  .tag:hover {
-    background: var(--accent) !important;
-    border-color: var(--accent) !important;
-    color: white !important;
-    transform: translateY(-3px) scale(1.04) !important;
-    box-shadow: 0 6px 16px rgba(0,168,142,.35) !important;
-  }
-
-  /* Botão Buscar Vagas */
-  .btn-search {
-    transition: all .25s ease !important;
-  }
-  .btn-search:hover {
-    background: var(--accent-dark) !important;
-    transform: translateY(-2px) !important;
-    box-shadow: 0 8px 24px rgba(0,168,142,.4) !important;
-  }
-
-  /* Stats no hero */
-  .hero-stats .stat { transition: transform .2s ease !important; }
-  .hero-stats .stat:hover { transform: scale(1.08) !important; }
-
-  /* Numbers do hero */
-  .hero-num { transition: background .2s ease !important; }
-  .hero-num:hover { background: rgba(255,255,255,.08) !important; }
-
-  /* Logo no nav */
-  .logo { transition: opacity .2s ease !important; }
-  .logo:hover { opacity: .85 !important; }
-
-  /* Botão Acessar */
-  .btn-access, .btn-nav-cta {
-    transition: all .25s ease !important;
-  }
-
-  /* Filter selects */
-  .filter-select {
-    transition: border-color .2s ease, box-shadow .2s ease !important;
-  }
-  .filter-select:hover {
-    border-color: var(--accent) !important;
-  }
-
-  /* ── ESTILO DE BLOCO TIPO SITE ANHEMBI ── */
-  /* Card de destaque (igual ao card verde da Imagem 1) */
-  .destaque-card {
-    background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
-    border-radius: 20px;
-    padding: 2.5rem 2rem;
-    color: white;
-    position: relative;
-    overflow: hidden;
-    transition: transform .3s ease, box-shadow .3s ease;
-  }
-  .destaque-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 24px 56px rgba(0,122,94,.3);
-  }
-  .destaque-card::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse 80% 60% at 80% 20%, rgba(255,255,255,.12), transparent);
-    pointer-events: none;
-  }
-  .destaque-card .dc-icon {
-    margin-bottom: 1rem;
-    color: rgba(255,255,255,.7);
-  }
-  .destaque-card h3 {
-    font-family: 'Clash Display', sans-serif;
-    font-size: 1.5rem; font-weight: 700; margin-bottom: .5rem;
-  }
-  .destaque-card p { font-size: .9rem; opacity: .82; line-height: 1.65; }
-
-  /* ── SECTION TRANSITION (wave entre seções) ── */
-  .wave-sep {
-    display: block;
-    width: 100%;
-    overflow: hidden;
-    line-height: 0;
-    margin-bottom: -2px;
-  }
-
-
-  /* Banner 3 cards responsivo */
-  @media(max-width:768px) {
-    div[style*="grid-template-columns:repeat(3,1fr)"] {
-      grid-template-columns: 1fr !important;
-    }
-  }
-  @media(min-width:481px) and (max-width:768px) {
-    div[style*="grid-template-columns:repeat(3,1fr)"] {
-      grid-template-columns: 1fr 1fr !important;
-    }
-  }
-
-
-  /* ── LOGO BULLET-PROOF ── */
-  .logo {
-    display: inline-block !important;
-    width: 150px !important;
-    height: 48px !important;
-    background: url('logo-colorida.png') no-repeat left center / contain !important;
-    text-decoration: none !important;
-    font-size: 0 !important;
-    color: transparent !important;
-    -webkit-text-fill-color: transparent !important;
-    overflow: hidden !important;
-    flex-shrink: 0 !important;
-  }
-  .logo::before { display: none !important; }
-  /* Only the CSS background-image, no ::before pseudo */
+/* ── RESPONSIVE INDEX ── */
+@media(max-width:900px) { .jobs-grid { grid-template-columns: 1fr 1fr; } .highlight-grid { grid-template-columns: 1fr; } }
+@media(max-width:600px) {
+  .jobs-grid { grid-template-columns: 1fr; }
+  .search-row { flex-direction: column; }
+  .city-wrap, .search-input.city { max-width: 100%; }
+  .search-card { padding: 1.25rem; transform: translateY(-1.5rem); }
+  .section-header { flex-direction: column; align-items: flex-start; }
+  .highlight-grid { grid-template-columns: 1fr; }
+}
 
 </style>
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<nav>
-  <a class="logo" onclick="resetHome()" href="#" aria-label="IniciaAí"></a>
-  <div class="nav-links">
-    <a href="#" onclick="resetHome()">Vagas</a>
-    <a href="sobre.html">Sobre</a>
-    <a href="cadastro-empresa.html">Para Empresas</a>
-    <a href="termos.html">Termos</a>
+<!-- ═══ NAV ═══ -->
+<nav class="nav" id="main-nav">
+  <a class="nav-logo" href="#" onclick="resetHome()" aria-label="Conecta"></a>
+  <ul class="nav-links">
+    <li><a href="#" onclick="resetHome()">Vagas</a></li>
+    <li><a href="sobre.html">Sobre</a></li>
+    <li><a href="cadastro-empresa.html">Para Empresas</a></li>
+    <li><a href="termos.html">Termos</a></li>
+  </ul>
+  <div class="nav-end" style="display:flex;align-items:center;gap:.75rem">
+    <button class="btn-access" id="btn-access" onclick="toggleLogin()">
+      Acessar
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+    </button>
+    <button class="nav-burger" id="hamburger" onclick="navToggle()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
-  <div style="display:flex;align-items:center;gap:.75rem">
-    <!-- Mostra avatar se logado, dropdown se não logado -->
-    <div id="nav-logado-cand" style="display:none">
-      <div class="nav-user-wrap">
-        <div class="nav-avatar" id="nav-avatar-cand" onclick="window.location.href='cadastro-candidato.html'">?</div>
-        <span class="nav-user-name" id="nav-user-name" style="display:none"></span>
-      </div>
-    </div>
-    <div id="nav-logado-emp" style="display:none">
-      <div class="nav-user-wrap">
-        <div class="nav-avatar" style="background:linear-gradient(135deg,var(--cyan),var(--violet))" onclick="window.location.href='painel-empresa.html'"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
-      </div>
-    </div>
-    <div class="nav-access" id="nav-access-wrap">
-      <button class="btn-access" id="btn-access" onclick="toggleAccessDropdown()">
-        Acessar
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
-      </button>
-      <div class="access-dropdown" id="access-dropdown">
-        <div class="access-dropdown-header">Entrar como</div>
-        <div class="access-item" onclick="openLoginModal('candidato')">
-          <div class="access-icon cand"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
-          <div><div class="access-label">Candidato</div><div class="access-sub">Acesse seu perfil e candidaturas</div></div>
-        </div>
-        <div class="access-item" onclick="openLoginModal('empresa')">
-          <div class="access-icon emp"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
-          <div><div class="access-label">Empresa</div><div class="access-sub">Gerencie vagas e candidatos</div></div>
-        </div>
-        <div class="access-dropdown-header" style="margin-top:.25rem">Novo por aqui?</div>
-        <a class="access-item" href="cadastro-candidato.html">
-          <div class="access-icon new"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg></div>
-          <div><div class="access-label">Criar perfil de candidato</div><div class="access-sub">É grátis e rápido</div></div>
-        </a>
-        <a class="access-item" href="cadastro-empresa.html">
-          <div class="access-icon" style="background:rgba(255,92,92,.1)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/></svg></div>
-          <div><div class="access-label">Cadastrar empresa</div><div class="access-sub">Publique vagas gratuitamente</div></div>
-        </a>
-      </div>
-    </div>
-  </div>
-  <!-- HAMBURGUER (mobile only) -->
-  <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
 </nav>
 
-<!-- DRAWER MOBILE -->
-<div class="mobile-drawer" id="mobile-drawer">
-  <div class="mobile-nav-links">
-    <a href="#" onclick="resetHome();closeMobileMenu()"><svg style="vertical-align:middle;flex-shrink:0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> Vagas</a>
-    <a href="cadastro-empresa.html"><svg style="vertical-align:middle;flex-shrink:0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg> Para Empresas</a>
-    <a href="termos.html">Termos & Privacidade</a>
+<!-- Login dropdown -->
+<div class="login-dropdown" id="login-dropdown">
+  <div class="lm-tab">
+    <button class="active" id="tab-cand" onclick="switchLoginTab('candidato')">Candidato</button>
+    <button id="tab-emp" onclick="switchLoginTab('empresa')">Empresa</button>
   </div>
-
-  <div class="mobile-divider"></div>
-  <div class="mobile-access-title">Entrar como</div>
-
-  <button class="mobile-access-btn" onclick="closeMobileMenu();openLoginModal('candidato')">
-    <div class="mobile-access-icon" style="background:rgba(0,122,94,.08)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
-    <div><div class="mobile-access-label">Candidato</div><div class="mobile-access-sub">Acesse seu perfil e candidaturas</div></div>
-  </button>
-  <button class="mobile-access-btn" onclick="closeMobileMenu();openLoginModal('empresa')">
-    <div class="mobile-access-icon" style="background:rgba(0,122,94,.08)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
-    <div><div class="mobile-access-label">Empresa</div><div class="mobile-access-sub">Gerencie vagas e candidatos</div></div>
-  </button>
-
-  <div class="mobile-divider"></div>
-  <div class="mobile-access-title">Novo por aqui?</div>
-  <div class="mobile-cta">
-    <a class="cta-primary" href="cadastro-candidato.html"><svg style="vertical-align:middle;flex-shrink:0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Criar perfil de candidato</a>
-    <a class="cta-secondary" href="cadastro-empresa.html"> Cadastrar empresa</a>
+  <div class="lm-form active" id="lms-candidato">
+    <input class="lm-input" id="lm-c-email" type="email" placeholder="E-mail" onkeydown="if(event.key==='Enter')loginModal('candidato')">
+    <input class="lm-input" id="lm-c-senha" type="password" placeholder="Senha" onkeydown="if(event.key==='Enter')loginModal('candidato')">
+    <button class="lm-btn" onclick="loginModal('candidato')">Entrar</button>
+    <p class="lm-msg" id="lm-c-msg"></p>
+  </div>
+  <div class="lm-form" id="lms-empresa">
+    <input class="lm-input" id="lm-e-email" type="email" placeholder="E-mail" onkeydown="if(event.key==='Enter')loginModal('empresa')">
+    <input class="lm-input" id="lm-e-senha" type="password" placeholder="Senha" onkeydown="if(event.key==='Enter')loginModal('empresa')">
+    <button class="lm-btn" onclick="loginModal('empresa')">Entrar</button>
+    <p class="lm-msg" id="lm-e-msg"></p>
+  </div>
+  <div class="lm-footer">
+    <a href="cadastro-candidato.html">Criar conta de candidato →</a>
   </div>
 </div>
 
-<!-- MODAL LOGIN -->
-<div class="login-modal-overlay" id="login-modal-overlay" onclick="if(event.target===this)closeLoginModal()">
-  <div class="login-modal">
-    <button class="login-modal-close" onclick="closeLoginModal()">✕</button>
-
-    <div class="login-modal-tabs">
-      <button class="lm-tab active" id="lmt-candidato" onclick="switchLoginTab('candidato')"><svg style="vertical-align:middle;flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Candidato</button>
-      <button class="lm-tab" id="lmt-empresa" onclick="switchLoginTab('empresa')"><svg style="vertical-align:middle;flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg> Empresa</button>
-    </div>
-
-    <!-- CANDIDATO -->
-    <div class="lm-section show" id="lms-candidato">
-      <div class="lm-title">Bem-vindo de volta!</div>
-      <div class="lm-field">
-        <label>E-mail</label>
-        <input type="email" id="lm-c-email" placeholder="seu@email.com" onkeydown="if(event.key==='Enter')loginModal('candidato')">
-      </div>
-      <div class="lm-field">
-        <label>Senha</label>
-        <input type="password" id="lm-c-senha" placeholder="Sua senha" onkeydown="if(event.key==='Enter')loginModal('candidato')">
-      </div>
-      <button class="lm-btn" id="lm-btn-cand" onclick="loginModal('candidato')">Entrar →</button>
-      <div class="lm-msg" id="lm-msg-cand"></div>
-      <div class="lm-link">Não tem conta? <a href="cadastro-candidato.html">Criar perfil grátis →</a></div>
-    </div>
-
-    <!-- EMPRESA -->
-    <div class="lm-section" id="lms-empresa">
-      <div class="lm-title">Área da Empresa</div>
-      <div class="lm-field">
-        <label>E-mail</label>
-        <input type="email" id="lm-e-email" placeholder="rh@empresa.com.br" onkeydown="if(event.key==='Enter')loginModal('empresa')">
-      </div>
-      <div class="lm-field">
-        <label>Senha</label>
-        <input type="password" id="lm-e-senha" placeholder="Sua senha" onkeydown="if(event.key==='Enter')loginModal('empresa')">
-      </div>
-      <button class="lm-btn" id="lm-btn-emp" onclick="loginModal('empresa')">Entrar →</button>
-      <div class="lm-msg" id="lm-msg-emp"></div>
-      <div class="lm-link">Não tem conta? <a href="cadastro-empresa.html">Cadastrar empresa →</a></div>
-    </div>
-
-  </div>
+<div class="nav-mobile" id="nav-drawer">
+  <a href="#" onclick="resetHome();navToggle()">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--p-dark)" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    Ver Vagas
+  </a>
+  <a href="sobre.html">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--p-dark)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    Sobre o Conecta
+  </a>
+  <a href="cadastro-candidato.html">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--p-dark)" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    Criar meu perfil
+  </a>
+  <a href="cadastro-empresa.html">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--p-dark)" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+    Para Empresas
+  </a>
+  <a href="termos.html">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--p-dark)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+    Termos & Privacidade
+  </a>
 </div>
 
-<section class="hero" style="text-align:center">
-  <!-- Fundo tech + ensino (Pantone Anhembi) -->
-  <svg class="hero-bg-pattern" viewBox="0 0 1440 580" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" opacity=".18">
-    <g stroke="#00A88E" stroke-width="1" fill="none">
-      <line x1="0" y1="120" x2="280" y2="120"/>
-      <line x1="320" y1="120" x2="560" y2="120"/>
-      <line x1="860" y1="80" x2="1180" y2="80"/>
-      <line x1="1100" y1="190" x2="1440" y2="190"/>
-      <line x1="0" y1="310" x2="170" y2="310"/>
-      <line x1="210" y1="410" x2="450" y2="410"/>
-      <line x1="900" y1="340" x2="1140" y2="340"/>
-      <line x1="1200" y1="440" x2="1440" y2="440"/>
-      <line x1="280" y1="0" x2="280" y2="160"/>
-      <line x1="280" y1="200" x2="280" y2="330"/>
-      <line x1="560" y1="80" x2="560" y2="160"/>
-      <line x1="860" y1="0" x2="860" y2="120"/>
-      <line x1="1100" y1="80" x2="1100" y2="230"/>
-      <line x1="170" y1="270" x2="170" y2="350"/>
-      <line x1="450" y1="370" x2="450" y2="450"/>
-      <line x1="1140" y1="300" x2="1140" y2="390"/>
-      <line x1="280" y1="330" x2="360" y2="410"/>
-      <line x1="560" y1="120" x2="640" y2="80"/>
-    </g>
-    <g fill="#00A88E">
-      <circle cx="280" cy="120" r="4"/><circle cx="560" cy="120" r="4"/>
-      <circle cx="860" cy="80" r="4"/><circle cx="1100" cy="190" r="4"/>
-      <circle cx="450" cy="410" r="4"/><circle cx="1140" cy="340" r="3"/>
-      <rect x="275" y="115" width="10" height="10" rx="2" fill="none" stroke="#00A88E" stroke-width="1.5"/>
-      <rect x="1095" y="185" width="10" height="10" rx="2" fill="none" stroke="#00A88E" stroke-width="1.5"/>
-    </g>
-    <g stroke="#00A88E" stroke-width="1.5" fill="none" opacity=".55">
-      <g transform="translate(1290,30)">
-        <rect x="0" y="0" width="55" height="70" rx="3"/>
-        <rect x="7" y="0" width="41" height="70" rx="3"/>
-        <line x1="7" y1="18" x2="48" y2="18"/>
-        <line x1="7" y1="26" x2="48" y2="26"/>
-        <line x1="7" y1="34" x2="38" y2="34"/>
-        <line x1="28" y1="0" x2="28" y2="70"/>
-      </g>
-      <g transform="translate(38,450)">
-        <rect x="0" y="0" width="78" height="50" rx="4"/>
-        <line x1="24" y1="50" x2="24" y2="62"/><line x1="54" y1="50" x2="54" y2="62"/>
-        <line x1="16" y1="62" x2="62" y2="62"/>
-        <line x1="10" y1="14" x2="28" y2="14"/>
-        <line x1="10" y1="21" x2="42" y2="21"/>
-        <line x1="10" y1="28" x2="32" y2="28"/>
-        <line x1="10" y1="35" x2="48" y2="35"/>
-      </g>
-      <g transform="translate(1360,270)">
-        <polygon points="36,0 72,18 36,36 0,18"/>
-        <line x1="36" y1="36" x2="36" y2="64"/>
-        <line x1="56" y1="28" x2="56" y2="56"/>
-        <path d="M 18 48 Q 36 60 56 48"/>
-        <circle cx="56" cy="56" r="3.5" fill="#00A88E"/>
-      </g>
-    </g>
-    <g stroke="#00A88E" stroke-width="1" fill="none" opacity=".2">
-      <polygon points="690,25 710,14 730,25 730,47 710,58 690,47"/>
-      <polygon points="1230,370 1250,359 1270,370 1270,392 1250,403 1230,392"/>
-      <polygon points="105,165 125,154 145,165 145,187 125,198 105,187"/>
-    </g>
-    <g fill="#00A88E" opacity=".35">
-      <circle cx="140" cy="75" r="2.5"/><circle cx="710" cy="145" r="2"/>
-      <circle cx="960" cy="275" r="2.5"/><circle cx="410" cy="345" r="2"/>
-      <circle cx="830" cy="435" r="2"/><circle cx="1180" cy="510" r="2.5"/>
-      <circle cx="210" cy="235" r="2"/><circle cx="1310" cy="155" r="2"/>
-      <circle cx="660" cy="475" r="2"/><circle cx="75" cy="415" r="2"/>
-    </g>
-  </svg>
-  <div class="hero-badge"><svg style="vertical-align:middle;flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg> O portal feito para quem está começando</div>
-  <h1>Seu primeiro <span class="highlight">passo</span><br>no mercado começa aqui</h1>
-  <p>Estágios, Jovem Aprendiz e muito mais. Encontre a oportunidade certa para decolar na sua carreira.</p>
-  <div class="floating-tags">
-    <span class="tag" onclick="filterByTag('Tecnologia')">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:.35rem"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Tecnologia
-    </span>
-    <span class="tag" onclick="filterByTag('Marketing')">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:.35rem"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>Marketing
-    </span>
-    <span class="tag" onclick="filterByTag('Administrativo')">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:.35rem"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>Administrativo
-    </span>
-    <span class="tag" onclick="filterByTag('Design')">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:.35rem"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>Design
-    </span>
-    <span class="tag" onclick="filterByTag('Financeiro')">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:.35rem"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Financeiro
-    </span>
-    <span class="tag" onclick="filterByTag('RH')">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:.35rem"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>RH
-    </span>
-    <span class="tag" onclick="filterByTag('Logística')">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:.35rem"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>Logística
-    </span>
+<!-- ═══ HERO ═══ -->
+<section class="hero" id="hero-section">
+  <div class="hero-deco" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="hero-tag fade-up">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+      O portal feito para quem está começando
+    </div>
+    <h1 class="fade-up">Seu primeiro <em>passo</em><br>no mercado começa aqui</h1>
+    <p class="hero-sub fade-up">Estágios, Jovem Aprendiz e muito mais. Encontre a oportunidade certa para decolar na sua carreira.</p>
+    <div class="hero-ctas fade-up">
+      <a class="btn-hero" href="cadastro-candidato.html">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Criar meu perfil grátis
+      </a>
+      <a class="btn-hero-ghost" href="sobre.html">Saiba mais →</a>
+    </div>
+    <div class="hero-tags fade-up" id="hero-tags">
+      <span class="htag" onclick="filterByTag('Tecnologia')">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Tecnologia
+      </span>
+      <span class="htag" onclick="filterByTag('Marketing')">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>Marketing
+      </span>
+      <span class="htag" onclick="filterByTag('Administrativo')">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Administrativo
+      </span>
+      <span class="htag" onclick="filterByTag('Design')">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>Design
+      </span>
+      <span class="htag" onclick="filterByTag('Financeiro')">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Financeiro
+      </span>
+      <span class="htag" onclick="filterByTag('RH')">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>RH
+      </span>
+      <span class="htag" onclick="filterByTag('Logística')">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>Logística
+      </span>
+    </div>
   </div>
   <div class="hero-stats">
-    <div class="stat"><div class="stat-num" id="stat-vagas">—</div><div class="stat-label">Vagas ativas</div></div>
-    <div class="stat"><div class="stat-num" id="stat-empresas">—</div><div class="stat-label">Empresas parceiras</div></div>
-    <div class="stat"><div class="stat-num" id="stat-candidatos">—</div><div class="stat-label">Candidatos cadastrados</div></div>
+    <div class="hero-stat">
+      <div class="hero-stat-val" id="stat-vagas">—</div>
+      <div class="hero-stat-lbl">Vagas ativas</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-val" id="stat-empresas">—</div>
+      <div class="hero-stat-lbl">Empresas parceiras</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-val" id="stat-cands">—</div>
+      <div class="hero-stat-lbl">Candidatos cadastrados</div>
+    </div>
   </div>
 </section>
 
-<svg class="wave-sep" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 48" preserveAspectRatio="none">
-  <path fill="white" d="M0,24 C240,48 480,0 720,24 C960,48 1200,0 1440,24 L1440,48 L0,48 Z"/>
-</svg>
-<section class="search-section">
+<div class="section-transition">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 52" preserveAspectRatio="none">
+    <path fill="white" d="M0,26 C360,52 1080,0 1440,26 L1440,52 L0,52 Z"/>
+  </svg>
+</div>
+
+<!-- ═══ SEARCH ═══ -->
+<section class="search-section" id="search-section">
   <div class="search-card">
     <div class="search-row">
       <div class="search-input-wrap">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input class="search-input" id="search-keyword" type="text" placeholder="Cargo, área ou empresa..." oninput="applyFilters()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input class="search-input" id="search-kw" type="text" placeholder="Cargo, área ou empresa..." oninput="applyFilters()">
       </div>
-      <div class="search-input-wrap" style="max-width:200px">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-        <input class="search-input" id="search-city" type="text" placeholder="Cidade ou 'Remoto'" oninput="applyFilters()">
+      <div class="city-wrap">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <input class="city-input" id="search-city" type="text" placeholder="Cidade ou 'Remoto'" oninput="applyFilters()">
       </div>
       <button class="btn-search" onclick="applyFilters()">Buscar Vagas</button>
     </div>
     <div class="filters-row">
-      <select class="filter-select" id="filter-type" onchange="applyFilters()">
+      <select class="fsel" id="filter-type" onchange="applyFilters()">
         <option value="">Tipo de vaga</option>
         <option>Estágio</option><option>Jovem Aprendiz</option>
       </select>
-      <select class="filter-select" id="filter-area" onchange="applyFilters()">
+      <select class="fsel" id="filter-area" onchange="applyFilters()">
         <option value="">Área</option>
         <option>Tecnologia</option><option>Marketing</option><option>Design</option>
         <option>Administrativo</option><option>Financeiro</option><option>RH</option><option>Logística</option>
       </select>
-      <select class="filter-select" id="filter-modality" onchange="applyFilters()">
+      <select class="fsel" id="filter-modality" onchange="applyFilters()">
         <option value="">Modalidade</option>
         <option>Remoto</option><option>Híbrido</option><option>Presencial</option>
       </select>
-      <select class="filter-select" id="filter-period" onchange="applyFilters()">
+      <select class="fsel" id="filter-period" onchange="applyFilters()">
         <option value="">Período</option>
         <option>Manhã</option><option>Tarde</option><option>Noite</option><option>Integral</option>
       </select>
@@ -1212,515 +1049,367 @@
   </div>
 </section>
 
-<section class="jobs-section">
-  <div class="section-header">
-    <div>
-      <div class="section-title">Vagas em destaque</div>
-      <div class="results-count" id="results-count">Carregando vagas...</div>
-    </div>
-    <select class="sort-select" id="sort-select" onchange="applyFilters()">
-      <option value="recent">Mais recentes</option>
-      <option value="salary">Maior bolsa</option>
-    </select>
-  </div>
-  <div id="loading" class="loading"><div class="spinner"></div><p style="color:var(--muted)">Buscando vagas...</p></div>
+<!-- Wave search→jobs: branco para cinza claro -->
+<div style="background:white;margin-bottom:-2px">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 40" preserveAspectRatio="none" style="display:block;width:100%;height:40px">
+    <path fill="#F4F8F7" d="M0,20 C360,40 1080,0 1440,20 L1440,40 L0,40 Z"/>
+  </svg>
+</div>
 
-  <!-- Destaque visual tipo Anhembi -->
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2rem">
-    <div style="background:linear-gradient(135deg,var(--primary) 0%,var(--accent-dark) 100%);border-radius:18px;padding:1.5rem 1.25rem;color:white;position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s;cursor:default"
-         onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 20px 48px rgba(0,122,94,.3)'"
-         onmouseout="this.style.transform='none';this.style.boxShadow='none'">
-      <div style="position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 80% 20%,rgba(255,255,255,.1),transparent);pointer-events:none"></div>
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.65)" stroke-width="1.5" style="margin-bottom:.75rem"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
-      <div style="font-family:'Clash Display',sans-serif;font-size:1.25rem;font-weight:700;margin-bottom:.35rem;position:relative">100% Gratuito</div>
-      <div style="font-size:.82rem;opacity:.8;line-height:1.6;position:relative">Para candidatos. Nenhuma taxa para se candidatar às vagas.</div>
+<!-- ═══ JOBS ═══ -->
+<section class="jobs-section" id="jobs-section">
+  <div style="max-width:1080px;margin:0 auto">
+    <!-- Promo cards -->
+    <div class="promo-grid fade-up">
+      <div class="promo-card pc-1">
+        <div class="pc-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
+        <h3>100% Gratuito</h3>
+        <p>Para candidatos. Sem taxas, sem planos pagos para se candidatar.</p>
+      </div>
+      <div class="promo-card pc-2">
+        <div class="pc-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+        <h3>Vagas Verificadas</h3>
+        <p>Toda vaga passa por revisão manual antes de ser publicada no portal.</p>
+      </div>
+      <div class="promo-card pc-3">
+        <div class="pc-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
+        <h3>Perfil DISC</h3>
+        <p>Destaque-se com o teste comportamental e seja encontrado pelas empresas certas.</p>
+      </div>
     </div>
-    <div style="background:linear-gradient(135deg,var(--accent) 0%,var(--primary) 100%);border-radius:18px;padding:1.5rem 1.25rem;color:white;position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s;cursor:default"
-         onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 20px 48px rgba(0,168,142,.3)'"
-         onmouseout="this.style.transform='none';this.style.boxShadow='none'">
-      <div style="position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 80% 20%,rgba(255,255,255,.1),transparent);pointer-events:none"></div>
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.65)" stroke-width="1.5" style="margin-bottom:.75rem"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-      <div style="font-family:'Clash Display',sans-serif;font-size:1.25rem;font-weight:700;margin-bottom:.35rem;position:relative">Vagas Verificadas</div>
-      <div style="font-size:.82rem;opacity:.8;line-height:1.6;position:relative">Toda vaga é revisada manualmente antes de ser publicada no portal.</div>
-    </div>
-    <div style="background:linear-gradient(135deg,#005C47 0%,var(--accent) 100%);border-radius:18px;padding:1.5rem 1.25rem;color:white;position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s;cursor:default"
-         onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 20px 48px rgba(0,92,71,.3)'"
-         onmouseout="this.style.transform='none';this.style.boxShadow='none'">
-      <div style="position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 80% 20%,rgba(255,255,255,.1),transparent);pointer-events:none"></div>
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.65)" stroke-width="1.5" style="margin-bottom:.75rem"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
-      <div style="font-family:'Clash Display',sans-serif;font-size:1.25rem;font-weight:700;margin-bottom:.35rem;position:relative">Perfil DISC</div>
-      <div style="font-size:.82rem;opacity:.8;line-height:1.6;position:relative">Destaque-se com o teste comportamental e seja encontrado pelas empresas certas.</div>
-    </div>
-  </div>
 
-  <div class="jobs-grid" id="jobs-grid"></div>
-  <div id="pagination" class="pagination"></div>
-  <div class="empty-state" id="empty-state">
-    <div class="empty-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
-    <h3>Nenhuma vaga encontrada</h3>
-    <p>Tente ajustar os filtros ou buscar por outros termos.</p>
+    <div class="jobs-header">
+      <div class="jobs-title-wrap">
+        <h2 id="jobs-title">Vagas em destaque</h2>
+        <p id="jobs-sub"></p>
+      </div>
+      <select class="sort-select" id="sort-select" onchange="applyFilters()">
+        <option value="recente">Mais recentes</option>
+        <option value="salario">Maior salário</option>
+        <option value="empresa">Empresa A–Z</option>
+      </select>
+    </div>
+
+    <div class="jobs-grid" id="jobs-grid">
+      <div class="skel-card fade-up">
+        <div class="skeleton" style="height:44px;width:44px;border-radius:12px;margin-bottom:1rem"></div>
+        <div class="skeleton" style="height:12px;width:60%;margin-bottom:.5rem"></div>
+        <div class="skeleton" style="height:18px;width:80%;margin-bottom:1rem"></div>
+        <div style="display:flex;gap:.5rem;margin-bottom:1rem">
+          <div class="skeleton" style="height:22px;width:80px;border-radius:50px"></div>
+          <div class="skeleton" style="height:22px;width:70px;border-radius:50px"></div>
+        </div>
+        <div class="skeleton" style="height:1px;margin-bottom:.85rem"></div>
+        <div style="display:flex;justify-content:space-between">
+          <div class="skeleton" style="height:22px;width:100px"></div>
+          <div class="skeleton" style="height:32px;width:80px;border-radius:50px"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pagination" id="pagination"></div>
   </div>
 </section>
 
-<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModalBtn()">×</button>
-    <div id="modal-body"></div>
+<!-- Painel candidato logado (exibido após login) -->
+<section class="painel-section" id="painel-section">
+  <div class="painel-card">
+    <p id="painel-placeholder" style="text-align:center;color:var(--sub);padding:2rem 0">Carregando painel...</p>
   </div>
-</div>
+</section>
 
-<footer style="background:var(--dark);border-top:1px solid rgba(255,255,255,.08);padding:2rem;text-align:center">
-  <div style="margin-bottom:1rem">
-    <img src="logo-branca.png" alt="Universidade Anhembi Morumbi - Polo Bauru-Centro" style="height:40px;object-fit:contain;filter:brightness(0) invert(1);opacity:.85">
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-inner">
+    <img src="logo-conecta-white.png" alt="Conecta — Polo Bauru-Centro">
+    <div class="footer-links">
+      <a href="#" onclick="resetHome()">Ver Vagas</a>
+      <a href="sobre.html">Sobre</a>
+      <a href="cadastro-candidato.html">Criar Perfil</a>
+      <a href="cadastro-empresa.html">Para Empresas</a>
+      <a href="termos.html">Termos & Privacidade</a>
+    </div>
+    <p>© 2025 Universidade Anhembi Morumbi — Polo Bauru-Centro. Todos os direitos reservados.</p>
   </div>
-  <p style="font-size:.8rem;color:rgba(255,255,255,.35)">
-    <a href="index.html" style="color:rgba(255,255,255,.45);text-decoration:none">Ver vagas</a> &nbsp;·&nbsp;
-    <a href="sobre.html" style="color:rgba(255,255,255,.45);text-decoration:none">Sobre</a> &nbsp;·&nbsp;
-    <a href="termos.html" style="color:rgba(255,255,255,.45);text-decoration:none">Termos & Privacidade</a>
-  </p>
-  <p style="font-size:.72rem;color:rgba(255,255,255,.2);margin-top:.5rem">
-    © 2025 Universidade Anhembi Morumbi — Polo Bauru-Centro. Todos os direitos reservados.
-  </p>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
+// ════════════════════════════════════════════════
+// Conecta — INDEX.JS
+// ════════════════════════════════════════════════
 const SUPABASE_URL = 'https://hnhxxchhwhdlpuiceirz.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhuaHh4Y2hod2hkbHB1aWNlaXJ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM0MjY4MDMsImV4cCI6MjA4OTAwMjgwM30._N9DBrCq7lXW6tpfpcXHHcaH21AqEAcinPPIE-_-Ik8';
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-// ── LOGO & COR DINÂMICA ──────────────────────────────────────────
-async function carregarIdentidade() {
+const VAGAS_POR_PAGINA = 9;
+let vagasFiltradas = [], paginaAtual = 1, todasVagas = [], tagAtiva = '';
+
+// ── Logo dinâmica ──
+(async () => {
   try {
     const { data } = await sb.from('configuracoes').select('chave,valor');
     if (!data) return;
     const cfg = Object.fromEntries(data.map(r => [r.chave, r.valor]));
-
-    // Logo dinâmica (só aplica se admin configurou uma logo personalizada)
-    if (cfg.logo_url && cfg.logo_url !== '') {
-      document.querySelectorAll('.logo').forEach(el => {
-        el.innerHTML = '';
-        el.style.setProperty('--logo-url', `url('${cfg.logo_url}')`);
-        el.style.cssText += ';width:auto;';
-      });
-    }
-    // Se não há logo personalizada, o CSS usa logo-colorida.png por padrão
-
-    // Cor primária
+    if (cfg.logo_url) document.querySelectorAll('.nav-logo').forEach(el => el.style.backgroundImage = `url('${cfg.logo_url}')`);
     if (cfg.cor_primary && /^#[0-9A-Fa-f]{6}$/.test(cfg.cor_primary)) {
-      const cor = cfg.cor_primary;
-      const corDark = ajustarCor(cor, -20);
-      document.documentElement.style.setProperty('--primary', cor);
-      document.documentElement.style.setProperty('--primary-dark', corDark);
-      document.documentElement.style.setProperty('--violet', cor);
-      document.documentElement.style.setProperty('--coral', corDark);
+      document.documentElement.style.setProperty('--p-dark', cfg.cor_primary);
     }
-  } catch(e) { /* silencioso */ }
-}
+  } catch(e) {}
+})();
 
-function ajustarCor(hex, pct) {
-  const num = parseInt(hex.slice(1), 16);
-  const r = Math.max(0, Math.min(255, (num >> 16) + pct));
-  const g = Math.max(0, Math.min(255, ((num >> 8) & 0xff) + pct));
-  const b = Math.max(0, Math.min(255, (num & 0xff) + pct));
-  return '#' + [r,g,b].map(v => v.toString(16).padStart(2,'0')).join('');
-}
-carregarIdentidade();
-// ── END LOGO & COR ──────────────────────────────────────────────
+// ── Fade-up observer ──
+const fadeObs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      e.target.style.animationDelay = (i * 0.08) + 's';
+      e.target.classList.add('in');
+      fadeObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => fadeObs.observe(el));
 
-
-let allVagas = [];
-let filteredVagas = [];
-let currentPage = 1;
-const VAGAS_POR_PAGINA = 9;
-
-// ---- CARREGAR VAGAS ----
-async function loadVagas() {
-  const { data, error } = await sb
-    .from('vagas')
-    .select('*, empresas(nome_fantasia, razao_social)')
-    .eq('status', 'aprovada')
-    .order('created_at', { ascending: false });
-
-  document.getElementById('loading').style.display = 'none';
-  if (error) { console.error(error); return; }
-  allVagas = data || [];
-  applyFilters();
-  loadStats();
-}
-
+// ── Stats ──
 async function loadStats() {
-  const { count: cv } = await sb.from('vagas').select('*', {count:'exact',head:true}).eq('status','aprovada');
-  const { count: ce } = await sb.from('empresas').select('*', {count:'exact',head:true});
-  const { count: cc } = await sb.from('candidatos').select('*', {count:'exact',head:true});
-  document.getElementById('stat-vagas').textContent = cv || 0;
-  document.getElementById('stat-empresas').textContent = ce || 0;
-  document.getElementById('stat-candidatos').textContent = cc || 0;
+  try {
+    const [v, e, c] = await Promise.all([
+      sb.from('vagas').select('id', {count:'exact'}).eq('status','aprovada'),
+      sb.from('empresas').select('id', {count:'exact'}),
+      sb.from('candidatos').select('id', {count:'exact'}),
+    ]);
+    document.getElementById('stat-vagas').textContent    = v.count ?? 0;
+    document.getElementById('stat-empresas').textContent = e.count ?? 0;
+    document.getElementById('stat-cands').textContent    = c.count ?? 0;
+  } catch(e) {}
 }
 
-// ---- FILTROS ----
-function applyFilters() {
-  const kw  = document.getElementById('search-keyword').value.toLowerCase();
-  const ct  = document.getElementById('search-city').value.toLowerCase();
-  const tp  = document.getElementById('filter-type').value;
-  const ar  = document.getElementById('filter-area').value;
-  const md  = document.getElementById('filter-modality').value;
-  const pd  = document.getElementById('filter-period').value;
-  const srt = document.getElementById('sort-select').value;
+// ── Vagas ──
+async function loadVagas() {
+  try {
+    const { data } = await sb.from('vagas')
+      .select('*, empresas(nome,logo_url,telefone,email,cnpj)')
+      .eq('status', 'aprovada')
+      .order('created_at', { ascending: false });
+    todasVagas = data || [];
+    vagasFiltradas = [...todasVagas];
+    renderVagas();
+  } catch(e) {
+    document.getElementById('jobs-grid').innerHTML = '<p style="text-align:center;color:var(--sub);padding:3rem">Erro ao carregar vagas.</p>';
+  }
+}
 
-  filteredVagas = allVagas.filter(j => {
-    const kM = !kw || j.titulo?.toLowerCase().includes(kw) ||
-               j.empresas?.nome_fantasia?.toLowerCase().includes(kw) ||
-               j.area?.toLowerCase().includes(kw) ||
-               j.tags?.toLowerCase().includes(kw);
-    const cM = !ct || j.cidade?.toLowerCase().includes(ct);
-    const tM = !tp || j.tipo === tp;
-    const aM = !ar || j.area === ar;
-    const mM = !md || j.modalidade === md;
-    const pM = !pd || j.periodo === pd;
-    return kM && cM && tM && aM && mM && pM;
+function applyFilters() {
+  const kw = document.getElementById('search-kw').value.toLowerCase();
+  const ct = document.getElementById('search-city').value.toLowerCase();
+  const tp = document.getElementById('filter-type').value;
+  const ar = document.getElementById('filter-area').value;
+  const md = document.getElementById('filter-modality').value;
+  const pd = document.getElementById('filter-period').value;
+  const st = document.getElementById('sort-select').value;
+
+  vagasFiltradas = todasVagas.filter(v => {
+    const emp = (v.empresas?.nome || '').toLowerCase();
+    const ok_kw = !kw || v.titulo?.toLowerCase().includes(kw) || v.area?.toLowerCase().includes(kw) || emp.includes(kw);
+    const ok_ct = !ct || v.cidade?.toLowerCase().includes(ct) || (ct === 'remoto' && v.modalidade === 'Remoto');
+    const ok_tp = !tp || v.tipo === tp;
+    const ok_ar = !ar || v.area === ar;
+    const ok_md = !md || v.modalidade === md;
+    const ok_pd = !pd || v.periodo === pd;
+    const ok_tag = !tagAtiva || v.area === tagAtiva;
+    return ok_kw && ok_ct && ok_tp && ok_ar && ok_md && ok_pd && ok_tag;
   });
 
-  if (srt === 'salary') filteredVagas.sort((a,b) => (b.bolsa||0) - (a.bolsa||0));
+  // Sort
+  if (st === 'salario') vagasFiltradas.sort((a,b) => (b.bolsa||0)-(a.bolsa||0));
+  else if (st === 'empresa') vagasFiltradas.sort((a,b) => (a.empresas?.nome||'').localeCompare(b.empresas?.nome||''));
+  else vagasFiltradas.sort((a,b) => new Date(b.created_at)-new Date(a.created_at));
 
-  currentPage = 1;
-  renderPage();
+  paginaAtual = 1;
+  renderVagas();
 }
 
-// ---- PAGINAÇÃO ----
-function renderPage() {
-  const grid  = document.getElementById('jobs-grid');
-  const empty = document.getElementById('empty-state');
-  const count = document.getElementById('results-count');
-  const total = filteredVagas.length;
-  const totalPages = Math.ceil(total / VAGAS_POR_PAGINA);
-  const start = (currentPage - 1) * VAGAS_POR_PAGINA;
-  const pageVagas = filteredVagas.slice(start, start + VAGAS_POR_PAGINA);
+function filterByTag(area) {
+  tagAtiva = tagAtiva === area ? '' : area;
+  document.querySelectorAll('.htag').forEach(t => {
+    t.classList.toggle('active', t.textContent.trim() === tagAtiva);
+  });
+  // Sync select
+  document.getElementById('filter-area').value = tagAtiva;
+  applyFilters();
+  // Scroll to jobs
+  document.getElementById('jobs-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
 
-  if (total === 0) {
-    grid.innerHTML = '';
-    empty.classList.add('visible');
-    count.textContent = 'Nenhuma vaga encontrada';
+function renderVagas() {
+  const grid = document.getElementById('jobs-grid');
+  const total = vagasFiltradas.length;
+  const totalPag = Math.ceil(total / VAGAS_POR_PAGINA);
+  const inicio = (paginaAtual - 1) * VAGAS_POR_PAGINA;
+  const slice = vagasFiltradas.slice(inicio, inicio + VAGAS_POR_PAGINA);
+
+  document.getElementById('jobs-title').textContent = tagAtiva ? `Vagas em ${tagAtiva}` : 'Vagas em destaque';
+  document.getElementById('jobs-sub').textContent = total > 0 ? `${total} vaga${total>1?'s':''} encontrada${total>1?'s':''} · página ${paginaAtual} de ${totalPag}` : '';
+
+  if (!total) {
+    grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <h3>Nenhuma vaga encontrada</h3>
+      <p>Tente ajustar os filtros ou volte mais tarde.</p>
+    </div>`;
     document.getElementById('pagination').innerHTML = '';
     return;
   }
 
-  empty.classList.remove('visible');
-  grid.innerHTML = pageVagas.map((j,i) => renderCard(j, i*40)).join('');
-  count.textContent = `${total} vaga${total>1?'s':''} encontrada${total>1?'s':''} · página ${currentPage} de ${totalPages}`;
-
-  renderPagination(totalPages);
-}
-
-function renderPagination(totalPages) {
-  const pag = document.getElementById('pagination');
-  if (totalPages <= 1) { pag.innerHTML = ''; return; }
-
-  let html = '';
-
-  // Botão anterior
-  html += `<button class="page-btn nav-btn" onclick="goToPage(${currentPage-1})" ${currentPage===1?'disabled':''}>← Anterior</button>`;
-
-  // Páginas
-  for (let i = 1; i <= totalPages; i++) {
-    if (totalPages > 7) {
-      // Mostra: 1, ..., atual-1, atual, atual+1, ..., última
-      if (i === 1 || i === totalPages || (i >= currentPage-1 && i <= currentPage+1)) {
-        html += `<button class="page-btn ${i===currentPage?'active':''}" onclick="goToPage(${i})">${i}</button>`;
-      } else if (i === currentPage-2 || i === currentPage+2) {
-        html += `<span class="page-info">…</span>`;
-      }
-    } else {
-      html += `<button class="page-btn ${i===currentPage?'active':''}" onclick="goToPage(${i})">${i}</button>`;
-    }
-  }
-
-  // Botão próximo
-  html += `<button class="page-btn nav-btn" onclick="goToPage(${currentPage+1})" ${currentPage===totalPages?'disabled':''}>Próximo →</button>`;
-
-  pag.innerHTML = html;
-}
-
-function goToPage(page) {
-  const totalPages = Math.ceil(filteredVagas.length / VAGAS_POR_PAGINA);
-  if (page < 1 || page > totalPages) return;
-  currentPage = page;
-  renderPage();
-  document.querySelector('.jobs-section').scrollIntoView({behavior:'smooth', block:'start'});
-}
-
-// ---- RESET HOME ----
-function resetHome() {
-  // Limpa todos os filtros
-  document.getElementById('search-keyword').value = '';
-  document.getElementById('search-city').value = '';
-  document.getElementById('filter-type').value = '';
-  document.getElementById('filter-area').value = '';
-  document.getElementById('filter-modality').value = '';
-  document.getElementById('filter-period').value = '';
-  document.getElementById('sort-select').value = 'recent';
-  currentPage = 1;
-  applyFilters();
-  window.scrollTo({top: 0, behavior: 'smooth'});
-}
-
-function filterByTag(area) {
-  document.getElementById('filter-area').value = area;
-  document.querySelector('.search-section').scrollIntoView({behavior:'smooth'});
-  applyFilters();
-}
-
-// ---- CARD ----
-function renderCard(j, delay=0) {
-  const isE = j.tipo === 'Estágio';
-  const typeClass = isE ? 'card-estagio' : 'card-aprendiz';
-  const badgeC = isE ? 'badge-type-estagio' : 'badge-type-aprendiz';
-  const modC = j.modalidade === 'Remoto' ? 'badge-remote' : j.modalidade === 'Híbrido' ? 'badge-hybrid' : 'badge-presential';
-  const empresa = j.confidencial ? 'Empresa Confidencial' : (j.empresas?.nome_fantasia || j.empresas?.razao_social || '—');
-  const initial = j.confidencial ? '' : empresa.charAt(0).toUpperCase();
-  const date = new Date(j.created_at).toLocaleDateString('pt-BR');
-
-  return `
-    <div class="job-card ${typeClass}" style="animation-delay:${delay}ms" onclick="window.location.href='vaga.html?id=${j.id}'">
+  grid.innerHTML = slice.map(v => {
+    const emp = v.confidencial ? 'Empresa Confidencial' : (v.empresas?.nome || '—');
+    const inicial = v.confidencial ? '' : emp.charAt(0).toUpperCase();
+    const salario = v.bolsa > 0
+      ? `R$ ${Number(v.bolsa).toLocaleString('pt-BR')}<span>/mês</span>`
+      : '<span style="color:var(--sub);font-size:.82rem">Salário a combinar</span>';
+    const tipo = v.tipo === 'Jovem Aprendiz' ? 'aprendiz' : 'estagio';
+    const dt = v.created_at ? new Date(v.created_at).toLocaleDateString('pt-BR') : '';
+    return `<a class="job-card card-${tipo} fade-up" href="vaga.html?id=${v.id}" onclick="">
       <div class="card-top">
-        <div class="company-logo">${initial}</div>
-        <div class="card-meta">
-          <div class="card-company">${empresa}</div>
-          <div class="card-title">${j.titulo}</div>
+        <div class="company-logo">${inicial}</div>
+        <div>
+          <div class="card-company">${emp}</div>
+          <div class="card-title">${v.titulo}</div>
         </div>
       </div>
       <div class="card-badges">
-        <span class="badge ${badgeC}">${j.tipo}</span>
-        <span class="badge ${modC}">${j.modalidade}</span>
-        <span class="badge" style="background:rgba(0,0,0,.05);color:var(--muted)">${j.periodo||'—'}</span>
+        <span class="cbadge cbadge-${tipo}">${v.tipo}</span>
+        ${v.modalidade ? `<span class="cbadge cbadge-${v.modalidade.toLowerCase()}">${v.modalidade}</span>` : ''}
+        ${v.periodo ? `<span class="cbadge cbadge-periodo">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          ${v.periodo}</span>` : ''}
       </div>
       <div class="card-info">
-        <span>${j.cidade}</span>
-        <span>${j.horas||'—'}</span>
-        <span>${j.escolaridade||'—'}</span>
+        ${v.cidade ? `<span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${v.cidade}</span>` : ''}
+        ${v.horas ? `<span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>${v.horas}</span>` : ''}
+        ${v.escolaridade ? `<span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>${v.escolaridade}</span>` : ''}
       </div>
-      <div class="card-footer">
-        <div>
-          <div class="card-salary">R$ ${Number(j.bolsa||0).toLocaleString('pt-BR')}/mês</div>
-          <div class="card-date">Publicado: ${date}</div>
-        </div>
-        <button class="btn-apply" onclick="event.stopPropagation();window.location.href='vaga.html?id=${j.id}'">Ver vaga →</button>
+      <div class="card-bottom">
+        <div class="card-salary">${salario}</div>
+        <span class="btn-ver">Ver vaga →</span>
       </div>
-    </div>`;
+      ${dt ? `<div class="card-date">Publicado: ${dt}</div>` : ''}
+    </a>`;
+  }).join('');
+
+  // Fade-up on new cards
+  setTimeout(() => {
+    grid.querySelectorAll('.fade-up').forEach((el, i) => {
+      el.style.animationDelay = (i * 0.06) + 's';
+      el.classList.add('in');
+    });
+  }, 50);
+
+  // Pagination
+  renderPagination(totalPag);
 }
 
-// ---- MODAL ----
-async function openModal(id) {
-  const j = allVagas.find(x => x.id === id);
-  if (!j) return;
-  const isE = j.tipo === 'Estágio';
-  const badgeC = isE ? 'badge-type-estagio' : 'badge-type-aprendiz';
-  const modC = j.modalidade === 'Remoto' ? 'badge-remote' : j.modalidade === 'Híbrido' ? 'badge-hybrid' : 'badge-presential';
-  const empresa = j.empresas?.nome_fantasia || '—';
-  const initial = empresa.charAt(0).toUpperCase();
-
-  // checar se já candidatou
-  let jaCandidatou = false;
-  if (candidatoLogado) {
-    const { data } = await sb.from('candidaturas')
-      .select('id').eq('vaga_id', id).eq('candidato_id', candidatoLogado.id).maybeSingle();
-    jaCandidatou = !!data;
-  }
-
-  const beneficios = j.beneficios ? j.beneficios.split(',').map(b=>`<li>${b.trim()}</li>`).join('') : '<li>—</li>';
-  const requisitos = j.requisitos ? j.requisitos.split('\n').filter(Boolean).map(r=>`<li>${r.trim()}</li>`).join('') : `<li>${j.requisitos||'—'}</li>`;
-
-  document.getElementById('modal-body').innerHTML = `
-    <div class="modal-company-row">
-      <div class="modal-logo">${initial}</div>
-      <div>
-        <div class="modal-company-name">${empresa}</div>
-        <div class="modal-title">${j.titulo}</div>
-      </div>
-    </div>
-    <div class="modal-badges">
-      <span class="badge ${badgeC}">${j.tipo}</span>
-      <span class="badge ${modC}">${j.modalidade}</span>
-      <span class="badge" style="background:rgba(0,0,0,.05);color:var(--muted)">${j.periodo||'—'}</span>
-      <span class="badge" style="background:rgba(0,0,0,.05);color:var(--muted)">${j.escolaridade||'—'}</span>
-    </div>
-    <div class="modal-info-grid">
-      <div class="modal-info-item"><div class="modal-info-label">Bolsa mensal</div><div class="modal-info-value">R$ ${Number(j.bolsa||0).toLocaleString('pt-BR')}</div></div>
-      <div class="modal-info-item"><div class="modal-info-label">Carga horária</div><div class="modal-info-value">${j.horas||'—'}</div></div>
-      <div class="modal-info-item"><div class="modal-info-label">Localização</div><div class="modal-info-value">${j.cidade}</div></div>
-      <div class="modal-info-item"><div class="modal-info-label">Vagas abertas</div><div class="modal-info-value">${j.num_vagas||1}</div></div>
-    </div>
-    <div class="modal-section"><h4>Sobre a vaga</h4><p>${j.descricao||'—'}</p></div>
-    <div class="modal-section"><h4>Requisitos</h4><ul>${requisitos}</ul></div>
-    <div class="modal-section"><h4>Benefícios</h4><ul>${beneficios}</ul></div>
-    <div class="candidatura-msg" id="cand-msg"></div>
-    ${jaCandidatou
-      ? `<button class="btn-apply-full" disabled>Candidatura já enviada</button>`
-      : candidatoLogado
-        ? `<button class="btn-apply-full" id="btn-candidatar" onclick="candidatar('${j.id}')">Candidatar-se agora</button>`
-        : `<button class="btn-apply-full" onclick="window.location.href='cadastro-candidato.html'">Crie seu perfil para se candidatar</button>`
+function renderPagination(totalPag) {
+  const p = document.getElementById('pagination');
+  if (totalPag <= 1) { p.innerHTML = ''; return; }
+  let h = `<button class="page-btn nav-btn" onclick="changePage(${paginaAtual-1})" ${paginaAtual===1?'disabled':''}>
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+    Anterior
+  </button>`;
+  for (let i = 1; i <= totalPag; i++) {
+    if (totalPag > 7 && Math.abs(i - paginaAtual) > 2 && i !== 1 && i !== totalPag) {
+      if (Math.abs(i - paginaAtual) === 3) h += `<span style="color:var(--sub);padding:0 .25rem">…</span>`;
+      continue;
     }
-  `;
-  document.getElementById('modal-overlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-async function candidatar(vagaId) {
-  const btn = document.getElementById('btn-candidatar');
-  const msg = document.getElementById('cand-msg');
-  btn.disabled = true; btn.textContent = 'Enviando...';
-
-  const { error } = await sb.from('candidaturas').insert({
-    vaga_id: vagaId,
-    candidato_id: candidatoLogado.id,
-    status: 'em_analise'
-  });
-
-  if (error) {
-    msg.textContent = 'Erro ao enviar candidatura. Tente novamente.';
-    msg.className = 'candidatura-msg error';
-    btn.disabled = false; btn.textContent = 'Candidatar-se agora';
-  } else {
-    msg.textContent = 'Candidatura enviada com sucesso! Boa sorte!';
-    msg.className = 'candidatura-msg success';
-    btn.textContent = 'Candidatura enviada!';
+    h += `<button class="page-btn${i===paginaAtual?' active':''}" onclick="changePage(${i})">${i}</button>`;
   }
+  h += `<button class="page-btn nav-btn" onclick="changePage(${paginaAtual+1})" ${paginaAtual===totalPag?'disabled':''}>
+    Próximo
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+  </button>`;
+  p.innerHTML = h;
 }
 
-function closeModal(e) { if (e.target === document.getElementById('modal-overlay')) closeModalBtn(); }
-function closeModalBtn() { document.getElementById('modal-overlay').classList.remove('open'); document.body.style.overflow = ''; }
-
-
-// ---- SESSÕES ATIVAS ----
-const candidatoLogado = JSON.parse(sessionStorage.getItem('candidato') || 'null');
-const empresaLogada   = JSON.parse(sessionStorage.getItem('empresa')   || 'null');
-
-function checkNavSessions() {
-  if (candidatoLogado) {
-    document.getElementById('nav-access-wrap').style.display = 'none';
-    document.getElementById('nav-logado-cand').style.display = 'block';
-    const initial = candidatoLogado.nome?.charAt(0)?.toUpperCase() || '?';
-    document.getElementById('nav-avatar-cand').textContent = initial;
-    // Show name on larger screens
-    const nameEl = document.getElementById('nav-user-name');
-    if (window.innerWidth > 768) {
-      nameEl.textContent = candidatoLogado.nome?.split(' ')[0];
-      nameEl.style.display = 'block';
-    }
-  } else if (empresaLogada) {
-    document.getElementById('nav-access-wrap').style.display = 'none';
-    document.getElementById('nav-logado-emp').style.display = 'block';
-  }
+function changePage(n) {
+  const total = Math.ceil(vagasFiltradas.length / VAGAS_POR_PAGINA);
+  if (n < 1 || n > total) return;
+  paginaAtual = n;
+  renderVagas();
+  document.getElementById('jobs-section').scrollIntoView({ behavior: 'smooth' });
 }
 
-// ---- DROPDOWN ----
-function toggleAccessDropdown() {
+function resetHome() {
+  tagAtiva = '';
+  document.querySelectorAll('.htag').forEach(t => t.classList.remove('active'));
+  document.getElementById('search-kw').value = '';
+  document.getElementById('search-city').value = '';
+  ['filter-type','filter-area','filter-modality','filter-period'].forEach(id => document.getElementById(id).value = '');
+  vagasFiltradas = [...todasVagas];
+  paginaAtual = 1;
+  renderVagas();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── Login ──
+function toggleLogin() {
+  const dd = document.getElementById('login-dropdown');
   const btn = document.getElementById('btn-access');
-  const dd  = document.getElementById('access-dropdown');
-  btn.classList.toggle('open');
   dd.classList.toggle('open');
+  btn.classList.toggle('open');
 }
-// Fecha ao clicar fora
 document.addEventListener('click', e => {
-  if (!e.target.closest('.nav-access')) {
+  if (!e.target.closest('#login-dropdown') && !e.target.closest('#btn-access')) {
+    document.getElementById('login-dropdown')?.classList.remove('open');
     document.getElementById('btn-access')?.classList.remove('open');
-    document.getElementById('access-dropdown')?.classList.remove('open');
   }
 });
-
-// ---- MODAL LOGIN ----
-function openLoginModal(tab) {
-  document.getElementById('access-dropdown').classList.remove('open');
-  document.getElementById('btn-access').classList.remove('open');
-  switchLoginTab(tab);
-  document.getElementById('login-modal-overlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-  setTimeout(() => {
-    const inp = tab === 'candidato'
-      ? document.getElementById('lm-c-email')
-      : document.getElementById('lm-e-email');
-    inp?.focus();
-  }, 200);
-}
-
-function closeLoginModal() {
-  document.getElementById('login-modal-overlay').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
 function switchLoginTab(tab) {
-  ['candidato','empresa'].forEach(t => {
-    document.getElementById('lms-' + t).classList.toggle('show', t === tab);
-    document.getElementById('lmt-' + t).classList.toggle('active', t === tab);
-  });
+  document.getElementById('lms-candidato').classList.toggle('active', tab === 'candidato');
+  document.getElementById('lms-empresa').classList.toggle('active', tab === 'empresa');
+  document.getElementById('tab-cand').classList.toggle('active', tab === 'candidato');
+  document.getElementById('tab-emp').classList.toggle('active', tab === 'empresa');
 }
-
 async function loginModal(tipo) {
-  const isC  = tipo === 'candidato';
-  const email = document.getElementById(isC ? 'lm-c-email' : 'lm-e-email').value.trim();
-  const senha = document.getElementById(isC ? 'lm-c-senha' : 'lm-e-senha').value;
-  const btn   = document.getElementById(isC ? 'lm-btn-cand' : 'lm-btn-emp');
-  const msg   = document.getElementById(isC ? 'lm-msg-cand' : 'lm-msg-emp');
-
-  if (!email || !senha) { showLmMsg(msg, 'Preencha e-mail e senha.', 'error'); return; }
-
-  btn.disabled = true; btn.textContent = 'Entrando...';
-
-  // Hash da senha
-  const buf  = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(senha));
-  const hash = Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
-
-  const table = isC ? 'candidatos' : 'empresas';
-  const { data, error } = await sb.from(table)
-    .select('*').eq('email', email).eq('senha_hash', hash).maybeSingle();
-
-  btn.disabled = false; btn.textContent = 'Entrar →';
-
-  if (error || !data) {
-    showLmMsg(msg, 'E-mail ou senha incorretos.', 'error');
-    return;
-  }
-
-  // Sessão salva
-  const key = isC ? 'candidato' : 'empresa';
-  sessionStorage.setItem(key, JSON.stringify(data));
-
-  showLmMsg(msg, 'Login realizado! Redirecionando...', 'success');
-  setTimeout(() => {
-    window.location.href = isC ? 'cadastro-candidato.html' : 'painel-empresa.html';
-  }, 900);
+  const email = document.getElementById(`lm-${tipo==='candidato'?'c':'e'}-email`).value.trim();
+  const senha = document.getElementById(`lm-${tipo==='candidato'?'c':'e'}-senha`).value;
+  const msg   = document.getElementById(`lm-${tipo==='candidato'?'c':'e'}-msg`);
+  if (!email || !senha) { msg.style.color = '#E55'; msg.textContent = 'Preencha e-mail e senha.'; return; }
+  msg.style.color = 'var(--sub)'; msg.textContent = 'Aguarde...';
+  try {
+    if (tipo === 'candidato') {
+      const { data, error } = await sb.auth.signInWithPassword({ email, password: senha });
+      if (error) throw error;
+      sessionStorage.setItem('candidato_id', data.user.id);
+      window.location.href = 'cadastro-candidato.html';
+    } else {
+      const pw = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(senha));
+      const hash = Array.from(new Uint8Array(pw)).map(b => b.toString(16).padStart(2,'0')).join('');
+      const { data } = await sb.from('empresas').select('id,nome').eq('email', email).eq('senha_hash', hash).maybeSingle();
+      if (!data) { msg.style.color = '#E55'; msg.textContent = 'E-mail ou senha incorretos.'; return; }
+      sessionStorage.setItem('empresa_id', data.id);
+      sessionStorage.setItem('empresa_nome', data.nome);
+      window.location.href = 'painel-empresa.html';
+    }
+  } catch(e) { msg.style.color = '#E55'; msg.textContent = 'E-mail ou senha incorretos.'; }
 }
 
-function showLmMsg(el, txt, type) { el.textContent = txt; el.className = 'lm-msg ' + type; }
-
-// ---- LOGOUT GLOBAL (se vier de outra página com ?logout=1) ----
-if (new URLSearchParams(window.location.search).get('logout') === '1') {
-  sessionStorage.removeItem('candidato');
-  sessionStorage.removeItem('empresa');
-  window.history.replaceState({}, '', window.location.pathname);
+// ── Nav ──
+function navToggle() {
+  document.getElementById('nav-burger').classList.toggle('open');
+  const d = document.getElementById('nav-mobile');
+  d.classList.toggle('open');
+  document.body.style.overflow = d.classList.contains('open') ? 'hidden' : '';
 }
-
-checkNavSessions();
-
-
-
-// ---- MOBILE MENU ----
-function toggleMobileMenu() {
-  const hb = document.getElementById('hamburger');
-  const dr = document.getElementById('mobile-drawer');
-  hb.classList.toggle('open');
-  dr.classList.toggle('open');
-  document.body.style.overflow = dr.classList.contains('open') ? 'hidden' : '';
-}
-function closeMobileMenu() {
-  document.getElementById('hamburger').classList.remove('open');
-  document.getElementById('mobile-drawer').classList.remove('open');
-  document.body.style.overflow = '';
-}
-// Fecha drawer ao redimensionar para desktop
 window.addEventListener('resize', () => {
-  if (window.innerWidth > 768) closeMobileMenu();
+  if (window.innerWidth > 768) {
+    document.getElementById('nav-burger')?.classList.remove('open');
+    document.getElementById('nav-mobile')?.classList.remove('open');
+    document.body.style.overflow = '';
+  }
 });
 
+// ── Init ──
+loadStats();
 loadVagas();
 </script>
 </body>
