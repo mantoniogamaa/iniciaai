@@ -3,22 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IniciaAí — Painel da Empresa</title>
-<meta name="description" content="Gerencie suas vagas e visualize os candidatos no painel exclusivo para empresas do IniciaAí.">
+<title>Conecta — Painel da Empresa</title>
+<meta name="description" content="Gerencie suas vagas e visualize os candidatos no painel exclusivo para empresas do Conecta.">
 <meta name="robots" content="index, follow">
-<meta name="author" content="IniciaAí">
+<meta name="author" content="Conecta">
 <meta name="theme-color" content="var(--primary)">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="IniciaAí">
+<meta property="og:site_name" content="Conecta">
 <meta property="og:locale" content="pt_BR">
 <meta property="twitter:card" content="summary_large_image">
 <meta property="twitter:site" content="@iniciaaí">
-<meta property="og:title" content="IniciaAí — Painel da Empresa">
-<meta property="og:description" content="Gerencie suas vagas e visualize os candidatos no painel exclusivo para empresas do IniciaAí.">
+<meta property="og:title" content="Conecta — Painel da Empresa">
+<meta property="og:description" content="Gerencie suas vagas e visualize os candidatos no painel exclusivo para empresas do Conecta.">
 <meta property="og:image" content="https://mantoniogamaa.github.io/iniciaaí/og-image.png">
 <meta property="og:url" content="https://mantoniogamaa.github.io/iniciaaí/painel-empresa.html">
-<meta property="twitter:title" content="IniciaAí — Painel da Empresa">
-<meta property="twitter:description" content="Gerencie suas vagas e visualize os candidatos no painel exclusivo para empresas do IniciaAí.">
+<meta property="twitter:title" content="Conecta — Painel da Empresa">
+<meta property="twitter:description" content="Gerencie suas vagas e visualize os candidatos no painel exclusivo para empresas do Conecta.">
 <meta property="twitter:image" content="https://mantoniogamaa.github.io/iniciaaí/og-image.png">
 <link rel="canonical" href="https://mantoniogamaa.github.io/iniciaaí/painel-empresa.html">
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -54,9 +54,8 @@
     padding:0 2rem; height:64px; display:flex; align-items:center; justify-content:space-between;
     position:sticky; top:0; z-index:10; }
   .logo {
-  width: 140px; height: 42px;
-  background: url('logocolorida.png') no-repeat center/contain;
-  display: block; flex-shrink: 0;
+  display: block; width: 140px; height: 40px; flex-shrink: 0;
+  background: url('logocolorida.png') no-repeat left center / contain;
 }
 
   .page-wrap { max-width:960px; margin:0 auto; padding:2.5rem 1.5rem 5rem; }
@@ -566,8 +565,14 @@
 </head>
 <body>
 <nav>
-  <a class="logo" href="index.html"></a>
+  <a class="logo" href="index.html" aria-label="Conecta"></a>
   <button class="btn-logout" id="nav-logout" onclick="logout()" style="display:none">Sair</button>
+  <div class="nav-links">
+    <a href="vagas.html">Vagas</a>
+    <a href="sobre.html">Sobre</a>
+    <a href="cadastro-empresa.html">Para Empresas</a>
+    <a href="termos.html">Termos</a>
+  </div>
   <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
@@ -1109,7 +1114,7 @@ async function selectVaga(vagaId) {
       : `<span class="status-badge s-${c.status}">${statusLabel[c.status]}</span>`;
 
     const waLink = cd?.telefone
-      ? `<a href="https://wa.me/55${cd.telefone.replace(/\D/g,'')}?text=${encodeURIComponent('Olá ' + (cd?.nome||'') + '! Vi sua candidatura no IniciaAí e gostaríamos de conversar. Quando você tem disponibilidade?')}" target="_blank" class="btn-sm" style="background:linear-gradient(135deg,#25D366,#128C7E);color:white;text-decoration:none;display:inline-flex;align-items:center;gap:.25rem">
+      ? `<a href="https://wa.me/55${cd.telefone.replace(/\D/g,'')}?text=${encodeURIComponent('Olá ' + (cd?.nome||'') + '! Vi sua candidatura no Conecta e gostaríamos de conversar. Quando você tem disponibilidade?')}" target="_blank" class="btn-sm" style="background:linear-gradient(135deg,#25D366,#128C7E);color:white;text-decoration:none;display:inline-flex;align-items:center;gap:.25rem">
         <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.554 4.122 1.523 5.856L.057 23.882l6.197-1.624A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.894a9.886 9.886 0 01-5.032-1.371l-.361-.214-3.735.979 1.004-3.648-.235-.374A9.86 9.86 0 012.106 12C2.106 6.58 6.58 2.106 12 2.106c5.42 0 9.894 4.474 9.894 9.894 0 5.42-4.474 9.894-9.894 9.894z"/></svg>
         WhatsApp</a>` : '';
 
@@ -1245,7 +1250,7 @@ function renderCandidatoCard(c) {
       <div class="cand-card-footer" style="flex-wrap:wrap;gap:.5rem">
         <div class="cand-card-contato">${c.email}</div>
         <div style="display:flex;gap:.4rem;flex-wrap:wrap">
-          ${c.telefone ? `<a href="https://wa.me/55${c.telefone.replace(/\D/g,'')}&text=${encodeURIComponent('Olá ' + c.nome + '! Vi seu perfil no IniciaAí e gostaria de conversar sobre uma oportunidade. Podemos falar?')}" target="_blank" class="btn-convidar" style="background:linear-gradient(135deg,#25D366,#128C7E);text-decoration:none;display:inline-flex;align-items:center;gap:.3rem">
+          ${c.telefone ? `<a href="https://wa.me/55${c.telefone.replace(/\D/g,'')}&text=${encodeURIComponent('Olá ' + c.nome + '! Vi seu perfil no Conecta e gostaria de conversar sobre uma oportunidade. Podemos falar?')}" target="_blank" class="btn-convidar" style="background:linear-gradient(135deg,#25D366,#128C7E);text-decoration:none;display:inline-flex;align-items:center;gap:.3rem">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.554 4.122 1.523 5.856L.057 23.882l6.197-1.624A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.894a9.886 9.886 0 01-5.032-1.371l-.361-.214-3.735.979 1.004-3.648-.235-.374A9.86 9.86 0 012.106 12C2.106 6.58 6.58 2.106 12 2.106c5.42 0 9.894 4.474 9.894 9.894 0 5.42-4.474 9.894-9.894 9.894z"/></svg>
             WhatsApp
           </a>` : ''}

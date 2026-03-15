@@ -3,22 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IniciaAí — Área do Candidato</title>
-<meta name="description" content="Crie seu perfil, candidate-se a vagas e acompanhe suas candidaturas no IniciaAí.">
+<title>Conecta — Área do Candidato</title>
+<meta name="description" content="Crie seu perfil, candidate-se a vagas e acompanhe suas candidaturas no Conecta.">
 <meta name="robots" content="index, follow">
-<meta name="author" content="IniciaAí">
+<meta name="author" content="Conecta">
 <meta name="theme-color" content="var(--primary)">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="IniciaAí">
+<meta property="og:site_name" content="Conecta">
 <meta property="og:locale" content="pt_BR">
 <meta property="twitter:card" content="summary_large_image">
 <meta property="twitter:site" content="@iniciaaí">
-<meta property="og:title" content="IniciaAí — Área do Candidato">
-<meta property="og:description" content="Crie seu perfil, candidate-se a vagas e acompanhe suas candidaturas no IniciaAí.">
+<meta property="og:title" content="Conecta — Área do Candidato">
+<meta property="og:description" content="Crie seu perfil, candidate-se a vagas e acompanhe suas candidaturas no Conecta.">
 <meta property="og:image" content="https://mantoniogamaa.github.io/iniciaaí/og-image.png">
 <meta property="og:url" content="https://mantoniogamaa.github.io/iniciaaí/cadastro-candidato.html">
-<meta property="twitter:title" content="IniciaAí — Área do Candidato">
-<meta property="twitter:description" content="Crie seu perfil, candidate-se a vagas e acompanhe suas candidaturas no IniciaAí.">
+<meta property="twitter:title" content="Conecta — Área do Candidato">
+<meta property="twitter:description" content="Crie seu perfil, candidate-se a vagas e acompanhe suas candidaturas no Conecta.">
 <meta property="twitter:image" content="https://mantoniogamaa.github.io/iniciaaí/og-image.png">
 <link rel="canonical" href="https://mantoniogamaa.github.io/iniciaaí/cadastro-candidato.html">
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -54,9 +54,8 @@
     padding:0 2rem; height:64px; display:flex; align-items:center; justify-content:space-between;
     position:sticky; top:0; z-index:10; }
   .logo {
-  width: 140px; height: 42px;
-  background: url('logocolorida.png') no-repeat center/contain;
-  display: block; flex-shrink: 0;
+  display: block; width: 140px; height: 40px; flex-shrink: 0;
+  background: url('logocolorida.png') no-repeat left center / contain;
 }
   .nav-back { color:var(--muted); text-decoration:none; font-size:.875rem; font-weight:500;
     display:flex; align-items:center; gap:.4rem; transition:color .2s; }
@@ -683,7 +682,7 @@
 </head>
 <body>
 <nav>
-  <a class="logo" href="index.html"></a>
+  <a class="logo" href="index.html" aria-label="Conecta"></a>
     <div class="nav-links">
     <a href="vagas.html">Vagas</a>
     <a href="sobre.html">Sobre</a>
@@ -691,6 +690,9 @@
     <a href="termos.html">Termos</a>
   </div>
   <a class="nav-back" href="index.html">← Ver vagas</a>
+  <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+    <span></span><span></span><span></span>
+  </div>
 </nav>
 <div class="mobile-drawer" id="mobile-drawer">
     <a class="mobile-nav-link" href="index.html">Portal de Vagas</a>

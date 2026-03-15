@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- SEO / Open Graph — preenchido dinamicamente pelo JS -->
-<title>IniciaAí — Carregando vaga...</title>
-<meta name="description" content="Encontre vagas de estágio e Jovem Aprendiz no IniciaAí.">
-<meta property="og:title" content="IniciaAí — Vaga">
-<meta property="og:description" content="Encontre vagas de estágio e Jovem Aprendiz no IniciaAí.">
+<title>Conecta — Carregando vaga...</title>
+<meta name="description" content="Encontre vagas de estágio e Jovem Aprendiz no Conecta.">
+<meta property="og:title" content="Conecta — Vaga">
+<meta property="og:description" content="Encontre vagas de estágio e Jovem Aprendiz no Conecta.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://mantoniogamaa.github.io/iniciaaí/og-image.png">
 
@@ -51,9 +51,8 @@
     display:flex; align-items:center; justify-content:space-between;
   }
   .logo {
-  width: 140px; height: 42px;
-  background: url('logocolorida.png') no-repeat center/contain;
-  display: block; flex-shrink: 0;
+  display: block; width: 140px; height: 40px; flex-shrink: 0;
+  background: url('logocolorida.png') no-repeat left center / contain;
 }
   .nav-back { display:flex; align-items:center; gap:.5rem; color:var(--muted);
     text-decoration:none; font-size:.875rem; font-weight:500; transition:color .2s; }
@@ -660,7 +659,7 @@
 <body>
 
 <nav>
-  <a class="logo" href="index.html"></a>
+  <a class="logo" href="index.html" aria-label="Conecta"></a>
     <div class="nav-links">
     <a href="vagas.html" class="active">Vagas</a>
     <a href="sobre.html">Sobre</a>
@@ -904,9 +903,9 @@ function renderVaga(v) {
   const modColor = v.modalidade === 'Remoto' ? 'hb-remote' : v.modalidade === 'Híbrido' ? 'hb-hybrid' : 'hb-presential';
 
   // SEO dinâmico
-  document.title = `${v.titulo} — ${emp} | IniciaAí`;
+  document.title = `${v.titulo} — ${emp} | Conecta`;
   document.querySelector('meta[name="description"]').setAttribute('content',
-    `${v.tipo} em ${v.area}${isConf ? '' : ' na ' + emp}. ${v.cidade} · R$ ${Number(v.bolsa||0).toLocaleString('pt-BR')}/mês. Candidate-se no IniciaAí.`);
+    `${v.tipo} em ${v.area}${isConf ? '' : ' na ' + emp}. ${v.cidade} · R$ ${Number(v.bolsa||0).toLocaleString('pt-BR')}/mês. Candidate-se no Conecta.`);
   document.querySelector('meta[property="og:title"]').setAttribute('content', `${v.titulo} — ${emp}`);
   document.querySelector('meta[property="og:description"]').setAttribute('content',
     `${v.tipo} · ${v.area} · ${v.cidade} · R$ ${Number(v.bolsa||0).toLocaleString('pt-BR')}/mês`);
@@ -1045,7 +1044,7 @@ async function copyLink() {
 
 function shareWhatsApp() {
   const emp = vagaAtual?.empresas?.nome_fantasia || '';
-  const txt = encodeURIComponent(`*${vagaAtual?.titulo}* — ${emp}\n\nVaga de ${vagaAtual?.tipo} no IniciaAí!\n${vagaAtual?.cidade} · R$ ${Number(vagaAtual?.bolsa||0).toLocaleString('pt-BR')}/mês\n\n${window.location.href}`);
+  const txt = encodeURIComponent(`*${vagaAtual?.titulo}* — ${emp}\n\nVaga de ${vagaAtual?.tipo} no Conecta!\n${vagaAtual?.cidade} · R$ ${Number(vagaAtual?.bolsa||0).toLocaleString('pt-BR')}/mês\n\n${window.location.href}`);
   window.open(`https://wa.me/?text=${txt}`, '_blank');
 }
 

@@ -3,11 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IniciaAí — Termos de Uso e Política de Privacidade</title>
-<meta name="description" content="Termos de uso e política de privacidade do IniciaAí — portal de vagas para estudantes.">
+<title>Conecta — Termos de Uso e Política de Privacidade</title>
+<meta name="description" content="Termos de uso e política de privacidade do Conecta — portal de vagas para estudantes.">
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-html, body { overflow-x: hidden; }
   :root {
     --primary:       #007A5E;   /* PANTONE 7719C — Verde Escuro Anhembi */
     --primary-dark:  #005C47;   /* Verde mais escuro hover */
@@ -70,9 +69,8 @@ html, body { overflow-x: hidden; }
     display:flex; align-items:center; justify-content:space-between;
   }
   .logo {
-  width: 140px; height: 42px;
-  background: url('logocolorida.png') no-repeat center/contain;
-  display: block; flex-shrink: 0;
+  display: block; width: 140px; height: 40px; flex-shrink: 0;
+  background: url('logocolorida.png') no-repeat left center / contain;
 }
   .nav-back { color:var(--muted); text-decoration:none; font-size:.875rem; font-weight:500;
     display:flex; align-items:center; gap:.4rem; transition:color .2s; }
@@ -422,12 +420,26 @@ html, body { overflow-x: hidden; }
   .logo::before { display: none !important; }
   /* Only the CSS background-image, no ::before pseudo */
 
+
+.hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; z-index:200; padding:4px; }
+.hamburger span { display:block; width:22px; height:2px; background:var(--text); border-radius:2px; transition:all .3s; }
+.hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity:0; }
+.hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+.mobile-drawer { position:fixed; top:0; right:0; width:280px; height:100vh; background:white; z-index:150; padding:5rem 1.5rem 2rem; transform:translateX(100%); transition:transform .3s ease; display:flex; flex-direction:column; gap:.25rem; box-shadow:-8px 0 30px rgba(0,0,0,.15); }
+.mobile-drawer.open { transform:translateX(0); }
+.mobile-drawer a { display:flex; align-items:center; gap:.65rem; padding:.85rem 1rem; border-radius:12px; color:var(--text); text-decoration:none; font-weight:500; font-size:.95rem; transition:background .2s; }
+.mobile-drawer a:hover { background:var(--accent-light); }
+.drawer-overlay { position:fixed; inset:0; background:rgba(0,0,0,.4); z-index:140; display:none; opacity:0; transition:opacity .3s; }
+.drawer-overlay.open { display:block; opacity:1; }
+@media(max-width:768px) { .nav-links { display:none; } .hamburger { display:flex; } }
+html, body { overflow-x: hidden; }
 </style>
 </head>
 <body>
 
 <nav>
-  <a class="logo" href="index.html"></a>
+  <a class="logo" href="index.html" aria-label="Conecta"></a>
     <div class="nav-links">
     <a href="vagas.html">Vagas</a>
     <a href="sobre.html">Sobre</a>
@@ -435,6 +447,9 @@ html, body { overflow-x: hidden; }
     <a href="termos.html" class="active">Termos</a>
   </div>
   <a class="nav-back" href="index.html">← Voltar</a>
+  <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+    <span></span><span></span><span></span>
+  </div>
 </nav>
 
 <div class="drawer-overlay" id="drawer-overlay" onclick="closeMobileMenu()"></div>
@@ -471,7 +486,7 @@ html, body { overflow-x: hidden; }
   <div class="page-hero-inner" style="text-align:center">
     <div class="page-hero-badge"><svg style="vertical-align:middle;flex-shrink:0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="3" x2="12" y2="21"/><path d="M3 9l9-6 9 6"/><path d="M6 12L3 9v6a3 3 0 0 0 6 0V9L6 12z"/><path d="M18 12l3-3v6a3 3 0 0 1-6 0V9l3 3z"/></svg> Legal</div>
     <h1>Termos & <span>Privacidade</span></h1>
-    <p>Transparência total sobre como o IniciaAí funciona e protege seus dados.</p>
+    <p>Transparência total sobre como o Conecta funciona e protege seus dados.</p>
   </div>
 </div>
 
@@ -499,9 +514,9 @@ html, body { overflow-x: hidden; }
     <div class="doc-section show" id="sec-termos">
 
       <div class="doc-block">
-        <h2>1. Sobre o IniciaAí</h2>
-        <p>O <strong>IniciaAí</strong> é uma plataforma digital que conecta estudantes em busca de sua primeira oportunidade profissional com empresas que oferecem vagas de estágio e Jovem Aprendiz.</p>
-        <p>Ao acessar ou utilizar qualquer funcionalidade do IniciaAí, você concorda integralmente com estes Termos de Uso. Caso não concorde, não utilize a plataforma.</p>
+        <h2>1. Sobre o Conecta</h2>
+        <p>O <strong>Conecta</strong> é uma plataforma digital que conecta estudantes em busca de sua primeira oportunidade profissional com empresas que oferecem vagas de estágio e Jovem Aprendiz.</p>
+        <p>Ao acessar ou utilizar qualquer funcionalidade do Conecta, você concorda integralmente com estes Termos de Uso. Caso não concorde, não utilize a plataforma.</p>
       </div>
 
       <div class="doc-block">
@@ -510,7 +525,7 @@ html, body { overflow-x: hidden; }
         <ul>
           <li>As informações fornecidas são verdadeiras, precisas e atualizadas.</li>
           <li>É responsável pela guarda da sua senha e por toda atividade realizada em sua conta.</li>
-          <li>Notificará o IniciaAí imediatamente em caso de uso não autorizado da sua conta.</li>
+          <li>Notificará o Conecta imediatamente em caso de uso não autorizado da sua conta.</li>
         </ul>
         <div class="highlight-box">
           <p><strong>Candidatos:</strong> devem ser estudantes (Ensino Médio, Técnico ou Superior) ou jovens entre 14 e 24 anos elegíveis ao programa Jovem Aprendiz.</p>
@@ -527,7 +542,7 @@ html, body { overflow-x: hidden; }
           <li>Entrar em contato com candidatos selecionados dentro de prazo razoável.</li>
         </ul>
         <div class="warning-box">
-          <p><svg style="vertical-align:middle;flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> O IniciaAí não é responsável pelo processo seletivo conduzido pelas empresas, pela efetivação das contratações ou por qualquer relação trabalhista estabelecida entre empresa e candidato.</p>
+          <p><svg style="vertical-align:middle;flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> O Conecta não é responsável pelo processo seletivo conduzido pelas empresas, pela efetivação das contratações ou por qualquer relação trabalhista estabelecida entre empresa e candidato.</p>
         </div>
       </div>
 
@@ -543,17 +558,17 @@ html, body { overflow-x: hidden; }
 
       <div class="doc-block">
         <h2>5. Moderação de Conteúdo</h2>
-        <p>O IniciaAí reserva-se o direito de reprovar, remover ou suspender qualquer vaga ou conta que viole estes termos, contenha informações falsas, seja discriminatória, ou prejudique a experiência dos usuários. Vagas passam por revisão manual antes de serem publicadas.</p>
+        <p>O Conecta reserva-se o direito de reprovar, remover ou suspender qualquer vaga ou conta que viole estes termos, contenha informações falsas, seja discriminatória, ou prejudique a experiência dos usuários. Vagas passam por revisão manual antes de serem publicadas.</p>
       </div>
 
       <div class="doc-block">
         <h2>6. Propriedade Intelectual</h2>
-        <p>Todo o conteúdo da plataforma — incluindo logotipo, design, textos e código — é propriedade do IniciaAí. É proibida a reprodução, distribuição ou uso comercial sem autorização prévia por escrito.</p>
+        <p>Todo o conteúdo da plataforma — incluindo logotipo, design, textos e código — é propriedade do Conecta. É proibida a reprodução, distribuição ou uso comercial sem autorização prévia por escrito.</p>
       </div>
 
       <div class="doc-block">
         <h2>7. Limitação de Responsabilidade</h2>
-        <p>O IniciaAí não garante a disponibilidade contínua da plataforma e não se responsabiliza por danos decorrentes de interrupções, falhas técnicas ou uso indevido por terceiros. A plataforma é fornecida "como está".</p>
+        <p>O Conecta não garante a disponibilidade contínua da plataforma e não se responsabiliza por danos decorrentes de interrupções, falhas técnicas ou uso indevido por terceiros. A plataforma é fornecida "como está".</p>
       </div>
 
       <div class="doc-block">
@@ -568,7 +583,7 @@ html, body { overflow-x: hidden; }
 
       <div class="doc-block">
         <h2>1. Compromisso com a LGPD</h2>
-        <p>O IniciaAí está comprometido com a <strong>Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018)</strong>. Esta política descreve quais dados coletamos, como os utilizamos, e quais são seus direitos como titular.</p>
+        <p>O Conecta está comprometido com a <strong>Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018)</strong>. Esta política descreve quais dados coletamos, como os utilizamos, e quais são seus direitos como titular.</p>
       </div>
 
       <div class="doc-block">
@@ -607,7 +622,7 @@ html, body { overflow-x: hidden; }
           <li>Cumprir obrigações legais e regulatórias.</li>
         </ul>
         <div class="highlight-box">
-          <p><strong>Não vendemos seus dados.</strong> O IniciaAí jamais comercializa dados pessoais com terceiros para fins publicitários ou comerciais.</p>
+          <p><strong>Não vendemos seus dados.</strong> O Conecta jamais comercializa dados pessoais com terceiros para fins publicitários ou comerciais.</p>
         </div>
       </div>
 
@@ -673,7 +688,7 @@ html, body { overflow-x: hidden; }
           </tbody>
         </table>
         <div class="highlight-box">
-          <p>O IniciaAí utiliza apenas <strong>cookies de sessão essenciais</strong>. Não utilizamos cookies de rastreamento, publicidade ou analytics de terceiros.</p>
+          <p>O Conecta utiliza apenas <strong>cookies de sessão essenciais</strong>. Não utilizamos cookies de rastreamento, publicidade ou analytics de terceiros.</p>
         </div>
       </div>
 

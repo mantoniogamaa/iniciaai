@@ -56,10 +56,10 @@
     border-bottom:1px solid var(--border); padding:0 2rem;
     height:64px; display:flex; align-items:center; justify-content:space-between;
   }
-  .logo { font-family:'Clash Display',sans-serif; font-size:1.5rem; font-weight:700;
-    background:linear-gradient(135deg,var(--accent),var(--accent-dark));
-    -webkit-background-clip:text; -webkit-text-fill-color:var(--primary); background-clip:text;
-    cursor:pointer; text-decoration:none; }
+  .logo {
+  display: block; width: 140px; height: 40px; flex-shrink: 0;
+  background: url('logocolorida.png') no-repeat left center / contain;
+}
   .nav-links { display:flex; gap:2rem; align-items:center; }
   .nav-links a { color:var(--muted); text-decoration:none; font-size:.9rem; font-weight:500; transition:color .2s; }
   .nav-links a:hover { color:var(--violet); }
@@ -238,12 +238,8 @@
   .badge-hybrid    { background:rgba(251,191,36,.12); color:#B45309; }
   .badge-presential{ background:rgba(16,185,129,.1); color:var(--green); }
   .card-info { display:flex; gap:1rem; font-size:.8rem; color:var(--muted); margin-bottom:1rem; flex-wrap:wrap; }
-  .card-footer img { height: 38px; object-fit: contain; filter: brightness(0) invert(1); opacity: .85; margin-bottom: 1.25rem; }
-footer {
-
-  background: #001A12; padding: 2.5rem 2rem 2rem;
-  text-align: center; position: relative;
-}
+  .card-footer { display:flex; align-items:center; justify-content:space-between;
+    padding-top:.85rem; border-top:1px solid var(--border); }
   .card-salary { font-weight:700; font-size:.95rem; color:var(--dark); }
   .card-date { font-size:.75rem; color:var(--muted); }
   .btn-apply { padding:.45rem 1.1rem; background:linear-gradient(135deg,var(--accent),var(--accent-dark));
@@ -1426,7 +1422,7 @@ async function carregarIdentidade() {
         el.style.cssText += ';width:auto;';
       });
     }
-    // Se não há logo personalizada, o CSS usa logo-colorida.png por padrão
+    // Se não há logo personalizada, o CSS usa logocolorida.png por padrão
 
     // Cor primária
     if (cfg.cor_primary && /^#[0-9A-Fa-f]{6}$/.test(cfg.cor_primary)) {

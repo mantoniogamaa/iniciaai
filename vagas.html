@@ -347,7 +347,9 @@ footer a:hover { color: var(--accent); }
         <option>Estágio</option><option>Jovem Aprendiz</option>
       </select>
       <select class="filter-select" id="filter-area" onchange="applyFilters()">
-        <option value="">Todas as áreas</option>
+        <option value="">Área</option>
+        <option>Tecnologia</option><option>Marketing</option><option>Design</option>
+        <option>Administrativo</option><option>Financeiro</option><option>RH</option><option>Logística</option>
       </select>
       <select class="filter-select" id="filter-modality" onchange="applyFilters()">
         <option value="">Modalidade</option>
@@ -359,8 +361,7 @@ footer a:hover { color: var(--accent); }
       </select>
       <select class="sort-select" id="sort-select" onchange="applyFilters()">
         <option value="recent">Mais recentes</option>
-        <option value="salary_desc">Maior bolsa</option>
-        <option value="salary_asc">Menor bolsa</option>
+        <option value="salary">Maior bolsa</option>
       </select>
       <button class="btn-clear" onclick="clearFilters()">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>
@@ -424,28 +425,14 @@ async function loadVagas() {
 
   // Aplicar filtro da URL se vier da index
   const params = new URLSearchParams(window.location.search);
-  if (params.get('q'))          document.getElementById('search-keyword').value = params.get('q');
-  if (params.get('cidade'))     document.getElementById('search-city').value     = params.get('cidade');
-  if (params.get('tipo'))       document.getElementById('filter-type').value     = params.get('tipo');
-  if (params.get('area'))       document.getElementById('filter-area').value     = params.get('area');
-  if (params.get('modalidade')) document.getElementById('filter-modality').value = params.get('modalidade');
-  if (params.get('periodo'))    document.getElementById('filter-period').value   = params.get('periodo');
+  if (params.get('area')) {
+    document.getElementById('filter-area').value = params.get('area');
+  }
+  if (params.get('q')) {
+    document.getElementById('search-keyword').value = params.get('q');
+  }
 
-  populateAreaFilter();
   applyFilters();
-}
-
-function populateAreaFilter() {
-  const sel = document.getElementById('filter-area');
-  const areas = [...new Set(allVagas.map(j => j.area).filter(Boolean))].sort();
-  const current = sel.value;
-  sel.innerHTML = '<option value="">Todas as áreas</option>';
-  areas.forEach(a => {
-    const opt = document.createElement('option');
-    opt.value = a; opt.textContent = a;
-    sel.appendChild(opt);
-  });
-  if (current) sel.value = current;
 }
 
 function applyFilters() {
@@ -470,8 +457,7 @@ function applyFilters() {
     return kM && cM && tM && aM && mM && pM;
   });
 
-  if (srt === 'salary_desc') filteredVagas.sort((a,b) => (b.bolsa||0) - (a.bolsa||0));
-  else if (srt === 'salary_asc') filteredVagas.sort((a,b) => (a.bolsa||0) - (b.bolsa||0));
+  if (srt === 'salary') filteredVagas.sort((a,b) => (b.bolsa||0) - (a.bolsa||0));
 
   currentPage = 1;
   renderPage();
@@ -497,7 +483,7 @@ function renderPage() {
 
   empty.classList.remove('visible');
   grid.innerHTML = pageVagas.map((j,i) => renderCard(j, i*30)).join('');
-  count.textContent = total + (total===1?' vaga encontrada':' vagas encontradas') + (totalPages>1?' — página '+currentPage+' de '+totalPages:'');
+  count.textContent = total + ' vaga' + (total>1?'s':'') + ' encontrada' + (total>1?'s':'') + ' — pagina ' + currentPage + ' de ' + totalPages;
   renderPagination(totalPages);
 }
 
