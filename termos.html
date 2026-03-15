@@ -3,679 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Conecta — Termos de Uso e Política de Privacidade</title>
-<meta name="description" content="Termos de uso e política de privacidade do Conecta — portal de vagas para estudantes.">
+<title>IniciaAí — Termos de Uso e Política de Privacidade</title>
+<meta name="description" content="Termos de uso e política de privacidade do IniciaAí — portal de vagas para estudantes.">
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/*
- * ════════════════════════════════════════════════════════════════
- *  INICIAAÍ — DESIGN SYSTEM UNIFICADO
- *  Paleta oficial Anhembi Morumbi — Polo Bauru-Centro
- *  PANTONE 7719C (#007A5E) · PANTONE 3285C (#00A88E) · Gray 10C (#76787B)
- * ════════════════════════════════════════════════════════════════
- */
-
-/* ── TOKENS ──────────────────────────────────────────────────── */
-:root {
-  /* Cores Pantone */
-  --c-green:        #007A5E;   /* PANTONE 7719C */
-  --c-green-dark:   #005C47;
-  --c-green-mid:    #006B52;
-  --c-mint:         #00A88E;   /* PANTONE 3285C */
-  --c-mint-dark:    #008C76;
-  --c-mint-light:   #E6F7F4;
-  --c-gray:         #76787B;   /* PANTONE Cool Gray 10C */
-
-  /* Superfícies */
-  --surface-hero:   #003528;   /* hero background base */
-  --surface-dark:   #004D3D;   /* dark sections */
-  --surface-bg:     #F4F8F7;   /* page background */
-  --surface-white:  #FFFFFF;
-  --surface-card:   #FFFFFF;
-
-  /* Texto */
-  --text-primary:   #1A2E28;
-  --text-secondary: #76787B;
-  --text-disabled:  #B0BFB8;
-  --text-on-dark:   rgba(255,255,255,.9);
-  --text-muted-dark:rgba(255,255,255,.6);
-
-  /* Bordas */
-  --border-light:   #D4E5DF;
-  --border-card:    #E0EDEA;
-
-  /* Sombras */
-  --shadow-sm:  0 2px 8px rgba(0,90,70,.07);
-  --shadow-md:  0 8px 24px rgba(0,90,70,.1);
-  --shadow-lg:  0 20px 48px rgba(0,90,70,.14);
-  --shadow-xl:  0 32px 64px rgba(0,90,70,.18);
-
-  /* Bordas arredondadas */
-  --r-sm:  8px;
-  --r-md:  14px;
-  --r-lg:  20px;
-  --r-xl:  28px;
-  --r-pill:50px;
-
-  /* Espaçamento */
-  --space-xs:  .375rem;
-  --space-sm:  .75rem;
-  --space-md:  1.5rem;
-  --space-lg:  2.5rem;
-  --space-xl:  4rem;
-  --space-2xl: 6rem;
-
-  /* Transições */
-  --t-fast:   .15s ease;
-  --t-base:   .25s ease;
-  --t-slow:   .4s ease;
-
-  /* Aliases para compatibilidade com código existente */
-  --primary:      var(--c-green);
-  --primary-dark: var(--c-green-dark);
-  --primary-mid:  var(--c-green-mid);
-  --accent:       var(--c-mint);
-  --accent-dark:  var(--c-mint-dark);
-  --accent-light: var(--c-mint-light);
-  --gray:         var(--c-gray);
-  --gray-light:   #F0F1F2;
-  --bg:           var(--surface-bg);
-  --dark:         var(--surface-dark);
-  --text:         var(--text-primary);
-  --muted:        var(--text-secondary);
-  --border:       var(--border-light);
-  --white:        var(--surface-white);
-  --green:        var(--c-mint);
-  --orange:       #E65100;
-  --yellow:       #F5A623;
-  --cyan:         var(--c-mint);
-  --violet:       var(--c-green);
-  --coral:        var(--c-green-dark);
-}
-
-/* ── RESET & BASE ────────────────────────────────────────────── */
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: 'DM Sans', 'Plus Jakarta Sans', sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
-  color: var(--text-primary);
-  background: var(--surface-bg);
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-}
-
-img { max-width: 100%; display: block; }
-a { color: inherit; }
-button, input, select, textarea {
-  font-family: inherit;
-  font-size: inherit;
-}
-
-/* ── TIPOGRAFIA ──────────────────────────────────────────────── */
-h1, h2, h3, h4 {
-  font-family: 'Clash Display', sans-serif;
-  letter-spacing: -.025em;
-  line-height: 1.1;
-}
-
-/* ── CONTAINER ───────────────────────────────────────────────── */
-.container {
-  max-width: 1080px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-@media(max-width:600px) { .container { padding: 0 1.25rem; } }
-
-/* ── NAV ─────────────────────────────────────────────────────── */
-.nav {
-  position: sticky; top: 0; z-index: 100;
-  height: 72px;
-  background: rgba(255,255,255,.97);
-  border-bottom: 1px solid var(--border-light);
-  box-shadow: 0 1px 0 rgba(0,122,94,.06);
-  backdrop-filter: blur(12px);
-  display: flex; align-items: center;
-  padding: 0 2rem;
-  gap: 2rem;
-}
-
-/* Logo */
-.nav-logo {
-  display: block;
-  width: 194px; height: 55px; flex-shrink: 0;
-  background: url('logo-conecta-color.png') no-repeat left center / contain;
-  font-size: 0; color: transparent;
-  text-decoration: none;
-  transition: opacity var(--t-base);
-}
-.nav-logo:hover { opacity: .8; }
-
-/* Links centrais */
-.nav-links {
-  flex: 1;
-  display: flex; align-items: center;
-  justify-content: center;
-  gap: 2.25rem;
-}
-.nav-links a {
-  font-size: .875rem; font-weight: 500;
-  color: var(--text-secondary); text-decoration: none;
-  transition: color var(--t-fast);
-  position: relative; padding-bottom: 2px;
-}
-.nav-links a::after {
-  content: '';
-  position: absolute; bottom: -2px; left: 0; right: 0; height: 2px;
-  background: var(--c-mint); border-radius: 2px;
-  transform: scaleX(0); transition: transform var(--t-base);
-}
-.nav-links a:hover { color: var(--c-green); }
-.nav-links a:hover::after { transform: scaleX(1); }
-.nav-links a.active { color: var(--c-green); font-weight: 700; }
-.nav-links a.active::after { transform: scaleX(1); }
-
-/* CTA button */
-.nav-cta {
-  padding: .55rem 1.4rem;
-  background: var(--c-mint);
-  color: white; border: none; border-radius: var(--r-pill);
-  font-size: .875rem; font-weight: 700;
-  text-decoration: none; cursor: pointer;
-  transition: background var(--t-base), transform var(--t-base), box-shadow var(--t-base);
-  white-space: nowrap;
-}
-.nav-cta:hover {
-  background: var(--c-mint-dark);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 14px rgba(0,168,142,.3);
-}
-
-/* Mobile hamburger */
-.nav-burger {
-  display: none;
-  flex-direction: column; gap: 5px;
-  background: none; border: none;
-  cursor: pointer; padding: .35rem;
-  margin-left: auto;
-}
-.nav-burger span {
-  display: block; width: 22px; height: 2px;
-  background: var(--text-primary); border-radius: 2px;
-  transition: all var(--t-base);
-}
-.nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-.nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-/* Mobile drawer */
-.nav-mobile {
-  display: none;
-  position: fixed;
-  top: 72px; left: 0; right: 0; bottom: 0;
-  background: rgba(255,255,255,.98);
-  backdrop-filter: blur(16px);
-  z-index: 99;
-  flex-direction: column;
-  padding: 1.5rem 1.5rem;
-  gap: .25rem;
-  border-top: 1px solid var(--border-light);
-  transform: translateX(100%);
-  transition: transform .3s cubic-bezier(.4,0,.2,1);
-}
-.nav-mobile.open { transform: translateX(0); }
-.nav-mobile-link {
-  display: flex; align-items: center; gap: .75rem;
-  padding: .9rem 1rem; border-radius: var(--r-md);
-  font-size: .95rem; font-weight: 600;
-  color: var(--text-primary); text-decoration: none;
-  transition: background var(--t-fast);
-}
-.nav-mobile-link:hover { background: var(--c-mint-light); color: var(--c-green); }
-.nav-mobile-link svg { color: var(--c-green); flex-shrink: 0; }
-
-/* ── HERO BASE (dark green) ──────────────────────────────────── */
-.hero {
-  position: relative; overflow: hidden;
-  background: linear-gradient(158deg, #002E22 0%, #006B52 55%, #003D2E 100%);
-  display: flex; flex-direction: column;
-  justify-content: center; align-items: center;
-  text-align: center;
-  padding: 5rem 2rem 0;
-  min-height: calc(100svh - 72px);
-}
-
-/* Listras diagonais sutis */
-.hero::before {
-  content: '';
-  position: absolute; inset: 0;
-  background-image: repeating-linear-gradient(
-    -45deg,
-    transparent 0px, transparent 28px,
-    rgba(255,255,255,.018) 28px, rgba(255,255,255,.018) 29px
-  );
-  pointer-events: none; z-index: 0;
-}
-
-/* Glow central */
-.hero::after {
-  content: '';
-  position: absolute;
-  top: 35%; left: 50%; transform: translate(-50%, -50%);
-  width: 70%; height: 320px;
-  background: radial-gradient(ellipse, rgba(0,168,142,.18) 0%, transparent 65%);
-  pointer-events: none; z-index: 0;
-}
-
-/* Símbolo AM decorativo */
-.hero-deco {
-  position: absolute;
-  right: -2%; bottom: -4%;
-  width: min(260px, 26vw);
-  aspect-ratio: 700/762;
-  background: url('symbol-am-white.png') no-repeat right bottom / contain;
-  pointer-events: none; z-index: 0;
-  opacity: .9;
-}
-
-/* Conteúdo do hero */
-.hero-content {
-  position: relative; z-index: 1;
-  width: 100%; max-width: 780px;
-}
-
-.hero-tag {
-  display: inline-flex; align-items: center; gap: .4rem;
-  padding: .4rem 1.1rem;
-  background: rgba(255,255,255,.1);
-  border: 1px solid rgba(255,255,255,.18);
-  border-radius: var(--r-pill);
-  font-size: .72rem; font-weight: 700;
-  text-transform: uppercase; letter-spacing: .08em;
-  color: rgba(255,255,255,.82);
-  margin-bottom: 1.5rem;
-}
-
-.hero h1 {
-  font-size: clamp(2.6rem, 6vw, 4.5rem);
-  color: white; font-weight: 700;
-  margin-bottom: 1.25rem;
-}
-.hero h1 .accent { color: var(--c-mint); }
-
-.hero-sub {
-  font-size: clamp(.95rem, 1.8vw, 1.1rem);
-  color: rgba(255,255,255,.68);
-  line-height: 1.75;
-  max-width: 520px; margin: 0 auto 2.5rem;
-}
-
-/* Hero CTAs */
-.hero-ctas {
-  display: flex; gap: 1rem;
-  justify-content: center; flex-wrap: wrap;
-  margin-bottom: 3.5rem;
-}
-.btn-hero-primary {
-  padding: .9rem 2.25rem;
-  background: var(--c-mint); color: white;
-  border: none; border-radius: var(--r-pill);
-  font-weight: 700; font-size: .95rem;
-  text-decoration: none; cursor: pointer;
-  transition: background var(--t-base), transform var(--t-base), box-shadow var(--t-base);
-}
-.btn-hero-primary:hover {
-  background: var(--c-mint-dark);
-  transform: translateY(-3px);
-  box-shadow: 0 12px 28px rgba(0,168,142,.35);
-}
-.btn-hero-ghost {
-  padding: .9rem 2.25rem;
-  background: rgba(255,255,255,.1);
-  border: 1.5px solid rgba(255,255,255,.22);
-  color: white; border-radius: var(--r-pill);
-  font-weight: 600; font-size: .95rem;
-  text-decoration: none; cursor: pointer;
-  backdrop-filter: blur(8px);
-  transition: all var(--t-base);
-}
-.btn-hero-ghost:hover {
-  background: rgba(255,255,255,.2);
-  transform: translateY(-2px);
-}
-
-/* Stats bar */
-.hero-stats {
-  position: relative; z-index: 1;
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  max-width: 480px; margin: 0 auto;
-  background: rgba(0,0,0,.22);
-  border: 1px solid rgba(255,255,255,.1);
-  border-radius: var(--r-lg) var(--r-lg) 0 0;
-  backdrop-filter: blur(12px);
-  overflow: hidden;
-}
-.hero-stat {
-  padding: 1.4rem 1rem; text-align: center;
-  border-right: 1px solid rgba(255,255,255,.08);
-  transition: background var(--t-fast);
-}
-.hero-stat:last-child { border-right: none; }
-.hero-stat:hover { background: rgba(255,255,255,.07); }
-.hero-stat-val {
-  font-family: 'Clash Display', sans-serif;
-  font-size: 2rem; font-weight: 700; color: white; line-height: 1;
-  margin-bottom: .3rem;
-}
-.hero-stat-lbl { font-size: .7rem; color: rgba(255,255,255,.5); font-weight: 500; }
-
-/* ── WAVE SEPARATOR ──────────────────────────────────────────── */
-/* Transição suave de seção: hero escuro → conteúdo branco */
-.section-transition {
-  display: block; line-height: 0;
-  overflow: hidden;
-  background: var(--surface-hero);  /* match seção acima */
-  margin-bottom: -2px;
-}
-.section-transition svg { display: block; width: 100%; }
-
-/* ── SECTION BASE ────────────────────────────────────────────── */
-.section {
-  padding: var(--space-2xl) 0;
-}
-.section-sm { padding: var(--space-xl) 0; }
-.section-dark {
-  background: var(--surface-dark);
-  padding: var(--space-2xl) 0;
-}
-
-/* Section header */
-.section-badge {
-  display: inline-flex; align-items: center; gap: .4rem;
-  padding: .35rem 1rem;
-  background: var(--c-mint-light);
-  border: 1px solid rgba(0,168,142,.2);
-  color: var(--c-green); border-radius: var(--r-pill);
-  font-size: .7rem; font-weight: 700;
-  text-transform: uppercase; letter-spacing: .09em;
-  margin-bottom: .875rem;
-}
-.section-badge-dark {
-  background: rgba(255,255,255,.1);
-  border-color: rgba(255,255,255,.15);
-  color: rgba(255,255,255,.75);
-}
-
-.section-title {
-  font-size: clamp(1.75rem, 3.5vw, 2.6rem);
-  color: var(--text-primary); margin-bottom: .75rem;
-}
-.section-title .accent { color: var(--c-mint); }
-.section-title-dark { color: white; }
-.section-title-dark .accent { color: var(--c-mint); }
-
-.section-desc {
-  font-size: 1rem; color: var(--text-secondary);
-  line-height: 1.75; max-width: 540px;
-}
-.section-desc-dark { color: rgba(255,255,255,.58); }
-
-/* ── CARDS ───────────────────────────────────────────────────── */
-.card {
-  background: var(--surface-card);
-  border: 1.5px solid var(--border-card);
-  border-radius: var(--r-lg);
-  padding: var(--space-lg);
-  transition: transform var(--t-base), box-shadow var(--t-base), border-color var(--t-base);
-}
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
-  border-color: rgba(0,168,142,.3);
-}
-
-/* Highlight card (gradiente verde) */
-.card-highlight {
-  background: linear-gradient(135deg, var(--c-green) 0%, var(--c-mint-dark) 100%);
-  border: none; border-radius: var(--r-lg);
-  padding: var(--space-lg);
-  color: white; position: relative; overflow: hidden;
-  transition: transform var(--t-base), box-shadow var(--t-base);
-}
-.card-highlight::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse 80% 60% at 85% 15%, rgba(255,255,255,.12), transparent);
-  pointer-events: none;
-}
-.card-highlight:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 48px rgba(0,90,70,.3);
-}
-.card-highlight > * { position: relative; z-index: 1; }
-.card-highlight .card-icon { color: rgba(255,255,255,.65); margin-bottom: .875rem; }
-.card-highlight h3 {
-  font-family: 'Clash Display', sans-serif;
-  font-size: 1.25rem; font-weight: 700; margin-bottom: .4rem;
-}
-.card-highlight p { font-size: .85rem; opacity: .82; line-height: 1.65; }
-
-/* ── BUTTONS ─────────────────────────────────────────────────── */
-.btn {
-  display: inline-flex; align-items: center; gap: .5rem;
-  padding: .75rem 1.75rem;
-  font-family: 'DM Sans', sans-serif;
-  font-size: .9rem; font-weight: 700;
-  border: none; border-radius: var(--r-pill);
-  cursor: pointer; text-decoration: none;
-  transition: all var(--t-base);
-}
-.btn-primary {
-  background: var(--c-mint); color: white;
-}
-.btn-primary:hover {
-  background: var(--c-mint-dark);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0,168,142,.32);
-}
-.btn-secondary {
-  background: white; color: var(--c-green);
-  border: 1.5px solid var(--border-card);
-}
-.btn-secondary:hover {
-  border-color: var(--c-mint);
-  color: var(--c-mint);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-sm);
-}
-.btn-ghost-dark {
-  background: rgba(255,255,255,.1);
-  border: 1.5px solid rgba(255,255,255,.2);
-  color: white;
-  backdrop-filter: blur(8px);
-}
-.btn-ghost-dark:hover {
-  background: rgba(255,255,255,.2);
-  transform: translateY(-2px);
-}
-.btn-danger {
-  background: rgba(183,28,28,.08); color: #B71C1C;
-  border: 1.5px solid rgba(183,28,28,.2);
-}
-.btn-danger:hover { background: #B71C1C; color: white; }
-.btn-sm { padding: .5rem 1.1rem; font-size: .82rem; }
-.btn-lg { padding: 1rem 2.5rem; font-size: 1rem; }
-.btn-block { width: 100%; justify-content: center; }
-
-/* ── FORMS ───────────────────────────────────────────────────── */
-.form-group { margin-bottom: 1.25rem; }
-.form-label {
-  display: block;
-  font-size: .78rem; font-weight: 700;
-  text-transform: uppercase; letter-spacing: .06em;
-  color: var(--text-secondary);
-  margin-bottom: .5rem;
-}
-.form-input, .form-select, .form-textarea {
-  width: 100%; padding: .8rem 1.1rem;
-  background: white;
-  border: 1.5px solid var(--border-light);
-  border-radius: var(--r-md);
-  font-size: .9rem; color: var(--text-primary);
-  transition: border-color var(--t-fast), box-shadow var(--t-fast);
-  outline: none;
-}
-.form-input:focus, .form-select:focus, .form-textarea:focus {
-  border-color: var(--c-mint);
-  box-shadow: 0 0 0 3px rgba(0,168,142,.12);
-}
-.form-input::placeholder { color: var(--text-disabled); }
-
-/* ── BADGES / CHIPS ──────────────────────────────────────────── */
-.badge {
-  display: inline-flex; align-items: center; gap: .3rem;
-  padding: .25rem .75rem;
-  border-radius: var(--r-pill);
-  font-size: .72rem; font-weight: 700;
-}
-.badge-green   { background: rgba(0,168,142,.12); color: var(--c-mint-dark); }
-.badge-primary { background: rgba(0,122,94,.1);   color: var(--c-green); }
-.badge-gray    { background: rgba(118,120,123,.12); color: var(--c-gray); }
-.badge-yellow  { background: rgba(245,166,35,.12);  color: #92620A; }
-.badge-red     { background: rgba(183,28,28,.1);   color: #B71C1C; }
-
-/* ── TOGGLE ──────────────────────────────────────────────────── */
-.toggle {
-  width: 44px; height: 24px; border-radius: 50px;
-  border: none; cursor: pointer; flex-shrink: 0;
-  background: var(--border-light);
-  position: relative; transition: background var(--t-base);
-}
-.toggle::after {
-  content: ''; position: absolute;
-  width: 18px; height: 18px; border-radius: 50%;
-  background: white; top: 3px; left: 3px;
-  transition: transform var(--t-base);
-  box-shadow: 0 1px 4px rgba(0,0,0,.2);
-}
-.toggle.on { background: var(--c-mint); }
-.toggle.on::after { transform: translateX(20px); }
-
-/* ── FADE-IN SCROLL ANIMATION ────────────────────────────────── */
-.fade-up {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity .6s cubic-bezier(.4,0,.2,1), transform .6s cubic-bezier(.4,0,.2,1);
-}
-.fade-up.visible { opacity: 1; transform: none; }
-
-/* ── TOAST ───────────────────────────────────────────────────── */
-.toast {
-  position: fixed; bottom: 1.5rem; right: 1.5rem;
-  padding: .875rem 1.25rem;
-  border-radius: var(--r-md);
-  font-size: .85rem; font-weight: 600; color: white;
-  box-shadow: 0 8px 24px rgba(0,0,0,.2);
-  transform: translateY(80px); opacity: 0;
-  transition: all .3s cubic-bezier(.4,0,.2,1);
-  z-index: 300; max-width: 320px;
-}
-.toast.show { transform: translateY(0); opacity: 1; }
-.toast.success { background: var(--c-mint); }
-.toast.error   { background: #B71C1C; }
-.toast.info    { background: var(--c-green); }
-
-/* ── FOOTER ──────────────────────────────────────────────────── */
-.footer {
-  background: var(--surface-dark);
-  border-top: 1px solid rgba(255,255,255,.08);
-  padding: 2.5rem 2rem;
-  text-align: center;
-}
-.footer-logo {
-  height: 44px; object-fit: contain;
-  opacity: .92;
-  margin: 0 auto 1.25rem;
-}
-.footer-links {
-  display: flex; gap: 1.5rem;
-  justify-content: center; flex-wrap: wrap;
-  margin-bottom: .75rem;
-}
-.footer-links a {
-  font-size: .82rem; color: rgba(255,255,255,.45);
-  text-decoration: none; transition: color var(--t-fast);
-}
-.footer-links a:hover { color: rgba(255,255,255,.85); }
-.footer-copy { font-size: .72rem; color: rgba(255,255,255,.22); }
-
-/* ── RESPONSIVE ──────────────────────────────────────────────── */
-@media(max-width: 768px) {
   :root {
-    --space-xl:  3rem;
-    --space-2xl: 4rem;
-  }
-
-  .nav { padding: 0 1.25rem; height: 64px; }
-  .nav-logo { width: 130px; height: 40px; }
-  .nav-links { display: none !important; }
-  .nav-cta  { display: none !important; }
-  .nav-burger { display: flex !important; }
-  .nav-mobile { display: flex !important; }
-
-  .hero { padding: 3.5rem 1.25rem 0; min-height: 90svh; }
-  .hero h1 { font-size: clamp(2rem, 8vw, 2.8rem); }
-  .hero-ctas { flex-direction: column; align-items: center; }
-  .hero-ctas a, .hero-ctas button { width: 100%; max-width: 280px; text-align: center; justify-content: center; }
-  .hero-deco { width: min(160px, 38vw); right: -1%; }
-  .hero-stats { grid-template-columns: 1fr 1fr 1fr; max-width: 100%; }
-
-  .section { padding: 3rem 0; }
-  .section-dark { padding: 3rem 0; }
-
-  .section-title { font-size: 1.65rem; }
-}
-
-@media(max-width: 480px) {
-  .hero-stats { grid-template-columns: 1fr; }
-  .hero-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,.08); }
-  .hero-stat:last-child { border-bottom: none; }
-}
-
-
-/* ═══ TERMOS PAGE CSS ═══ */
-
-  /* ─ NAV FIX: override old nav rules ─ */
-  nav { position:sticky!important; top:0!important; z-index:100!important; height:72px!important; background:rgba(255,255,255,.97)!important; border-bottom:1px solid var(--border-light)!important; box-shadow:0 1px 0 rgba(0,122,94,.06)!important; backdrop-filter:blur(12px)!important; display:flex!important; align-items:center!important; padding:0 2rem!important; gap:2rem!important; }
-  .nav-logo { display:block!important; width:148px!important; height:44px!important; flex-shrink:0!important; background:url('logo-conecta-color.png') no-repeat left center/contain!important; font-size:0!important; color:transparent!important; text-decoration:none!important; }
-  .nav-logo::before { display:none!important; }
-  /* Also fix old .logo class if still present */
-  .logo { display:block!important; width:148px!important; height:44px!important; flex-shrink:0!important; background:url('logo-conecta-color.png') no-repeat left center/contain!important; font-size:0!important; color:transparent!important; -webkit-text-fill-color:transparent!important; text-decoration:none!important; }
-  .logo::before { display:none!important; }
-
-
-  /* ════ DESIGN TOKENS UNIFICADOS ════ */
-  :root {
-    --primary:       #007A5E;
-    --primary-dark:  #005C47;
-    --accent:        #00A88E;
-    --accent-dark:   #008C76;
-    --accent-light:  #E6F7F4;
-    --bg:            #F4F8F7;
+    --primary:       #007A5E;   /* PANTONE 7719C — Verde Escuro Anhembi */
+    --primary-dark:  #005C47;   /* Verde mais escuro hover */
+    --primary-mid:   #006B52;   /* Verde médio */
+    --accent:        #00A88E;   /* PANTONE 3285C — Verde Claro/Menta */
+    --accent-dark:   #008C76;   /* Menta escuro hover */
+    --accent-light:  #E6F7F4;   /* Menta bem claro fundo */
+    --gray:          #76787B;   /* PANTONE Cool Gray 10C */
+    --gray-light:    #F0F1F2;   /* Cinza claro */
+    --bg:            #F4F8F7;   /* Fundo levemente esverdeado */
+    --dark:          #007A5E;   /* Dark = verde escuro */
+    --text:          #1A2E28;   /* Texto principal */
+    --muted:         #76787B;   /* Cinza médio Anhembi */
+    --border:        #C8DDD9;   /* Bordas esverdeadas */
     --white:         #FFFFFF;
-    --dark:          #003D2E;
-    --text:          #1A2E28;
-    --muted:         #5C7A6E;
-    --subtle:        #8FA89E;
-    --border:        #C8DDD9;
-    --shadow-sm:     0 1px 4px rgba(0,0,0,.06);
-    --shadow-md:     0 4px 16px rgba(0,80,60,.08);
-    --shadow-lg:     0 12px 40px rgba(0,80,60,.12);
-    --shadow-accent: 0 8px 28px rgba(0,168,142,.35);
-    --t:             .25s ease;
-    --r-sm: 8px; --r-md: 12px; --r-lg: 18px; --r-xl: 24px; --r-full: 9999px;
+    --green:         #00A88E;
+    --orange:        #E65100;
+    --yellow:        #F57F17;
+    --cyan:          #00A88E;
+    /* Aliases */
+    --violet:        #007A5E;
+    --coral:         #005C47;
   }
   * { margin:0; padding:0; box-sizing:border-box; }
   body { font-family:'Plus Jakarta Sans',sans-serif; background:var(--bg); color:var(--text); }
@@ -802,7 +155,7 @@ h1, h2, h3, h4 {
 
   
   .hero, .page-hero, .vaga-hero, .doc-hero {
-    background: linear-gradient(135deg, #004D3D 0%, var(--primary) 50%, #0A3528 100%);
+    background: linear-gradient(135deg, #004D3D 0%, var(--primary) 50%, #0A3528 100%) !important;
     position: relative;
     overflow: hidden;
   }
@@ -849,9 +202,9 @@ h1, h2, h3, h4 {
   
   /* ── PAGE HERO PANTONE ANHEMBI ── */
   .page-hero, .vaga-hero, .doc-hero {
-    background-image: linear-gradient(155deg, rgba(0,30,22,.92) 0%, rgba(0,80,60,.85) 55%, rgba(0,40,30,.92) 100%), url("bg-dark-texture.jpg");
-    background-size: cover;
-    background-position: center center;
+    background-image: linear-gradient(155deg, rgba(0,30,22,.92) 0%, rgba(0,80,60,.85) 55%, rgba(0,40,30,.92) 100%), url("bg-dark-texture.jpg") !important;
+    background-size: cover !important;
+    background-position: center center !important;
     position: relative; overflow: hidden;
   }
   .page-hero::before, .vaga-hero::before {
@@ -867,19 +220,19 @@ h1, h2, h3, h4 {
     pointer-events: none; z-index: 0;
   }
   .page-hero > *, .vaga-hero > * { position: relative; z-index: 1; }
-  .page-hero h1, .vaga-hero h1 { color: white; }
+  .page-hero h1, .vaga-hero h1 { color: white !important; }
   .page-hero h1 span, .vaga-hero h1 span {
-    color: var(--accent);
-    -webkit-text-fill-color: var(--accent);
+    color: var(--accent) !important;
+    -webkit-text-fill-color: var(--accent) !important;
   }
-  .page-hero p, .vaga-hero p { color: rgba(255,255,255,.65); }
+  .page-hero p, .vaga-hero p { color: rgba(255,255,255,.65) !important; }
   .page-hero-badge {
-    background: rgba(255,255,255,.1);
-    border: 1px solid rgba(255,255,255,.18);
-    color: rgba(255,255,255,.8);
+    background: rgba(255,255,255,.1) !important;
+    border: 1px solid rgba(255,255,255,.18) !important;
+    color: rgba(255,255,255,.8) !important;
   }
-  .logo { color: var(--primary); -webkit-text-fill-color: var(--primary); background: none; }
-  nav { background: rgba(255,255,255,.97); box-shadow: 0 1px 12px rgba(0,122,94,.1); }
+  .logo { color: var(--primary) !important; -webkit-text-fill-color: var(--primary) !important; background: none !important; }
+  nav { background: rgba(255,255,255,.97) !important; box-shadow: 0 1px 12px rgba(0,122,94,.1) !important; }
 
 
   /* ── LOGO IMAGEM ANHEMBI ── */
@@ -888,22 +241,22 @@ h1, h2, h3, h4 {
     align-items: center;
     text-decoration: none;
     cursor: pointer;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
-    background: none;
-    font-size: 0;
+    color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
+    background: none !important;
+    font-size: 0 !important;
   }
   .logo::before {
     content: '';
     display: block;
     width: 160px;
     height: 44px;
-    background: url('logo-conecta-color.png') no-repeat center/contain;
+    background: url('logo-colorida.png') no-repeat center/contain;
   }
   /* Logo branca nos heróis (quando nav está sobre fundo escuro) */
   .hero-logo-wrap .logo::before,
   .vaga-hero .logo::before {
-    background-image: url('logo-conecta-white.png');
+    background-image: url('logo-branca.png');
   }
 
 
@@ -911,19 +264,19 @@ h1, h2, h3, h4 {
   .logo {
     display: inline-flex; align-items: center;
     text-decoration: none; cursor: pointer;
-    font-size: 0; color: transparent;
-    -webkit-text-fill-color: transparent; background: none;
+    font-size: 0 !important; color: transparent !important;
+    -webkit-text-fill-color: transparent !important; background: none !important;
   }
   .logo::before {
     content: '';
     display: block;
     width: 140px; height: 44px;
-    background: url('logo-conecta-color.png') no-repeat left center / contain;
+    background: url('logo-colorida.png') no-repeat left center / contain;
   }
   nav {
-    background: rgba(255,255,255,.97);
-    box-shadow: 0 1px 16px rgba(0,122,94,.1);
-    height: 72px;
+    background: rgba(255,255,255,.97) !important;
+    box-shadow: 0 1px 16px rgba(0,122,94,.1) !important;
+    height: 72px !important;
   }
 
   /* Todos os botões CTA → verde accent */
@@ -931,83 +284,83 @@ h1, h2, h3, h4 {
   .btn-apply-full, .btn-apply, .btn-search, .btn-buscar,
   .btn-nova-vaga, .btn-nav-cta, .btn-hero-primary, .btn-nav-primary,
   .cta-btn-a, .btn-primary {
-    background: var(--accent);
-    background-image: none;
+    background: var(--accent) !important;
+    background-image: none !important;
   }
   .btn-submit:hover, .btn-save:hover, .btn-apply-full:hover,
   .btn-search:hover, .btn-buscar:hover, .btn-hero-primary:hover {
-    background: var(--accent-dark);
-    box-shadow: 0 8px 20px rgba(0,168,142,.3);
+    background: var(--accent-dark) !important;
+    box-shadow: 0 8px 20px rgba(0,168,142,.3) !important;
   }
 
   /* Input focus → accent */
   input:focus, select:focus, textarea:focus {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(0,168,142,.1);
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 3px rgba(0,168,142,.1) !important;
   }
 
   /* Section badge */
   .section-badge {
-    background: var(--accent-light);
-    color: var(--primary);
+    background: var(--accent-light) !important;
+    color: var(--primary) !important;
   }
 
   /* Section title span highlight */
   .section-title span, h1 span, h2 span {
-    color: var(--accent);
-    -webkit-text-fill-color: var(--accent);
-    background: none;
+    color: var(--accent) !important;
+    -webkit-text-fill-color: var(--accent) !important;
+    background: none !important;
   }
 
   /* Stat nums brancos dentro de heróis */
   .hero .stat-num, .page-hero .stat-num {
-    color: white;
-    font-weight: 800;
+    color: white !important;
+    font-weight: 800 !important;
   }
 
   /* Remove qualquer gradiente texto residual */
   *[style*="background-clip:text"] {
-    -webkit-background-clip: unset;
-    -webkit-text-fill-color: unset;
-    background-clip: unset;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: unset !important;
+    background-clip: unset !important;
   }
 
 
   /* ── UPGRADE TIPOGRAFIA GLOBAL ── */
   @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap');
 
-  body { font-family: 'DM Sans', 'Plus Jakarta Sans', sans-serif; }
+  body { font-family: 'DM Sans', 'Plus Jakarta Sans', sans-serif !important; }
 
   h1, h2, h3, .section-title, .panel-title, .modal-title {
-    font-family: 'Clash Display', sans-serif;
-    letter-spacing: -0.02em;
+    font-family: 'Clash Display', sans-serif !important;
+    letter-spacing: -0.02em !important;
   }
 
   /* Forms mais elegantes */
   input, select, textarea, button {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'DM Sans', sans-serif !important;
   }
 
   /* Labels mais profissionais */
-  label { font-size: .8rem; font-weight: 700; letter-spacing: .03em; }
+  label { font-size: .8rem !important; font-weight: 700 !important; letter-spacing: .03em !important; }
 
   /* Botões — tipografia impactante */
   .btn-submit, .btn-save, .btn-primary, .btn-login,
   .btn-apply-full, .btn-search, .btn-buscar, .btn-nav-cta {
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 700;
-    letter-spacing: .02em;
+    font-family: 'DM Sans', sans-serif !important;
+    font-weight: 700 !important;
+    letter-spacing: .02em !important;
   }
 
   /* Nav links */
   .nav-links a, .nav-back {
-    font-family: 'DM Sans', sans-serif;
-    font-size: .875rem;
+    font-family: 'DM Sans', sans-serif !important;
+    font-size: .875rem !important;
   }
 
   /* Form cards */
-  .form-card { border-radius: 20px; }
-  .section-label { letter-spacing: -.01em; }
+  .form-card { border-radius: 20px !important; }
+  .section-label { letter-spacing: -.01em !important; }
 
 
   /* ── SÍMBOLO AM — página interna ── */
@@ -1019,7 +372,7 @@ h1, h2, h3, h4 {
     pointer-events:none; z-index:0;
   }
   @media(max-width:768px){
-    .page-am-deco { width:min(140px, 35vw); right:-2%; }
+    .page-am-deco { width:min(140px, 35vw)!important; right:-2%!important; }
   }
 
 
@@ -1027,65 +380,52 @@ h1, h2, h3, h4 {
   /* Botões primários */
   .btn-submit, .btn-save, .btn-apply-full, .btn-next,
   .btn-nova-vaga, .btn-modal-approve {
-    transition: all .25s ease;
+    transition: all .25s ease !important;
   }
   .btn-submit:hover, .btn-save:hover, .btn-apply-full:hover,
   .btn-next:hover, .btn-nova-vaga:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0,168,142,.35);
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 24px rgba(0,168,142,.35) !important;
   }
 
   /* Cards genéricos */
   .form-card, .card, .stat-card {
-    transition: box-shadow .25s ease;
+    transition: box-shadow .25s ease !important;
   }
 
   /* Nav links */
   .nav-links a, .nav-back, .mob-link {
-    transition: color .2s ease;
+    transition: color .2s ease !important;
   }
 
   /* Input focus glow */
   input:focus, select:focus, textarea:focus {
-    transition: border-color .2s, box-shadow .2s;
+    transition: border-color .2s, box-shadow .2s !important;
   }
 
 
   /* ── LOGO BULLET-PROOF ── */
   .logo {
-    display: inline-block;
-    width: 150px;
-    height: 48px;
-    background: url('logo-conecta-color.png') no-repeat left center / contain;
-    text-decoration: none;
-    font-size: 0;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
-    overflow: hidden;
-    flex-shrink: 0;
+    display: inline-block !important;
+    width: 150px !important;
+    height: 48px !important;
+    background: url('logo-colorida.png') no-repeat left center / contain !important;
+    text-decoration: none !important;
+    font-size: 0 !important;
+    color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
+    overflow: hidden !important;
+    flex-shrink: 0 !important;
   }
-  .logo::before { display: none; }
+  .logo::before { display: none !important; }
   /* Only the CSS background-image, no ::before pseudo */
 
-
-
-  /* ─ PAGE HERO DECO ─ */
-  .page-hero { position:relative; overflow:hidden; }
-  .page-hero .hero-deco {
-    position:absolute; right:-2%; bottom:-4%;
-    width:min(220px, 24vw); aspect-ratio:700/762;
-    background:url('symbol-am-white.png') no-repeat right bottom/contain;
-    pointer-events:none; z-index:0; opacity:.85;
-  }
-  @media(max-width:768px) { .page-hero .hero-deco { width:min(130px,32vw); } }
-
 </style>
-<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <nav>
-  <a class="nav-logo" href="index.html"></a>
+  <a class="logo" href="index.html"></a>
   <div class="nav-links" style="display:flex;gap:1.75rem;align-items:center">
     <a href="index.html" style="color:var(--muted);text-decoration:none;font-size:.875rem;font-weight:500">Ver Vagas</a>
     <a href="sobre.html" style="color:var(--muted);text-decoration:none;font-size:.875rem;font-weight:500">Sobre</a>
@@ -1098,7 +438,7 @@ h1, h2, h3, h4 {
   <div class="page-hero-inner" style="text-align:center">
     <div class="page-hero-badge"><svg style="vertical-align:middle;flex-shrink:0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="3" x2="12" y2="21"/><path d="M3 9l9-6 9 6"/><path d="M6 12L3 9v6a3 3 0 0 0 6 0V9L6 12z"/><path d="M18 12l3-3v6a3 3 0 0 1-6 0V9l3 3z"/></svg> Legal</div>
     <h1>Termos & <span>Privacidade</span></h1>
-    <p>Transparência total sobre como o Conecta funciona e protege seus dados.</p>
+    <p>Transparência total sobre como o IniciaAí funciona e protege seus dados.</p>
   </div>
 </div>
 
@@ -1126,9 +466,9 @@ h1, h2, h3, h4 {
     <div class="doc-section show" id="sec-termos">
 
       <div class="doc-block">
-        <h2>1. Sobre o Conecta</h2>
-        <p>O <strong>Conecta</strong> é uma plataforma digital que conecta estudantes em busca de sua primeira oportunidade profissional com empresas que oferecem vagas de estágio e Jovem Aprendiz.</p>
-        <p>Ao acessar ou utilizar qualquer funcionalidade do Conecta, você concorda integralmente com estes Termos de Uso. Caso não concorde, não utilize a plataforma.</p>
+        <h2>1. Sobre o IniciaAí</h2>
+        <p>O <strong>IniciaAí</strong> é uma plataforma digital que conecta estudantes em busca de sua primeira oportunidade profissional com empresas que oferecem vagas de estágio e Jovem Aprendiz.</p>
+        <p>Ao acessar ou utilizar qualquer funcionalidade do IniciaAí, você concorda integralmente com estes Termos de Uso. Caso não concorde, não utilize a plataforma.</p>
       </div>
 
       <div class="doc-block">
@@ -1137,7 +477,7 @@ h1, h2, h3, h4 {
         <ul>
           <li>As informações fornecidas são verdadeiras, precisas e atualizadas.</li>
           <li>É responsável pela guarda da sua senha e por toda atividade realizada em sua conta.</li>
-          <li>Notificará o Conecta imediatamente em caso de uso não autorizado da sua conta.</li>
+          <li>Notificará o IniciaAí imediatamente em caso de uso não autorizado da sua conta.</li>
         </ul>
         <div class="highlight-box">
           <p><strong>Candidatos:</strong> devem ser estudantes (Ensino Médio, Técnico ou Superior) ou jovens entre 14 e 24 anos elegíveis ao programa Jovem Aprendiz.</p>
@@ -1154,7 +494,7 @@ h1, h2, h3, h4 {
           <li>Entrar em contato com candidatos selecionados dentro de prazo razoável.</li>
         </ul>
         <div class="warning-box">
-          <p><svg style="vertical-align:middle;flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> O Conecta não é responsável pelo processo seletivo conduzido pelas empresas, pela efetivação das contratações ou por qualquer relação trabalhista estabelecida entre empresa e candidato.</p>
+          <p><svg style="vertical-align:middle;flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> O IniciaAí não é responsável pelo processo seletivo conduzido pelas empresas, pela efetivação das contratações ou por qualquer relação trabalhista estabelecida entre empresa e candidato.</p>
         </div>
       </div>
 
@@ -1170,17 +510,17 @@ h1, h2, h3, h4 {
 
       <div class="doc-block">
         <h2>5. Moderação de Conteúdo</h2>
-        <p>O Conecta reserva-se o direito de reprovar, remover ou suspender qualquer vaga ou conta que viole estes termos, contenha informações falsas, seja discriminatória, ou prejudique a experiência dos usuários. Vagas passam por revisão manual antes de serem publicadas.</p>
+        <p>O IniciaAí reserva-se o direito de reprovar, remover ou suspender qualquer vaga ou conta que viole estes termos, contenha informações falsas, seja discriminatória, ou prejudique a experiência dos usuários. Vagas passam por revisão manual antes de serem publicadas.</p>
       </div>
 
       <div class="doc-block">
         <h2>6. Propriedade Intelectual</h2>
-        <p>Todo o conteúdo da plataforma — incluindo logotipo, design, textos e código — é propriedade do Conecta. É proibida a reprodução, distribuição ou uso comercial sem autorização prévia por escrito.</p>
+        <p>Todo o conteúdo da plataforma — incluindo logotipo, design, textos e código — é propriedade do IniciaAí. É proibida a reprodução, distribuição ou uso comercial sem autorização prévia por escrito.</p>
       </div>
 
       <div class="doc-block">
         <h2>7. Limitação de Responsabilidade</h2>
-        <p>O Conecta não garante a disponibilidade contínua da plataforma e não se responsabiliza por danos decorrentes de interrupções, falhas técnicas ou uso indevido por terceiros. A plataforma é fornecida "como está".</p>
+        <p>O IniciaAí não garante a disponibilidade contínua da plataforma e não se responsabiliza por danos decorrentes de interrupções, falhas técnicas ou uso indevido por terceiros. A plataforma é fornecida "como está".</p>
       </div>
 
       <div class="doc-block">
@@ -1195,7 +535,7 @@ h1, h2, h3, h4 {
 
       <div class="doc-block">
         <h2>1. Compromisso com a LGPD</h2>
-        <p>O Conecta está comprometido com a <strong>Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018)</strong>. Esta política descreve quais dados coletamos, como os utilizamos, e quais são seus direitos como titular.</p>
+        <p>O IniciaAí está comprometido com a <strong>Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018)</strong>. Esta política descreve quais dados coletamos, como os utilizamos, e quais são seus direitos como titular.</p>
       </div>
 
       <div class="doc-block">
@@ -1234,7 +574,7 @@ h1, h2, h3, h4 {
           <li>Cumprir obrigações legais e regulatórias.</li>
         </ul>
         <div class="highlight-box">
-          <p><strong>Não vendemos seus dados.</strong> O Conecta jamais comercializa dados pessoais com terceiros para fins publicitários ou comerciais.</p>
+          <p><strong>Não vendemos seus dados.</strong> O IniciaAí jamais comercializa dados pessoais com terceiros para fins publicitários ou comerciais.</p>
         </div>
       </div>
 
@@ -1300,7 +640,7 @@ h1, h2, h3, h4 {
           </tbody>
         </table>
         <div class="highlight-box">
-          <p>O Conecta utiliza apenas <strong>cookies de sessão essenciais</strong>. Não utilizamos cookies de rastreamento, publicidade ou analytics de terceiros.</p>
+          <p>O IniciaAí utiliza apenas <strong>cookies de sessão essenciais</strong>. Não utilizamos cookies de rastreamento, publicidade ou analytics de terceiros.</p>
         </div>
       </div>
 
@@ -1321,7 +661,7 @@ h1, h2, h3, h4 {
 
 <footer style="background:var(--dark);border-top:1px solid rgba(255,255,255,.08);padding:2rem;text-align:center">
   <div style="margin-bottom:1rem">
-    <img src="logo-conecta-white.png" alt="Conecta — Polo Bauru-Centro" style="height:46px;object-fit:contain;filter:brightness(0) invert(1);opacity:.82">
+    <img src="logo-branca.png" alt="Universidade Anhembi Morumbi - Polo Bauru-Centro" style="height:40px;object-fit:contain;filter:brightness(0) invert(1);opacity:.85">
   </div>
   <p style="font-size:.8rem;color:rgba(255,255,255,.35)">
     <a href="index.html" style="color:rgba(255,255,255,.45);text-decoration:none">Ver vagas</a> &nbsp;·&nbsp;
