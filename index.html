@@ -40,8 +40,8 @@
     --border:        #C8DDD9;   /* Bordas esverdeadas */
     --white:         #FFFFFF;
     --green:         #00A88E;
-    --orange:        #E65100;
-    --yellow:        #F57F17;
+    --orange:        #005C47;
+    --yellow:        #008C76;
     --cyan:          #00A88E;
     /* Aliases */
     --violet:        #007A5E;
@@ -56,10 +56,8 @@
     border-bottom:1px solid var(--border); padding:0 2rem;
     height:64px; display:flex; align-items:center; justify-content:space-between;
   }
-  .logo { font-family:'Clash Display',sans-serif; font-size:1.5rem; font-weight:700;
-    background:linear-gradient(135deg,var(--accent),var(--accent-dark));
-    -webkit-background-clip:text; -webkit-text-fill-color:var(--primary); background-clip:text;
-    cursor:pointer; text-decoration:none; }
+  .logo { display:inline-flex; align-items:center; text-decoration:none; cursor:pointer; font-size:0; color:transparent; -webkit-text-fill-color:transparent; background:none; line-height:1; }
+  .logo::before { content:''; display:block; width:140px; height:48px; background:url('logocolorida.png') no-repeat left center/contain; }
   .nav-links { display:flex; gap:2rem; align-items:center; }
   .nav-links a { color:var(--muted); text-decoration:none; font-size:.9rem; font-weight:500; transition:color .2s; }
   .nav-links a:hover { color:var(--violet); }
@@ -154,7 +152,7 @@
   .lm-btn:disabled { opacity:.6; cursor:not-allowed; transform:none; }
   .lm-msg { padding:.65rem .9rem; border-radius:9px; font-size:.82rem; font-weight:600;
     margin-top:.75rem; text-align:center; display:none; }
-  .lm-msg.error   { background:rgba(255,92,92,.1);  color:var(--coral); display:block; }
+  .lm-msg.error   { background:rgba(0,168,142,.08);  color:var(--coral); display:block; }
   .lm-msg.success { background:rgba(16,185,129,.1); color:var(--green); display:block; }
   .lm-divider { text-align:center; font-size:.78rem; color:var(--muted); margin:.85rem 0; }
   .lm-link { font-size:.82rem; color:var(--muted); text-align:center; margin-top:.85rem; }
@@ -222,7 +220,7 @@
   .job-card:hover { transform:translateY(-4px); box-shadow:0 12px 35px rgba(0,0,0,.1); border-color:transparent; }
   .job-card:hover::before { opacity:1; }
   .card-estagio::before { background:linear-gradient(90deg,var(--violet),var(--cyan)); }
-  .card-aprendiz::before { background:linear-gradient(90deg,var(--coral),var(--yellow)); }
+  .card-aprendiz::before { background:linear-gradient(90deg,var(--accent),var(--primary)); }
   .card-top { display:flex; align-items:flex-start; gap:1rem; margin-bottom:1rem; }
   .company-logo { width:48px; height:48px; border-radius:12px; display:flex; align-items:center;
     justify-content:center; font-size:1.3rem; flex-shrink:0; background:rgba(12,61,48,.1);
@@ -233,7 +231,7 @@
   .card-badges { display:flex; gap:.4rem; flex-wrap:wrap; margin-bottom:.85rem; }
   .badge { padding:.25rem .7rem; border-radius:50px; font-size:.72rem; font-weight:600; }
   .badge-type-estagio { background:rgba(12,61,48,.1); color:var(--violet); }
-  .badge-type-aprendiz { background:rgba(255,92,92,.1); color:var(--coral); }
+  .badge-type-aprendiz { background:rgba(0,92,71,.08); color:var(--coral); }
   .badge-remote    { background:rgba(6,182,212,.1); color:var(--cyan); }
   .badge-hybrid    { background:rgba(251,191,36,.12); color:#B45309; }
   .badge-presential{ background:rgba(16,185,129,.1); color:var(--green); }
@@ -297,7 +295,7 @@
   .candidatura-msg { padding:.85rem 1rem; border-radius:10px; font-size:.85rem; font-weight:600;
     margin-bottom:1rem; display:none; text-align:center; }
   .candidatura-msg.success { background:rgba(16,185,129,.1); color:var(--green); display:block; }
-  .candidatura-msg.error   { background:rgba(255,92,92,.1); color:var(--coral); display:block; }
+  .candidatura-msg.error   { background:rgba(0,92,71,.08); color:var(--coral); display:block; }
 
   @keyframes fadeDown { from{opacity:0;transform:translateY(-16px)} to{opacity:1;transform:translateY(0)} }
   @keyframes cardIn   { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
@@ -487,17 +485,13 @@
   .hero .stat-label { color: rgba(255,255,255,.55) !important; }
   .hero .tag { background: rgba(255,255,255,.1) !important; color: rgba(255,255,255,.9) !important; border: 1px solid rgba(255,255,255,.2) !important; }
   .hero .tag:hover { background: rgba(0,168,142,.3) !important; color: white !important; }
-  .logo { color: var(--primary) !important; -webkit-text-fill-color: var(--primary) !important; background: none !important; }
   nav { background: rgba(255,255,255,.97) !important; box-shadow: 0 1px 12px rgba(0,122,94,.1) !important; }
 
   /* Tags no hero - fundo semi-transparente branco */
   .hero .tag { background: rgba(255,255,255,.12) !important; color: white !important; border: 1px solid rgba(255,255,255,.2); }
   .hero .tag:hover { background: rgba(46,207,168,.25) !important; color: var(--accent) !important; }
 
-  /* Logo - verde escuro no nav claro, sem vermelho */
-  .logo { color: var(--primary) !important; -webkit-text-fill-color: var(--primary) !important; background: none !important; }
-
-  /* Nav fundo claro - logo verde escuro */
+  /* Nav fundo claro */
   nav { background: rgba(255,255,255,.96) !important; }
 
   /* Seção de vagas - fundo claro, texto escuro normal */
@@ -505,51 +499,6 @@
   .section-title { color: var(--text) !important; }
   .results-count { color: var(--muted) !important; }
 
-
-  /* ── LOGO IMAGEM ANHEMBI ── */
-  .logo {
-    display: inline-flex;
-    align-items: center;
-    text-decoration: none;
-    cursor: pointer;
-    color: transparent !important;
-    -webkit-text-fill-color: transparent !important;
-    background: none !important;
-    font-size: 0 !important;
-  }
-  .logo::before {
-    content: '';
-    display: block;
-    width: 160px;
-    height: 44px;
-    background: url('logo-colorida.png') no-repeat center/contain;
-  }
-  /* Logo branca nos heróis (quando nav está sobre fundo escuro) */
-  .hero-logo-wrap .logo::before,
-  .vaga-hero .logo::before {
-    background-image: url('logo-branca.png');
-  }
-
-
-  /* ── LOGO ANHEMBI ── */
-  .logo {
-    display: inline-flex;
-    align-items: center;
-    text-decoration: none;
-    cursor: pointer;
-    font-size: 0 !important;
-    color: transparent !important;
-    -webkit-text-fill-color: transparent !important;
-    background: none !important;
-    line-height: 1;
-  }
-  .logo::before {
-    content: '';
-    display: block;
-    width: 140px;
-    height: 48px;
-    background: url('logo-colorida.png') no-repeat left center / contain;
-  }
 
   /* ── NAV ── */
   nav {
@@ -591,7 +540,7 @@
     position: absolute;
     bottom: -20px; left: -40px;
     width: 420px; height: 120px;
-    background: url('logo-branca.png') no-repeat left center / contain;
+    background: url('logobranca.png') no-repeat left center / contain;
     opacity: .05;
     pointer-events: none;
     z-index: 0;
@@ -653,7 +602,7 @@
     top: 50%; right: -60px;
     transform: translateY(-50%);
     width: 380px; height: 110px;
-    background: url('logo-colorida.png') no-repeat center / contain;
+    background: url('logocolorida.png') no-repeat center / contain;
     opacity: .035;
     pointer-events: none;
     z-index: 0;
@@ -961,22 +910,6 @@
   }
 
 
-  /* ── LOGO BULLET-PROOF ── */
-  .logo {
-    display: inline-block !important;
-    width: 150px !important;
-    height: 48px !important;
-    background: url('logo-colorida.png') no-repeat left center / contain !important;
-    text-decoration: none !important;
-    font-size: 0 !important;
-    color: transparent !important;
-    -webkit-text-fill-color: transparent !important;
-    overflow: hidden !important;
-    flex-shrink: 0 !important;
-  }
-  .logo::before { display: none !important; }
-  /* Only the CSS background-image, no ::before pseudo */
-
   html, body { overflow-x: hidden; }
   *, *::before, *::after { box-sizing: border-box; }
 
@@ -1113,7 +1046,7 @@
           <div><div class="access-label">Criar perfil de candidato</div><div class="access-sub">É grátis e rápido</div></div>
         </a>
         <a class="access-item" href="cadastro-empresa.html">
-          <div class="access-icon" style="background:rgba(255,92,92,.1)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/></svg></div>
+          <div class="access-icon" style="background:rgba(0,168,142,.08)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/></svg></div>
           <div><div class="access-label">Cadastrar empresa</div><div class="access-sub">Publique vagas gratuitamente</div></div>
         </a>
       </div>
@@ -1390,7 +1323,7 @@
 <footer style="background:#001A12;padding:2.5rem 2rem 2rem;text-align:center;position:relative">
   <div style="position:absolute;top:0;left:5%;right:5%;height:1px;background:linear-gradient(90deg,transparent,rgba(0,168,142,.35),transparent)"></div>
   <div style="margin-bottom:1.25rem">
-    <img src="logo-branca.png" alt="Conecta — Polo Bauru-Centro" style="height:40px;object-fit:contain;filter:brightness(0) invert(1);opacity:.85">
+    <img src="logobranca.png" alt="Conecta — Polo Bauru-Centro" style="height:40px;object-fit:contain;filter:brightness(0) invert(1);opacity:.85">
   </div>
   <div style="display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-bottom:.75rem">
     <a href="vagas.html" style="color:rgba(255,255,255,.5);text-decoration:none;font-size:.82rem;font-weight:500;transition:color .2s">Ver vagas</a>
@@ -1422,7 +1355,7 @@ async function carregarIdentidade() {
         el.style.cssText += ';width:auto;';
       });
     }
-    // Se não há logo personalizada, o CSS usa logo-colorida.png por padrão
+    // Se não há logo personalizada, o CSS usa logocolorida.png por padrão
 
     // Cor primária
     if (cfg.cor_primary && /^#[0-9A-Fa-f]{6}$/.test(cfg.cor_primary)) {

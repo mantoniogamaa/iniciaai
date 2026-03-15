@@ -32,8 +32,8 @@
     --border:        #C8DDD9;   /* Bordas esverdeadas */
     --white:         #FFFFFF;
     --green:         #00A88E;
-    --orange:        #E65100;
-    --yellow:        #F57F17;
+    --orange:        #005C47;
+    --yellow:        #008C76;
     --cyan:          #00A88E;
     /* Aliases */
     --violet:        #007A5E;
@@ -339,12 +339,12 @@
     display: block;
     width: 160px;
     height: 44px;
-    background: url('logo-colorida.png') no-repeat center/contain;
+    background: url('logocolorida.png') no-repeat center/contain;
   }
   /* Logo branca nos heróis (quando nav está sobre fundo escuro) */
   .hero-logo-wrap .logo::before,
   .vaga-hero .logo::before {
-    background-image: url('logo-branca.png');
+    background-image: url('logobranca.png');
   }
 
 
@@ -359,7 +359,7 @@
     content: '';
     display: block;
     width: 140px; height: 44px;
-    background: url('logo-colorida.png') no-repeat left center / contain;
+    background: url('logocolorida.png') no-repeat left center / contain;
   }
   nav {
     background: rgba(255,255,255,.97) !important;
@@ -636,7 +636,7 @@
     display: inline-block !important;
     width: 150px !important;
     height: 48px !important;
-    background: url('logo-colorida.png') no-repeat left center / contain !important;
+    background: url('logocolorida.png') no-repeat left center / contain !important;
     text-decoration: none !important;
     font-size: 0 !important;
     color: transparent !important;
@@ -815,7 +815,7 @@
 
 <footer style="background:var(--dark);border-top:1px solid rgba(255,255,255,.08);padding:2rem;text-align:center">
   <div style="margin-bottom:1rem">
-    <img src="logo-branca.png" alt="Conecta — Polo Bauru-Centro" style="height:40px;object-fit:contain;filter:brightness(0) invert(1);opacity:.85">
+    <img src="logobranca.png" alt="Conecta — Polo Bauru-Centro" style="height:40px;object-fit:contain;filter:brightness(0) invert(1);opacity:.85">
   </div>
   <p style="font-size:.8rem;color:rgba(255,255,255,.35)">
     <a href="vagas.html" style="color:rgba(255,255,255,.45);text-decoration:none">Ver vagas</a> &nbsp;·&nbsp;
@@ -847,7 +847,7 @@ async function carregarIdentidade() {
         el.style.cssText += ';width:auto;';
       });
     }
-    // Se não há logo personalizada, o CSS usa logo-colorida.png por padrão
+    // Se não há logo personalizada, o CSS usa logocolorida.png por padrão
 
     // Cor primária
     if (cfg.cor_primary && /^#[0-9A-Fa-f]{6}$/.test(cfg.cor_primary)) {
