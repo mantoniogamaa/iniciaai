@@ -156,6 +156,7 @@
   }
 
   .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media(max-width:480px){.form-grid{grid-template-columns:1fr;}}
   .form-grid.full { grid-template-columns: 1fr; }
 
   .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 0.25rem; }
@@ -210,7 +211,7 @@
   .divider { border: none; border-top: 1.5px solid var(--bg); margin: 1.5rem 0; }
 
   /* BUTTONS */
-  .form-actions { display: flex; gap: 1rem; margin-top: 1.75rem; justify-content: flex-end; }
+  .form-actions { display: flex; gap: 1rem; margin-top: 1.75rem; justify-content: flex-end; flex-wrap:wrap; }
 
   .btn-back {
     padding: 0.8rem 1.5rem; border: 1.5px solid var(--border); border-radius: 10px;
@@ -625,6 +626,13 @@
   .logo::before { display: none !important; }
   /* Only the CSS background-image, no ::before pseudo */
 
+
+  /* ── MOBILE OVERFLOW FIX ── */
+  html, body { overflow-x: hidden; max-width: 100vw; }
+  * { box-sizing: border-box; }
+  img, video, canvas, svg { max-width: 100%; }
+  table { width: 100%; table-layout: fixed; }
+
 </style>
 </head>
 <body>
@@ -643,7 +651,12 @@
 
 <div class="page-wrap">
   <div class="page-header">
-    <div class="page-badge"><svg style="vertical-align:middle;flex-shrink:0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg> Para Empresas</div>
+    <div class="page-badge"><svg style="vertical-align:middle;flex-shrink:0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg> Para Empresas  <a class="mobile-nav-link" href="termos.html">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" style="flex-shrink:0"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+    Termos & Privacidade
+  </a>
+
+</div>
     <h1>Anuncie sua vaga<br>e encontre talentos</h1>
     <p>Preencha os dados abaixo. Sua vaga será revisada e publicada em até <strong>24 horas</strong>.</p>
   </div>
@@ -935,6 +948,20 @@
     </div>
   </div>
 </div>
+
+<footer style="background:var(--dark);border-top:1px solid rgba(255,255,255,.08);padding:2rem;text-align:center">
+  <div style="margin-bottom:1rem">
+    <img src="logo-branca.png" alt="Conecta — Polo Bauru-Centro" style="height:40px;object-fit:contain;filter:brightness(0) invert(1);opacity:.85">
+  </div>
+  <p style="font-size:.8rem;color:rgba(255,255,255,.35)">
+    <a href="index.html" style="color:rgba(255,255,255,.45);text-decoration:none">Ver vagas</a> &nbsp;·&nbsp;
+    <a href="sobre.html" style="color:rgba(255,255,255,.45);text-decoration:none">Sobre</a> &nbsp;·&nbsp;
+    <a href="termos.html" style="color:rgba(255,255,255,.45);text-decoration:none">Termos & Privacidade</a>
+  </p>
+  <p style="font-size:.72rem;color:rgba(255,255,255,.2);margin-top:.5rem">
+    © 2025 Universidade Anhembi Morumbi — Polo Bauru-Centro. Todos os direitos reservados.
+  </p>
+</footer>
 
 <script>
 let currentPage = 1;
