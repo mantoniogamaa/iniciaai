@@ -489,7 +489,7 @@
 
 
   /* ════ PARCEIROS ADMIN ════ */
-  .parceiros-grid {
+    .parceiros-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 1.25rem;
@@ -513,9 +513,7 @@
     transform: translateY(-2px);
   }
   .parceiro-card.inactive { opacity: .55; }
-  .parceiro-card-top {
-    display: flex; align-items: center; gap: .9rem;
-  }
+  .parceiro-card-top { display: flex; align-items: center; gap: .9rem; }
   .parceiro-logo-wrap {
     width: 60px; height: 60px; flex-shrink: 0;
     background: #F4F8F7;
@@ -524,48 +522,31 @@
     display: flex; align-items: center; justify-content: center;
     overflow: hidden; padding: .4rem;
   }
-  .parceiro-logo-wrap img {
-    width: 100%; height: 100%;
-    object-fit: contain;
-  }
+  .parceiro-logo-wrap img { width: 100%; height: 100%; object-fit: contain; }
   .parceiro-logo-wrap .parceiro-initial {
     width: 100%; height: 100%; border-radius: 8px;
     background: linear-gradient(135deg, #007A5E, #00A88E);
     color: white; display: flex; align-items: center; justify-content: center;
-    font-family: 'Clash Display', sans-serif;
-    font-size: 1.5rem; font-weight: 800;
+    font-family: 'Clash Display', sans-serif; font-size: 1.5rem; font-weight: 800;
   }
   .parceiro-info { flex: 1; min-width: 0; }
   .parceiro-nome {
-    font-size: .95rem; font-weight: 700;
-    color: #1A2E28;
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-    margin-bottom: .15rem;
+    font-size: .95rem; font-weight: 700; color: #1A2E28;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: .15rem;
   }
-  .parceiro-site {
-    font-size: .72rem; color: #76787B;
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  }
+  .parceiro-site { font-size: .72rem; color: #76787B; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .parceiro-status-badge {
     display: inline-flex; align-items: center; gap: .25rem;
     font-size: .68rem; font-weight: 700; text-transform: uppercase;
-    letter-spacing: .04em; padding: .2rem .6rem;
-    border-radius: 50px; margin-top: .3rem;
+    letter-spacing: .04em; padding: .2rem .6rem; border-radius: 50px; margin-top: .3rem;
   }
   .parceiro-status-badge.ativo { background: #EAF3DE; color: #27500A; }
   .parceiro-status-badge.inativo { background: #F1EFE8; color: #5F5E5A; }
-  .parceiro-divider {
-    height: 1px; background: #EDF2F1; margin: 0 -.1rem;
-  }
-  .parceiro-actions {
-    display: flex; gap: .5rem;
-  }
+  .parceiro-divider { height: 1px; background: #EDF2F1; }
+  .parceiro-actions { display: flex; gap: .5rem; }
   .parceiro-actions button {
-    flex: 1; padding: .5rem .4rem;
-    border-radius: 8px; font-size: .75rem; font-weight: 600;
-    border: 1.5px solid #D8EAE6;
-    background: #F4F8F7;
-    color: #2D5A4F;
+    flex: 1; padding: .5rem .4rem; border-radius: 8px; font-size: .75rem; font-weight: 600;
+    border: 1.5px solid #D8EAE6; background: #F4F8F7; color: #2D5A4F;
     cursor: pointer; transition: all .2s;
     display: flex; align-items: center; justify-content: center; gap: .3rem;
     font-family: 'DM Sans', sans-serif;
@@ -574,23 +555,12 @@
   .parceiro-actions .btn-del { border-color: #FECACA; color: #DC2626; background: #FFF5F5; }
   .parceiro-actions .btn-del:hover { background: #FEE2E2; border-color: #DC2626; }
   .parceiro-add-card {
-    border: 2px dashed #B0D4CC;
-    background: #F4F8F7;
-    cursor: pointer;
-    min-height: 120px;
-    justify-content: center;
-    align-items: center;
-    gap: .6rem;
-    box-shadow: none;
+    border: 2px dashed #B0D4CC; background: #F4F8F7; cursor: pointer;
+    min-height: 120px; justify-content: center; align-items: center; gap: .6rem; box-shadow: none;
   }
-  .parceiro-add-card:hover {
-    border-color: #00A88E;
-    background: #E6F7F4;
-    transform: translateY(-2px);
-  }
+  .parceiro-add-card:hover { border-color: #00A88E; background: #E6F7F4; transform: translateY(-2px); }
   .parceiro-add-card svg { color: #00A88E; opacity: .7; }
   .parceiro-add-card span { font-size: .85rem; color: #007A5E; font-weight: 700; }
-  /* ── MODAL PARCEIRO ─────────────────────────────────────────── */
   .modal-parceiro-form { display: flex; flex-direction: column; gap: 1.1rem; margin-top: 1.1rem; }
   .modal-parceiro-form .field-group { display: flex; flex-direction: column; gap: .4rem; }
   .modal-parceiro-form label {
@@ -600,24 +570,15 @@
   .modal-parceiro-form input[type="text"],
   .modal-parceiro-form input[type="url"] {
     width: 100%; padding: .75rem 1rem;
-    background: #F4F8F7;
-    border: 1.5px solid #C8DDD9;
-    border-radius: 10px;
-    color: #1A2E28; font-size: .9rem;
-    font-family: 'DM Sans', sans-serif;
+    background: #F4F8F7; border: 1.5px solid #C8DDD9; border-radius: 10px;
+    color: #1A2E28; font-size: .9rem; font-family: 'DM Sans', sans-serif;
     outline: none; transition: border-color .2s, box-shadow .2s;
   }
-  .modal-parceiro-form input:focus {
-    border-color: #00A88E;
-    box-shadow: 0 0 0 3px rgba(0,168,142,.1);
-    background: #ffffff;
-  }
+  .modal-parceiro-form input:focus { border-color: #00A88E; box-shadow: 0 0 0 3px rgba(0,168,142,.1); background: #ffffff; }
   .modal-parceiro-form input::placeholder { color: #A0B5B0; }
   .logo-preview-box {
-    width: 100%; min-height: 80px;
-    background: #F4F8F7;
-    border: 1.5px dashed #C8DDD9;
-    border-radius: 10px;
+    width: 100%; min-height: 80px; background: #F4F8F7;
+    border: 1.5px dashed #C8DDD9; border-radius: 10px;
     display: flex; align-items: center; justify-content: center;
     overflow: hidden; margin-top: .4rem; padding: .75rem;
   }
@@ -625,15 +586,9 @@
   .logo-preview-box span { font-size: .8rem; color: #A0B5B0; }
   .modal-toggle-row {
     display: flex; align-items: center; gap: .75rem;
-    padding: .75rem 1rem;
-    background: #F4F8F7; border-radius: 10px;
-    border: 1.5px solid #C8DDD9;
+    padding: .75rem 1rem; background: #F4F8F7; border-radius: 10px; border: 1.5px solid #C8DDD9;
   }
-  .modal-toggle-row label {
-    text-transform: none; letter-spacing: 0;
-    font-size: .88rem; color: #1A2E28;
-    font-weight: 500; margin: 0; cursor: pointer;
-  }
+  .modal-toggle-row label { text-transform: none; letter-spacing: 0; font-size: .88rem; color: #1A2E28; font-weight: 500; margin: 0; cursor: pointer; }
   .modal-toggle-row small { font-size: .73rem; color: #76787B; display: block; margin-top: .1rem; }
 
 </style>
@@ -678,7 +633,7 @@
 <!-- SIDEBAR -->
 <aside class="sidebar">
   <div class="sidebar-logo">
-    <img src="logobranca.png" alt="Conecta" style="height:36px;object-fit:contain;filter:brightness(0) invert(1);opacity:.9">
+    <img src="logobranca.png" alt="Conecta" class="logo" style="display:block;width:140px;height:40px;object-fit:contain;object-position:left center;filter:brightness(0) invert(1);opacity:.9">
     <span class="logo-sub">Painel Admin</span>
   </div>
   <nav class="sidebar-nav">
@@ -730,15 +685,16 @@
   <div class="topbar">
     <div class="topbar-title" id="topbar-title">Dashboard</div>
     <div class="topbar-actions">
-      <a class="btn-new-vaga" href="cadastro-empresa.html" target="_blank">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        Nova Vaga
-      </a>
+      <div id="topbar-action">
+        <a class="btn-new-vaga" href="cadastro-empresa.html" target="_blank">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Nova Vaga
+        </a>
+      </div>
       <div class="search-wrap">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
         <input class="topbar-search" type="text" placeholder="Buscar vaga ou empresa..." id="topbar-search" oninput="filterJobs()">
       </div>
-
     </div>
   </div>
 
@@ -1220,6 +1176,33 @@ const sectionTitles = {
   configuracoes: 'Configurações'
 };
 
+const topbarActions = {
+  dashboard:     { label: '+ Nova Vaga',       href: 'cadastro-empresa.html', fn: null },
+  vagas:         { label: '+ Nova Vaga',        href: 'cadastro-empresa.html', fn: null },
+  aprovadas:     { label: '+ Nova Vaga',        href: 'cadastro-empresa.html', fn: null },
+  parceiros:     { label: '+ Adicionar Parceiro', href: null, fn: 'abrirModalParceiro()' },
+  empresas:      { label: null, href: null, fn: null },
+  admins:        { label: '+ Novo Admin',       href: null, fn: 'openAdminModal()' },
+  configuracoes: { label: null, href: null, fn: null },
+};
+
+function updateTopbarAction(id) {
+  const container = document.getElementById('topbar-action');
+  const cfg = topbarActions[id];
+  if (!cfg || !cfg.label) { container.innerHTML = ''; return; }
+  if (cfg.href) {
+    container.innerHTML = `<a class="btn-new-vaga" href="${cfg.href}" target="_blank">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      ${cfg.label}
+    </a>`;
+  } else {
+    container.innerHTML = `<button class="btn-new-vaga" onclick="${cfg.fn}">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      ${cfg.label}
+    </button>`;
+  }
+}
+
 function showSection(id) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
@@ -1228,6 +1211,7 @@ function showSection(id) {
   document.querySelectorAll('.nav-item').forEach(n => { if (n.getAttribute('onclick') && n.getAttribute('onclick').includes(id)) n.classList.add('active'); });
   document.getElementById('topbar-title').textContent = sectionTitles[id] || id;
   currentSection = id;
+  updateTopbarAction(id);
   loadAllData().then(render);
 }
 
@@ -1391,17 +1375,6 @@ async function deleteVaga(id) {
   render();
 }
 
-async function toggleDestaque(id, isDestaque) {
-  const novo = !isDestaque;
-  const { error } = await sb.from('vagas').update({ destaque: novo }).eq('id', id);
-  if (error) { showToast('Erro: ' + error.message, 'error'); return; }
-  const v = allVagas.find(x => x.id === id);
-  if (v) v.destaque = novo;
-  showToast(novo ? 'Vaga marcada como destaque!' : 'Destaque removido.', novo ? 'success' : 'info');
-  render();
-}
-
-
 async function clearRejected() {
   const ids = allVagas.filter(v => v.status === 'rejeitada').map(v => v.id);
   if (!ids.length) { showToast('Nenhuma vaga rejeitada.', 'info'); return; }
@@ -1412,6 +1385,16 @@ async function clearRejected() {
 }
 
 // ---- FILTER ----
+async function toggleDestaque(id, isDestaque) {
+  const novo = !isDestaque;
+  const { error } = await sb.from('vagas').update({ destaque: novo }).eq('id', id);
+  if (error) { showToast('Erro: ' + error.message, 'error'); return; }
+  const v = allVagas.find(x => x.id === id);
+  if (v) v.destaque = novo;
+  showToast(novo ? 'Vaga marcada como destaque!' : 'Destaque removido.', novo ? 'success' : 'info');
+  render();
+}
+
 function filterJobs() { if (currentSection === 'vagas') renderVagas(); }
 
 // ---- DETAIL MODAL ----
@@ -1518,12 +1501,11 @@ function renderParceiros() {
     const siteText = p.site_url
       ? p.site_url.replace(/^https?:\/\//, '').replace(/\/$/, '')
       : 'Sem site';
-
     const statusClass = p.ativo ? 'ativo' : 'inativo';
     const statusLabel = p.ativo ? 'Ativo' : 'Oculto';
     const toggleLabel = p.ativo ? 'Ocultar' : 'Exibir';
     const toggleSvg = p.ativo
-      ? `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>`
+      ? `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>`
       : `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`;
 
     html += `
@@ -1532,7 +1514,7 @@ function renderParceiros() {
         <div class="parceiro-logo-wrap">${logoHtml}</div>
         <div class="parceiro-info">
           <div class="parceiro-nome" title="${p.nome}">${p.nome}</div>
-          <div class="parceiro-site" title="${p.site_url || ''}">${siteText}</div>
+          <div class="parceiro-site">${siteText}</div>
           <span class="parceiro-status-badge ${statusClass}">${statusLabel}</span>
         </div>
       </div>
@@ -1604,7 +1586,7 @@ function previewParceiroLogo() {
   if (url) {
     box.innerHTML = `<img src="${url}" style="max-width:100%;max-height:54px;object-fit:contain" onerror="this.parentElement.innerHTML='<span style=color:#f87171>URL inválida ou imagem não carregou</span>'">`;
   } else {
-    box.innerHTML = '<div style="text-align:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C8DDD9" stroke-width="1.5" style="display:block;margin:0 auto .4rem"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Pre-visualizacao da logo</span></div>';
+    box.innerHTML = '<span>Pré-visualização da logo</span>';
   }
 }
 
@@ -1667,45 +1649,39 @@ async function deletarParceiro(el) {
 
 <!-- MODAL PARCEIRO -->
 <div class="modal-overlay" id="modal-parceiro" style="display:none;align-items:center;justify-content:center" onclick="if(event.target===this)fecharModalParceiro()">
-  <div class="modal" style="max-width:480px;width:100%;background:#fff;border-radius:20px;padding:2rem;box-shadow:0 24px 64px rgba(0,0,0,.18)">
-    <button class="modal-close" onclick="fecharModalParceiro()" style="background:none;border:none;cursor:pointer;position:absolute;top:1.25rem;right:1.25rem;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#76787B;transition:background .2s" onmouseover="this.style.background='#F4F8F7'" onmouseout="this.style.background='none'">
+  <div style="background:#fff;border-radius:20px;padding:2rem;max-width:480px;width:100%;box-shadow:0 24px 64px rgba(0,0,0,.18);position:relative">
+    <button onclick="fecharModalParceiro()" style="position:absolute;top:1.25rem;right:1.25rem;width:32px;height:32px;border-radius:8px;border:none;background:none;cursor:pointer;color:#76787B;display:flex;align-items:center;justify-content:center;transition:background .2s" onmouseover="this.style.background='#F4F8F7'" onmouseout="this.style.background='none'">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
-
     <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1.5rem">
       <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#007A5E,#00A88E);display:flex;align-items:center;justify-content:center;flex-shrink:0">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
       </div>
       <div>
         <h2 style="font-family:'Clash Display',sans-serif;font-size:1.1rem;font-weight:700;color:#1A2E28;margin:0;line-height:1.2" id="modal-parceiro-title">Adicionar Parceiro</h2>
-        <p style="font-size:.78rem;color:#76787B;margin:0">Logo exibida no carrossel da página inicial</p>
+        <p style="font-size:.78rem;color:#76787B;margin:0">Logo exibida no carrossel da pagina inicial</p>
       </div>
     </div>
-
     <div class="modal-parceiro-form">
       <input type="hidden" id="parceiro-edit-id">
-
       <div class="field-group">
         <label>Nome da empresa *</label>
-        <input type="text" id="parceiro-nome" placeholder="Ex: Sicredi, Bradesco, PagSeguro..." maxlength="60">
+        <input type="text" id="parceiro-nome" placeholder="Ex: Sicredi, Bradesco..." maxlength="60">
       </div>
-
       <div class="field-group">
         <label>URL da logo</label>
         <input type="url" id="parceiro-logo-url" placeholder="https://empresa.com/logo.png" oninput="previewParceiroLogo()">
         <div class="logo-preview-box" id="parceiro-logo-preview">
           <div style="text-align:center">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C8DDD9" stroke-width="1.5" style="display:block;margin:0 auto .4rem"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-            <span>Pré-visualização da logo</span>
+            <span>Pre-visualizacao da logo</span>
           </div>
         </div>
       </div>
-
       <div class="field-group">
         <label>Site da empresa <span style="font-weight:400;text-transform:none;letter-spacing:0;color:#A0B5B0">(opcional)</span></label>
         <input type="url" id="parceiro-site-url" placeholder="https://empresa.com.br">
       </div>
-
       <div class="modal-toggle-row">
         <input type="checkbox" id="parceiro-ativo" checked style="width:16px;height:16px;accent-color:#00A88E;flex-shrink:0;cursor:pointer">
         <div>
@@ -1713,9 +1689,7 @@ async function deletarParceiro(el) {
           <small>Quando desmarcado, a empresa fica oculta no portal</small>
         </div>
       </div>
-
       <div id="parceiro-msg" style="font-size:.82rem;font-weight:600;min-height:1.2em;text-align:center;padding:.5rem;border-radius:8px"></div>
-
       <button onclick="salvarParceiro()" id="btn-salvar-parceiro"
         style="width:100%;padding:.9rem;background:linear-gradient(135deg,#007A5E,#00A88E);color:white;border:none;border-radius:12px;font-size:.92rem;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 12px rgba(0,122,94,.25)"
         onmouseover="this.style.transform='translateY(-1px)';this.style.boxShadow='0 8px 20px rgba(0,122,94,.35)'"
