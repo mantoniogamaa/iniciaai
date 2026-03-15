@@ -3,24 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IniciaAí — Vagas de Estágio e Jovem Aprendiz para Estudantes</title>
+<title>Conecta — Vagas de Estágio e Jovem Aprendiz para Estudantes</title>
 <meta name="description" content="Encontre vagas de estágio e Jovem Aprendiz em todo o Brasil. O portal feito para quem está dando o primeiro passo na carreira.">
 <meta name="robots" content="index, follow">
-<meta name="author" content="IniciaAí">
+<meta name="author" content="Conecta">
 <meta name="theme-color" content="var(--primary)">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="IniciaAí">
+<meta property="og:site_name" content="Conecta">
 <meta property="og:locale" content="pt_BR">
 <meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:site" content="@iniciaaí">
-<meta property="og:title" content="IniciaAí — Vagas de Estágio e Jovem Aprendiz para Estudantes">
+<meta property="twitter:site" content="@conectabauru">
+<meta property="og:title" content="Conecta — Vagas de Estágio e Jovem Aprendiz para Estudantes">
 <meta property="og:description" content="Encontre vagas de estágio e Jovem Aprendiz em todo o Brasil. O portal feito para quem está dando o primeiro passo na carreira.">
-<meta property="og:image" content="https://mantoniogamaa.github.io/iniciaaí/og-image.png">
-<meta property="og:url" content="https://mantoniogamaa.github.io/iniciaaí/">
-<meta property="twitter:title" content="IniciaAí — Vagas de Estágio e Jovem Aprendiz para Estudantes">
+<meta property="og:image" content="https://mantoniogamaa.github.io/iniciaai/og-image.png">
+<meta property="og:url" content="https://mantoniogamaa.github.io/iniciaai/">
+<meta property="twitter:title" content="Conecta — Vagas de Estágio e Jovem Aprendiz para Estudantes">
 <meta property="twitter:description" content="Encontre vagas de estágio e Jovem Aprendiz em todo o Brasil. O portal feito para quem está dando o primeiro passo na carreira.">
-<meta property="twitter:image" content="https://mantoniogamaa.github.io/iniciaaí/og-image.png">
-<link rel="canonical" href="https://mantoniogamaa.github.io/iniciaaí/">
+<meta property="twitter:image" content="https://mantoniogamaa.github.io/iniciaai/og-image.png">
+<link rel="canonical" href="https://mantoniogamaa.github.io/iniciaai/">
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
@@ -302,6 +302,41 @@
   @keyframes fadeDown { from{opacity:0;transform:translateY(-16px)} to{opacity:1;transform:translateY(0)} }
   @keyframes cardIn   { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
 
+  /* BADGE + BOTAO VER TODAS */
+  .section-badge-sm {
+    display:inline-flex; align-items:center; gap:.4rem;
+    padding:.3rem .75rem; border-radius:99px; font-size:.7rem;
+    font-weight:700; text-transform:uppercase; letter-spacing:.08em;
+    background:var(--accent-light); color:var(--primary);
+    border:1px solid rgba(0,122,94,.15); margin-bottom:.5rem;
+  }
+  .btn-ver-todas {
+    display:inline-flex; align-items:center; gap:.4rem;
+    padding:.6rem 1.4rem; border-radius:50px; font-size:.85rem; font-weight:600;
+    color:var(--primary); background:var(--accent-light);
+    border:1.5px solid rgba(0,122,94,.15); text-decoration:none;
+    transition:all .2s; font-family:'DM Sans',sans-serif;
+  }
+  .btn-ver-todas:hover { background:var(--primary); color:white; border-color:var(--primary); transform:translateY(-2px); box-shadow:0 6px 20px rgba(0,122,94,.2); }
+  .btn-cta-primary {
+    display:inline-flex; align-items:center; gap:.5rem;
+    padding:.9rem 2.5rem; background:var(--primary); color:white;
+    border-radius:50px; text-decoration:none; font-family:'DM Sans',sans-serif;
+    font-size:.95rem; font-weight:700; transition:all .2s; border:none;
+  }
+  .btn-cta-primary:hover { background:var(--primary-dark); transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,122,94,.3); }
+
+  /* DIFERENCIAIS HOME */
+  .diff-card-home {
+    background:white; border-radius:16px; padding:1.5rem;
+    border:1.5px solid var(--border); text-align:center;
+    transition:transform .25s, box-shadow .25s, border-color .25s;
+  }
+  .diff-card-home:hover { transform:translateY(-4px); box-shadow:0 12px 32px rgba(0,122,94,.08); border-color:rgba(0,122,94,.2); }
+  .diff-icon-home { width:48px; height:48px; border-radius:14px; display:flex; align-items:center; justify-content:center; margin:0 auto .85rem; }
+  .diff-title-home { font-family:'Clash Display',sans-serif; font-size:1rem; font-weight:700; color:var(--text); margin-bottom:.35rem; }
+  .diff-desc-home { font-size:.82rem; color:var(--muted); line-height:1.6; }
+
 
   /* PAGINAÇÃO */
   .pagination { display:flex; align-items:center; justify-content:center;
@@ -487,12 +522,12 @@
     display: block;
     width: 160px;
     height: 44px;
-    background: url('logocolorida.png') no-repeat center/contain;
+    background: url('logo-colorida.png') no-repeat center/contain;
   }
   /* Logo branca nos heróis (quando nav está sobre fundo escuro) */
   .hero-logo-wrap .logo::before,
   .vaga-hero .logo::before {
-    background-image: url('logobranca.png');
+    background-image: url('logo-branca.png');
   }
 
 
@@ -513,7 +548,7 @@
     display: block;
     width: 140px;
     height: 48px;
-    background: url('logocolorida.png') no-repeat left center / contain;
+    background: url('logo-colorida.png') no-repeat left center / contain;
   }
 
   /* ── NAV ── */
@@ -556,7 +591,7 @@
     position: absolute;
     bottom: -20px; left: -40px;
     width: 420px; height: 120px;
-    background: url('logobranca.png') no-repeat left center / contain;
+    background: url('logo-branca.png') no-repeat left center / contain;
     opacity: .05;
     pointer-events: none;
     z-index: 0;
@@ -618,7 +653,7 @@
     top: 50%; right: -60px;
     transform: translateY(-50%);
     width: 380px; height: 110px;
-    background: url('logocolorida.png') no-repeat center / contain;
+    background: url('logo-colorida.png') no-repeat center / contain;
     opacity: .035;
     pointer-events: none;
     z-index: 0;
@@ -724,6 +759,7 @@
 
     .jobs-section { padding:0 1rem 3rem !important; }
     .section-header { flex-direction:column !important; align-items:flex-start !important; gap:.5rem !important; }
+    .btn-ver-todas { align-self:flex-start; }
     .jobs-grid { grid-template-columns:1fr !important; }
     .job-card { padding:1.1rem !important; }
     .card-title { font-size:.95rem !important; }
@@ -930,7 +966,7 @@
     display: inline-block !important;
     width: 150px !important;
     height: 48px !important;
-    background: url('logocolorida.png') no-repeat left center / contain !important;
+    background: url('logo-colorida.png') no-repeat left center / contain !important;
     text-decoration: none !important;
     font-size: 0 !important;
     color: transparent !important;
@@ -1036,9 +1072,9 @@
 <body>
 
 <nav>
-  <a class="logo" onclick="resetHome()" href="#" aria-label="IniciaAí"></a>
+  <a class="logo" onclick="resetHome()" href="#" aria-label="Conecta"></a>
   <div class="nav-links">
-    <a href="#" onclick="resetHome()">Vagas</a>
+    <a href="vagas.html">Vagas</a>
     <a href="sobre.html">Sobre</a>
     <a href="cadastro-empresa.html">Para Empresas</a>
     <a href="termos.html">Termos</a>
@@ -1092,7 +1128,7 @@
 <!-- DRAWER MOBILE -->
 <div class="mobile-drawer" id="mobile-drawer">
   <div class="mobile-nav-links">
-    <a href="#" onclick="resetHome();closeMobileMenu()"><svg style="vertical-align:middle;flex-shrink:0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> Vagas</a>
+    <a href="vagas.html" onclick="closeMobileMenu()"><svg style="vertical-align:middle;flex-shrink:0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> Vagas</a>
     <a href="cadastro-empresa.html"><svg style="vertical-align:middle;flex-shrink:0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg> Para Empresas</a>
     <a href="termos.html">Termos & Privacidade</a>
   </div>
@@ -1267,88 +1303,65 @@
 <svg class="wave-sep" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 48" preserveAspectRatio="none">
   <path fill="white" d="M0,24 C240,48 480,0 720,24 C960,48 1200,0 1440,24 L1440,48 L0,48 Z"/>
 </svg>
-<section class="search-section">
-  <div class="search-card">
-    <div class="search-row">
-      <div class="search-input-wrap">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input class="search-input" id="search-keyword" type="text" placeholder="Cargo, área ou empresa..." oninput="applyFilters()">
-      </div>
-      <div class="search-input-wrap" style="max-width:200px">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-        <input class="search-input" id="search-city" type="text" placeholder="Cidade ou 'Remoto'" oninput="applyFilters()">
-      </div>
-      <button class="btn-search" onclick="applyFilters()">Buscar Vagas</button>
-    </div>
-    <div class="filters-row">
-      <select class="filter-select" id="filter-type" onchange="applyFilters()">
-        <option value="">Tipo de vaga</option>
-        <option>Estágio</option><option>Jovem Aprendiz</option>
-      </select>
-      <select class="filter-select" id="filter-area" onchange="applyFilters()">
-        <option value="">Área</option>
-        <option>Tecnologia</option><option>Marketing</option><option>Design</option>
-        <option>Administrativo</option><option>Financeiro</option><option>RH</option><option>Logística</option>
-      </select>
-      <select class="filter-select" id="filter-modality" onchange="applyFilters()">
-        <option value="">Modalidade</option>
-        <option>Remoto</option><option>Híbrido</option><option>Presencial</option>
-      </select>
-      <select class="filter-select" id="filter-period" onchange="applyFilters()">
-        <option value="">Período</option>
-        <option>Manhã</option><option>Tarde</option><option>Noite</option><option>Integral</option>
-      </select>
-    </div>
-  </div>
-</section>
 
+<!-- ═══ VAGAS EM DESTAQUE ═══ -->
 <section class="jobs-section">
   <div class="section-header">
     <div>
+      <div class="section-badge-sm">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Oportunidades selecionadas
+      </div>
       <div class="section-title">Vagas em destaque</div>
       <div class="results-count" id="results-count">Carregando vagas...</div>
     </div>
-    <select class="sort-select" id="sort-select" onchange="applyFilters()">
-      <option value="recent">Mais recentes</option>
-      <option value="salary">Maior bolsa</option>
-    </select>
+    <a href="vagas.html" class="btn-ver-todas">
+      Ver todas as vagas
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
   </div>
   <div id="loading" class="loading"><div class="spinner"></div><p style="color:var(--muted)">Buscando vagas...</p></div>
 
-  <!-- Destaque visual tipo Anhembi -->
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2rem">
-    <div style="background:linear-gradient(135deg,var(--primary) 0%,var(--accent-dark) 100%);border-radius:18px;padding:1.5rem 1.25rem;color:white;position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s;cursor:default"
-         onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 20px 48px rgba(0,122,94,.3)'"
-         onmouseout="this.style.transform='none';this.style.boxShadow='none'">
-      <div style="position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 80% 20%,rgba(255,255,255,.1),transparent);pointer-events:none"></div>
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.65)" stroke-width="1.5" style="margin-bottom:.75rem"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
-      <div style="font-family:'Clash Display',sans-serif;font-size:1.25rem;font-weight:700;margin-bottom:.35rem;position:relative">100% Gratuito</div>
-      <div style="font-size:.82rem;opacity:.8;line-height:1.6;position:relative">Para candidatos. Nenhuma taxa para se candidatar às vagas.</div>
-    </div>
-    <div style="background:linear-gradient(135deg,var(--accent) 0%,var(--primary) 100%);border-radius:18px;padding:1.5rem 1.25rem;color:white;position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s;cursor:default"
-         onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 20px 48px rgba(0,168,142,.3)'"
-         onmouseout="this.style.transform='none';this.style.boxShadow='none'">
-      <div style="position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 80% 20%,rgba(255,255,255,.1),transparent);pointer-events:none"></div>
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.65)" stroke-width="1.5" style="margin-bottom:.75rem"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-      <div style="font-family:'Clash Display',sans-serif;font-size:1.25rem;font-weight:700;margin-bottom:.35rem;position:relative">Vagas Verificadas</div>
-      <div style="font-size:.82rem;opacity:.8;line-height:1.6;position:relative">Toda vaga é revisada manualmente antes de ser publicada no portal.</div>
-    </div>
-    <div style="background:linear-gradient(135deg,#005C47 0%,var(--accent) 100%);border-radius:18px;padding:1.5rem 1.25rem;color:white;position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s;cursor:default"
-         onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 20px 48px rgba(0,92,71,.3)'"
-         onmouseout="this.style.transform='none';this.style.boxShadow='none'">
-      <div style="position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 80% 20%,rgba(255,255,255,.1),transparent);pointer-events:none"></div>
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.65)" stroke-width="1.5" style="margin-bottom:.75rem"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
-      <div style="font-family:'Clash Display',sans-serif;font-size:1.25rem;font-weight:700;margin-bottom:.35rem;position:relative">Perfil DISC</div>
-      <div style="font-size:.82rem;opacity:.8;line-height:1.6;position:relative">Destaque-se com o teste comportamental e seja encontrado pelas empresas certas.</div>
-    </div>
+  <div class="jobs-grid" id="jobs-grid"></div>
+  <div id="empty-state" class="empty-state">
+    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.5" style="margin-bottom:1rem"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <h3>Nenhuma vaga no momento</h3>
+    <p>Novas vagas sao publicadas frequentemente. Volte em breve!</p>
   </div>
 
-  <div class="jobs-grid" id="jobs-grid"></div>
-  <div id="pagination" class="pagination"></div>
-  <div class="empty-state" id="empty-state">
-    <div class="empty-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
-    <h3>Nenhuma vaga encontrada</h3>
-    <p>Tente ajustar os filtros ou buscar por outros termos.</p>
+  <div style="text-align:center;margin-top:2.5rem;display:flex;flex-direction:column;align-items:center;gap:1rem">
+    <a href="vagas.html" class="btn-cta-primary">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      Explorar todas as vagas
+    </a>
+    <span style="font-size:.82rem;color:var(--muted)">Filtros avancados por area, modalidade, periodo e cidade</span>
+  </div>
+</section>
+
+<!-- ═══ DIFERENCIAIS ═══ -->
+<section style="max-width:1100px;margin:0 auto;padding:0 2rem 3rem">
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem">
+    <div class="diff-card-home">
+      <div class="diff-icon-home" style="background:rgba(0,122,94,.08)">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+      </div>
+      <div class="diff-title-home">100% Gratuito</div>
+      <div class="diff-desc-home">Para candidatos. Nenhuma taxa para se candidatar as vagas.</div>
+    </div>
+    <div class="diff-card-home">
+      <div class="diff-icon-home" style="background:rgba(0,168,142,.08)">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      </div>
+      <div class="diff-title-home">Vagas verificadas</div>
+      <div class="diff-desc-home">Toda vaga e revisada manualmente antes de ser publicada.</div>
+    </div>
+    <div class="diff-card-home">
+      <div class="diff-icon-home" style="background:rgba(0,122,94,.06)">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+      </div>
+      <div class="diff-title-home">Perfil DISC</div>
+      <div class="diff-desc-home">Destaque-se com o teste comportamental e seja encontrado.</div>
+    </div>
   </div>
 </section>
 
@@ -1374,15 +1387,16 @@
   </div>
 </div>
 
-<footer style="background:var(--dark);border-top:1px solid rgba(255,255,255,.08);padding:2rem;text-align:center">
-  <div style="margin-bottom:1rem">
-    <img src="logobranca.png" alt="Universidade Anhembi Morumbi - Polo Bauru-Centro" style="height:40px;object-fit:contain;filter:brightness(0) invert(1);opacity:.85">
+<footer style="background:#001A12;padding:2.5rem 2rem 2rem;text-align:center;position:relative">
+  <div style="position:absolute;top:0;left:5%;right:5%;height:1px;background:linear-gradient(90deg,transparent,rgba(0,168,142,.35),transparent)"></div>
+  <div style="margin-bottom:1.25rem">
+    <img src="logo-branca.png" alt="Conecta — Polo Bauru-Centro" style="height:40px;object-fit:contain;filter:brightness(0) invert(1);opacity:.85">
   </div>
-  <p style="font-size:.8rem;color:rgba(255,255,255,.35)">
-    <a href="index.html" style="color:rgba(255,255,255,.45);text-decoration:none">Ver vagas</a> &nbsp;·&nbsp;
-    <a href="sobre.html" style="color:rgba(255,255,255,.45);text-decoration:none">Sobre</a> &nbsp;·&nbsp;
-    <a href="termos.html" style="color:rgba(255,255,255,.45);text-decoration:none">Termos & Privacidade</a>
-  </p>
+  <div style="display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-bottom:.75rem">
+    <a href="vagas.html" style="color:rgba(255,255,255,.5);text-decoration:none;font-size:.82rem;font-weight:500;transition:color .2s">Ver vagas</a>
+    <a href="sobre.html" style="color:rgba(255,255,255,.5);text-decoration:none;font-size:.82rem;font-weight:500;transition:color .2s">Sobre</a>
+    <a href="termos.html" style="color:rgba(255,255,255,.5);text-decoration:none;font-size:.82rem;font-weight:500;transition:color .2s">Termos & Privacidade</a>
+  </div>
   <p style="font-size:.72rem;color:rgba(255,255,255,.2);margin-top:.5rem">
     © 2025 Universidade Anhembi Morumbi — Polo Bauru-Centro. Todos os direitos reservados.
   </p>
@@ -1408,7 +1422,7 @@ async function carregarIdentidade() {
         el.style.cssText += ';width:auto;';
       });
     }
-    // Se não há logo personalizada, o CSS usa logocolorida.png por padrão
+    // Se não há logo personalizada, o CSS usa logo-colorida.png por padrão
 
     // Cor primária
     if (cfg.cor_primary && /^#[0-9A-Fa-f]{6}$/.test(cfg.cor_primary)) {
@@ -1434,22 +1448,33 @@ carregarIdentidade();
 
 
 let allVagas = [];
-let filteredVagas = [];
-let currentPage = 1;
-const VAGAS_POR_PAGINA = 9;
+const VAGAS_DESTAQUE = 6;
 
 // ---- CARREGAR VAGAS ----
 async function loadVagas() {
-  const { data, error } = await sb
+  // Primeiro tenta buscar vagas marcadas como destaque
+  let { data: destaque } = await sb
     .from('vagas')
     .select('*, empresas(nome_fantasia, razao_social)')
     .eq('status', 'aprovada')
-    .order('created_at', { ascending: false });
+    .eq('destaque', true)
+    .order('created_at', { ascending: false })
+    .limit(VAGAS_DESTAQUE);
+
+  // Fallback: se nao tem vagas destaque, pega as mais recentes
+  if (!destaque || destaque.length === 0) {
+    const { data } = await sb
+      .from('vagas')
+      .select('*, empresas(nome_fantasia, razao_social)')
+      .eq('status', 'aprovada')
+      .order('created_at', { ascending: false })
+      .limit(VAGAS_DESTAQUE);
+    destaque = data || [];
+  }
 
   document.getElementById('loading').style.display = 'none';
-  if (error) { console.error(error); return; }
-  allVagas = data || [];
-  applyFilters();
+  allVagas = destaque;
+  renderDestaque(allVagas);
   loadStats();
 }
 
@@ -1462,116 +1487,30 @@ async function loadStats() {
   document.getElementById('stat-candidatos').textContent = cc || 0;
 }
 
-// ---- FILTROS ----
-function applyFilters() {
-  const kw  = document.getElementById('search-keyword').value.toLowerCase();
-  const ct  = document.getElementById('search-city').value.toLowerCase();
-  const tp  = document.getElementById('filter-type').value;
-  const ar  = document.getElementById('filter-area').value;
-  const md  = document.getElementById('filter-modality').value;
-  const pd  = document.getElementById('filter-period').value;
-  const srt = document.getElementById('sort-select').value;
-
-  filteredVagas = allVagas.filter(j => {
-    const kM = !kw || j.titulo?.toLowerCase().includes(kw) ||
-               j.empresas?.nome_fantasia?.toLowerCase().includes(kw) ||
-               j.area?.toLowerCase().includes(kw) ||
-               j.tags?.toLowerCase().includes(kw);
-    const cM = !ct || j.cidade?.toLowerCase().includes(ct);
-    const tM = !tp || j.tipo === tp;
-    const aM = !ar || j.area === ar;
-    const mM = !md || j.modalidade === md;
-    const pM = !pd || j.periodo === pd;
-    return kM && cM && tM && aM && mM && pM;
-  });
-
-  if (srt === 'salary') filteredVagas.sort((a,b) => (b.bolsa||0) - (a.bolsa||0));
-
-  currentPage = 1;
-  renderPage();
-}
-
-// ---- PAGINAÇÃO ----
-function renderPage() {
+function renderDestaque(vagas) {
   const grid  = document.getElementById('jobs-grid');
   const empty = document.getElementById('empty-state');
   const count = document.getElementById('results-count');
-  const total = filteredVagas.length;
-  const totalPages = Math.ceil(total / VAGAS_POR_PAGINA);
-  const start = (currentPage - 1) * VAGAS_POR_PAGINA;
-  const pageVagas = filteredVagas.slice(start, start + VAGAS_POR_PAGINA);
 
-  if (total === 0) {
+  if (vagas.length === 0) {
     grid.innerHTML = '';
     empty.classList.add('visible');
-    count.textContent = 'Nenhuma vaga encontrada';
-    document.getElementById('pagination').innerHTML = '';
+    count.textContent = 'Novas vagas em breve';
     return;
   }
 
   empty.classList.remove('visible');
-  grid.innerHTML = pageVagas.map((j,i) => renderCard(j, i*40)).join('');
-  count.textContent = `${total} vaga${total>1?'s':''} encontrada${total>1?'s':''} · página ${currentPage} de ${totalPages}`;
-
-  renderPagination(totalPages);
-}
-
-function renderPagination(totalPages) {
-  const pag = document.getElementById('pagination');
-  if (totalPages <= 1) { pag.innerHTML = ''; return; }
-
-  let html = '';
-
-  // Botão anterior
-  html += `<button class="page-btn nav-btn" onclick="goToPage(${currentPage-1})" ${currentPage===1?'disabled':''}>← Anterior</button>`;
-
-  // Páginas
-  for (let i = 1; i <= totalPages; i++) {
-    if (totalPages > 7) {
-      // Mostra: 1, ..., atual-1, atual, atual+1, ..., última
-      if (i === 1 || i === totalPages || (i >= currentPage-1 && i <= currentPage+1)) {
-        html += `<button class="page-btn ${i===currentPage?'active':''}" onclick="goToPage(${i})">${i}</button>`;
-      } else if (i === currentPage-2 || i === currentPage+2) {
-        html += `<span class="page-info">…</span>`;
-      }
-    } else {
-      html += `<button class="page-btn ${i===currentPage?'active':''}" onclick="goToPage(${i})">${i}</button>`;
-    }
-  }
-
-  // Botão próximo
-  html += `<button class="page-btn nav-btn" onclick="goToPage(${currentPage+1})" ${currentPage===totalPages?'disabled':''}>Próximo →</button>`;
-
-  pag.innerHTML = html;
-}
-
-function goToPage(page) {
-  const totalPages = Math.ceil(filteredVagas.length / VAGAS_POR_PAGINA);
-  if (page < 1 || page > totalPages) return;
-  currentPage = page;
-  renderPage();
-  document.querySelector('.jobs-section').scrollIntoView({behavior:'smooth', block:'start'});
+  grid.innerHTML = vagas.map((j,i) => renderCard(j, i*40)).join('');
+  count.textContent = vagas.length + ' vaga' + (vagas.length>1?'s':'') + ' em destaque';
 }
 
 // ---- RESET HOME ----
 function resetHome() {
-  // Limpa todos os filtros
-  document.getElementById('search-keyword').value = '';
-  document.getElementById('search-city').value = '';
-  document.getElementById('filter-type').value = '';
-  document.getElementById('filter-area').value = '';
-  document.getElementById('filter-modality').value = '';
-  document.getElementById('filter-period').value = '';
-  document.getElementById('sort-select').value = 'recent';
-  currentPage = 1;
-  applyFilters();
   window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
 function filterByTag(area) {
-  document.getElementById('filter-area').value = area;
-  document.querySelector('.search-section').scrollIntoView({behavior:'smooth'});
-  applyFilters();
+  window.location.href = 'vagas.html?area=' + encodeURIComponent(area);
 }
 
 // ---- CARD ----
