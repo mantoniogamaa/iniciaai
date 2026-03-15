@@ -32,7 +32,10 @@
   * { margin:0; padding:0; box-sizing:border-box; }
   body {
     font-family:'Plus Jakarta Sans',sans-serif;
-    background:var(--bg); color:var(--text);
+    background-image: linear-gradient(155deg, rgba(0,30,22,.94) 0%, rgba(0,80,60,.87) 55%, rgba(0,40,30,.94) 100%), url("bg-network-dark.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; color:var(--text);
     min-height:100vh; display:flex; flex-direction:column;
     align-items:center; justify-content:center;
     overflow:hidden; position:relative;
@@ -334,6 +337,16 @@
   .form-card { border-radius: 20px !important; }
   .section-label { letter-spacing: -.01em !important; }
 
+
+  /* 404 dark bg text fixes */
+  body { color: white !important; }
+  h2 { color: white !important; }
+  .not-found p, .hint { color: rgba(255,255,255,.65) !important; }
+  .hint a { color: var(--accent) !important; }
+  .btn-back { background: rgba(255,255,255,.1) !important; color: white !important; border-color: rgba(255,255,255,.2) !important; }
+  .countdown-bar { background: rgba(255,255,255,.15) !important; }
+  .countdown-text { color: rgba(255,255,255,.5) !important; }
+  #sec { color: var(--accent) !important; }
 </style>
 </head>
 <body>

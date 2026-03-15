@@ -525,7 +525,11 @@
 
   /* ── HERO MELHORADO ── */
   .hero {
-    background: linear-gradient(155deg, #004D3D 0%, #007A5E 55%, #005C47 100%);
+    background-image: 
+      linear-gradient(155deg, rgba(0,38,28,.92) 0%, rgba(0,90,70,.82) 50%, rgba(0,50,40,.9) 100%),
+      url('bg-grid-neon.jpg');
+    background-size: cover;
+    background-position: center top;
     padding: 100px 2rem 0;
     position: relative;
     overflow: hidden;
@@ -693,6 +697,51 @@
 
   /* ── PAGINATION ── */
   .page-btn { border-radius: 10px !important; font-weight: 700 !important; }
+
+
+  /* ══ INDEX MOBILE ══ */
+  @media(max-width:768px) {
+    nav { padding:0 1rem; height:60px; }
+    .logo::before { width:110px !important; height:38px !important; }
+    .nav-links { display:none !important; }
+    .btn-access { display:none !important; }
+    #nav-logado-cand .nav-user-name { display:none !important; }
+
+    .hero { padding:80px 1rem 40px !important; min-height:auto !important; }
+    .hero h1 { font-size:clamp(2rem,8vw,3rem) !important; }
+    .hero-badge { font-size:.72rem !important; padding:.35rem .85rem !important; }
+    .hero-stats { gap:1.5rem !important; flex-wrap:wrap; }
+    .stat-num { font-size:1.8rem !important; }
+    .floating-tags { gap:.4rem !important; }
+    .tag { font-size:.75rem !important; padding:.35rem .85rem !important; }
+
+    .search-section { padding:0 1rem 2rem !important; }
+    .search-card { padding:1.1rem !important; border-radius:16px !important; }
+    .search-row { flex-direction:column !important; gap:.65rem !important; }
+    .search-row > * { max-width:100% !important; }
+    .filters-row { gap:.5rem !important; }
+    .filter-select { min-width:calc(50% - .25rem) !important; flex:1 1 45% !important; font-size:.8rem !important; padding:.6rem .75rem !important; }
+
+    .jobs-section { padding:0 1rem 3rem !important; }
+    .section-header { flex-direction:column !important; align-items:flex-start !important; gap:.5rem !important; }
+    .jobs-grid { grid-template-columns:1fr !important; }
+    .job-card { padding:1.1rem !important; }
+    .card-title { font-size:.95rem !important; }
+
+    .pagination { gap:.35rem !important; }
+    .page-btn { width:34px !important; height:34px !important; font-size:.78rem !important; }
+    .page-btn.nav-btn { padding:0 .75rem !important; }
+
+    /* Login modal */
+    .login-modal { padding:1.5rem !important; border-radius:18px !important; }
+    .lm-title { font-size:1.2rem !important; }
+  }
+
+  @media(max-width:400px) {
+    .hero h1 { font-size:1.9rem !important; }
+    .filter-select { min-width:100% !important; }
+    .hero-stats { justify-content:space-around; }
+  }
 
 </style>
 </head>

@@ -297,7 +297,9 @@
 
   
   .hero, .page-hero, .vaga-hero, .doc-hero {
-    background: linear-gradient(155deg, #004D3D 0%, #007A5E 55%, #005C47 100%) !important;
+    background-image: linear-gradient(155deg, rgba(0,35,25,.88) 0%, rgba(0,90,68,.8) 55%, rgba(0,50,38,.88) 100%), url("bg-constellation.jpg") !important;
+    background-size: cover !important;
+    background-position: center !important;
     position: relative;
     overflow: hidden;
   }
@@ -505,7 +507,9 @@
 
   /* Hero mais elegante */
   .hero {
-    background: linear-gradient(160deg, #003D2E 0%, #007A5E 60%, #004D3D 100%) !important;
+    background-image: linear-gradient(160deg, rgba(0,35,25,.88) 0%, rgba(0,90,68,.8) 55%, rgba(0,50,38,.88) 100%), url("bg-constellation.jpg") !important;
+    background-size: cover !important;
+    background-position: center !important;
     padding: 5rem 2rem 4rem !important;
     min-height: 580px !important;
   }
@@ -573,6 +577,33 @@
 
   /* Botão CTA */
   .btn-hero-primary { font-family: 'DM Sans', sans-serif !important; font-weight: 700 !important; letter-spacing: .01em !important; }
+
+
+  @media(max-width:768px) {
+    nav { padding:0 1rem; height:60px; }
+    .logo::before { width:110px !important; height:38px !important; }
+    .nav-right .nav-link { display:none; }
+    .btn-nav { display:none; }
+
+    .hero { padding:3rem 1rem 2rem !important; min-height:auto !important; }
+    .hero h1 { font-size:clamp(1.8rem,7vw,2.8rem) !important; }
+    .hero-numbers { grid-template-columns:1fr 1fr 1fr !important; max-width:100% !important; }
+    .hero-num-val { font-size:1.6rem !important; }
+    .hero-ctas { flex-direction:column !important; align-items:center !important; }
+    .hero-ctas a { width:100%; max-width:280px; text-align:center; }
+
+    section { padding:3rem 1rem !important; }
+    .missao-grid { grid-template-columns:1fr !important; gap:2rem !important; }
+    .missao-card-float { position:static !important; margin-top:1rem !important; }
+    .empresa-split { grid-template-columns:1fr !important; }
+    .valores-grid { grid-template-columns:1fr 1fr !important; }
+    .diff-grid { grid-template-columns:1fr !important; }
+    .steps-list { max-width:100% !important; }
+    .faq-list { max-width:100% !important; }
+    .cta-btns { flex-direction:column !important; align-items:center !important; }
+    .cta-btns a { width:100%; max-width:280px; text-align:center; }
+    .section-title { font-size:1.6rem !important; }
+  }
 
 </style>
 </head>

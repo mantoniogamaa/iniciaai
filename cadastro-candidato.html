@@ -374,7 +374,9 @@
   
   /* ── PAGE HERO PANTONE ANHEMBI ── */
   .page-hero, .vaga-hero, .doc-hero {
-    background: linear-gradient(155deg, #004D3D 0%, #007A5E 55%, #005C47 100%) !important;
+    background-image: linear-gradient(155deg, rgba(0,40,30,.87) 0%, rgba(0,100,75,.8) 55%, rgba(0,55,42,.87) 100%), url("bg-tech-green.jpg") !important;
+    background-size: cover !important;
+    background-position: center top !important;
     position: relative; overflow: hidden;
   }
   .page-hero::before, .vaga-hero::before {
@@ -531,6 +533,22 @@
   /* Form cards */
   .form-card { border-radius: 20px !important; }
   .section-label { letter-spacing: -.01em !important; }
+
+
+  @media(max-width:768px) {
+    nav { padding:0 1rem; height:60px; }
+    .logo::before { width:110px !important; height:38px !important; }
+    .nav-back { display:none !important; }
+    .page-wrap { padding:1.5rem 1rem 4rem !important; }
+    .form-grid { grid-template-columns:1fr !important; }
+    .page-hero { padding:2rem 1rem 1.75rem !important; }
+    .page-hero h1 { font-size:1.75rem !important; }
+    .painel-tabs { flex-wrap:wrap !important; gap:.3rem !important; }
+    .painel-tab-btn { font-size:.78rem !important; padding:.5rem !important; }
+    .disc-options { grid-template-columns:1fr !important; }
+    .disc-result-letter { font-size:3.5rem !important; }
+    .edit-section { animation:none !important; }
+  }
 
 </style>
 </head>
