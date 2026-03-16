@@ -516,7 +516,7 @@ window.addEventListener('resize', function() { if (window.innerWidth > 768) clos
   /* Todos os botões CTA → verde accent */
   .btn-submit, .btn-save, .btn-modal-save, .lm-btn,
   .btn-apply-full, .btn-apply, .btn-search, .btn-buscar,
-  .btn-nova-vaga, .btn-nav-cta, .btn-hero-primary, .btn-nav-primary,
+  .btn-nova-vaga, .btn-hero-primary, .btn-nav-primary,
   .cta-btn-a, .btn-primary {
     background: var(--accent) !important;
     background-image: none !important;
@@ -693,6 +693,54 @@ window.addEventListener('resize', function() { if (window.innerWidth > 768) clos
   .footer-links a:hover { color: var(--accent); }
   .footer-copy { font-size: .72rem; color: rgba(255,255,255,.2); }
   /* ═══ FIM FOOTER ═══════════════════════════════════════════════════════════ */
+
+  /* MODAL LOGIN */
+  .login-modal-overlay { position:fixed; inset:0; background:rgba(15,10,30,.55);
+    backdrop-filter:blur(6px); z-index:500; display:none;
+    align-items:center; justify-content:center; padding:1rem; }
+  .login-modal-overlay.open { display:flex; }
+  .login-modal { background:white; border-radius:24px; width:100%; max-width:420px;
+    padding:2rem; position:relative; animation:modalIn .3s ease; box-shadow:0 24px 60px rgba(0,0,0,.18); }
+  @keyframes modalIn { from{transform:scale(.95) translateY(10px);opacity:0} to{transform:scale(1) translateY(0);opacity:1} }
+  .login-modal-close { position:absolute; top:1rem; right:1rem; width:32px; height:32px;
+    border-radius:50%; border:none; background:var(--bg); cursor:pointer;
+    font-size:1rem; color:var(--muted); display:flex; align-items:center; justify-content:center; transition:background .2s; }
+  .login-modal-close:hover { background:var(--border); }
+
+  .login-modal-tabs { display:flex; background:var(--bg); border-radius:12px;
+    padding:.3rem; gap:.3rem; margin-bottom:1.5rem; }
+  .lm-tab { flex:1; padding:.55rem; border-radius:9px; border:none; cursor:pointer;
+    font-size:.82rem; font-weight:600; font-family:'Plus Jakarta Sans',sans-serif;
+    transition:all .2s; color:var(--muted); background:transparent; }
+  .lm-tab.active { background:white; color:var(--violet);
+    box-shadow:0 2px 8px rgba(0,0,0,.08); }
+
+  .lm-section { display:none; }
+  .lm-section.show { display:block; animation:fadeUp .25s ease both; }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+
+  .lm-title { font-family:'Clash Display',sans-serif; font-size:1.3rem; font-weight:700;
+    margin-bottom:1.25rem; color:var(--dark); }
+  .lm-field { margin-bottom:.85rem; }
+  .lm-field label { font-size:.78rem; font-weight:700; color:var(--text); display:block; margin-bottom:.35rem; }
+  .lm-field input { width:100%; padding:.75rem 1rem; border:1.5px solid var(--border);
+    border-radius:10px; font-size:.9rem; font-family:'Plus Jakarta Sans',sans-serif;
+    outline:none; background:var(--bg); color:var(--text); transition:border-color .2s; }
+  .lm-field input:focus { border-color:var(--violet); background:white; box-shadow:0 0 0 3px rgba(46,207,168,.08); }
+  .lm-btn { width:100%; padding:.9rem; background:linear-gradient(135deg,var(--accent),var(--accent-dark));
+    color:white; border:none; border-radius:12px; font-size:.95rem; font-weight:700;
+    cursor:pointer; font-family:'Plus Jakarta Sans',sans-serif;
+    transition:transform .2s,box-shadow .2s; margin-top:.25rem; }
+  .lm-btn:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(12,61,48,.45); }
+  .lm-btn:disabled { opacity:.6; cursor:not-allowed; transform:none; }
+  .lm-msg { padding:.65rem .9rem; border-radius:9px; font-size:.82rem; font-weight:600;
+    margin-top:.75rem; text-align:center; display:none; }
+  .lm-msg.error   { background:rgba(255,92,92,.1);  color:var(--coral); display:block; }
+  .lm-msg.success { background:rgba(16,185,129,.1); color:var(--green); display:block; }
+  .lm-divider { text-align:center; font-size:.78rem; color:var(--muted); margin:.85rem 0; }
+  .lm-link { font-size:.82rem; color:var(--muted); text-align:center; margin-top:.85rem; }
+  .lm-link a { color:var(--violet); font-weight:600; text-decoration:none; }
+
 </style>
 </head>
 <body>
