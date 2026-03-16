@@ -1,0 +1,100 @@
+
+/* Shared responsive hardening for public pages */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+body.menu-open {
+  overflow: hidden !important;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+:where(section, .page-wrap, .main-wrap, .results-wrap, .jobs-section, .doc-wrap, .filters-wrap, .search-section, .container, .page-header, .page-hero, .hero, .content-wrap) {
+  box-sizing: border-box;
+}
+:where(.btn, .btn-primary, .btn-secondary, .btn-submit, .btn-nav-cta, button, input, select, textarea) {
+  max-width: 100%;
+}
+:where(.page-wrap, .main-wrap, .results-wrap, .jobs-section, .doc-wrap, .search-section, .container, .page-header, .page-hero, .hero, section[style*="max-width"], div[style*="max-width:1100px"], div[style*="max-width: 1100px"]) {
+  width: 100%;
+}
+@media (max-width: 900px) {
+  :where(.search-bar, .search-form, .hero-ctas, .cta-btns, .filters-bar, .filters-grid, .stats-row, .steps-bar, .results-actions, .cand-actions, .card-footer, .modal-footer) {
+    flex-wrap: wrap !important;
+  }
+  :where(.page-wrap, .main-wrap, .results-wrap, .jobs-section, .doc-wrap, .search-section, .container, .page-header, .page-hero, .hero, section[style*="max-width"], div[style*="max-width:1100px"], div[style*="max-width: 1100px"]) {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+}
+@media (max-width: 768px) {
+  :where(.features-grid, .benefits-grid, .stats-grid, .timeline-grid, .valores-grid, .faq-grid, .cards-grid, .jobs-grid, .results-grid, .form-grid, .form-grid-2, .grid-2, .grid-3) {
+    grid-template-columns: 1fr !important;
+  }
+  :where(.job-card, .feature-card, .value-card, .faq-item, .glass-card, .modal, .modal-box, .login-modal, .doc-wrap) {
+    border-radius: 18px !important;
+  }
+  :where(.page-hero h1, .hero h1, .hero-title) {
+    font-size: clamp(1.9rem, 7vw, 2.6rem) !important;
+    line-height: 1.1 !important;
+  }
+  :where(.hero p, .page-hero p, .section-sub, .page-header p) {
+    font-size: .95rem !important;
+  }
+  :where(.search-bar, .filters-bar, .hero-ctas, .cta-btns, .results-actions, .card-footer, .modal-footer, .cand-actions) > * {
+    width: 100%;
+  }
+  :where(.search-bar input, .search-bar select, .filters-bar input, .filters-bar select, .filters-bar button, .search-bar button) {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+  :where(.blob-1, .blob-2, .blob-3, .hero-orb, .hero-am-symbol, .bg-blur, .decor-circle) {
+    opacity: .35 !important;
+    transform: scale(.8);
+  }
+}
+@media (max-width: 600px) {
+  nav {
+    min-height: 60px !important;
+    padding-left: .85rem !important;
+    padding-right: .85rem !important;
+  }
+  .public-footer {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  :where(.page-wrap, .main-wrap, .results-wrap, .jobs-section, .doc-wrap, .search-section, .container, .page-header, .page-hero, .hero, section[style*="max-width"], div[style*="max-width:1100px"], div[style*="max-width: 1100px"]) {
+    padding-left: .9rem !important;
+    padding-right: .9rem !important;
+  }
+  :where(.btn-submit, .btn-primary, .btn-secondary, .btn-nav-cta, .hero-ctas a, .cta-btns a) {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+  :where(.modal, .modal-box, .login-modal) {
+    width: calc(100vw - 1.2rem) !important;
+    max-width: calc(100vw - 1.2rem) !important;
+    padding: 1rem !important;
+  }
+  :where(.doc-wrap) {
+    padding-top: 1.5rem !important;
+    padding-bottom: 3rem !important;
+  }
+}
+@media (max-width: 480px) {
+  :where(.page-hero, .hero) {
+    padding-top: 2.25rem !important;
+  }
+  :where(.page-hero h1, .hero h1, .hero-title) {
+    font-size: clamp(1.7rem, 8vw, 2.2rem) !important;
+  }
+  :where(.card, .job-card, .feature-card, .value-card, .faq-item, .glass-card, .doc-wrap, .modal, .modal-box, .login-modal) {
+    padding: 1rem !important;
+  }
+  :where(.search-section, .jobs-section, .results-wrap, .page-wrap, .main-wrap, .doc-wrap, .container, .page-header) {
+    padding-left: .75rem !important;
+    padding-right: .75rem !important;
+  }
+}

@@ -1,0 +1,192 @@
+:root{
+  --brand-primary:#006C5B;
+  --brand-primary-dark:#005247;
+  --brand-accent:#00A499;
+  --brand-accent-dark:#00897F;
+  --brand-neutral:#63666A;
+  --status-error:var(--brand-neutral);
+  --status-error-bg:rgba(99,102,106,.12);
+  --status-success:var(--brand-accent);
+}
+
+
+/* Shared design system for public pages */
+:root{
+  --ds-radius-sm: 12px;
+  --ds-radius-md: 18px;
+  --ds-radius-lg: 24px;
+  --ds-shadow-sm: 0 10px 30px rgba(15, 40, 34, .08);
+  --ds-shadow-md: 0 18px 44px rgba(15, 40, 34, .12);
+}
+
+:where(.btn, .btn-primary, .btn-secondary, .btn-submit, .btn-nav-cta, .btn-apply, .btn-apply-full, .btn-home, .btn-back, .cta-btn-a, .cta-btn-b, .lm-btn, button[type="submit"]) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .55rem;
+  min-height: 46px;
+  border-radius: var(--ds-radius-sm);
+  font-weight: 700;
+}
+
+:where(input, select, textarea) {
+  border-radius: 14px;
+}
+
+:where(.job-card, .feature-card, .value-card, .faq-item, .glass-card, .doc-wrap, .login-modal, .modal-box, .modal, .card, .benefit-card, .step-card) {
+  box-shadow: var(--ds-shadow-sm);
+}
+
+:where(.job-card:hover, .feature-card:hover, .value-card:hover, .glass-card:hover, .card:hover) {
+  box-shadow: var(--ds-shadow-md);
+}
+
+:where(.access-dropdown, .mobile-drawer, .login-modal, .modal-box, .modal) {
+  border: 1px solid rgba(0, 122, 94, .10);
+}
+
+:where(.login-modal-overlay.open, .modal-overlay.open) {
+  backdrop-filter: blur(6px);
+}
+
+:where(.nav-links a:focus-visible, .public-footer-nav a:focus-visible, .mobile-nav-link:focus-visible, .mobile-nav-links a:focus-visible, .btn-nav-cta:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible) {
+  outline: 3px solid rgba(0, 168, 142, .22);
+  outline-offset: 2px;
+}
+
+.drawer-overlay {
+  position: fixed;
+  inset: 72px 0 0;
+  background: rgba(7, 18, 15, .26);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .22s ease;
+  z-index: 118;
+}
+.drawer-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media (max-width: 900px) {
+  .drawer-overlay { inset-top: 64px; }
+}
+
+@media (max-width: 600px) {
+  .drawer-overlay { inset: 60px 0 0; }
+  :where(.job-card, .feature-card, .value-card, .faq-item, .glass-card, .doc-wrap, .login-modal, .modal-box, .modal, .card) {
+    border-radius: 18px;
+  }
+}
+
+
+.login-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15,10,30,.55);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 200;
+}
+.login-modal-overlay.open { display: flex; }
+.login-modal {
+  background: white;
+  border-radius: 24px;
+  width: 100%;
+  max-width: 420px;
+  padding: 2rem;
+  position: relative;
+  animation: modalIn .3s ease;
+}
+@keyframes modalIn { from{transform:scale(.95) translateY(10px);opacity:0} to{transform:scale(1) translateY(0);opacity:1} }
+.login-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 10px;
+  background: rgba(0,122,94,.06);
+  cursor: pointer;
+}
+.login-modal-tabs {
+  display: flex;
+  gap: .5rem;
+  background: var(--bg, #F4F8F7);
+  border-radius: 12px;
+  padding: .35rem;
+  margin-bottom: 1.25rem;
+}
+.lm-tab {
+  flex: 1;
+  border: none;
+  background: transparent;
+  min-height: 40px;
+  border-radius: 10px;
+  font-weight: 700;
+  color: var(--muted, #5f766f);
+  cursor: pointer;
+}
+.lm-tab.active {
+  background: white;
+  color: var(--primary, #006C5B);
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+}
+.lm-section { display: none; }
+.lm-section.show { display: block; }
+.lm-field { margin-bottom: .9rem; }
+.lm-field label {
+  display: block;
+  margin-bottom: .35rem;
+  font-size: .86rem;
+  font-weight: 700;
+}
+.lm-field input {
+  width: 100%;
+  padding: .82rem 1rem;
+  border: 1.5px solid rgba(0,122,94,.16);
+  border-radius: 12px;
+}
+.lm-btn {
+  width: 100%;
+  border: none;
+  color: white;
+  background: linear-gradient(135deg, var(--accent, #00A499), var(--primary, #006C5B));
+  cursor: pointer;
+  margin-top: .35rem;
+}
+.lm-msg {
+  min-height: 22px;
+  margin-top: .75rem;
+  font-size: .84rem;
+  font-weight: 600;
+}
+.lm-msg.error { color: #c2410c; }
+.lm-msg.success { color: #0f766e; }
+.lm-link {
+  margin-top: .85rem;
+  font-size: .9rem;
+  color: var(--muted, #5f766f);
+}
+.lm-link a { color: var(--primary, #006C5B); font-weight: 700; text-decoration: none; }
+:where(.mobile-cta a, .mobile-cta button) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  padding: .9rem 1rem;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+
+:where(.lm-msg.error, .msg-box.error, .msg-inline.error, .cand-feedback.error, .candidatura-msg.error, .msg-modal.error, .error-msg.show){
+  color: var(--status-error);
+}
+:where(.badge-type-aprendiz, .s-recusado, .b-rejeitada, .btn-reject, .btn-del){
+  color: var(--status-error);
+}

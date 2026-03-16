@@ -12,53 +12,42 @@
 <meta property="og:site_name" content="Conecta">
 <meta property="og:locale" content="pt_BR">
 <meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:site" content="@conectabauru">
+<meta property="twitter:site" content="@iniciaaí">
 <meta property="og:title" content="Conecta — Publique sua Vaga de Estágio ou Jovem Aprendiz">
 <meta property="og:description" content="Cadastre sua empresa e publique vagas de estágio ou Jovem Aprendiz gratuitamente. Conecte-se com estudantes qualificados.">
-<meta property="og:image" content="https://mantoniogamaa.github.io/iniciaai/og-image.png">
-<meta property="og:url" content="https://mantoniogamaa.github.io/iniciaai/cadastro-empresa.html">
+<meta property="og:image" content="https://mantoniogamaa.github.io/iniciaaí/og-image.png">
+<meta property="og:url" content="https://mantoniogamaa.github.io/iniciaaí/cadastro-empresa.html">
 <meta property="twitter:title" content="Conecta — Publique sua Vaga de Estágio ou Jovem Aprendiz">
 <meta property="twitter:description" content="Cadastre sua empresa e publique vagas de estágio ou Jovem Aprendiz gratuitamente. Conecte-se com estudantes qualificados.">
-<meta property="twitter:image" content="https://mantoniogamaa.github.io/iniciaai/og-image.png">
-<link rel="canonical" href="https://mantoniogamaa.github.io/iniciaai/cadastro-empresa.html">
+<meta property="twitter:image" content="https://mantoniogamaa.github.io/iniciaaí/og-image.png">
+<link rel="canonical" href="https://mantoniogamaa.github.io/iniciaaí/cadastro-empresa.html">
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">function toggleMobileMenu() {
-  document.getElementById('hamburger').classList.toggle('open');
-  document.getElementById('mobile-drawer').classList.toggle('open');
-  document.getElementById('drawer-overlay').classList.toggle('open');
-  document.body.style.overflow = document.getElementById('mobile-drawer').classList.contains('open') ? 'hidden' : '';
-}
-function closeMobileMenu() {
-  document.getElementById('hamburger').classList.remove('open');
-  document.getElementById('mobile-drawer').classList.remove('open');
-  document.getElementById('drawer-overlay').classList.remove('open');
-  document.body.style.overflow = '';
-}
-window.addEventListener('resize', function() { if (window.innerWidth > 768) closeMobileMenu(); });
-</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
   :root {
-    --primary:       #007A5E;   /* PANTONE 7719C — Verde Escuro Anhembi */
-    --primary-dark:  #005C47;   /* Verde mais escuro hover */
-    --primary-mid:   #006B52;   /* Verde médio */
-    --accent:        #00A88E;   /* PANTONE 3285C — Verde Claro/Menta */
-    --accent-dark:   #008C76;   /* Menta escuro hover */
-    --accent-light:  #E6F7F4;   /* Menta bem claro fundo */
-    --gray:          #76787B;   /* PANTONE Cool Gray 10C */
-    --gray-light:    #F0F1F2;   /* Cinza claro */
+    --primary:       #006C5B;   /* PANTONE 7719C — Verde Escuro Anhembi */
+    --primary-dark:  #005247;   /* Verde mais escuro hover */
+    --primary-mid:   #005F51;   /* Verde médio */
+    --accent:        #00A499;   /* PANTONE 3285C — Verde Claro/Menta */
+    --accent-dark:   #00897F;   /* Menta escuro hover */
+    --accent-light:  #E6F6F4;   /* Menta bem claro fundo */
+    --gray:          #63666A;   /* PANTONE Cool Gray 10C */
+    --gray-light:    #D9DEE2;   /* Cinza claro */
     --bg:            #F4F8F7;   /* Fundo levemente esverdeado */
-    --dark:          #007A5E;   /* Dark = verde escuro */
+    --dark:          #006C5B;   /* Dark = verde escuro */
     --text:          #1A2E28;   /* Texto principal */
-    --muted:         #76787B;   /* Cinza médio Anhembi */
-    --border:        #C8DDD9;   /* Bordas esverdeadas */
+    --muted:         #63666A;   /* Cinza médio Anhembi */
+    --border:        #C9D9D5;   /* Bordas esverdeadas */
     --white:         #FFFFFF;
-    --green:         #00A88E;
-    --orange:        #E65100;
-    --yellow:        #F57F17;
-    --cyan:          #00A88E;
+    --green:         #00A499;
+    --orange:        #63666A;
+    --yellow:        #00897F;
+    --cyan:          #00A499;
+    --error:         #63666A;
+    --error-bg:      rgba(99,102,106,.12);
     /* Aliases */
-    --violet:        #007A5E;
-    --coral:         #005C47;
+    --violet:        #006C5B;
+    --coral:         #63666A;
   }
 
   * { margin:0; padding:0; box-sizing:border-box; }
@@ -70,174 +59,151 @@ window.addEventListener('resize', function() { if (window.innerWidth > 768) clos
     min-height: 100vh;
   }
 
-    /* ═══ NAV CANÔNICO CONECTA ═══════════════════════════════════════════════ */
+    /* ═══ NAV BASE ═══ */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     background: rgba(255,255,255,0.97);
-    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--border); padding: 0 2rem;
-    height: 64px; display: flex; align-items: center; justify-content: space-between;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
     box-shadow: 0 1px 12px rgba(0,122,94,.08);
   }
-  a.logo {
-    display: inline-flex; align-items: center; text-decoration: none;
-    flex-shrink: 0; width: 148px; height: 46px;
+  .logo {
+    display: inline-flex; align-items: center;
+    text-decoration: none; cursor: pointer;
+    font-size: 0 !important; color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
+    background: none !important; flex-shrink: 0;
+  }
+  .logo::before {
+    content: ''; display: block;
+    width: 140px; height: 44px;
     background: url('logocolorida.png') no-repeat left center / contain;
-    font-size: 0; color: transparent; overflow: hidden;
-    cursor: pointer;
   }
   .nav-links { display: flex; gap: 2rem; align-items: center; }
-  .nav-links a {
-    color: var(--muted); text-decoration: none;
-    font-size: .9rem; font-weight: 500; transition: color .2s;
-  }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: .9rem; font-weight: 500; transition: color .2s; }
   .nav-links a:hover { color: var(--primary); }
   .nav-links a.active { color: var(--primary); font-weight: 700; }
-  /* Dropdown Acessar */
-  .nav-access { display: flex; align-items: center; gap: .5rem; }
-  .btn-access {
-    display: flex; align-items: center; gap: .45rem; padding: .55rem 1.2rem;
-    border: 1.5px solid var(--border); border-radius: 50px; background: white;
-    font-size: .875rem; font-weight: 600; cursor: pointer; color: var(--text);
-    font-family: inherit; transition: all .2s;
+  /* DROPDOWN ACESSAR */
+  .nav-access { position: relative; }
+  .btn-access { display:flex; align-items:center; gap:.45rem; padding:.55rem 1.2rem;
+    border:1.5px solid var(--border); border-radius:50px; background:white;
+    font-size:.875rem; font-weight:600; cursor:pointer; color:var(--text);
+    font-family:inherit; transition:all .2s; }
+  .btn-access:hover { border-color:var(--primary); color:var(--primary); }
+  .btn-access svg { transition:transform .2s; }
+  .btn-access.open svg { transform:rotate(180deg); }
+  .access-dropdown { position:absolute; top:calc(100% + .6rem); right:0;
+    background:white; border-radius:16px; border:1.5px solid var(--border);
+    box-shadow:0 12px 40px rgba(0,0,0,.12); min-width:220px; z-index:200;
+    opacity:0; transform:translateY(-8px); pointer-events:none; transition:all .2s; overflow:hidden; }
+  .access-dropdown.open { opacity:1; transform:translateY(0); pointer-events:all; }
+  .access-dropdown-header { padding:.75rem 1rem .5rem; font-size:.7rem; font-weight:700;
+    text-transform:uppercase; letter-spacing:.08em; color:var(--muted); }
+  .access-item { display:flex; align-items:center; gap:.75rem; padding:.75rem 1rem;
+    cursor:pointer; transition:background .15s; text-decoration:none; color:var(--text); }
+  .access-item:hover { background:var(--bg,#F4F8F7); }
+  .access-item:last-child { border-top:1px solid var(--border); }
+  .access-icon { width:36px; height:36px; border-radius:10px;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .access-icon.cand { background:rgba(0,122,94,.1); }
+  .access-icon.emp  { background:rgba(0,168,142,.1); }
+  .access-icon.new  { background:rgba(0,164,153,.10); }
+  .access-label { font-size:.875rem; font-weight:600; }
+  .access-sub   { font-size:.72rem; color:var(--muted); margin-top:.1rem; }
+  /* AVATAR LOGADO */
+  .nav-avatar { width:36px; height:36px; border-radius:50%;
+    background:linear-gradient(135deg,var(--accent,#00A499),var(--primary,#006C5B));
+    display:flex; align-items:center; justify-content:center;
+    color:white; font-weight:700; font-size:.9rem; cursor:pointer; flex-shrink:0;
+    border:2px solid white; box-shadow:0 2px 8px rgba(0,122,94,.4); }
+  .nav-user-wrap { display:flex; align-items:center; gap:.6rem; }
+  .nav-user-name { font-size:.85rem; font-weight:600; color:var(--text); }
+  /* MODAL LOGIN */
+  .login-modal-overlay { position:fixed; inset:0; background:rgba(15,10,30,.55);
+    backdrop-filter:blur(6px); z-index:500; display:none;
+    align-items:center; justify-content:center; padding:1rem; }
+  .login-modal-overlay.open { display:flex; }
+  .login-modal { background:white; border-radius:24px; width:100%; max-width:420px;
+    padding:2rem; position:relative; animation:lmIn .3s ease; box-shadow:0 24px 60px rgba(0,0,0,.18); }
+  @keyframes lmIn { from{transform:scale(.95) translateY(10px);opacity:0} to{transform:scale(1) translateY(0);opacity:1} }
+  .login-modal-close { position:absolute; top:1rem; right:1rem; width:32px; height:32px;
+    border-radius:50%; border:none; background:var(--bg,#F4F8F7); cursor:pointer;
+    font-size:1rem; color:var(--muted); display:flex; align-items:center; justify-content:center; }
+  .login-modal-tabs { display:flex; background:var(--bg,#F4F8F7); border-radius:12px;
+    padding:.3rem; gap:.3rem; margin-bottom:1.5rem; }
+  .lm-tab { flex:1; padding:.55rem; border-radius:9px; border:none; cursor:pointer;
+    font-size:.82rem; font-weight:600; font-family:inherit;
+    transition:all .2s; color:var(--muted); background:transparent;
+    display:flex; align-items:center; justify-content:center; gap:.35rem; }
+  .lm-tab.active { background:white; color:var(--primary,#006C5B); box-shadow:0 2px 8px rgba(0,0,0,.08); }
+  .lm-section { display:none; }
+  .lm-section.show { display:block; }
+  .lm-title { font-family:'Clash Display',sans-serif; font-size:1.3rem; font-weight:700; margin-bottom:1.25rem; color:var(--dark,#004D3D); }
+  .lm-field { margin-bottom:.85rem; }
+  .lm-field label { font-size:.78rem; font-weight:700; display:block; margin-bottom:.35rem; }
+  .lm-field input { width:100%; padding:.75rem 1rem; border:1.5px solid var(--border);
+    border-radius:10px; font-size:.9rem; font-family:inherit;
+    outline:none; background:var(--bg,#F4F8F7); color:var(--text); transition:border-color .2s; }
+  .lm-field input:focus { border-color:var(--accent,#00A499); background:white; }
+  .lm-btn { width:100%; padding:.9rem; background:linear-gradient(135deg,var(--accent,#00A499),var(--primary,#006C5B));
+    color:white; border:none; border-radius:12px; font-size:.95rem; font-weight:700;
+    cursor:pointer; font-family:inherit; transition:transform .2s,box-shadow .2s; margin-top:.25rem; }
+  .lm-btn:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,122,94,.4); }
+  .lm-btn:disabled { opacity:.6; cursor:not-allowed; transform:none; }
+  .lm-msg { padding:.65rem .9rem; border-radius:9px; font-size:.82rem; font-weight:600;
+    margin-top:.75rem; text-align:center; display:none; }
+  .lm-msg.error   { background:rgba(99,102,106,.12); color:#4F5B62; display:block; }
+  .lm-msg.success { background:rgba(0,164,153,.10); color:#1B5E20; display:block; }
+  .lm-link { font-size:.82rem; color:var(--muted); text-align:center; margin-top:.85rem; }
+  .lm-link a { color:var(--primary,#006C5B); font-weight:600; text-decoration:none; }
+  
+  /* DRAWER MOBILE */
+  .mobile-drawer { display:none; position:fixed; top:64px; left:0; right:0; bottom:0;
+    background:rgba(248,255,252,.98); backdrop-filter:blur(16px);
+    z-index:99; flex-direction:column; padding:1.5rem 2rem;
+    border-top:1px solid var(--border); overflow-y:auto;
+    transform:translateX(100%); transition:transform .3s ease; }
+  .mobile-drawer.open { transform:translateX(0); }
+  .mobile-nav-links { display:flex; flex-direction:column; gap:.25rem; margin-bottom:1.5rem; }
+  .mobile-nav-links a { padding:.85rem 1rem; border-radius:12px; font-size:1rem; font-weight:600;
+    color:var(--text); text-decoration:none; transition:background .2s;
+    display:flex; align-items:center; gap:.6rem; }
+  .mobile-nav-links a:hover { background:white; }
+  .mobile-nav-links a.active { color:var(--primary,#006C5B); background:rgba(0,122,94,.06); }
+  .mobile-divider { height:1px; background:var(--border); margin:.75rem 0; }
+  .mobile-access-title { font-size:.72rem; font-weight:700; text-transform:uppercase;
+    letter-spacing:.1em; color:var(--muted); margin-bottom:.75rem; }
+  .mobile-access-btn { display:flex; align-items:center; gap:.85rem; width:100%;
+    padding:1rem; border-radius:14px; border:1.5px solid var(--border); background:white;
+    cursor:pointer; font-family:inherit; transition:all .2s; margin-bottom:.6rem; }
+  .mobile-access-btn:hover { border-color:var(--primary,#006C5B); }
+  .mobile-access-icon { width:40px; height:40px; border-radius:10px;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .mobile-access-label { font-size:.9rem; font-weight:700; color:var(--text); }
+  .mobile-access-sub   { font-size:.75rem; color:var(--muted); margin-top:.1rem; }
+  .mobile-cta { display:flex; flex-direction:column; gap:.6rem; margin-top:.5rem; }
+  .mobile-cta a { display:flex; align-items:center; justify-content:center; gap:.5rem;
+    padding:.9rem; border-radius:12px; font-weight:700; font-size:.9rem;
+    text-decoration:none; transition:all .2s; }
+  .mobile-cta .cta-primary { background:linear-gradient(135deg,var(--accent,#00A499),var(--primary,#006C5B)); color:white; }
+  .mobile-cta .cta-secondary { border:1.5px solid var(--border); color:var(--muted); }
+  @media(max-width:768px) {
+    nav { padding:0 1rem; height:64px; }
+    .nav-links { display:none !important; }
+    .btn-access { display:none !important; }
+    .nav-logado-desktop { display:none !important; }
+    .hamburger { display:flex !important; }
+    .mobile-drawer { display:flex; }
   }
-  .btn-access:hover { border-color: var(--primary); color: var(--primary); }
-  .btn-access svg { transition: transform .2s; }
-  .btn-access.open svg { transform: rotate(180deg); }
-  .access-dropdown {
-    position: absolute; top: calc(100% + .6rem); right: 0;
-    background: white; border-radius: 16px; border: 1.5px solid var(--border);
-    box-shadow: 0 12px 40px rgba(0,0,0,.12); min-width: 220px; z-index: 200;
-    opacity: 0; transform: translateY(-8px); pointer-events: none;
-    transition: all .2s; overflow: hidden;
-  }
-  .access-dropdown.open { opacity: 1; transform: translateY(0); pointer-events: all; }
-  .access-dropdown-header {
-    padding: .75rem 1rem .5rem; font-size: .7rem; font-weight: 700;
-    text-transform: uppercase; letter-spacing: .08em; color: var(--muted);
-  }
-  .access-item {
-    display: flex; align-items: center; gap: .75rem; padding: .75rem 1rem;
-    cursor: pointer; transition: background .15s; text-decoration: none; color: var(--text);
-  }
-  .access-item:hover { background: var(--bg); }
-  .access-icon {
-    width: 36px; height: 36px; border-radius: 10px;
-    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-  }
-  .access-icon.cand { background: rgba(0,122,94,.1); }
-  .access-icon.emp  { background: rgba(0,168,142,.1); }
-  .access-icon.new  { background: rgba(0,122,94,.08); }
-  .access-label { font-size: .875rem; font-weight: 600; }
-  .access-sub   { font-size: .72rem; color: var(--muted); margin-top: .1rem; }
-  /* Avatar logado */
-  .nav-avatar {
-    width: 36px; height: 36px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent), var(--primary));
-    display: flex; align-items: center; justify-content: center;
-    color: white; font-weight: 700; font-size: .9rem; cursor: pointer;
-    font-family: 'Clash Display', sans-serif; flex-shrink: 0;
-    border: 2px solid white; box-shadow: 0 2px 8px rgba(0,122,94,.3);
-  }
-  .nav-user-wrap { display: flex; align-items: center; gap: .6rem; }
-  .nav-user-name { font-size: .85rem; font-weight: 600; color: var(--text); }
-  /* Nav CTAs — dois botões distintos */
-  .nav-right { display: flex; align-items: center; gap: .6rem; }
-  .btn-entrar {
-    display: flex; align-items: center; gap: .4rem;
-    padding: .52rem 1.1rem;
-    border: 1.5px solid var(--border); border-radius: 50px;
-    background: white; font-size: .875rem; font-weight: 600;
-    cursor: pointer; color: var(--text); font-family: inherit; transition: all .2s;
-  }
-  .btn-entrar:hover { border-color: var(--primary); color: var(--primary); }
-  .btn-nav-cta {
-    display: inline-flex; align-items: center; gap: .4rem;
-    padding: .52rem 1.15rem;
-    background: var(--primary); color: white;
-    border: none; border-radius: 50px;
-    font-size: .875rem; font-weight: 700;
-    text-decoration: none; font-family: inherit; transition: all .2s;
-    white-space: nowrap;
-  }
-  .btn-nav-cta:hover { background: var(--primary-dark); transform: translateY(-1px); box-shadow: 0 4px 14px rgba(0,122,94,.28); }
-  @media (max-width: 768px) {
-    .nav-right .btn-entrar { display: none; }
-    .nav-right .btn-nav-cta { display: none; }
-    .nav-right .nav-logado-desktop { display: none; }
-  }
-  /* Hamburguer */
-  .hamburger {
-    display: none; flex-direction: column; gap: 5px; cursor: pointer;
-    background: none; border: none; padding: .4rem; z-index: 110;
-  }
-  .hamburger span {
-    display: block; width: 22px; height: 2px;
-    background: var(--text); border-radius: 2px; transition: all .3s;
-  }
-  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-  .hamburger.open span:nth-child(2) { opacity: 0; }
-  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-  /* Drawer mobile */
-  .mobile-drawer {
-    display: none; position: fixed; top: 64px; left: 0; right: 0; bottom: 0;
-    background: rgba(255,255,255,.98); backdrop-filter: blur(16px);
-    z-index: 99; flex-direction: column; padding: 1.5rem;
-    border-top: 1px solid var(--border); overflow-y: auto;
-    transform: translateX(100%); transition: transform .3s ease;
-  }
-  .mobile-drawer.open { transform: translateX(0); }
-  .mobile-nav-links {
-    display: flex; flex-direction: column; gap: .25rem; margin-bottom: 1.5rem;
-  }
-  .mobile-nav-links a {
-    padding: .85rem 1rem; border-radius: 12px; font-size: 1rem; font-weight: 600;
-    color: var(--text); text-decoration: none; transition: background .2s;
-    display: flex; align-items: center; gap: .6rem;
-  }
-  .mobile-nav-links a:hover,
-  .mobile-nav-links a.active { background: var(--accent-light); color: var(--primary); }
-  .mobile-divider { height: 1px; background: var(--border); margin: .75rem 0; }
-  .mobile-access-title {
-    font-size: .72rem; font-weight: 700; text-transform: uppercase;
-    letter-spacing: .1em; color: var(--muted); margin-bottom: .75rem;
-  }
-  .mobile-access-btn {
-    display: flex; align-items: center; gap: .85rem; width: 100%;
-    padding: 1rem; border-radius: 14px; border: 1.5px solid var(--border);
-    background: white; cursor: pointer; font-family: inherit; text-align: left;
-    transition: all .2s; margin-bottom: .6rem;
-  }
-  .mobile-access-btn:hover { border-color: var(--primary); }
-  .mobile-access-icon {
-    width: 40px; height: 40px; border-radius: 10px;
-    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-  }
-  .mobile-access-label { font-size: .9rem; font-weight: 700; color: var(--text); }
-  .mobile-access-sub   { font-size: .75rem; color: var(--muted); margin-top: .1rem; }
-  .mobile-cta { display: flex; flex-direction: column; gap: .6rem; margin-top: .5rem; }
-  .mobile-cta a {
-    display: flex; align-items: center; justify-content: center; gap: .5rem;
-    padding: .9rem; border-radius: 12px; font-weight: 700; font-size: .9rem;
-    text-decoration: none; transition: all .2s;
-  }
-  .mobile-cta .cta-primary {
-    background: linear-gradient(135deg, var(--accent), var(--primary)); color: white;
-  }
-  .mobile-cta .cta-secondary { border: 1.5px solid var(--border); color: var(--muted); }
-  .mobile-cta .cta-secondary:hover { border-color: var(--primary); color: var(--primary); }
-  @media (max-width: 768px) {
-    nav { padding: 0 1rem; }
-    .nav-links { display: none; }
-    .btn-access { display: none; }
-    .nav-logado-desktop { display: none; }
-    .hamburger { display: flex; }
-    .mobile-drawer { display: flex; }
-  }
-  @media (max-width: 600px) { .nav-user-name { display: none; } }
-  /* ═══ FIM NAV ══════════════════════════════════════════════════════════════ */
+  @media(max-width:600px) { .nav-user-name { display:none !important; } }
 
-.nav-back {
+  
+
+  .nav-back {
     color: var(--muted); text-decoration: none; font-size: 0.875rem;
     font-weight: 500; display: flex; align-items: center; gap: 0.4rem;
     transition: color 0.2s;
@@ -401,7 +367,7 @@ window.addEventListener('resize', function() { if (window.innerWidth > 768) clos
   .page-hero::before {
     content:''; position:absolute; inset:0;
     background:radial-gradient(ellipse 70% 60% at 70% 0%, rgba(12,61,48,.4) 0%, transparent 65%),
-               radial-gradient(ellipse 40% 40% at 10% 100%, rgba(255,92,92,.15) 0%, transparent 60%);
+               radial-gradient(ellipse 40% 40% at 10% 100%, rgba(99,102,106,.14) 0%, transparent 60%);
     pointer-events:none;
   }
   .page-hero-inner { max-width:860px; margin:0 auto; position:relative; z-index:1; }
@@ -581,13 +547,58 @@ window.addEventListener('resize', function() { if (window.innerWidth > 768) clos
     border: 1px solid rgba(255,255,255,.18) !important;
     color: rgba(255,255,255,.8) !important;
   }
+  .logo { color: var(--primary) !important; -webkit-text-fill-color: var(--primary) !important; background: none !important; }
+  nav { background: rgba(255,255,255,.97) !important; box-shadow: 0 1px 12px rgba(0,122,94,.1) !important; }
 
 
+  /* ── LOGO IMAGEM ANHEMBI ── */
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+    color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
+    background: none !important;
+    font-size: 0 !important;
+  }
+  .logo::before {
+    content: '';
+    display: block;
+    width: 160px;
+    height: 44px;
+    background: url('logocolorida.png') no-repeat center/contain;
+  }
+  /* Logo branca nos heróis (quando nav está sobre fundo escuro) */
+  .hero-logo-wrap .logo::before,
+  .vaga-hero .logo::before {
+    background-image: url('logobranca.png');
+  }
+
+
+  /* ── FIX GLOBAL: eliminar vermelho, logo correta, marca d'água ── */
+  .logo {
+    display: inline-flex; align-items: center;
+    text-decoration: none; cursor: pointer;
+    font-size: 0 !important; color: transparent !important;
+    -webkit-text-fill-color: transparent !important; background: none !important;
+  }
+  .logo::before {
+    content: '';
+    display: block;
+    width: 140px; height: 44px;
+    background: url('logocolorida.png') no-repeat left center / contain;
+  }
+  nav {
+    background: rgba(255,255,255,.97) !important;
+    box-shadow: 0 1px 16px rgba(0,122,94,.1) !important;
+    height: 72px !important;
+  }
 
   /* Todos os botões CTA → verde accent */
   .btn-submit, .btn-save, .btn-modal-save, .lm-btn,
   .btn-apply-full, .btn-apply, .btn-search, .btn-buscar,
-  .btn-nova-vaga, .btn-hero-primary, .btn-nav-primary,
+  .btn-nova-vaga, .btn-nav-cta, .btn-hero-primary, .btn-nav-primary,
   .cta-btn-a, .btn-primary {
     background: var(--accent) !important;
     background-image: none !important;
@@ -673,6 +684,7 @@ window.addEventListener('resize', function() { if (window.innerWidth > 768) clos
 
   @media(max-width:768px) {
     nav { padding:0 1rem; height:60px; }
+    .logo::before { width:110px !important; height:38px !important; }
     .nav-back { display:none !important; }
     .page-hero { padding:2rem 1rem 1.75rem !important; }
     .page-hero h1 { font-size:1.6rem !important; }
@@ -707,7 +719,7 @@ window.addEventListener('resize', function() { if (window.innerWidth > 768) clos
   .btn-submit:hover, .btn-save:hover, .btn-apply-full:hover,
   .btn-next:hover, .btn-nova-vaga:hover {
     transform: translateY(-2px) !important;
-    box-shadow: 0 8px 24px rgba(0,168,142,.35) !important;
+    box-shadow: 0 8px 24px rgba(0,164,153,.35) !important;
   }
 
   /* Cards genéricos */
@@ -726,6 +738,22 @@ window.addEventListener('resize', function() { if (window.innerWidth > 768) clos
   }
 
 
+  /* ── LOGO BULLET-PROOF ── */
+  .logo {
+    display: inline-block !important;
+    width: 150px !important;
+    height: 48px !important;
+    background: url('logocolorida.png') no-repeat left center / contain !important;
+    text-decoration: none !important;
+    font-size: 0 !important;
+    color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
+    overflow: hidden !important;
+    flex-shrink: 0 !important;
+  }
+  .logo::before { display: none !important; }
+  /* Only the CSS background-image, no ::before pseudo */
+
 
   /* ── MOBILE OVERFLOW FIX ── */
   html, body { overflow-x: hidden; max-width: 100vw; }
@@ -733,80 +761,11 @@ window.addEventListener('resize', function() { if (window.innerWidth > 768) clos
   img, video, canvas, svg { max-width: 100%; }
   table { width: 100%; table-layout: fixed; }
 
-
-  /* ═══ FOOTER CANÔNICO CONECTA ════════════════════════════════════════════ */
-  footer {
-    background: #001A12; color: rgba(255,255,255,.5);
-    text-align: center; padding: 3rem 2rem 2.5rem; position: relative;
-  }
-  footer::before {
-    content: ''; position: absolute; top: 0; left: 5%; right: 5%; height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(0,168,142,.4), transparent);
-  }
-  .footer-logo {
-    display: block; width: 148px; height: 46px; margin: 0 auto 1.25rem;
-    background: url('logobranca.png') no-repeat center / contain;
-  }
-  .footer-links {
-    display: flex; justify-content: center; gap: 1.5rem;
-    flex-wrap: wrap; margin-bottom: 1rem;
-  }
-  .footer-links a {
-    color: rgba(255,255,255,.5); text-decoration: none;
-    font-size: .82rem; font-weight: 500; transition: color .2s;
-  }
-  .footer-links a:hover { color: var(--accent); }
-  .footer-copy { font-size: .72rem; color: rgba(255,255,255,.2); }
-  /* ═══ FIM FOOTER ═══════════════════════════════════════════════════════════ */
-
-  /* MODAL LOGIN */
-  .login-modal-overlay { position:fixed; inset:0; background:rgba(15,10,30,.55);
-    backdrop-filter:blur(6px); z-index:500; display:none;
-    align-items:center; justify-content:center; padding:1rem; }
-  .login-modal-overlay.open { display:flex; }
-  .login-modal { background:white; border-radius:24px; width:100%; max-width:420px;
-    padding:2rem; position:relative; animation:modalIn .3s ease; box-shadow:0 24px 60px rgba(0,0,0,.18); }
-  @keyframes modalIn { from{transform:scale(.95) translateY(10px);opacity:0} to{transform:scale(1) translateY(0);opacity:1} }
-  .login-modal-close { position:absolute; top:1rem; right:1rem; width:32px; height:32px;
-    border-radius:50%; border:none; background:var(--bg); cursor:pointer;
-    font-size:1rem; color:var(--muted); display:flex; align-items:center; justify-content:center; transition:background .2s; }
-  .login-modal-close:hover { background:var(--border); }
-
-  .login-modal-tabs { display:flex; background:var(--bg); border-radius:12px;
-    padding:.3rem; gap:.3rem; margin-bottom:1.5rem; }
-  .lm-tab { flex:1; padding:.55rem; border-radius:9px; border:none; cursor:pointer;
-    font-size:.82rem; font-weight:600; font-family:'Plus Jakarta Sans',sans-serif;
-    transition:all .2s; color:var(--muted); background:transparent; }
-  .lm-tab.active { background:white; color:var(--violet);
-    box-shadow:0 2px 8px rgba(0,0,0,.08); }
-
-  .lm-section { display:none; }
-  .lm-section.show { display:block; animation:fadeUp .25s ease both; }
-  @keyframes fadeUp { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
-
-  .lm-title { font-family:'Clash Display',sans-serif; font-size:1.3rem; font-weight:700;
-    margin-bottom:1.25rem; color:var(--dark); }
-  .lm-field { margin-bottom:.85rem; }
-  .lm-field label { font-size:.78rem; font-weight:700; color:var(--text); display:block; margin-bottom:.35rem; }
-  .lm-field input { width:100%; padding:.75rem 1rem; border:1.5px solid var(--border);
-    border-radius:10px; font-size:.9rem; font-family:'Plus Jakarta Sans',sans-serif;
-    outline:none; background:var(--bg); color:var(--text); transition:border-color .2s; }
-  .lm-field input:focus { border-color:var(--violet); background:white; box-shadow:0 0 0 3px rgba(46,207,168,.08); }
-  .lm-btn { width:100%; padding:.9rem; background:linear-gradient(135deg,var(--accent),var(--accent-dark));
-    color:white; border:none; border-radius:12px; font-size:.95rem; font-weight:700;
-    cursor:pointer; font-family:'Plus Jakarta Sans',sans-serif;
-    transition:transform .2s,box-shadow .2s; margin-top:.25rem; }
-  .lm-btn:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(12,61,48,.45); }
-  .lm-btn:disabled { opacity:.6; cursor:not-allowed; transform:none; }
-  .lm-msg { padding:.65rem .9rem; border-radius:9px; font-size:.82rem; font-weight:600;
-    margin-top:.75rem; text-align:center; display:none; }
-  .lm-msg.error   { background:rgba(255,92,92,.1);  color:var(--coral); display:block; }
-  .lm-msg.success { background:rgba(16,185,129,.1); color:var(--green); display:block; }
-  .lm-divider { text-align:center; font-size:.78rem; color:var(--muted); margin:.85rem 0; }
-  .lm-link { font-size:.82rem; color:var(--muted); text-align:center; margin-top:.85rem; }
-  .lm-link a { color:var(--violet); font-weight:600; text-decoration:none; }
-
 </style>
+  <link rel="stylesheet" href="public-navbar.css">
+  <link rel="stylesheet" href="public-footer.css">
+  <link rel="stylesheet" href="public-responsive.css">
+  <link rel="stylesheet" href="public-design-system.css">
 </head>
 <body>
 <nav>
@@ -817,33 +776,29 @@ window.addEventListener('resize', function() { if (window.innerWidth > 768) clos
     <a href="cadastro-empresa.html" class="active">Para Empresas</a>
     <a href="termos.html">Termos</a>
   </div>
-    <div class="nav-right" id="nav-right-wrap">
-    <!-- Logado: candidato -->
+  <div style="display:flex;align-items:center;gap:.75rem">
     <div id="nav-logado-cand" style="display:none" class="nav-logado-desktop">
       <div class="nav-user-wrap">
         <div class="nav-avatar" id="nav-avatar-cand" onclick="window.location.href='cadastro-candidato.html'">?</div>
         <span class="nav-user-name" id="nav-user-name" style="display:none"></span>
       </div>
     </div>
-    <!-- Logado: empresa -->
     <div id="nav-logado-emp" style="display:none" class="nav-logado-desktop">
       <div class="nav-user-wrap">
-        <div class="nav-avatar" style="background:linear-gradient(135deg,var(--accent),var(--primary))" onclick="window.location.href='painel-empresa.html'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
+        <div class="nav-avatar" style="background:linear-gradient(135deg,var(--accent,#00A499),var(--primary,#006C5B))" onclick="window.location.href='painel-empresa.html'"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
       </div>
     </div>
-    <!-- Deslogado: dois botões -->
-    <div class="nav-access" id="nav-access-wrap">
-      <button class="btn-entrar" onclick="openLoginModal('candidato')">Entrar</button>
-      <a class="btn-nav-cta" href="cadastro-candidato.html">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        Criar perfil
-      </a>
+    <div class="nav-actions-public" id="nav-access-wrap">
+      <button class="btn-nav-outline" type="button" onclick="openLoginModal('candidato')">Entrar</button>
+      <a href="cadastro-candidato.html" class="btn-nav-cta">Criar perfil</a>
     </div>
   </div>
   <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
+
+<div class="drawer-overlay" id="drawer-overlay" onclick="closeMobileMenu()"></div>
 
 <div class="mobile-drawer" id="mobile-drawer">
   <div class="mobile-nav-links">
@@ -853,21 +808,12 @@ window.addEventListener('resize', function() { if (window.innerWidth > 768) clos
     <a href="termos.html" onclick="closeMobileMenu()"><svg style="vertical-align:middle;flex-shrink:0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Termos</a>
   </div>
   <div class="mobile-divider"></div>
-  <div class="mobile-access-title">Entrar como</div>
-  <button class="mobile-access-btn" onclick="closeMobileMenu();openLoginModal('candidato')">
-    <div class="mobile-access-icon" style="background:rgba(0,122,94,.08)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
-    <div><div class="mobile-access-label">Candidato</div><div class="mobile-access-sub">Acesse seu perfil e candidaturas</div></div>
-  </button>
-  <button class="mobile-access-btn" onclick="closeMobileMenu();openLoginModal('empresa')">
-    <div class="mobile-access-icon" style="background:rgba(0,122,94,.08)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
-    <div><div class="mobile-access-label">Empresa</div><div class="mobile-access-sub">Gerencie vagas e candidatos</div></div>
-  </button>
-  <div class="mobile-divider"></div>
-  <div class="mobile-access-title">Novo por aqui?</div>
+  <div class="mobile-access-title">Acesso rápido</div>
   <div class="mobile-cta">
-    <a class="cta-primary" href="cadastro-candidato.html"><svg style="vertical-align:middle;flex-shrink:0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Criar perfil de candidato</a>
-    <a class="cta-secondary" href="cadastro-empresa.html">Cadastrar empresa</a>
+    <a class="cta-secondary" href="javascript:void(0)" onclick="closeMobileMenu();openLoginModal('candidato')">Entrar</a>
+    <a class="cta-primary" href="cadastro-candidato.html" onclick="closeMobileMenu()"><svg style="vertical-align:middle;flex-shrink:0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Criar perfil</a>
   </div>
+  <a class="mobile-company-link" href="cadastro-empresa.html" onclick="closeMobileMenu()">Sou empresa → Publicar vaga</a>
 </div>
 
 
@@ -1154,15 +1100,15 @@ window.addEventListener('resize', function() { if (window.innerWidth > 768) clos
 
       <div class="form-actions">
         <button class="btn-back" onclick="goTo(3)">← Voltar</button>
-        <button class="btn-next" onclick="submitForm()" style="background:linear-gradient(135deg,#10B981,#059669)">
-          Enviar para Aprovação
+        <button class="btn-next" onclick="submitForm()" style="background:linear-gradient(135deg,#00A499,#059669)">
+          Enviar para Aprovação ✓
         </button>
       </div>
     </div>
 
     <!-- SUCCESS -->
     <div class="success-screen" id="success-screen">
-      <div class="success-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#007A5E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 18 4 13"/></svg></div>
+      <div class="success-icon">✓</div>
       <h2>Vaga enviada com sucesso!</h2>
       <p>Recebemos o seu anúncio. Nossa equipe irá analisar e você receberá um retorno por e-mail em até <strong>24 horas úteis</strong>.</p>
       <div class="info-box">
@@ -1174,16 +1120,17 @@ window.addEventListener('resize', function() { if (window.innerWidth > 768) clos
   </div>
 </div>
 
-<footer>
-  <div class="footer-logo" role="img" aria-label="Conecta — Polo Bauru-Centro"></div>
-  <div class="footer-links">
-    <a href="index.html">Início</a>
-    <a href="vagas.html">Ver vagas</a>
-    <a href="sobre.html">Sobre</a>
-    <a href="cadastro-empresa.html">Para Empresas</a>
-    <a href="termos.html">Termos & Privacidade</a>
+<footer class="public-footer">
+  <div class="public-footer-logo-wrap">
+    <img src="logo-conecta-white.png" alt="Conecta — Anhembi Morumbi — Polo Bauru Centro" class="public-footer-logo" />
   </div>
-  <p class="footer-copy">© 2025 Universidade Anhembi Morumbi — Polo Bauru-Centro. Todos os direitos reservados.</p>
+  <div class="public-footer-nav">
+    <a href="index.html">Início</a>
+    <a href="vagas.html">Vagas</a>
+    <a href="sobre.html">Sobre</a>
+    <a href="termos.html">Termos &amp; Privacidade</a>
+  </div>
+  <p class="public-footer-copy">© 2025 Universidade Anhembi Morumbi — Polo Bauru Centro. Todos os direitos reservados.</p>
 </footer>
 
 <script>
@@ -1417,7 +1364,7 @@ carregarIdentidade();
       senha_hash: hash
     }).select('id').single();
 
-    if (empErr) { alert('Erro ao cadastrar empresa: ' + empErr.message); if(btnSubmit){btnSubmit.disabled=false;btnSubmit.textContent='Enviar para Aprovação';} return; }
+    if (empErr) { alert('Erro ao cadastrar empresa: ' + empErr.message); if(btnSubmit){btnSubmit.disabled=false;btnSubmit.textContent='Enviar para Aprovação ✓';} return; }
     empresaId = novaEmp.id;
   }
 
@@ -1435,7 +1382,7 @@ carregarIdentidade();
     status: 'pendente'
   });
 
-  if (vagaErr) { alert('Erro ao enviar vaga: ' + vagaErr.message); if(btnSubmit){btnSubmit.disabled=false;btnSubmit.textContent='Enviar para Aprovação';} return; }
+  if (vagaErr) { alert('Erro ao enviar vaga: ' + vagaErr.message); if(btnSubmit){btnSubmit.disabled=false;btnSubmit.textContent='Enviar para Aprovação ✓';} return; }
 
   // Sucesso
   document.getElementById('steps-bar').style.display = 'none';
@@ -1444,11 +1391,10 @@ carregarIdentidade();
   window.scrollTo({top:0, behavior:'smooth'});
 }
 </script>
-<script>
 <!-- MODAL LOGIN -->
 <div class="login-modal-overlay" id="login-modal-overlay" onclick="if(event.target===this)closeLoginModal()">
   <div class="login-modal">
-    <button class="login-modal-close" onclick="closeLoginModal()"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <button class="login-modal-close" onclick="closeLoginModal()">✕</button>
     <div class="login-modal-tabs">
       <button class="lm-tab active" id="lmt-candidato" onclick="switchLoginTab('candidato')"><svg style="vertical-align:middle;flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Candidato</button>
       <button class="lm-tab" id="lmt-empresa" onclick="switchLoginTab('empresa')"><svg style="vertical-align:middle;flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg> Empresa</button>
@@ -1471,109 +1417,6 @@ carregarIdentidade();
     </div>
   </div>
 </div>
-<script>
-/* ═══════════ NAV JS UNIFICADO ═══════════ */
-(function(){
-  const SB_URL = 'https://hnhxxchhwhdlpuiceirz.supabase.co';
-  const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhuaHh4Y2hod2hkbHB1aWNlaXJ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM0MjY4MDMsImV4cCI6MjA4OTAwMjgwM30._N9DBrCq7lXW6tpfpcXHHcaH21AqEAcinPPIE-_-Ik8';
-
-  // logout via ?logout=1
-  if(new URLSearchParams(location.search).get('logout')==='1'){
-    sessionStorage.removeItem('candidato');
-    sessionStorage.removeItem('empresa');
-    history.replaceState({},'',location.pathname);
-  }
-
-  const cand = JSON.parse(sessionStorage.getItem('candidato')||'null');
-  const emp  = JSON.parse(sessionStorage.getItem('empresa')||'null');
-
-  function checkNavSessions(){
-    if(cand){
-      document.getElementById('nav-access-wrap')?.style && (document.getElementById('nav-access-wrap').style.display='none');
-      const c=document.getElementById('nav-logado-cand'); if(c)c.style.display='block';
-      const av=document.getElementById('nav-avatar-cand'); if(av)av.textContent=cand.nome?.charAt(0)?.toUpperCase()||'?';
-      const nm=document.getElementById('nav-user-name');
-      if(nm&&window.innerWidth>768){nm.textContent=cand.nome?.split(' ')[0];nm.style.display='block';}
-    } else if(emp){
-      document.getElementById('nav-access-wrap')?.style && (document.getElementById('nav-access-wrap').style.display='none');
-      const e=document.getElementById('nav-logado-emp'); if(e)e.style.display='block';
-    }
-  }
-
-  function toggleAccessDropdown(){
-    document.getElementById('btn-access')?.classList.toggle('open');
-    document.getElementById('access-dropdown')?.classList.toggle('open');
-  }
-  document.addEventListener('click',function(e){
-    if(!e.target.closest('.nav-access')){
-      document.getElementById('btn-access')?.classList.remove('open');
-      document.getElementById('access-dropdown')?.classList.remove('open');
-    }
-  });
-
-  function openLoginModal(tab){
-    document.getElementById('access-dropdown')?.classList.remove('open');
-    document.getElementById('btn-access')?.classList.remove('open');
-    switchLoginTab(tab);
-    document.getElementById('login-modal-overlay').classList.add('open');
-    document.body.style.overflow='hidden';
-    setTimeout(()=>{document.getElementById(tab==='candidato'?'lm-c-email':'lm-e-email')?.focus();},200);
-  }
-  function closeLoginModal(){
-    document.getElementById('login-modal-overlay').classList.remove('open');
-    document.body.style.overflow='';
-  }
-  function switchLoginTab(tab){
-    ['candidato','empresa'].forEach(t=>{
-      document.getElementById('lms-'+t)?.classList.toggle('show',t===tab);
-      document.getElementById('lmt-'+t)?.classList.toggle('active',t===tab);
-    });
-  }
-  async function loginModal(tipo){
-    const isC=tipo==='candidato';
-    const email=document.getElementById(isC?'lm-c-email':'lm-e-email').value.trim();
-    const senha=document.getElementById(isC?'lm-c-senha':'lm-e-senha').value;
-    const btn=document.getElementById(isC?'lm-btn-cand':'lm-btn-emp');
-    const msg=document.getElementById(isC?'lm-msg-cand':'lm-msg-emp');
-    if(!email||!senha){showLmMsg(msg,'Preencha e-mail e senha.','error');return;}
-    btn.disabled=true;btn.textContent='Entrando...';
-    const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(senha));
-    const hash=Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
-    const table=isC?'candidatos':'empresas';
-    const res=await fetch(`${SB_URL}/rest/v1/${table}?email=eq.${encodeURIComponent(email)}&senha_hash=eq.${hash}&select=*`,
-      {headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}});
-    const data=await res.json();
-    btn.disabled=false;btn.textContent='Entrar →';
-    if(!data||!data.length){showLmMsg(msg,'E-mail ou senha incorretos.','error');return;}
-    sessionStorage.setItem(isC?'candidato':'empresa',JSON.stringify(data[0]));
-    showLmMsg(msg,'Login realizado! Redirecionando...','success');
-    setTimeout(()=>{location.href=isC?'cadastro-candidato.html':'painel-empresa.html';},900);
-  }
-  function showLmMsg(el,txt,type){el.textContent=txt;el.className='lm-msg '+type;}
-
-  function toggleMobileMenu(){
-    const hb=document.getElementById('hamburger');
-    const dr=document.getElementById('mobile-drawer');
-    hb.classList.toggle('open');dr.classList.toggle('open');
-    document.body.style.overflow=dr.classList.contains('open')?'hidden':'';
-  }
-  function closeMobileMenu(){
-    document.getElementById('hamburger')?.classList.remove('open');
-    document.getElementById('mobile-drawer')?.classList.remove('open');
-    document.body.style.overflow='';
-  }
-  window.addEventListener('resize',()=>{if(window.innerWidth>768)closeMobileMenu();});
-
-  window.toggleAccessDropdown=toggleAccessDropdown;
-  window.openLoginModal=openLoginModal;
-  window.closeLoginModal=closeLoginModal;
-  window.switchLoginTab=switchLoginTab;
-  window.loginModal=loginModal;
-  window.toggleMobileMenu=toggleMobileMenu;
-  window.closeMobileMenu=closeMobileMenu;
-
-  checkNavSessions();
-})();
-</script>
+  <script src="public-navbar.js"></script>
 </body>
 </html>

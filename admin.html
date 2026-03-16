@@ -14,26 +14,26 @@
 
   /* Variáveis Admin */
   :root {
-    --primary:       #007A5E;
-    --primary-dark:  #005C47;
-    --primary-mid:   #006B52;
-    --accent:        #00A88E;
-    --accent-dark:   #008C76;
-    --accent-light:  #E6F7F4;
-    --gray:          #76787B;
-    --gray-light:    #F0F1F2;
+    --primary:       #006C5B;
+    --primary-dark:  #005247;
+    --primary-mid:   #005F51;
+    --accent:        #00A499;
+    --accent-dark:   #00897F;
+    --accent-light:  #E6F6F4;
+    --gray:          #63666A;
+    --gray-light:    #D9DEE2;
     --bg:            #F4F8F7;
-    --dark:          #007A5E;
+    --dark:          #006C5B;
     --text:          #1A2E28;
-    --muted:         #76787B;
-    --border:        #D4E5DF;
+    --muted:         #63666A;
+    --border:        #C9D9D5;
     --white:         #FFFFFF;
-    --green:         #00A88E;
-    --orange:        #E65100;
-    --yellow:        #F5A623;
-    --cyan:          #00A88E;
-    --violet:        #007A5E;
-    --coral:         #005C47;
+    --green:         #00A499;
+    --orange:        #63666A;
+    --yellow:        #00897F;
+    --cyan:          #00A499;
+    --violet:        #006C5B;
+    --coral:         #63666A;
     /* Admin específico */
     --sidebar-bg:    #004D3D;
     --sidebar-hover: rgba(0,168,142,.15);
@@ -41,6 +41,11 @@
     --card-bg:       #FFFFFF;
     --surface:       #FFFFFF;
     --card:          #FFFFFF;
+    --brand-primary: #006C5B;
+    --brand-accent:  #00A499;
+    --brand-neutral: #63666A;
+    --status-error:  #63666A;
+    --status-error-bg: rgba(99,102,106,.12);
   }
 
   * { margin:0; padding:0; box-sizing:border-box; }
@@ -84,11 +89,10 @@
   .logo {
     display: block;
     width: 160px; height: 44px;
-    background: url('logobranca.png') no-repeat left center / contain;
+    background: var(--logo-url-admin, url('logo-conecta-white.png')) no-repeat left center / contain;
     font-size: 0; color: transparent;
     -webkit-text-fill-color: transparent;
     cursor: pointer; text-decoration: none;
-    filter: brightness(0) invert(1);
     opacity: .9;
   }
 
@@ -306,16 +310,16 @@
   .btn-view:hover { border-color: var(--primary); color: var(--primary); }
   .btn-approve { border-color: rgba(0,168,142,.3); color: var(--accent-dark); background: rgba(0,168,142,.08); }
   .btn-approve:hover { background: var(--accent); color: white; border-color: var(--accent); }
-  .btn-reject  { border-color: rgba(230,81,0,.25); color: var(--orange); background: rgba(230,81,0,.06); }
-  .btn-reject:hover { background: var(--orange); color: white; border-color: var(--orange); }
-  .btn-delete  { border-color: rgba(230,81,0,.2); color: #B71C1C; background: rgba(183,28,28,.05); }
-  .btn-delete:hover { background: #B71C1C; color: white; }
+  .btn-reject  { border-color: rgba(99,102,106,.24); color: var(--brand-neutral); background: rgba(99,102,106,.08); }
+  .btn-reject:hover { background: var(--brand-neutral); color: white; border-color: var(--brand-neutral); }
+  .btn-delete  { border-color: rgba(99,102,106,.20); color: var(--brand-neutral); background: rgba(99,102,106,.08); }
+  .btn-delete:hover { background: #4F5B62; color: white; }
 
   /* ══════════ STATUS BADGES ══════════ */
   .status-badge { padding: .28rem .8rem; border-radius: 50px; font-size: .72rem; font-weight: 700; }
   .status-pendente  { background: rgba(245,166,35,.12); color: #B45309; }
   .status-aprovada  { background: rgba(0,168,142,.12); color: var(--accent-dark); }
-  .status-rejeitada { background: rgba(183,28,28,.1); color: #B71C1C; }
+  .status-rejeitada { background: rgba(99,102,106,.12); color: var(--brand-neutral); }
   .status-encerrada { background: rgba(118,120,123,.12); color: var(--gray); }
 
   /* ══════════ COMPANY CARDS ══════════ */
@@ -354,8 +358,8 @@
   .modal-actions { display: flex; gap: .75rem; margin-top: 1.5rem; }
   .btn-modal-approve { flex: 1; padding: .85rem; background: var(--accent); color: white; border: none; border-radius: 12px; font-size: .9rem; font-weight: 700; cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; transition: all .2s; }
   .btn-modal-approve:hover { background: var(--accent-dark); }
-  .btn-modal-reject { flex: 1; padding: .85rem; background: rgba(183,28,28,.08); color: #B71C1C; border: 1.5px solid rgba(183,28,28,.2); border-radius: 12px; font-size: .9rem; font-weight: 700; cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; transition: all .2s; }
-  .btn-modal-reject:hover { background: #B71C1C; color: white; }
+  .btn-modal-reject { flex: 1; padding: .85rem; background: rgba(99,102,106,.12); color: var(--brand-neutral); border: 1.5px solid rgba(99,102,106,.22); border-radius: 12px; font-size: .9rem; font-weight: 700; cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; transition: all .2s; }
+  .btn-modal-reject:hover { background: #4F5B62; color: white; }
   .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
   .detail-item { background: var(--bg); border-radius: 10px; padding: .75rem; }
   .detail-label { font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
@@ -364,7 +368,7 @@
   /* ══════════ LOGIN ══════════ */
   .login-screen {
     position: fixed; inset: 0; z-index: 1000;
-    background: linear-gradient(155deg, #004D3D 0%, #007A5E 60%, #005C47 100%);
+    background: linear-gradient(155deg, #004D3D 0%, #006C5B 60%, #005247 100%);
     display: flex; align-items: center; justify-content: center; padding: 1rem;
   }
   .login-screen::before {
@@ -417,10 +421,10 @@
     font-family: 'Plus Jakarta Sans', sans-serif;
     transition: all .2s; margin-top: .25rem;
   }
-  .btn-login:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,168,142,.35); }
+  .btn-login:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,164,153,.35); }
   .btn-login:disabled { opacity: .6; cursor: not-allowed; transform: none; }
 
-  .login-error { display: none; background: rgba(183,28,28,.08); color: #B71C1C; padding: .65rem 1rem; border-radius: 10px; font-size: .82rem; font-weight: 600; margin-top: .75rem; }
+  .login-error { display: none; background: rgba(99,102,106,.12); color: #4F5B62; padding: .65rem 1rem; border-radius: 10px; font-size: .82rem; font-weight: 600; margin-top: .75rem; }
   .login-error.show { display: block; }
   .locked-msg { display: none; background: rgba(245,166,35,.1); color: #B45309; padding: .65rem 1rem; border-radius: 10px; font-size: .82rem; font-weight: 600; margin-top: .75rem; }
   .locked-msg.show { display: block; }
@@ -435,7 +439,7 @@
   .toast { position: fixed; bottom: 1.5rem; right: 1.5rem; padding: .85rem 1.25rem; border-radius: 12px; font-size: .85rem; font-weight: 600; color: white; box-shadow: 0 8px 24px rgba(0,0,0,.2); transform: translateY(80px); opacity: 0; transition: all .3s; z-index: 300; max-width: 320px; }
   .toast.show { transform: translateY(0); opacity: 1; }
   .toast.success { background: var(--accent); }
-  .toast.error   { background: #B71C1C; }
+  .toast.error   { background: var(--brand-neutral); }
   .toast.info    { background: var(--primary); }
 
   /* ══════════ BTN PRIMARY SM ══════════ */
@@ -459,6 +463,21 @@
   @media(max-width:600px) {
     .stats-grid { grid-template-columns: 1fr; }
     .settings-grid { grid-template-columns: 1fr; }
+  }
+  @media(max-width:820px) {
+    .topbar { padding: 1rem; gap: .75rem; }
+    .topbar-title { font-size: 1rem; }
+    .panel { padding: 1rem; border-radius: 18px; }
+    .cand-row { flex-direction: column; align-items: flex-start; }
+    .cand-row > div:last-child { width: 100%; }
+    .toast { left: 1rem; right: 1rem; max-width: none; }
+  }
+  @media(max-width:680px) {
+    body { overflow-x: hidden; }
+    .sidebar { width: min(86vw, 300px); }
+    .main { padding: .75rem; }
+    .content { padding: 1rem 0 1.5rem; }
+    .panel-header, .topbar { flex-wrap: wrap; }
   }
 
 
@@ -508,7 +527,7 @@
     box-shadow: 0 2px 8px rgba(0,122,94,.06);
   }
   .parceiro-card:hover {
-    border-color: #00A88E;
+    border-color: #00A499;
     box-shadow: 0 6px 24px rgba(0,168,142,.15);
     transform: translateY(-2px);
   }
@@ -525,7 +544,7 @@
   .parceiro-logo-wrap img { width: 100%; height: 100%; object-fit: contain; }
   .parceiro-logo-wrap .parceiro-initial {
     width: 100%; height: 100%; border-radius: 8px;
-    background: linear-gradient(135deg, #007A5E, #00A88E);
+    background: linear-gradient(135deg, #006C5B, #00A499);
     color: white; display: flex; align-items: center; justify-content: center;
     font-family: 'Clash Display', sans-serif; font-size: 1.5rem; font-weight: 800;
   }
@@ -534,7 +553,7 @@
     font-size: .95rem; font-weight: 700; color: #1A2E28;
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: .15rem;
   }
-  .parceiro-site { font-size: .72rem; color: #76787B; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .parceiro-site { font-size: .72rem; color: #63666A; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .parceiro-status-badge {
     display: inline-flex; align-items: center; gap: .25rem;
     font-size: .68rem; font-weight: 700; text-transform: uppercase;
@@ -551,34 +570,34 @@
     display: flex; align-items: center; justify-content: center; gap: .3rem;
     font-family: 'DM Sans', sans-serif;
   }
-  .parceiro-actions button:hover { background: #E6F7F4; border-color: #00A88E; color: #007A5E; }
-  .parceiro-actions .btn-del { border-color: #FECACA; color: #DC2626; background: #FFF5F5; }
-  .parceiro-actions .btn-del:hover { background: #FEE2E2; border-color: #DC2626; }
+  .parceiro-actions button:hover { background: #E6F6F4; border-color: #00A499; color: #006C5B; }
+  .parceiro-actions .btn-del { border-color: rgba(99,102,106,.22); color: #63666A; background: rgba(99,102,106,.10); }
+  .parceiro-actions .btn-del:hover { background: rgba(99,102,106,.16); border-color: #63666A; }
   .parceiro-add-card {
     border: 2px dashed #B0D4CC; background: #F4F8F7; cursor: pointer;
     min-height: 120px; justify-content: center; align-items: center; gap: .6rem; box-shadow: none;
   }
-  .parceiro-add-card:hover { border-color: #00A88E; background: #E6F7F4; transform: translateY(-2px); }
-  .parceiro-add-card svg { color: #00A88E; opacity: .7; }
-  .parceiro-add-card span { font-size: .85rem; color: #007A5E; font-weight: 700; }
+  .parceiro-add-card:hover { border-color: #00A499; background: #E6F6F4; transform: translateY(-2px); }
+  .parceiro-add-card svg { color: #00A499; opacity: .7; }
+  .parceiro-add-card span { font-size: .85rem; color: #006C5B; font-weight: 700; }
   .modal-parceiro-form { display: flex; flex-direction: column; gap: 1.1rem; margin-top: 1.1rem; }
   .modal-parceiro-form .field-group { display: flex; flex-direction: column; gap: .4rem; }
   .modal-parceiro-form label {
     font-size: .72rem; font-weight: 700; text-transform: uppercase;
-    letter-spacing: .07em; color: #76787B; display: block;
+    letter-spacing: .07em; color: #63666A; display: block;
   }
   .modal-parceiro-form input[type="text"],
   .modal-parceiro-form input[type="url"] {
     width: 100%; padding: .75rem 1rem;
-    background: #F4F8F7; border: 1.5px solid #C8DDD9; border-radius: 10px;
+    background: #F4F8F7; border: 1.5px solid #C9D9D5; border-radius: 10px;
     color: #1A2E28; font-size: .9rem; font-family: 'DM Sans', sans-serif;
     outline: none; transition: border-color .2s, box-shadow .2s;
   }
-  .modal-parceiro-form input:focus { border-color: #00A88E; box-shadow: 0 0 0 3px rgba(0,168,142,.1); background: #ffffff; }
+  .modal-parceiro-form input:focus { border-color: #00A499; box-shadow: 0 0 0 3px rgba(0,168,142,.1); background: #ffffff; }
   .modal-parceiro-form input::placeholder { color: #A0B5B0; }
   .logo-preview-box {
     width: 100%; min-height: 80px; background: #F4F8F7;
-    border: 1.5px dashed #C8DDD9; border-radius: 10px;
+    border: 1.5px dashed #C9D9D5; border-radius: 10px;
     display: flex; align-items: center; justify-content: center;
     overflow: hidden; margin-top: .4rem; padding: .75rem;
   }
@@ -586,10 +605,10 @@
   .logo-preview-box span { font-size: .8rem; color: #A0B5B0; }
   .modal-toggle-row {
     display: flex; align-items: center; gap: .75rem;
-    padding: .75rem 1rem; background: #F4F8F7; border-radius: 10px; border: 1.5px solid #C8DDD9;
+    padding: .75rem 1rem; background: #F4F8F7; border-radius: 10px; border: 1.5px solid #C9D9D5;
   }
   .modal-toggle-row label { text-transform: none; letter-spacing: 0; font-size: .88rem; color: #1A2E28; font-weight: 500; margin: 0; cursor: pointer; }
-  .modal-toggle-row small { font-size: .73rem; color: #76787B; display: block; margin-top: .1rem; }
+  .modal-toggle-row small { font-size: .73rem; color: #63666A; display: block; margin-top: .1rem; }
 
 </style>
 </head>
@@ -599,7 +618,7 @@
 <div class="login-screen" id="login-screen">
   <div class="login-card">
     <div class="login-logo-wrap">
-      <img src="logocolorida.png" alt="Anhembi Morumbi - Polo Bauru-Centro">
+      <img src="logocolorida.png" alt="Anhembi Morumbi - Polo Bauru Centro">
     </div>
     <h1>Área Restrita</h1>
     <p>Acesse com seu e-mail e senha<br>de administrador.</p>
@@ -787,7 +806,7 @@
                 <button onclick="document.getElementById('logo-file-input').click()" style="flex:1;padding:.5rem .9rem;background:rgba(167,139,250,.15);color:#A78BFA;border:1px solid rgba(167,139,250,.3);border-radius:8px;font-size:.78rem;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif"><svg style="vertical-align:middle;flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg> Escolher arquivo</button>
                 <button id="btn-salvar-logo" onclick="salvarLogo()" style="flex:1;padding:.5rem .9rem;background:linear-gradient(135deg,var(--accent),var(--accent-dark));color:white;border:none;border-radius:8px;font-size:.78rem;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif" disabled><svg style="vertical-align:middle;flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Salvar logo</button>
               </div>
-              <button onclick="removerLogo()" style="width:100%;margin-top:.4rem;padding:.4rem;background:rgba(255,92,92,.1);color:#FF5C5C;border:1px solid rgba(255,92,92,.2);border-radius:8px;font-size:.72rem;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif"> Remover logo</button>
+              <button onclick="removerLogo()" style="width:100%;margin-top:.4rem;padding:.4rem;background:rgba(99,102,106,.12);color:var(--brand-neutral);border:1px solid rgba(99,102,106,.22);border-radius:8px;font-size:.72rem;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif"> Remover logo</button>
               <div id="msg-logo" style="font-size:.78rem;font-weight:600;margin-top:.5rem;display:none"></div>
             </div>
 
@@ -801,20 +820,18 @@
               <div>
                 <div style="font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:.5rem">Cor Principal</div>
                 <div style="display:flex;align-items:center;gap:.75rem">
-                  <input type="color" id="config-cor-primary" value="#00A88E"
-                    style="width:44px;height:36px;border:none;border-radius:8px;cursor:pointer;background:none">
-                  <input type="text" id="config-cor-text" value="#00A88E" placeholder="#00A88E"
+                  <input type="color" id="config-cor-primary" value="#00A499"
+                    style="width:44px;height:36px;border:none;border-radius:8px;cursor:pointer;background:none" onchange="this.value=normalizeBrandColorAdmin(this.value);document.getElementById('config-cor-text').value=this.value;aplicarTemaPortal(this.value)">
+                  <input type="text" id="config-cor-text" value="#00A499" placeholder="#00A499"
                     style="flex:1;padding:.6rem 1rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;font-size:.875rem;color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;outline:none"
-                    oninput="document.getElementById('config-cor-primary').value=this.value">
+                    oninput="this.value=normalizeBrandColorAdmin(this.value);document.getElementById('config-cor-primary').value=this.value;aplicarTemaPortal(this.value)">
                 </div>
                 <div style="display:flex;gap:.4rem;margin-top:.6rem;flex-wrap:wrap">
-                  <button onclick="setColor('var(--accent)')" style="width:28px;height:28px;background:var(--accent);border:none;border-radius:6px;cursor:pointer;transition:transform .15s" title="Verde Anhembi" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='none'"></button>
-                  <button onclick="setColor('#1565C0')" style="width:28px;height:28px;background:#2ECFA8;border:none;border-radius:6px;cursor:pointer;transition:transform .15s" title="Verde Menta Anhembi" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='none'"></button>
-                  <button onclick="setColor('#2E7D32')" style="width:28px;height:28px;background:#2E7D32;border:none;border-radius:6px;cursor:pointer;transition:transform .15s" title="Verde" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='none'"></button>
-                  <button onclick="setColor('#6A1B9A')" style="width:28px;height:28px;background:#6A1B9A;border:none;border-radius:6px;cursor:pointer;transition:transform .15s" title="Roxo" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='none'"></button>
-                  <button onclick="setColor('#E65100')" style="width:28px;height:28px;background:#E65100;border:none;border-radius:6px;cursor:pointer;transition:transform .15s" title="Laranja" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='none'"></button>
-                  <button onclick="setColor('#1C1C1E')" style="width:28px;height:28px;background:#1C1C1E;border:none;border-radius:6px;cursor:pointer;transition:transform .15s" title="Preto" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='none'"></button>
+                  <button onclick="setColor('#006C5B')" style="width:28px;height:28px;background:#006C5B;border:none;border-radius:6px;cursor:pointer;transition:transform .15s" title="Verde escuro — Pantone 7719C" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='none'"></button>
+                  <button onclick="setColor('#00A499')" style="width:28px;height:28px;background:#00A499;border:none;border-radius:6px;cursor:pointer;transition:transform .15s" title="Verde claro — Pantone 3285C" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='none'"></button>
+                  <button onclick="setColor('#63666A')" style="width:28px;height:28px;background:#63666A;border:none;border-radius:6px;cursor:pointer;transition:transform .15s" title="Cinza médio — Cool Gray 10 C" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='none'"></button>
                 </div>
+                <div style="margin-top:.55rem;font-size:.75rem;color:var(--muted)">Paleta travada no padrão institucional da Anhembi Morumbi — Polo Bauru Centro.</div>
               </div>
               <button onclick="salvarConfiguracoes()" style="padding:.75rem;background:linear-gradient(135deg,var(--accent),var(--accent-dark));color:white;border:none;border-radius:10px;font-size:.875rem;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:transform .2s;margin-top:auto" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
                 Salvar configurações do portal ✓
@@ -884,7 +901,7 @@
               <div class="setting-name">Limpar vagas rejeitadas</div>
               <div class="setting-desc">Remove permanentemente todas as vagas rejeitadas</div>
             </div>
-            <button onclick="clearRejected()" style="padding:0.4rem 0.9rem;background:rgba(255,92,92,0.15);color:var(--coral);border:1px solid rgba(255,92,92,0.3);border-radius:8px;font-size:0.78rem;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;">Limpar</button>
+            <button onclick="clearRejected()" style="padding:0.4rem 0.9rem;background:rgba(99,102,106,.14);color:var(--brand-neutral);border:1px solid rgba(99,102,106,.22);border-radius:8px;font-size:0.78rem;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;">Limpar</button>
           </div>
           <div class="setting-row">
             <div class="setting-info">
@@ -1073,7 +1090,7 @@ async function renderAdmins() {
 
   list.innerHTML = data.map(a => `
     <div class="admin-job-card">
-      <div class="ajc-logo" style="background:linear-gradient(135deg,rgba(12,61,48,.3),rgba(255,92,92,.2));font-family:'Clash Display',sans-serif;font-weight:700;color:#80DFCC;font-size:1.2rem">
+      <div class="ajc-logo" style="background:linear-gradient(135deg,rgba(0,108,91,.28),rgba(0,164,153,.20));font-family:'Clash Display',sans-serif;font-weight:700;color:#CFF6F1;font-size:1.2rem">
         ${a.nome.charAt(0).toUpperCase()}
       </div>
       <div class="ajc-info">
@@ -1145,8 +1162,8 @@ function showAdminMsg(txt, type) {
   const el = document.getElementById('admin-modal-msg');
   el.textContent = txt;
   el.style.display = 'block';
-  el.style.background = type === 'error' ? 'rgba(255,92,92,.15)' : 'rgba(16,185,129,.15)';
-  el.style.color = type === 'error' ? 'var(--primary-dark)' : '#10B981';
+  el.style.background = type === 'error' ? 'var(--status-error-bg)' : 'rgba(0,164,153,.14)';
+  el.style.color = type === 'error' ? 'var(--brand-neutral)' : 'var(--brand-accent)';
 }
 
 // ---- DATA (Supabase) ----
@@ -1315,7 +1332,7 @@ function cardHTML(v, showActions) {
         <button class="btn-action btn-reject"  onclick="event.stopPropagation();rejectVaga('${id}')">Rejeitar</button>`;
     } else {
       const destLabel = v.destaque ? 'Destaque ON' : 'Destaque';
-      const destStyle = v.destaque ? 'background:rgba(0,168,142,.12);color:#007A5E;border-color:rgba(0,168,142,.35);font-weight:700;' : '';
+      const destStyle = v.destaque ? 'background:rgba(0,168,142,.12);color:#006C5B;border-color:rgba(0,164,153,.35);font-weight:700;' : '';
       actions = `
         <button class="btn-action btn-view"   onclick="event.stopPropagation();openDetail('${id}')">Ver</button>
         <button class="btn-action" style="${destStyle}" onclick="event.stopPropagation();toggleDestaque('${id}', ${v.destaque || false})" title="Destacar na home">
@@ -1464,8 +1481,231 @@ function showToast(msg, type = 'info') {
   setTimeout(() => t.classList.remove('show'), 3000);
 }
 
+
+
+// ---- CONFIGURAÇÕES DO PORTAL ----
+let pendingLogoDataUrl = '';
+
+function ajustarCorHex(hex, delta) {
+  if (!/^#[0-9A-Fa-f]{6}$/.test(hex || '')) return '#00897F';
+  const num = parseInt(hex.slice(1), 16);
+  const clamp = v => Math.max(0, Math.min(255, v));
+  const r = clamp((num >> 16) + delta);
+  const g = clamp(((num >> 8) & 255) + delta);
+  const b = clamp((num & 255) + delta);
+  return '#' + [r, g, b].map(v => v.toString(16).padStart(2, '0')).join('');
+}
+
+function misturarComBranco(hex, fator = 0.88) {
+  if (!/^#[0-9A-Fa-f]{6}$/.test(hex || '')) return '#E6F6F4';
+  const num = parseInt(hex.slice(1), 16);
+  const clamp = v => Math.max(0, Math.min(255, v));
+  const r = clamp(Math.round((num >> 16) * (1 - fator) + 255 * fator));
+  const g = clamp(Math.round(((num >> 8) & 255) * (1 - fator) + 255 * fator));
+  const b = clamp(Math.round((num & 255) * (1 - fator) + 255 * fator));
+  return '#' + [r, g, b].map(v => v.toString(16).padStart(2, '0')).join('');
+}
+
+function aplicarTemaPortal(cor) {
+  cor = normalizeBrandColorAdmin(cor);
+  if (!/^#[0-9A-Fa-f]{6}$/.test(cor || '')) return;
+  const corDark = ajustarCorHex(cor, -24);
+  document.documentElement.style.setProperty('--primary', cor);
+  document.documentElement.style.setProperty('--accent', cor);
+  document.documentElement.style.setProperty('--primary-dark', corDark);
+  document.documentElement.style.setProperty('--accent-dark', corDark);
+  document.documentElement.style.setProperty('--accent-light', misturarComBranco(cor, 0.88));
+  document.documentElement.style.setProperty('--violet', cor);
+  document.documentElement.style.setProperty('--coral', corDark);
+  const prevLogo = document.getElementById('nav-prev-logo');
+  const prevBtn = document.getElementById('nav-prev-btn');
+  if (prevLogo) prevLogo.style.color = cor;
+  if (prevBtn) prevBtn.style.background = cor;
+}
+
+function atualizarNomePreview(nome) {
+  const valor = (nome || '').trim() || 'Conecta';
+  const prevLogo = document.getElementById('nav-prev-logo');
+  if (prevLogo && !prevLogo.querySelector('img')) prevLogo.textContent = valor;
+}
+
+
+function normalizeBrandColorAdmin(hex) {
+  const value = String(hex || '').trim().toUpperCase();
+  const allowed = ['#006C5B', '#00A499', '#63666A'];
+  return allowed.includes(value) ? value : '#00A499';
+}
+
+function setColor(hex) {
+  hex = normalizeBrandColorAdmin(hex);
+  if (!/^#[0-9A-Fa-f]{6}$/.test(hex || '')) return;
+  const colorInput = document.getElementById('config-cor-primary');
+  const textInput = document.getElementById('config-cor-text');
+  if (colorInput) colorInput.value = hex;
+  if (textInput) textInput.value = hex;
+  aplicarTemaPortal(hex);
+}
+
+function showConfigMsg(msg, type = 'success') {
+  const el = document.getElementById('msg-logo');
+  if (!el) return;
+  el.style.display = 'block';
+  el.textContent = msg;
+  el.style.color = type === 'error' ? '#63666A' : '#00A499';
+}
+
+function updateLogoPreview(url, alt = 'Logo do portal') {
+  const txt = document.getElementById('logo-preview-text');
+  const img = document.getElementById('logo-preview-img');
+  const prevLogo = document.getElementById('nav-prev-logo');
+  const portalNome = document.getElementById('config-nome-portal')?.value?.trim() || 'Conecta';
+
+  if (!txt || !img || !prevLogo) return;
+
+  if (url) {
+    txt.style.display = 'none';
+    img.style.display = 'block';
+    img.src = url;
+    img.alt = alt;
+    prevLogo.innerHTML = `<img src="${url}" alt="${portalNome}" style="height:34px;max-width:180px;object-fit:contain">`;
+  } else {
+    img.style.display = 'none';
+    img.src = '';
+    txt.style.display = 'block';
+    txt.textContent = 'Nenhuma logo carregada';
+    prevLogo.innerHTML = '';
+    prevLogo.textContent = portalNome;
+  }
+}
+
+function previewLogo(event) {
+  const file = event?.target?.files?.[0];
+  const btn = document.getElementById('btn-salvar-logo');
+  if (!file) {
+    pendingLogoDataUrl = '';
+    if (btn) btn.disabled = true;
+    return;
+  }
+  if (!file.type.startsWith('image/')) {
+    showConfigMsg('Arquivo inválido. Use PNG, JPG, SVG ou WEBP.', 'error');
+    if (btn) btn.disabled = true;
+    return;
+  }
+  if (file.size > 2 * 1024 * 1024) {
+    showConfigMsg('A logo precisa ter no máximo 2 MB.', 'error');
+    if (btn) btn.disabled = true;
+    return;
+  }
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    pendingLogoDataUrl = e.target?.result || '';
+    updateLogoPreview(pendingLogoDataUrl, file.name || 'Logo do portal');
+    if (btn) btn.disabled = !pendingLogoDataUrl;
+    showConfigMsg('Pré-visualização carregada. Clique em "Salvar logo" para aplicar.', 'success');
+  };
+  reader.onerror = function() {
+    pendingLogoDataUrl = '';
+    if (btn) btn.disabled = true;
+    showConfigMsg('Não foi possível ler o arquivo da logo.', 'error');
+  };
+  reader.readAsDataURL(file);
+}
+
+async function upsertConfiguracao(chave, valor) {
+  return sb.from('configuracoes').upsert({ chave, valor }, { onConflict: 'chave' });
+}
+
+async function salvarLogo() {
+  if (!pendingLogoDataUrl) {
+    showConfigMsg('Escolha uma imagem antes de salvar.', 'error');
+    return;
+  }
+  const btn = document.getElementById('btn-salvar-logo');
+  btn.disabled = true;
+  btn.textContent = 'Salvando...';
+  writeLocalPortalConfig({ logo_url: pendingLogoDataUrl });
+  const { error } = await upsertConfiguracao('logo_url', pendingLogoDataUrl);
+  btn.innerHTML = '<svg style="vertical-align:middle;flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Salvar logo';
+  if (error) {
+    btn.disabled = false;
+    showConfigMsg('Erro ao salvar logo: ' + error.message, 'error');
+    return;
+  }
+  btn.disabled = false;
+  showConfigMsg('Logo salva com sucesso.', 'success');
+}
+
+async function removerLogo() {
+  pendingLogoDataUrl = '';
+  const input = document.getElementById('logo-file-input');
+  if (input) input.value = '';
+  updateLogoPreview('');
+  document.getElementById('btn-salvar-logo').disabled = true;
+  writeLocalPortalConfig({ logo_url: '' });
+  const { error } = await upsertConfiguracao('logo_url', '');
+  if (error) {
+    showConfigMsg('Erro ao remover logo: ' + error.message, 'error');
+    return;
+  }
+  showConfigMsg('Logo removida. O portal voltou para a padrão.', 'success');
+}
+
+async function carregarConfiguracoes() {
+  try {
+    const { data, error } = await sb.from('configuracoes').select('chave,valor');
+    if (error) throw error;
+    const cfg = Object.fromEntries((data || []).map(row => [row.chave, row.valor]));
+    const localCfg = readLocalPortalConfig();
+    const mergedCfg = Object.assign({}, localCfg, cfg || {});
+    const nome = mergedCfg.nome_portal || 'Conecta';
+    const cor = /^#[0-9A-Fa-f]{6}$/.test(mergedCfg.cor_primary || '') ? mergedCfg.cor_primary : '#00A499';
+
+    const nomeInput = document.getElementById('config-nome-portal');
+    const corColor = document.getElementById('config-cor-primary');
+    const corText = document.getElementById('config-cor-text');
+    if (nomeInput) nomeInput.value = nome;
+    if (corColor) corColor.value = cor;
+    if (corText) corText.value = cor;
+    aplicarTemaPortal(cor);
+    updateLogoPreview(mergedCfg.logo_url || '');
+    if (!mergedCfg.logo_url) document.getElementById('btn-salvar-logo').disabled = !pendingLogoDataUrl;
+    atualizarNomePreview(nome);
+  } catch (e) {
+    showConfigMsg('Erro ao carregar configurações: ' + e.message, 'error');
+  }
+}
+
+async function salvarConfiguracoes() {
+  const nome = (document.getElementById('config-nome-portal').value || '').trim() || 'Conecta';
+  const cor = (document.getElementById('config-cor-text').value || '').trim();
+  if (!/^#[0-9A-Fa-f]{6}$/.test(cor)) {
+    showConfigMsg('Informe uma cor válida no formato #RRGGBB.', 'error');
+    return;
+  }
+
+  aplicarTemaPortal(cor);
+  atualizarNomePreview(nome);
+
+  writeLocalPortalConfig({ nome_portal: nome, cor_primary: cor, logo_url: document.getElementById('logo-preview-img')?.src || readLocalPortalConfig().logo_url || '' });
+
+  const resultados = await Promise.all([
+    upsertConfiguracao('nome_portal', nome),
+    upsertConfiguracao('cor_primary', cor)
+  ]);
+  const erro = resultados.find(r => r.error)?.error;
+  if (erro) {
+    showConfigMsg('Erro ao salvar configurações: ' + erro.message, 'error');
+    return;
+  }
+  showToast('Configurações visuais salvas.', 'success');
+  showConfigMsg('Nome e cor do portal salvos com sucesso.', 'success');
+}
+
 // ---- INIT ----
 // ---- INIT ----
+document.getElementById('config-nome-portal')?.addEventListener('input', e => atualizarNomePreview(e.target.value));
+document.getElementById('config-cor-primary')?.addEventListener('input', e => setColor(e.target.value));
+document.getElementById('config-cor-text')?.addEventListener('input', e => { if(/^#[0-9A-Fa-f]{0,6}$/.test(e.target.value)) e.target.value = e.target.value; if(/^#[0-9A-Fa-f]{6}$/.test(e.target.value)) aplicarTemaPortal(e.target.value); });
 checkAuth();
 
 
@@ -1474,6 +1714,18 @@ checkAuth();
 // ════════════════════════════════════════════════════════════
 let allParceiros = [];
 let parceiroEditandoId = null;
+const PORTAL_CONFIG_STORAGE_KEY = 'portal_config_local';
+
+function readLocalPortalConfig() {
+  try { return JSON.parse(localStorage.getItem(PORTAL_CONFIG_STORAGE_KEY) || '{}'); } catch(e) { return {}; }
+}
+
+function writeLocalPortalConfig(patch) {
+  try {
+    const current = readLocalPortalConfig();
+    localStorage.setItem(PORTAL_CONFIG_STORAGE_KEY, JSON.stringify(Object.assign({}, current, patch || {})));
+  } catch(e) {}
+}
 
 async function loadParceiros() {
   const grid = document.getElementById('parceiros-grid');
@@ -1484,7 +1736,7 @@ async function loadParceiros() {
     allParceiros = data || [];
     renderParceiros();
   } catch(e) {
-    grid.innerHTML = '<div style="color:#f87171;padding:2rem;grid-column:1/-1;text-align:center">Erro ao carregar parceiros: ' + e.message + '</div>';
+    grid.innerHTML = '<div style="color:#63666A;padding:2rem;grid-column:1/-1;text-align:center">Erro ao carregar parceiros: ' + e.message + '</div>';
   }
 }
 
@@ -1584,7 +1836,7 @@ function previewParceiroLogo() {
   const url = document.getElementById('parceiro-logo-url').value.trim();
   const box = document.getElementById('parceiro-logo-preview');
   if (url) {
-    box.innerHTML = `<img src="${url}" style="max-width:100%;max-height:54px;object-fit:contain" onerror="this.parentElement.innerHTML='<span style=color:#f87171>URL inválida ou imagem não carregou</span>'">`;
+    box.innerHTML = `<img src="${url}" style="max-width:100%;max-height:54px;object-fit:contain" onerror="this.parentElement.innerHTML='<span style="color:var(--brand-neutral)">URL inválida ou imagem não carregou</span>'">`;
   } else {
     box.innerHTML = '<span>Pré-visualização da logo</span>';
   }
@@ -1598,7 +1850,7 @@ async function salvarParceiro() {
   const msg      = document.getElementById('parceiro-msg');
   const btn      = document.getElementById('btn-salvar-parceiro');
 
-  if (!nome) { msg.style.color='#f87171'; msg.textContent='Nome é obrigatório.'; return; }
+  if (!nome) { msg.style.color='var(--brand-neutral)'; msg.textContent='Nome é obrigatório.'; return; }
 
   btn.disabled = true; btn.textContent = 'Salvando...';
   msg.textContent = '';
@@ -1620,7 +1872,7 @@ async function salvarParceiro() {
     await loadParceiros();
     setTimeout(fecharModalParceiro, 1200);
   } catch(e) {
-    msg.style.color = '#f87171'; msg.textContent = 'Erro: ' + e.message;
+    msg.style.color = 'var(--brand-neutral)'; msg.textContent = 'Erro: ' + e.message;
   } finally {
     btn.disabled = false; btn.textContent = 'Salvar parceiro';
   }
@@ -1650,16 +1902,16 @@ async function deletarParceiro(el) {
 <!-- MODAL PARCEIRO -->
 <div class="modal-overlay" id="modal-parceiro" style="display:none;align-items:center;justify-content:center" onclick="if(event.target===this)fecharModalParceiro()">
   <div style="background:#fff;border-radius:20px;padding:2rem;max-width:480px;width:100%;box-shadow:0 24px 64px rgba(0,0,0,.18);position:relative">
-    <button onclick="fecharModalParceiro()" style="position:absolute;top:1.25rem;right:1.25rem;width:32px;height:32px;border-radius:8px;border:none;background:none;cursor:pointer;color:#76787B;display:flex;align-items:center;justify-content:center;transition:background .2s" onmouseover="this.style.background='#F4F8F7'" onmouseout="this.style.background='none'">
+    <button onclick="fecharModalParceiro()" style="position:absolute;top:1.25rem;right:1.25rem;width:32px;height:32px;border-radius:8px;border:none;background:none;cursor:pointer;color:#63666A;display:flex;align-items:center;justify-content:center;transition:background .2s" onmouseover="this.style.background='#F4F8F7'" onmouseout="this.style.background='none'">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
     <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1.5rem">
-      <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#007A5E,#00A88E);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+      <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#006C5B,#00A499);display:flex;align-items:center;justify-content:center;flex-shrink:0">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
       </div>
       <div>
         <h2 style="font-family:'Clash Display',sans-serif;font-size:1.1rem;font-weight:700;color:#1A2E28;margin:0;line-height:1.2" id="modal-parceiro-title">Adicionar Parceiro</h2>
-        <p style="font-size:.78rem;color:#76787B;margin:0">Logo exibida no carrossel da pagina inicial</p>
+        <p style="font-size:.78rem;color:#63666A;margin:0">Logo exibida no carrossel da pagina inicial</p>
       </div>
     </div>
     <div class="modal-parceiro-form">
@@ -1673,7 +1925,7 @@ async function deletarParceiro(el) {
         <input type="url" id="parceiro-logo-url" placeholder="https://empresa.com/logo.png" oninput="previewParceiroLogo()">
         <div class="logo-preview-box" id="parceiro-logo-preview">
           <div style="text-align:center">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C8DDD9" stroke-width="1.5" style="display:block;margin:0 auto .4rem"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C9D9D5" stroke-width="1.5" style="display:block;margin:0 auto .4rem"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
             <span>Pre-visualizacao da logo</span>
           </div>
         </div>
@@ -1683,7 +1935,7 @@ async function deletarParceiro(el) {
         <input type="url" id="parceiro-site-url" placeholder="https://empresa.com.br">
       </div>
       <div class="modal-toggle-row">
-        <input type="checkbox" id="parceiro-ativo" checked style="width:16px;height:16px;accent-color:#00A88E;flex-shrink:0;cursor:pointer">
+        <input type="checkbox" id="parceiro-ativo" checked style="width:16px;height:16px;accent-color:#00A499;flex-shrink:0;cursor:pointer">
         <div>
           <label for="parceiro-ativo">Exibir no carrossel</label>
           <small>Quando desmarcado, a empresa fica oculta no portal</small>
@@ -1691,7 +1943,7 @@ async function deletarParceiro(el) {
       </div>
       <div id="parceiro-msg" style="font-size:.82rem;font-weight:600;min-height:1.2em;text-align:center;padding:.5rem;border-radius:8px"></div>
       <button onclick="salvarParceiro()" id="btn-salvar-parceiro"
-        style="width:100%;padding:.9rem;background:linear-gradient(135deg,#007A5E,#00A88E);color:white;border:none;border-radius:12px;font-size:.92rem;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 12px rgba(0,122,94,.25)"
+        style="width:100%;padding:.9rem;background:linear-gradient(135deg,#006C5B,#00A499);color:white;border:none;border-radius:12px;font-size:.92rem;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 12px rgba(0,122,94,.25)"
         onmouseover="this.style.transform='translateY(-1px)';this.style.boxShadow='0 8px 20px rgba(0,122,94,.35)'"
         onmouseout="this.style.transform='none';this.style.boxShadow='0 4px 12px rgba(0,122,94,.25)'">
         Salvar parceiro
