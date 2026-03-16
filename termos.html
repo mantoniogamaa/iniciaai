@@ -163,14 +163,7 @@
   .lm-msg.success { background:rgba(16,185,129,.1); color:#1B5E20; display:block; }
   .lm-link { font-size:.82rem; color:var(--muted); text-align:center; margin-top:.85rem; }
   .lm-link a { color:var(--primary,#007A5E); font-weight:600; text-decoration:none; }
-  /* HAMBURGER */
-  .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer;
-    background:none; border:none; padding:.4rem; z-index:110; }
-  .hamburger span { display:block; width:22px; height:2px; background:var(--text);
-    border-radius:2px; transition:all .3s; }
-  .hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
-  .hamburger.open span:nth-child(2) { opacity:0; }
-  .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+  
   /* DRAWER MOBILE */
   .mobile-drawer { display:none; position:fixed; top:64px; left:0; right:0; bottom:0;
     background:rgba(248,255,252,.98); backdrop-filter:blur(16px);
@@ -210,11 +203,7 @@
     .mobile-drawer { display:flex; }
   }
   @media(max-width:600px) { .nav-user-name { display:none !important; } }
-  .logo {
-  width: 140px; height: 42px;
-  background: url('logocolorida.png') no-repeat left center / contain;
-  display: block; flex-shrink: 0;
-}
+  
   .nav-back { color:var(--muted); text-decoration:none; font-size:.875rem; font-weight:500;
     display:flex; align-items:center; gap:.4rem; transition:color .2s; }
   .nav-back:hover { color:var(--violet); }
@@ -489,11 +478,7 @@
 
   /* Botões — tipografia impactante */
   .btn-submit, .btn-save, .btn-primary, .btn-login,
-  .btn-apply-full, .btn-search, .btn-buscar, .btn-nav-cta {
-    font-family: 'DM Sans', sans-serif !important;
-    font-weight: 700 !important;
-    letter-spacing: .02em !important;
-  }
+  .btn-apply-full, .btn-search, .btn-buscar, 
 
   /* Nav links */
   .nav-links a, .nav-back {
@@ -516,7 +501,7 @@
   }
   @media(max-width:768px){
   .nav-links { display: none; }
-  .btn-nav-cta { display: none; }
+  
   .hamburger { display: flex; }
     .page-am-deco { width:min(140px, 35vw)!important; right:-2%!important; }
   }

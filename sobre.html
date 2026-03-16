@@ -142,14 +142,7 @@ body {
   .lm-msg.success { background:rgba(16,185,129,.1); color:#1B5E20; display:block; }
   .lm-link { font-size:.82rem; color:var(--muted); text-align:center; margin-top:.85rem; }
   .lm-link a { color:var(--primary,#007A5E); font-weight:600; text-decoration:none; }
-  /* HAMBURGER */
-  .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer;
-    background:none; border:none; padding:.4rem; z-index:110; }
-  .hamburger span { display:block; width:22px; height:2px; background:var(--text);
-    border-radius:2px; transition:all .3s; }
-  .hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
-  .hamburger.open span:nth-child(2) { opacity:0; }
-  .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+  
   /* DRAWER MOBILE */
   .mobile-drawer { display:none; position:fixed; top:64px; left:0; right:0; bottom:0;
     background:rgba(248,255,252,.98); backdrop-filter:blur(16px);
@@ -189,53 +182,22 @@ body {
     .mobile-drawer { display:flex; }
   }
   @media(max-width:600px) { .nav-user-name { display:none !important; } }
-.logo {
-  width: 140px; height: 42px;
-  background: url('logocolorida.png') no-repeat left center / contain;
-  display: block; flex-shrink: 0;
-}
+
 .nav-links { display: flex; gap: 2rem; align-items: center; }
 .nav-links a { color: var(--muted); text-decoration: none; font-size: .9rem; font-weight: 500; transition: color .2s; }
 .nav-links a:hover { color: var(--primary); }
 .nav-links a.active { color: var(--primary); font-weight: 700; }
-.btn-nav-cta {
-  padding: .55rem 1.3rem; background: linear-gradient(135deg, var(--accent), var(--accent-dark));
-  color: white; border: none; border-radius: 50px; font-size: .85rem; font-weight: 600;
-  text-decoration: none; transition: transform .2s, box-shadow .2s;
-}
-.btn-nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,122,94,.35); }
-/* ── HAMBURGER ── */
-.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 200; padding: 4px; }
-.hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: all .3s; }
-.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.hamburger.open span:nth-child(2) { opacity: 0; }
-.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-/* ── MOBILE DRAWER ── */
-.mobile-drawer {
-  position: fixed; top: 0; right: 0; width: 280px; height: 100vh;
-  background: white; z-index: 150; padding: 5rem 1.5rem 2rem;
-  transform: translateX(100%); transition: transform .3s ease;
-  display: flex; flex-direction: column; gap: .25rem;
-  box-shadow: -8px 0 30px rgba(0,0,0,.15);
-}
-.mobile-drawer.open { transform: translateX(0); }
-.mobile-drawer a {
-  display: flex; align-items: center; gap: .65rem;
-  padding: .85rem 1rem; border-radius: 12px;
-  color: var(--text); text-decoration: none; font-weight: 500; font-size: .95rem;
-  transition: background .2s;
-}
-.mobile-drawer a:hover { background: var(--accent-light); }
-.drawer-overlay {
-  position: fixed; inset: 0; background: rgba(0,0,0,.4); z-index: 140;
-  display: none; opacity: 0; transition: opacity .3s;
-}
-.drawer-overlay.open { display: block; opacity: 1; }/* ── HERO ────────────────────────────────────────────────────── */
-/* Fundo exato do site Anhembi: verde escuro + listras diagonais + símbolo AM */
+
+
+
+/* ── HERO ────────────────────────────────────────────────────── */
+/* Hero com imagem de fundo Fundo1.png */
 .hero {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(160deg, #003528 0%, #007A5E 50%, #004D3D 100%);
+  background:
+    linear-gradient(160deg, rgba(0,30,22,.55) 0%, rgba(0,80,60,.4) 50%, rgba(0,30,22,.65) 100%),
+    url('Fundo1.png') center center / cover no-repeat;
   padding: 4.5rem 2rem 1.5rem;
   min-height: min(580px, 85vh);
   display: flex;
@@ -243,15 +205,11 @@ body {
   justify-content: center;
   text-align: center;
 }
-/* Listras diagonais sutis — padrão visual Anhembi */
+/* Overlay suave para garantir legibilidade do texto */
 .hero::before {
   content: '';
   position: absolute; inset: 0;
-  background-image: repeating-linear-gradient(
-    -45deg,
-    transparent 0px, transparent 22px,
-    rgba(255,255,255,.022) 22px, rgba(255,255,255,.022) 23px
-  );
+  background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(0,122,94,.18) 0%, transparent 70%);
   pointer-events: none; z-index: 0;
 }
 /* Glow central */
@@ -261,7 +219,7 @@ body {
   top: 40%; left: 50%;
   transform: translate(-50%, -50%);
   width: 65%; height: 280px;
-  background: radial-gradient(ellipse, rgba(0,168,142,.15) 0%, transparent 70%);
+  background: radial-gradient(ellipse, rgba(0,168,142,.12) 0%, transparent 70%);
   pointer-events: none; z-index: 0;
 }
 /* Símbolo AM decorativo — canto direito */
@@ -679,7 +637,7 @@ footer .footer-copy { font-size: .72rem; color: rgba(255,255,255,.2); margin-top
 @media(max-width: 768px) {
   nav { padding: 0 1rem; height: 64px; }
   .nav-links { display: none; }
-  .btn-nav-cta { display: none; }
+  
   .hamburger { display: flex; }
   .mobile-drawer { display: flex; }
   .logo { width: 120px; height: 40px; }
