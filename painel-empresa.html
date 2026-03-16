@@ -53,17 +53,50 @@ window.addEventListener('resize', function() { if (window.innerWidth > 768) clos
   * { margin:0; padding:0; box-sizing:border-box; }
   body { font-family:'Plus Jakarta Sans',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; }
 
+    /* ═══ NAV BASE ═══ */
   nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  background: rgba(255,255,255,0.92); backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border); padding: 0 2rem;
-  height: 64px; display: flex; align-items: center; justify-content: space-between;
-}
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+    box-shadow: 0 1px 12px rgba(0,122,94,.08);
+  }
   .logo {
-  width: 140px; height: 42px;
-  background: url('logocolorida.png') no-repeat left center / contain;
-  display: block; flex-shrink: 0;
-}
+    display: inline-flex; align-items: center;
+    text-decoration: none; cursor: pointer;
+    font-size: 0 !important; color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
+    background: none !important;
+    flex-shrink: 0;
+  }
+  .logo::before {
+    content: '';
+    display: block;
+    width: 140px; height: 44px;
+    background: url('logocolorida.png') no-repeat left center / contain;
+  }
+  .nav-links { display: flex; gap: 2rem; align-items: center; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none;
+    font-size: .9rem; font-weight: 500; transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--primary); }
+  .nav-links a.active { color: var(--primary); font-weight: 700; }
+  @media(max-width:768px) {
+    nav { padding: 0 1rem; height: 64px; }
+    .nav-links { display: none !important; }
+    .btn-access { display: none !important; }
+    .nav-logado-desktop { display: none !important; }
+    .hamburger { display: flex !important; }
+    .mobile-drawer { display: flex; }
+  }
+  @media(max-width:600px) {
+    .nav-user-name { display: none !important; }
+  }
 
   .page-wrap { max-width:960px; margin:0 auto; padding:2.5rem 1.5rem 5rem; }
 
@@ -328,14 +361,7 @@ window.addEventListener('resize', function() { if (window.innerWidth > 768) clos
   .disc-C { background:rgba(59,130,246,.12);color:#2563EB; }
   @media(max-width:600px) { .stats-row{grid-template-columns:1fr 1fr} .cand-actions{flex-direction:column} }
 
-  /* HAMBURGUER MOBILE */
-  .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer;
-    background:none; border:none; padding:.4rem; }
-  .hamburger span { display:block; width:22px; height:2px; background:var(--text);
-    border-radius:2px; transition:all .3s; }
-  .hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
-  .hamburger.open span:nth-child(2) { opacity:0; }
-  .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+  
   .mobile-drawer { display:none; position:fixed; top:64px; left:0; right:0; bottom:0;
     background:rgba(245,243,255,.98); backdrop-filter:blur(16px); z-index:99;
     flex-direction:column; padding:1.5rem 2rem; border-top:1px solid var(--border);
@@ -344,10 +370,7 @@ window.addEventListener('resize', function() { if (window.innerWidth > 768) clos
   .mobile-nav-link { display:block; padding:.85rem 1rem; border-radius:12px; font-size:1rem;
     font-weight:600; color:var(--text); text-decoration:none; transition:background .2s; margin-bottom:.2rem; }
   .mobile-nav-link:hover { background:white; }
-  @media(max-width:768px) {
-  .nav-links { display: none; }
-  
-  .hamburger { display: flex; } .hamburger { display:flex; } .mobile-drawer { display:flex; } }
+   .hamburger { display:flex; } .mobile-drawer { display:flex; } }
 
 
   /* ── LOGO IMAGEM ANHEMBI ── */
@@ -387,11 +410,6 @@ window.addEventListener('resize', function() { if (window.innerWidth > 768) clos
     display: block;
     width: 140px; height: 44px;
     background: url('logocolorida.png') no-repeat left center / contain;
-  }
-  nav {
-    background: rgba(255,255,255,.97) !important;
-    box-shadow: 0 1px 16px rgba(0,122,94,.1) !important;
-    height: 72px !important;
   }
 
   /* Todos os botões CTA → verde accent */
@@ -656,22 +674,9 @@ window.addEventListener('resize', function() { if (window.innerWidth > 768) clos
   .lm-link { font-size:.82rem; color:var(--muted); text-align:center; margin-top:.85rem; }
   .lm-link a { color:var(--primary,#007A5E); font-weight:600; text-decoration:none; }
 
-  /* HAMBURGUER */
-  .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer;
-    background:none; border:none; padding:.4rem; z-index:110; }
-  .hamburger span { display:block; width:22px; height:2px; background:var(--text);
-    border-radius:2px; transition:all .3s; }
-  .hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
-  .hamburger.open span:nth-child(2) { opacity:0; }
-  .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+  
 
-  /* DRAWER MOBILE */
-  .mobile-drawer { display:none; position:fixed; top:64px; left:0; right:0; bottom:0;
-    background:rgba(245,255,252,.98); backdrop-filter:blur(16px);
-    z-index:99; flex-direction:column; padding:1.5rem 2rem;
-    border-top:1px solid var(--border); overflow-y:auto;
-    transform:translateX(100%); transition:transform .3s ease; }
-  .mobile-drawer.open { transform:translateX(0); }
+  
 
   .mobile-nav-links { display:flex; flex-direction:column; gap:.25rem; margin-bottom:1.5rem; }
   .mobile-nav-links a { padding:.85rem 1rem; border-radius:12px; font-size:1rem; font-weight:600;
@@ -700,9 +705,7 @@ window.addEventListener('resize', function() { if (window.innerWidth > 768) clos
   .mobile-cta .cta-secondary { border:1.5px solid var(--border); color:var(--muted); }
   .mobile-cta .cta-secondary:hover { border-color:var(--primary,#007A5E); color:var(--primary,#007A5E); }
 
-  @media(max-width:768px) {
-    .nav-links { display:none !important; }
-    .btn-access { display:none !important; }
+  
     .nav-logado-desktop { display:none !important; }
     .hamburger { display:flex !important; }
     .mobile-drawer { display:flex; }
