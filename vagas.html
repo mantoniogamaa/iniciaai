@@ -43,34 +43,148 @@ html, body { overflow-x: hidden; }
 body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); }
 img { max-width: 100%; }
 
-  /* ═══ NAV BASE ═══ */
+  /* ═══ NAV CANÔNICO CONECTA ═══════════════════════════════════════════════ */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     background: rgba(255,255,255,0.97);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--border);
-    padding: 0 2rem;
-    height: 64px;
-    display: flex; align-items: center; justify-content: space-between;
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border); padding: 0 2rem;
+    height: 64px; display: flex; align-items: center; justify-content: space-between;
     box-shadow: 0 1px 12px rgba(0,122,94,.08);
   }
-  .logo {
-    display: inline-flex; align-items: center;
-    text-decoration: none; cursor: pointer;
-    font-size: 0 !important; color: transparent !important;
-    -webkit-text-fill-color: transparent !important;
-    background: none !important; flex-shrink: 0;
-  }
-  .logo::before {
-    content: ''; display: block;
-    width: 140px; height: 44px;
+  a.logo {
+    display: inline-flex; align-items: center; text-decoration: none;
+    flex-shrink: 0; width: 148px; height: 46px;
     background: url('logocolorida.png') no-repeat left center / contain;
+    font-size: 0; color: transparent; overflow: hidden;
+    cursor: pointer;
   }
   .nav-links { display: flex; gap: 2rem; align-items: center; }
-  .nav-links a { color: var(--muted); text-decoration: none; font-size: .9rem; font-weight: 500; transition: color .2s; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none;
+    font-size: .9rem; font-weight: 500; transition: color .2s;
+  }
   .nav-links a:hover { color: var(--primary); }
   .nav-links a.active { color: var(--primary); font-weight: 700; }
+  /* Dropdown Acessar */
+  .nav-access { position: relative; }
+  .btn-access {
+    display: flex; align-items: center; gap: .45rem; padding: .55rem 1.2rem;
+    border: 1.5px solid var(--border); border-radius: 50px; background: white;
+    font-size: .875rem; font-weight: 600; cursor: pointer; color: var(--text);
+    font-family: inherit; transition: all .2s;
+  }
+  .btn-access:hover { border-color: var(--primary); color: var(--primary); }
+  .btn-access svg { transition: transform .2s; }
+  .btn-access.open svg { transform: rotate(180deg); }
+  .access-dropdown {
+    position: absolute; top: calc(100% + .6rem); right: 0;
+    background: white; border-radius: 16px; border: 1.5px solid var(--border);
+    box-shadow: 0 12px 40px rgba(0,0,0,.12); min-width: 220px; z-index: 200;
+    opacity: 0; transform: translateY(-8px); pointer-events: none;
+    transition: all .2s; overflow: hidden;
+  }
+  .access-dropdown.open { opacity: 1; transform: translateY(0); pointer-events: all; }
+  .access-dropdown-header {
+    padding: .75rem 1rem .5rem; font-size: .7rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .08em; color: var(--muted);
+  }
+  .access-item {
+    display: flex; align-items: center; gap: .75rem; padding: .75rem 1rem;
+    cursor: pointer; transition: background .15s; text-decoration: none; color: var(--text);
+  }
+  .access-item:hover { background: var(--bg); }
+  .access-icon {
+    width: 36px; height: 36px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .access-icon.cand { background: rgba(0,122,94,.1); }
+  .access-icon.emp  { background: rgba(0,168,142,.1); }
+  .access-icon.new  { background: rgba(0,122,94,.08); }
+  .access-label { font-size: .875rem; font-weight: 600; }
+  .access-sub   { font-size: .72rem; color: var(--muted); margin-top: .1rem; }
+  /* Avatar logado */
+  .nav-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--primary));
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-weight: 700; font-size: .9rem; cursor: pointer;
+    font-family: 'Clash Display', sans-serif; flex-shrink: 0;
+    border: 2px solid white; box-shadow: 0 2px 8px rgba(0,122,94,.3);
+  }
+  .nav-user-wrap { display: flex; align-items: center; gap: .6rem; }
+  .nav-user-name { font-size: .85rem; font-weight: 600; color: var(--text); }
+  /* Hamburguer */
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px; cursor: pointer;
+    background: none; border: none; padding: .4rem; z-index: 110;
+  }
+  .hamburger span {
+    display: block; width: 22px; height: 2px;
+    background: var(--text); border-radius: 2px; transition: all .3s;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  /* Drawer mobile */
+  .mobile-drawer {
+    display: none; position: fixed; top: 64px; left: 0; right: 0; bottom: 0;
+    background: rgba(255,255,255,.98); backdrop-filter: blur(16px);
+    z-index: 99; flex-direction: column; padding: 1.5rem;
+    border-top: 1px solid var(--border); overflow-y: auto;
+    transform: translateX(100%); transition: transform .3s ease;
+  }
+  .mobile-drawer.open { transform: translateX(0); }
+  .mobile-nav-links {
+    display: flex; flex-direction: column; gap: .25rem; margin-bottom: 1.5rem;
+  }
+  .mobile-nav-links a {
+    padding: .85rem 1rem; border-radius: 12px; font-size: 1rem; font-weight: 600;
+    color: var(--text); text-decoration: none; transition: background .2s;
+    display: flex; align-items: center; gap: .6rem;
+  }
+  .mobile-nav-links a:hover,
+  .mobile-nav-links a.active { background: var(--accent-light); color: var(--primary); }
+  .mobile-divider { height: 1px; background: var(--border); margin: .75rem 0; }
+  .mobile-access-title {
+    font-size: .72rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .1em; color: var(--muted); margin-bottom: .75rem;
+  }
+  .mobile-access-btn {
+    display: flex; align-items: center; gap: .85rem; width: 100%;
+    padding: 1rem; border-radius: 14px; border: 1.5px solid var(--border);
+    background: white; cursor: pointer; font-family: inherit; text-align: left;
+    transition: all .2s; margin-bottom: .6rem;
+  }
+  .mobile-access-btn:hover { border-color: var(--primary); }
+  .mobile-access-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .mobile-access-label { font-size: .9rem; font-weight: 700; color: var(--text); }
+  .mobile-access-sub   { font-size: .75rem; color: var(--muted); margin-top: .1rem; }
+  .mobile-cta { display: flex; flex-direction: column; gap: .6rem; margin-top: .5rem; }
+  .mobile-cta a {
+    display: flex; align-items: center; justify-content: center; gap: .5rem;
+    padding: .9rem; border-radius: 12px; font-weight: 700; font-size: .9rem;
+    text-decoration: none; transition: all .2s;
+  }
+  .mobile-cta .cta-primary {
+    background: linear-gradient(135deg, var(--accent), var(--primary)); color: white;
+  }
+  .mobile-cta .cta-secondary { border: 1.5px solid var(--border); color: var(--muted); }
+  .mobile-cta .cta-secondary:hover { border-color: var(--primary); color: var(--primary); }
+  @media (max-width: 768px) {
+    nav { padding: 0 1rem; }
+    .nav-links { display: none; }
+    .btn-access { display: none; }
+    .nav-logado-desktop { display: none; }
+    .hamburger { display: flex; }
+    .mobile-drawer { display: flex; }
+  }
+  @media (max-width: 600px) { .nav-user-name { display: none; } }
+  /* ═══ FIM NAV ══════════════════════════════════════════════════════════════ */
+
   /* DROPDOWN ACESSAR */
   .nav-access { position: relative; }
   .btn-access { display:flex; align-items:center; gap:.45rem; padding:.55rem 1.2rem;
@@ -303,11 +417,7 @@ img { max-width: 100%; }
 .badge-hybrid { background: rgba(251,191,36,.1); color: #B45309; }
 .badge-presential { background: rgba(0,122,94,.06); color: var(--primary); }
 .card-info { display: flex; gap: 1rem; font-size: .8rem; color: var(--muted); margin-bottom: 1rem; flex-wrap: wrap; }
-.card-footer {
-  display: flex; align-items: center; justify-content: space-between;
-  padding-top: .85rem; border-top: 1px solid var(--border);
-}
-.card-salary { font-weight: 700; font-size: .95rem; color: var(--text); }
+.card-.card-salary { font-weight: 700; font-size: .95rem; color: var(--text); }
 .card-date { font-size: .75rem; color: var(--muted); }
 .btn-apply {
   padding: .45rem 1.1rem; background: linear-gradient(135deg, var(--accent), var(--accent-dark));
@@ -340,23 +450,11 @@ img { max-width: 100%; }
 .page-btn.nav-btn { width: auto; padding: 0 1rem; gap: .4rem; }
 .page-btn:disabled { opacity: .35; cursor: not-allowed; }
 
-/* ── FOOTER ── */
-footer {
-  background: #001A12; padding: 2.5rem 2rem 2rem; text-align: center; position: relative;
-}
-footer::before {
-  content: ''; position: absolute; top: 0; left: 5%; right: 5%; height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(0,168,142,.35), transparent);
-}
-footer img { height: 38px; object-fit: contain; filter: brightness(0) invert(1); opacity: .85; margin-bottom: 1.25rem; }
-footer a { color: rgba(255,255,255,.5); text-decoration: none; font-size: .82rem; font-weight: 500; transition: color .2s; }
-footer a:hover { color: var(--accent); }
 
 @keyframes cardIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 
 /* ── RESPONSIVO ── */
 @media(max-width: 768px) {
-  nav { padding: 0 1rem; }
   .nav-links { display: none; }
   
   .hamburger { display: flex; }
@@ -374,6 +472,31 @@ footer a:hover { color: var(--accent); }
 @media(max-width: 480px) {
   .filter-select { min-width: 100%; }
 }
+
+  /* ═══ FOOTER CANÔNICO CONECTA ════════════════════════════════════════════ */
+  footer {
+    background: #001A12; color: rgba(255,255,255,.5);
+    text-align: center; padding: 3rem 2rem 2.5rem; position: relative;
+  }
+  footer::before {
+    content: ''; position: absolute; top: 0; left: 5%; right: 5%; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0,168,142,.4), transparent);
+  }
+  .footer-logo {
+    display: block; width: 148px; height: 46px; margin: 0 auto 1.25rem;
+    background: url('logobranca.png') no-repeat center / contain;
+  }
+  .footer-links {
+    display: flex; justify-content: center; gap: 1.5rem;
+    flex-wrap: wrap; margin-bottom: 1rem;
+  }
+  .footer-links a {
+    color: rgba(255,255,255,.5); text-decoration: none;
+    font-size: .82rem; font-weight: 500; transition: color .2s;
+  }
+  .footer-links a:hover { color: var(--accent); }
+  .footer-copy { font-size: .72rem; color: rgba(255,255,255,.2); }
+  /* ═══ FIM FOOTER ═══════════════════════════════════════════════════════════ */
 </style>
 </head>
 <body>
@@ -532,14 +655,15 @@ footer a:hover { color: var(--accent); }
 
 <!-- FOOTER -->
 <footer>
-  <div><img src="logobranca.png" alt="Conecta — Polo Bauru-Centro" style="height:38px;object-fit:contain;filter:brightness(0) invert(1);opacity:.85"></div>
-  <div style="display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-bottom:.75rem">
-    <a href="index.html">Inicio</a>
-    <a href="vagas.html">Vagas</a>
+  <div class="footer-logo" role="img" aria-label="Conecta — Polo Bauru-Centro"></div>
+  <div class="footer-links">
+    <a href="index.html">Início</a>
+    <a href="vagas.html">Ver vagas</a>
     <a href="sobre.html">Sobre</a>
+    <a href="cadastro-empresa.html">Para Empresas</a>
     <a href="termos.html">Termos & Privacidade</a>
   </div>
-  <p style="font-size:.72rem;color:rgba(255,255,255,.2);margin-top:.5rem">© 2025 Universidade Anhembi Morumbi — Polo Bauru-Centro. Todos os direitos reservados.</p>
+  <p class="footer-copy">© 2025 Universidade Anhembi Morumbi — Polo Bauru-Centro. Todos os direitos reservados.</p>
 </footer>
 
 <script>
@@ -750,7 +874,7 @@ loadVagas();
 <!-- MODAL LOGIN -->
 <div class="login-modal-overlay" id="login-modal-overlay" onclick="if(event.target===this)closeLoginModal()">
   <div class="login-modal">
-    <button class="login-modal-close" onclick="closeLoginModal()">✕</button>
+    <button class="login-modal-close" onclick="closeLoginModal()"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     <div class="login-modal-tabs">
       <button class="lm-tab active" id="lmt-candidato" onclick="switchLoginTab('candidato')"><svg style="vertical-align:middle;flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Candidato</button>
       <button class="lm-tab" id="lmt-empresa" onclick="switchLoginTab('empresa')"><svg style="vertical-align:middle;flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg> Empresa</button>
