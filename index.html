@@ -197,50 +197,6 @@
     display:inline-block; }
   .btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 20px rgba(12,61,48,.45); }
 
-
-  /* DROPDOWN ACESSAR */
-  .nav-access { position:relative; }
-  .btn-access { display:flex; align-items:center; gap:.45rem; padding:.55rem 1.2rem;
-    border:1.5px solid var(--border); border-radius:50px; background:white;
-    font-size:.875rem; font-weight:600; cursor:pointer; color:var(--text);
-    font-family:'Plus Jakarta Sans',sans-serif; transition:all .2s; }
-  .btn-access:hover { border-color:var(--violet); color:var(--violet); }
-  .btn-access svg { transition:transform .2s; }
-  .btn-access.open svg { transform:rotate(180deg); }
-
-  .access-dropdown { position:absolute; top:calc(100% + .6rem); right:0;
-    background:white; border-radius:16px; border:1.5px solid var(--border);
-    box-shadow:0 12px 40px rgba(0,0,0,.12); min-width:220px; z-index:200;
-    opacity:0; transform:translateY(-8px); pointer-events:none;
-    transition:all .2s; overflow:hidden; }
-  .access-dropdown.open { opacity:1; transform:translateY(0); pointer-events:all; }
-
-  .access-dropdown-header { padding:.75rem 1rem .5rem;
-    font-size:.7rem; font-weight:700; text-transform:uppercase;
-    letter-spacing:.08em; color:var(--muted); }
-  .access-item { display:flex; align-items:center; gap:.75rem;
-    padding:.75rem 1rem; cursor:pointer; transition:background .15s;
-    text-decoration:none; color:var(--text); }
-  .access-item:hover { background:var(--bg); }
-  .access-item:last-child { border-top:1px solid var(--border); }
-  .access-icon { width:36px; height:36px; border-radius:10px;
-    display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; }
-  .access-icon.cand  { background:rgba(12,61,48,.1); }
-  .access-icon.emp   { background:rgba(6,182,212,.1); }
-  .access-icon.new   { background:rgba(16,185,129,.1); }
-  .access-label { font-size:.875rem; font-weight:600; }
-  .access-sub   { font-size:.72rem; color:var(--muted); margin-top:.1rem; }
-
-  /* AVATAR LOGADO */
-  .nav-avatar { width:36px; height:36px; border-radius:50%;
-    background:linear-gradient(135deg,var(--accent),var(--accent-dark));
-    display:flex; align-items:center; justify-content:center;
-    color:white; font-weight:700; font-size:.9rem; cursor:pointer;
-    font-family:'Clash Display',sans-serif; flex-shrink:0;
-    border:2px solid white; box-shadow:0 2px 8px rgba(12,61,48,.4); }
-  .nav-user-wrap { display:flex; align-items:center; gap:.6rem; }
-  .nav-user-name { font-size:.85rem; font-weight:600; color:var(--text); }
-
   /* ═══ FOOTER CANÔNICO CONECTA ════════════════════════════════════════════ */
   footer {
     background: #001A12; color: rgba(255,255,255,.5);
