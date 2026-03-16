@@ -22,8 +22,18 @@
 <meta property="twitter:image" content="https://mantoniogamaa.github.io/iniciaaí/og-image.png">
 <link rel="canonical" href="https://mantoniogamaa.github.io/iniciaaí/painel-empresa.html">
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
-
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">function toggleMobileMenu() {
+  document.getElementById('hamburger').classList.toggle('open');
+  document.getElementById('mobile-drawer').classList.toggle('open');
+  document.getElementById('drawer-overlay').classList.toggle('open');
+  document.body.style.overflow = document.getElementById('mobile-drawer').classList.contains('open') ? 'hidden' : '';
+}
+function closeMobileMenu() {
+  document.getElementById('hamburger').classList.remove('open');
+  document.getElementById('mobile-drawer').classList.remove('open');
+  document.getElementById('drawer-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
 window.addEventListener('resize', function() { if (window.innerWidth > 768) closeMobileMenu(); });
 </script>
 <style>
@@ -70,33 +80,142 @@ window.addEventListener('resize', function() { if (window.innerWidth > 768) clos
     text-decoration: none; cursor: pointer;
     font-size: 0 !important; color: transparent !important;
     -webkit-text-fill-color: transparent !important;
-    background: none !important;
-    flex-shrink: 0;
+    background: none !important; flex-shrink: 0;
   }
   .logo::before {
-    content: '';
-    display: block;
+    content: ''; display: block;
     width: 140px; height: 44px;
     background: url('logocolorida.png') no-repeat left center / contain;
   }
   .nav-links { display: flex; gap: 2rem; align-items: center; }
-  .nav-links a {
-    color: var(--muted); text-decoration: none;
-    font-size: .9rem; font-weight: 500; transition: color .2s;
-  }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: .9rem; font-weight: 500; transition: color .2s; }
   .nav-links a:hover { color: var(--primary); }
   .nav-links a.active { color: var(--primary); font-weight: 700; }
+  /* DROPDOWN ACESSAR */
+  .nav-access { position: relative; }
+  .btn-access { display:flex; align-items:center; gap:.45rem; padding:.55rem 1.2rem;
+    border:1.5px solid var(--border); border-radius:50px; background:white;
+    font-size:.875rem; font-weight:600; cursor:pointer; color:var(--text);
+    font-family:inherit; transition:all .2s; }
+  .btn-access:hover { border-color:var(--primary); color:var(--primary); }
+  .btn-access svg { transition:transform .2s; }
+  .btn-access.open svg { transform:rotate(180deg); }
+  .access-dropdown { position:absolute; top:calc(100% + .6rem); right:0;
+    background:white; border-radius:16px; border:1.5px solid var(--border);
+    box-shadow:0 12px 40px rgba(0,0,0,.12); min-width:220px; z-index:200;
+    opacity:0; transform:translateY(-8px); pointer-events:none; transition:all .2s; overflow:hidden; }
+  .access-dropdown.open { opacity:1; transform:translateY(0); pointer-events:all; }
+  .access-dropdown-header { padding:.75rem 1rem .5rem; font-size:.7rem; font-weight:700;
+    text-transform:uppercase; letter-spacing:.08em; color:var(--muted); }
+  .access-item { display:flex; align-items:center; gap:.75rem; padding:.75rem 1rem;
+    cursor:pointer; transition:background .15s; text-decoration:none; color:var(--text); }
+  .access-item:hover { background:var(--bg,#F4F8F7); }
+  .access-item:last-child { border-top:1px solid var(--border); }
+  .access-icon { width:36px; height:36px; border-radius:10px;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .access-icon.cand { background:rgba(0,122,94,.1); }
+  .access-icon.emp  { background:rgba(0,168,142,.1); }
+  .access-icon.new  { background:rgba(16,185,129,.1); }
+  .access-label { font-size:.875rem; font-weight:600; }
+  .access-sub   { font-size:.72rem; color:var(--muted); margin-top:.1rem; }
+  /* AVATAR LOGADO */
+  .nav-avatar { width:36px; height:36px; border-radius:50%;
+    background:linear-gradient(135deg,var(--accent,#00A88E),var(--primary,#007A5E));
+    display:flex; align-items:center; justify-content:center;
+    color:white; font-weight:700; font-size:.9rem; cursor:pointer; flex-shrink:0;
+    border:2px solid white; box-shadow:0 2px 8px rgba(0,122,94,.4); }
+  .nav-user-wrap { display:flex; align-items:center; gap:.6rem; }
+  .nav-user-name { font-size:.85rem; font-weight:600; color:var(--text); }
+  /* MODAL LOGIN */
+  .login-modal-overlay { position:fixed; inset:0; background:rgba(15,10,30,.55);
+    backdrop-filter:blur(6px); z-index:500; display:none;
+    align-items:center; justify-content:center; padding:1rem; }
+  .login-modal-overlay.open { display:flex; }
+  .login-modal { background:white; border-radius:24px; width:100%; max-width:420px;
+    padding:2rem; position:relative; animation:lmIn .3s ease; box-shadow:0 24px 60px rgba(0,0,0,.18); }
+  @keyframes lmIn { from{transform:scale(.95) translateY(10px);opacity:0} to{transform:scale(1) translateY(0);opacity:1} }
+  .login-modal-close { position:absolute; top:1rem; right:1rem; width:32px; height:32px;
+    border-radius:50%; border:none; background:var(--bg,#F4F8F7); cursor:pointer;
+    font-size:1rem; color:var(--muted); display:flex; align-items:center; justify-content:center; }
+  .login-modal-tabs { display:flex; background:var(--bg,#F4F8F7); border-radius:12px;
+    padding:.3rem; gap:.3rem; margin-bottom:1.5rem; }
+  .lm-tab { flex:1; padding:.55rem; border-radius:9px; border:none; cursor:pointer;
+    font-size:.82rem; font-weight:600; font-family:inherit;
+    transition:all .2s; color:var(--muted); background:transparent;
+    display:flex; align-items:center; justify-content:center; gap:.35rem; }
+  .lm-tab.active { background:white; color:var(--primary,#007A5E); box-shadow:0 2px 8px rgba(0,0,0,.08); }
+  .lm-section { display:none; }
+  .lm-section.show { display:block; }
+  .lm-title { font-family:'Clash Display',sans-serif; font-size:1.3rem; font-weight:700; margin-bottom:1.25rem; color:var(--dark,#004D3D); }
+  .lm-field { margin-bottom:.85rem; }
+  .lm-field label { font-size:.78rem; font-weight:700; display:block; margin-bottom:.35rem; }
+  .lm-field input { width:100%; padding:.75rem 1rem; border:1.5px solid var(--border);
+    border-radius:10px; font-size:.9rem; font-family:inherit;
+    outline:none; background:var(--bg,#F4F8F7); color:var(--text); transition:border-color .2s; }
+  .lm-field input:focus { border-color:var(--accent,#00A88E); background:white; }
+  .lm-btn { width:100%; padding:.9rem; background:linear-gradient(135deg,var(--accent,#00A88E),var(--primary,#007A5E));
+    color:white; border:none; border-radius:12px; font-size:.95rem; font-weight:700;
+    cursor:pointer; font-family:inherit; transition:transform .2s,box-shadow .2s; margin-top:.25rem; }
+  .lm-btn:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,122,94,.4); }
+  .lm-btn:disabled { opacity:.6; cursor:not-allowed; transform:none; }
+  .lm-msg { padding:.65rem .9rem; border-radius:9px; font-size:.82rem; font-weight:600;
+    margin-top:.75rem; text-align:center; display:none; }
+  .lm-msg.error   { background:rgba(255,92,92,.1); color:#B71C1C; display:block; }
+  .lm-msg.success { background:rgba(16,185,129,.1); color:#1B5E20; display:block; }
+  .lm-link { font-size:.82rem; color:var(--muted); text-align:center; margin-top:.85rem; }
+  .lm-link a { color:var(--primary,#007A5E); font-weight:600; text-decoration:none; }
+  /* HAMBURGER */
+  .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer;
+    background:none; border:none; padding:.4rem; z-index:110; }
+  .hamburger span { display:block; width:22px; height:2px; background:var(--text);
+    border-radius:2px; transition:all .3s; }
+  .hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity:0; }
+  .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+  /* DRAWER MOBILE */
+  .mobile-drawer { display:none; position:fixed; top:64px; left:0; right:0; bottom:0;
+    background:rgba(248,255,252,.98); backdrop-filter:blur(16px);
+    z-index:99; flex-direction:column; padding:1.5rem 2rem;
+    border-top:1px solid var(--border); overflow-y:auto;
+    transform:translateX(100%); transition:transform .3s ease; }
+  .mobile-drawer.open { transform:translateX(0); }
+  .mobile-nav-links { display:flex; flex-direction:column; gap:.25rem; margin-bottom:1.5rem; }
+  .mobile-nav-links a { padding:.85rem 1rem; border-radius:12px; font-size:1rem; font-weight:600;
+    color:var(--text); text-decoration:none; transition:background .2s;
+    display:flex; align-items:center; gap:.6rem; }
+  .mobile-nav-links a:hover { background:white; }
+  .mobile-nav-links a.active { color:var(--primary,#007A5E); background:rgba(0,122,94,.06); }
+  .mobile-divider { height:1px; background:var(--border); margin:.75rem 0; }
+  .mobile-access-title { font-size:.72rem; font-weight:700; text-transform:uppercase;
+    letter-spacing:.1em; color:var(--muted); margin-bottom:.75rem; }
+  .mobile-access-btn { display:flex; align-items:center; gap:.85rem; width:100%;
+    padding:1rem; border-radius:14px; border:1.5px solid var(--border); background:white;
+    cursor:pointer; font-family:inherit; transition:all .2s; margin-bottom:.6rem; }
+  .mobile-access-btn:hover { border-color:var(--primary,#007A5E); }
+  .mobile-access-icon { width:40px; height:40px; border-radius:10px;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .mobile-access-label { font-size:.9rem; font-weight:700; color:var(--text); }
+  .mobile-access-sub   { font-size:.75rem; color:var(--muted); margin-top:.1rem; }
+  .mobile-cta { display:flex; flex-direction:column; gap:.6rem; margin-top:.5rem; }
+  .mobile-cta a { display:flex; align-items:center; justify-content:center; gap:.5rem;
+    padding:.9rem; border-radius:12px; font-weight:700; font-size:.9rem;
+    text-decoration:none; transition:all .2s; }
+  .mobile-cta .cta-primary { background:linear-gradient(135deg,var(--accent,#00A88E),var(--primary,#007A5E)); color:white; }
+  .mobile-cta .cta-secondary { border:1.5px solid var(--border); color:var(--muted); }
   @media(max-width:768px) {
-    nav { padding: 0 1rem; height: 64px; }
-    .nav-links { display: none !important; }
-    .btn-access { display: none !important; }
-    .nav-logado-desktop { display: none !important; }
-    .hamburger { display: flex !important; }
-    .mobile-drawer { display: flex; }
+    nav { padding:0 1rem; height:64px; }
+    .nav-links { display:none !important; }
+    .btn-access { display:none !important; }
+    .nav-logado-desktop { display:none !important; }
+    .hamburger { display:flex !important; }
+    .mobile-drawer { display:flex; }
   }
-  @media(max-width:600px) {
-    .nav-user-name { display: none !important; }
-  }
+  @media(max-width:600px) { .nav-user-name { display:none !important; } }
+  .logo {
+  width: 140px; height: 42px;
+  background: url('logocolorida.png') no-repeat left center / contain;
+  display: block; flex-shrink: 0;
+}
 
   .page-wrap { max-width:960px; margin:0 auto; padding:2.5rem 1.5rem 5rem; }
 
@@ -361,7 +480,14 @@ window.addEventListener('resize', function() { if (window.innerWidth > 768) clos
   .disc-C { background:rgba(59,130,246,.12);color:#2563EB; }
   @media(max-width:600px) { .stats-row{grid-template-columns:1fr 1fr} .cand-actions{flex-direction:column} }
 
-  
+  /* HAMBURGUER MOBILE */
+  .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer;
+    background:none; border:none; padding:.4rem; }
+  .hamburger span { display:block; width:22px; height:2px; background:var(--text);
+    border-radius:2px; transition:all .3s; }
+  .hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity:0; }
+  .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
   .mobile-drawer { display:none; position:fixed; top:64px; left:0; right:0; bottom:0;
     background:rgba(245,243,255,.98); backdrop-filter:blur(16px); z-index:99;
     flex-direction:column; padding:1.5rem 2rem; border-top:1px solid var(--border);
@@ -370,7 +496,10 @@ window.addEventListener('resize', function() { if (window.innerWidth > 768) clos
   .mobile-nav-link { display:block; padding:.85rem 1rem; border-radius:12px; font-size:1rem;
     font-weight:600; color:var(--text); text-decoration:none; transition:background .2s; margin-bottom:.2rem; }
   .mobile-nav-link:hover { background:white; }
-   .hamburger { display:flex; } .mobile-drawer { display:flex; } }
+  @media(max-width:768px) {
+  .nav-links { display: none; }
+  .btn-nav-cta { display: none; }
+  .hamburger { display: flex; } .hamburger { display:flex; } .mobile-drawer { display:flex; } }
 
 
   /* ── LOGO IMAGEM ANHEMBI ── */
@@ -411,11 +540,20 @@ window.addEventListener('resize', function() { if (window.innerWidth > 768) clos
     width: 140px; height: 44px;
     background: url('logocolorida.png') no-repeat left center / contain;
   }
+  nav {
+    background: rgba(255,255,255,.97) !important;
+    box-shadow: 0 1px 16px rgba(0,122,94,.1) !important;
+    height: 72px !important;
+  }
 
   /* Todos os botões CTA → verde accent */
   .btn-submit, .btn-save, .btn-modal-save, .lm-btn,
   .btn-apply-full, .btn-apply, .btn-search, .btn-buscar,
-  .btn-nova-vaga, 
+  .btn-nova-vaga, .btn-nav-cta, .btn-hero-primary, .btn-nav-primary,
+  .cta-btn-a, .btn-primary {
+    background: var(--accent) !important;
+    background-image: none !important;
+  }
   .btn-submit:hover, .btn-save:hover, .btn-apply-full:hover,
   .btn-search:hover, .btn-buscar:hover, .btn-hero-primary:hover {
     background: var(--accent-dark) !important;
@@ -475,7 +613,11 @@ window.addEventListener('resize', function() { if (window.innerWidth > 768) clos
 
   /* Botões — tipografia impactante */
   .btn-submit, .btn-save, .btn-primary, .btn-login,
-  .btn-apply-full, .btn-search, .btn-buscar, 
+  .btn-apply-full, .btn-search, .btn-buscar, .btn-nav-cta {
+    font-family: 'DM Sans', sans-serif !important;
+    font-weight: 700 !important;
+    letter-spacing: .02em !important;
+  }
 
   /* Nav links */
   .nav-links a, .nav-back {
@@ -581,139 +723,6 @@ window.addEventListener('resize', function() { if (window.innerWidth > 768) clos
   img, video, canvas, svg { max-width: 100%; }
   table { width: 100%; table-layout: fixed; }
 
-
-  /* ═══ NAV PADRÃO ═══ */
-
-  /* DROPDOWN ACESSAR */
-  .nav-access { position:relative; }
-  .btn-access { display:flex; align-items:center; gap:.45rem; padding:.55rem 1.2rem;
-    border:1.5px solid var(--border); border-radius:50px; background:white;
-    font-size:.875rem; font-weight:600; cursor:pointer; color:var(--text);
-    font-family:'Plus Jakarta Sans',sans-serif; transition:all .2s; }
-  .btn-access:hover { border-color:var(--primary); color:var(--primary); }
-  .btn-access svg { transition:transform .2s; }
-  .btn-access.open svg { transform:rotate(180deg); }
-
-  .access-dropdown { position:absolute; top:calc(100% + .6rem); right:0;
-    background:white; border-radius:16px; border:1.5px solid var(--border);
-    box-shadow:0 12px 40px rgba(0,0,0,.12); min-width:220px; z-index:200;
-    opacity:0; transform:translateY(-8px); pointer-events:none;
-    transition:all .2s; overflow:hidden; }
-  .access-dropdown.open { opacity:1; transform:translateY(0); pointer-events:all; }
-
-  .access-dropdown-header { padding:.75rem 1rem .5rem;
-    font-size:.7rem; font-weight:700; text-transform:uppercase;
-    letter-spacing:.08em; color:var(--muted); }
-  .access-item { display:flex; align-items:center; gap:.75rem;
-    padding:.75rem 1rem; cursor:pointer; transition:background .15s;
-    text-decoration:none; color:var(--text); }
-  .access-item:hover { background:var(--bg,#F4F8F7); }
-  .access-item:last-child { border-top:1px solid var(--border); }
-  .access-icon { width:36px; height:36px; border-radius:10px;
-    display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; }
-  .access-icon.cand  { background:rgba(0,122,94,.1); }
-  .access-icon.emp   { background:rgba(0,168,142,.1); }
-  .access-icon.new   { background:rgba(16,185,129,.1); }
-  .access-label { font-size:.875rem; font-weight:600; }
-  .access-sub   { font-size:.72rem; color:var(--muted); margin-top:.1rem; }
-
-  /* AVATAR LOGADO */
-  .nav-avatar { width:36px; height:36px; border-radius:50%;
-    background:linear-gradient(135deg,var(--accent,#00A88E),var(--primary,#007A5E));
-    display:flex; align-items:center; justify-content:center;
-    color:white; font-weight:700; font-size:.9rem; cursor:pointer;
-    font-family:'Clash Display',sans-serif; flex-shrink:0;
-    border:2px solid white; box-shadow:0 2px 8px rgba(0,122,94,.4); }
-  .nav-user-wrap { display:flex; align-items:center; gap:.6rem; }
-  .nav-user-name { font-size:.85rem; font-weight:600; color:var(--text); }
-
-  /* MODAL LOGIN */
-  .login-modal-overlay { position:fixed; inset:0; background:rgba(15,10,30,.55);
-    backdrop-filter:blur(6px); z-index:500; display:none;
-    align-items:center; justify-content:center; padding:1rem; }
-  .login-modal-overlay.open { display:flex; }
-  .login-modal { background:white; border-radius:24px; width:100%; max-width:420px;
-    padding:2rem; position:relative; animation:modalIn .3s ease; box-shadow:0 24px 60px rgba(0,0,0,.18); }
-  @keyframes modalIn { from{transform:scale(.95) translateY(10px);opacity:0} to{transform:scale(1) translateY(0);opacity:1} }
-  .login-modal-close { position:absolute; top:1rem; right:1rem; width:32px; height:32px;
-    border-radius:50%; border:none; background:var(--bg,#F4F8F7); cursor:pointer;
-    font-size:1rem; color:var(--muted); display:flex; align-items:center; justify-content:center; transition:background .2s; }
-  .login-modal-close:hover { background:var(--border); }
-
-  .login-modal-tabs { display:flex; background:var(--bg,#F4F8F7); border-radius:12px;
-    padding:.3rem; gap:.3rem; margin-bottom:1.5rem; }
-  .lm-tab { flex:1; padding:.55rem; border-radius:9px; border:none; cursor:pointer;
-    font-size:.82rem; font-weight:600; font-family:'Plus Jakarta Sans',sans-serif;
-    transition:all .2s; color:var(--muted); background:transparent; display:flex; align-items:center; justify-content:center; gap:.35rem; }
-  .lm-tab.active { background:white; color:var(--primary,#007A5E);
-    box-shadow:0 2px 8px rgba(0,0,0,.08); }
-
-  .lm-section { display:none; }
-  .lm-section.show { display:block; animation:fadeUp .25s ease both; }
-  @keyframes fadeUp { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
-
-  .lm-title { font-family:'Clash Display',sans-serif; font-size:1.3rem; font-weight:700;
-    margin-bottom:1.25rem; color:var(--dark,#004D3D); }
-  .lm-field { margin-bottom:.85rem; }
-  .lm-field label { font-size:.78rem; font-weight:700; color:var(--text); display:block; margin-bottom:.35rem; }
-  .lm-field input { width:100%; padding:.75rem 1rem; border:1.5px solid var(--border);
-    border-radius:10px; font-size:.9rem; font-family:'Plus Jakarta Sans',sans-serif;
-    outline:none; background:var(--bg,#F4F8F7); color:var(--text); transition:border-color .2s; }
-  .lm-field input:focus { border-color:var(--accent,#00A88E); background:white; box-shadow:0 0 0 3px rgba(0,168,142,.08); }
-  .lm-btn { width:100%; padding:.9rem; background:linear-gradient(135deg,var(--accent,#00A88E),var(--primary,#007A5E));
-    color:white; border:none; border-radius:12px; font-size:.95rem; font-weight:700;
-    cursor:pointer; font-family:'Plus Jakarta Sans',sans-serif;
-    transition:transform .2s,box-shadow .2s; margin-top:.25rem; }
-  .lm-btn:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,122,94,.45); }
-  .lm-btn:disabled { opacity:.6; cursor:not-allowed; transform:none; }
-  .lm-msg { padding:.65rem .9rem; border-radius:9px; font-size:.82rem; font-weight:600;
-    margin-top:.75rem; text-align:center; display:none; }
-  .lm-msg.error   { background:rgba(255,92,92,.1); color:#B71C1C; display:block; }
-  .lm-msg.success { background:rgba(16,185,129,.1); color:#1B5E20; display:block; }
-  .lm-divider { text-align:center; font-size:.78rem; color:var(--muted); margin:.85rem 0; }
-  .lm-link { font-size:.82rem; color:var(--muted); text-align:center; margin-top:.85rem; }
-  .lm-link a { color:var(--primary,#007A5E); font-weight:600; text-decoration:none; }
-
-  
-
-  
-
-  .mobile-nav-links { display:flex; flex-direction:column; gap:.25rem; margin-bottom:1.5rem; }
-  .mobile-nav-links a { padding:.85rem 1rem; border-radius:12px; font-size:1rem; font-weight:600;
-    color:var(--text); text-decoration:none; transition:background .2s; display:flex; align-items:center; gap:.6rem; }
-  .mobile-nav-links a:hover { background:white; }
-  .mobile-nav-links a.active { color:var(--primary,#007A5E); background:rgba(0,122,94,.06); }
-
-  .mobile-divider { height:1px; background:var(--border); margin:.75rem 0; }
-  .mobile-access-title { font-size:.72rem; font-weight:700; text-transform:uppercase;
-    letter-spacing:.1em; color:var(--muted); margin-bottom:.75rem; }
-
-  .mobile-access-btn { display:flex; align-items:center; gap:.85rem; width:100%;
-    padding:1rem; border-radius:14px; border:1.5px solid var(--border); background:white;
-    cursor:pointer; font-family:'Plus Jakarta Sans',sans-serif; transition:all .2s; margin-bottom:.6rem; }
-  .mobile-access-btn:hover { border-color:var(--primary,#007A5E); }
-  .mobile-access-icon { width:40px; height:40px; border-radius:10px;
-    display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-  .mobile-access-label { font-size:.9rem; font-weight:700; color:var(--text); }
-  .mobile-access-sub   { font-size:.75rem; color:var(--muted); margin-top:.1rem; }
-
-  .mobile-cta { display:flex; flex-direction:column; gap:.6rem; margin-top:.5rem; }
-  .mobile-cta a { display:flex; align-items:center; justify-content:center; gap:.5rem;
-    text-align:center; padding:.9rem; border-radius:12px;
-    font-weight:700; font-size:.9rem; text-decoration:none; transition:all .2s; }
-  .mobile-cta .cta-primary { background:linear-gradient(135deg,var(--accent,#00A88E),var(--primary,#007A5E)); color:white; }
-  .mobile-cta .cta-secondary { border:1.5px solid var(--border); color:var(--muted); }
-  .mobile-cta .cta-secondary:hover { border-color:var(--primary,#007A5E); color:var(--primary,#007A5E); }
-
-  
-    .nav-logado-desktop { display:none !important; }
-    .hamburger { display:flex !important; }
-    .mobile-drawer { display:flex; }
-  }
-  @media(max-width:600px) {
-    .nav-user-name { display:none !important; }
-  }
-
 </style>
 </head>
 <body>
@@ -769,8 +778,6 @@ window.addEventListener('resize', function() { if (window.innerWidth > 768) clos
   </button>
 </nav>
 
-
-
 <div class="mobile-drawer" id="mobile-drawer">
   <div class="mobile-nav-links">
     <a href="vagas.html" onclick="closeMobileMenu()"><svg style="vertical-align:middle;flex-shrink:0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg> Vagas</a>
@@ -778,10 +785,8 @@ window.addEventListener('resize', function() { if (window.innerWidth > 768) clos
     <a href="cadastro-empresa.html" onclick="closeMobileMenu()"><svg style="vertical-align:middle;flex-shrink:0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg> Para Empresas</a>
     <a href="termos.html" onclick="closeMobileMenu()"><svg style="vertical-align:middle;flex-shrink:0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Termos</a>
   </div>
-
   <div class="mobile-divider"></div>
   <div class="mobile-access-title">Entrar como</div>
-
   <button class="mobile-access-btn" onclick="closeMobileMenu();openLoginModal('candidato')">
     <div class="mobile-access-icon" style="background:rgba(0,122,94,.08)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
     <div><div class="mobile-access-label">Candidato</div><div class="mobile-access-sub">Acesse seu perfil e candidaturas</div></div>
@@ -790,7 +795,6 @@ window.addEventListener('resize', function() { if (window.innerWidth > 768) clos
     <div class="mobile-access-icon" style="background:rgba(0,122,94,.08)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
     <div><div class="mobile-access-label">Empresa</div><div class="mobile-access-sub">Gerencie vagas e candidatos</div></div>
   </button>
-
   <div class="mobile-divider"></div>
   <div class="mobile-access-title">Novo por aqui?</div>
   <div class="mobile-cta">
@@ -798,19 +802,12 @@ window.addEventListener('resize', function() { if (window.innerWidth > 768) clos
     <a class="cta-secondary" href="cadastro-empresa.html">Cadastrar empresa</a>
   </div>
 </div>
-  <a href="cadastro-candidato.html" style="background:var(--accent-light);color:var(--primary);font-weight:700;border-radius:12px" onclick="closeMobileMenu()">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-    Criar perfil
-  </a>
-  <a href="cadastro-empresa.html" style="color:var(--primary);font-weight:600" onclick="closeMobileMenu()">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
-    Publicar vaga
-  </a>
-</div>
-<div class="mobile-drawer" id="mobile-drawer">
-    <a class="mobile-nav-link" href="index.html">Portal de Vagas</a>
-    <a class="mobile-nav-link" href="cadastro-empresa.html"> Cadastrar Nova Vaga</a>
-</div>
+
+
+
+
+
+
 
 <div class="page-wrap">
 
@@ -820,10 +817,6 @@ window.addEventListener('resize', function() { if (window.innerWidth > 768) clos
       <div class="login-header">
         <h1><svg style="vertical-align:middle;flex-shrink:0" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg> Área da Empresa</h1>
         <p>Acesse para gerenciar suas vagas e visualizar os candidatos.</p>
-        <a class="mobile-nav-link" href="termos.html">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" style="flex-shrink:0"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-    Termos & Privacidade
-  </a>
 </div>
       <div class="form-card">
         <div class="form-group"><label>E-mail cadastrado</label><input type="email" id="e-email" placeholder="rh@empresa.com.br" onkeydown="if(event.key==='Enter')loginEmpresa()"></div>
@@ -1580,140 +1573,133 @@ function discBadge(perfil) {
 
 if (empresaLogada) showPainel();
 </script>
-
 <script>
-// ═══════════ NAV COMPARTILHADO ═══════════
-(function() {
-  const candidatoLogado = JSON.parse(sessionStorage.getItem('candidato') || 'null');
-  const empresaLogada   = JSON.parse(sessionStorage.getItem('empresa')   || 'null');
+<!-- MODAL LOGIN -->
+<div class="login-modal-overlay" id="login-modal-overlay" onclick="if(event.target===this)closeLoginModal()">
+  <div class="login-modal">
+    <button class="login-modal-close" onclick="closeLoginModal()">✕</button>
+    <div class="login-modal-tabs">
+      <button class="lm-tab active" id="lmt-candidato" onclick="switchLoginTab('candidato')"><svg style="vertical-align:middle;flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Candidato</button>
+      <button class="lm-tab" id="lmt-empresa" onclick="switchLoginTab('empresa')"><svg style="vertical-align:middle;flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg> Empresa</button>
+    </div>
+    <div class="lm-section show" id="lms-candidato">
+      <div class="lm-title">Bem-vindo de volta!</div>
+      <div class="lm-field"><label>E-mail</label><input type="email" id="lm-c-email" placeholder="seu@email.com" onkeydown="if(event.key==='Enter')loginModal('candidato')"></div>
+      <div class="lm-field"><label>Senha</label><input type="password" id="lm-c-senha" placeholder="Sua senha" onkeydown="if(event.key==='Enter')loginModal('candidato')"></div>
+      <button class="lm-btn" id="lm-btn-cand" onclick="loginModal('candidato')">Entrar →</button>
+      <div class="lm-msg" id="lm-msg-cand"></div>
+      <div class="lm-link">Não tem conta? <a href="cadastro-candidato.html">Criar perfil grátis →</a></div>
+    </div>
+    <div class="lm-section" id="lms-empresa">
+      <div class="lm-title">Painel da Empresa</div>
+      <div class="lm-field"><label>E-mail</label><input type="email" id="lm-e-email" placeholder="rh@empresa.com.br" onkeydown="if(event.key==='Enter')loginModal('empresa')"></div>
+      <div class="lm-field"><label>Senha</label><input type="password" id="lm-e-senha" placeholder="Sua senha" onkeydown="if(event.key==='Enter')loginModal('empresa')"></div>
+      <button class="lm-btn" id="lm-btn-emp" onclick="loginModal('empresa')">Entrar →</button>
+      <div class="lm-msg" id="lm-msg-emp"></div>
+      <div class="lm-link">Não tem cadastro? <a href="cadastro-empresa.html">Cadastrar empresa →</a></div>
+    </div>
+  </div>
+</div>
+<script>
+/* ═══════════ NAV JS UNIFICADO ═══════════ */
+(function(){
+  const SB_URL = 'https://hnhxxchhwhdlpuiceirz.supabase.co';
+  const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhuaHh4Y2hod2hkbHB1aWNlaXJ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM0MjY4MDMsImV4cCI6MjA4OTAwMjgwM30._N9DBrCq7lXW6tpfpcXHHcaH21AqEAcinPPIE-_-Ik8';
 
-  function checkNavSessions() {
-    if (candidatoLogado) {
-      const w = document.getElementById('nav-access-wrap');
-      const c = document.getElementById('nav-logado-cand');
-      if (w) w.style.display = 'none';
-      if (c) c.style.display = 'block';
-      const av = document.getElementById('nav-avatar-cand');
-      if (av) av.textContent = candidatoLogado.nome?.charAt(0)?.toUpperCase() || '?';
-      const nm = document.getElementById('nav-user-name');
-      if (nm && window.innerWidth > 768) {
-        nm.textContent = candidatoLogado.nome?.split(' ')[0];
-        nm.style.display = 'block';
-      }
-    } else if (empresaLogada) {
-      const w = document.getElementById('nav-access-wrap');
-      const e = document.getElementById('nav-logado-emp');
-      if (w) w.style.display = 'none';
-      if (e) e.style.display = 'block';
+  // logout via ?logout=1
+  if(new URLSearchParams(location.search).get('logout')==='1'){
+    sessionStorage.removeItem('candidato');
+    sessionStorage.removeItem('empresa');
+    history.replaceState({},'',location.pathname);
+  }
+
+  const cand = JSON.parse(sessionStorage.getItem('candidato')||'null');
+  const emp  = JSON.parse(sessionStorage.getItem('empresa')||'null');
+
+  function checkNavSessions(){
+    if(cand){
+      document.getElementById('nav-access-wrap')?.style && (document.getElementById('nav-access-wrap').style.display='none');
+      const c=document.getElementById('nav-logado-cand'); if(c)c.style.display='block';
+      const av=document.getElementById('nav-avatar-cand'); if(av)av.textContent=cand.nome?.charAt(0)?.toUpperCase()||'?';
+      const nm=document.getElementById('nav-user-name');
+      if(nm&&window.innerWidth>768){nm.textContent=cand.nome?.split(' ')[0];nm.style.display='block';}
+    } else if(emp){
+      document.getElementById('nav-access-wrap')?.style && (document.getElementById('nav-access-wrap').style.display='none');
+      const e=document.getElementById('nav-logado-emp'); if(e)e.style.display='block';
     }
   }
 
-  function toggleAccessDropdown() {
+  function toggleAccessDropdown(){
     document.getElementById('btn-access')?.classList.toggle('open');
     document.getElementById('access-dropdown')?.classList.toggle('open');
   }
-
-  document.addEventListener('click', function(e) {
-    if (!e.target.closest('.nav-access')) {
+  document.addEventListener('click',function(e){
+    if(!e.target.closest('.nav-access')){
       document.getElementById('btn-access')?.classList.remove('open');
       document.getElementById('access-dropdown')?.classList.remove('open');
     }
   });
 
-  function openLoginModal(tab) {
+  function openLoginModal(tab){
     document.getElementById('access-dropdown')?.classList.remove('open');
     document.getElementById('btn-access')?.classList.remove('open');
     switchLoginTab(tab);
     document.getElementById('login-modal-overlay').classList.add('open');
-    document.body.style.overflow = 'hidden';
-    setTimeout(() => {
-      const inp = tab === 'candidato'
-        ? document.getElementById('lm-c-email')
-        : document.getElementById('lm-e-email');
-      inp?.focus();
-    }, 200);
+    document.body.style.overflow='hidden';
+    setTimeout(()=>{document.getElementById(tab==='candidato'?'lm-c-email':'lm-e-email')?.focus();},200);
   }
-
-  function closeLoginModal() {
+  function closeLoginModal(){
     document.getElementById('login-modal-overlay').classList.remove('open');
-    document.body.style.overflow = '';
+    document.body.style.overflow='';
   }
-
-  function switchLoginTab(tab) {
-    ['candidato','empresa'].forEach(function(t) {
-      document.getElementById('lms-' + t)?.classList.toggle('show', t === tab);
-      document.getElementById('lmt-' + t)?.classList.toggle('active', t === tab);
+  function switchLoginTab(tab){
+    ['candidato','empresa'].forEach(t=>{
+      document.getElementById('lms-'+t)?.classList.toggle('show',t===tab);
+      document.getElementById('lmt-'+t)?.classList.toggle('active',t===tab);
     });
   }
-
-  async function loginModal(tipo) {
-    const SUPABASE_URL = 'https://hnhxxchhwhdlpuiceirz.supabase.co';
-    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhuaHh4Y2hod2hkbHB1aWNlaXJ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM0MjY4MDMsImV4cCI6MjA4OTAwMjgwM30._N9DBrCq7lXW6tpfpcXHHcaH21AqEAcinPPIE-_-Ik8';
-    const isC   = tipo === 'candidato';
-    const email = document.getElementById(isC ? 'lm-c-email' : 'lm-e-email').value.trim();
-    const senha = document.getElementById(isC ? 'lm-c-senha' : 'lm-e-senha').value;
-    const btn   = document.getElementById(isC ? 'lm-btn-cand' : 'lm-btn-emp');
-    const msg   = document.getElementById(isC ? 'lm-msg-cand' : 'lm-msg-emp');
-
-    if (!email || !senha) { showLmMsg(msg, 'Preencha e-mail e senha.', 'error'); return; }
-    btn.disabled = true; btn.textContent = 'Entrando...';
-
-    const buf  = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(senha));
-    const hash = Array.from(new Uint8Array(buf)).map(function(b){ return b.toString(16).padStart(2,'0'); }).join('');
-
-    const table = isC ? 'candidatos' : 'empresas';
-    const res = await fetch(SUPABASE_URL + '/rest/v1/' + table + '?email=eq.' + encodeURIComponent(email) + '&senha_hash=eq.' + hash + '&select=*', {
-      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
-    });
-    const data = await res.json();
-    btn.disabled = false; btn.textContent = 'Entrar →';
-
-    if (!data || data.length === 0) {
-      showLmMsg(msg, 'E-mail ou senha incorretos.', 'error');
-      return;
-    }
-    sessionStorage.setItem(isC ? 'candidato' : 'empresa', JSON.stringify(data[0]));
-    showLmMsg(msg, 'Login realizado! Redirecionando...', 'success');
-    setTimeout(function() {
-      window.location.href = isC ? 'cadastro-candidato.html' : 'painel-empresa.html';
-    }, 900);
+  async function loginModal(tipo){
+    const isC=tipo==='candidato';
+    const email=document.getElementById(isC?'lm-c-email':'lm-e-email').value.trim();
+    const senha=document.getElementById(isC?'lm-c-senha':'lm-e-senha').value;
+    const btn=document.getElementById(isC?'lm-btn-cand':'lm-btn-emp');
+    const msg=document.getElementById(isC?'lm-msg-cand':'lm-msg-emp');
+    if(!email||!senha){showLmMsg(msg,'Preencha e-mail e senha.','error');return;}
+    btn.disabled=true;btn.textContent='Entrando...';
+    const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(senha));
+    const hash=Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+    const table=isC?'candidatos':'empresas';
+    const res=await fetch(`${SB_URL}/rest/v1/${table}?email=eq.${encodeURIComponent(email)}&senha_hash=eq.${hash}&select=*`,
+      {headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}});
+    const data=await res.json();
+    btn.disabled=false;btn.textContent='Entrar →';
+    if(!data||!data.length){showLmMsg(msg,'E-mail ou senha incorretos.','error');return;}
+    sessionStorage.setItem(isC?'candidato':'empresa',JSON.stringify(data[0]));
+    showLmMsg(msg,'Login realizado! Redirecionando...','success');
+    setTimeout(()=>{location.href=isC?'cadastro-candidato.html':'painel-empresa.html';},900);
   }
+  function showLmMsg(el,txt,type){el.textContent=txt;el.className='lm-msg '+type;}
 
-  function showLmMsg(el, txt, type) { el.textContent = txt; el.className = 'lm-msg ' + type; }
-
-  function toggleMobileMenu() {
-    const hb = document.getElementById('hamburger');
-    const dr = document.getElementById('mobile-drawer');
-    hb.classList.toggle('open');
-    dr.classList.toggle('open');
-    document.body.style.overflow = dr.classList.contains('open') ? 'hidden' : '';
+  function toggleMobileMenu(){
+    const hb=document.getElementById('hamburger');
+    const dr=document.getElementById('mobile-drawer');
+    hb.classList.toggle('open');dr.classList.toggle('open');
+    document.body.style.overflow=dr.classList.contains('open')?'hidden':'';
   }
-
-  function closeMobileMenu() {
+  function closeMobileMenu(){
     document.getElementById('hamburger')?.classList.remove('open');
     document.getElementById('mobile-drawer')?.classList.remove('open');
-    document.body.style.overflow = '';
+    document.body.style.overflow='';
   }
+  window.addEventListener('resize',()=>{if(window.innerWidth>768)closeMobileMenu();});
 
-  window.addEventListener('resize', function() {
-    if (window.innerWidth > 768) closeMobileMenu();
-  });
-
-  // Logout via ?logout=1
-  if (new URLSearchParams(window.location.search).get('logout') === '1') {
-    sessionStorage.removeItem('candidato');
-    sessionStorage.removeItem('empresa');
-    window.history.replaceState({}, '', window.location.pathname);
-  }
-
-  // Expõe globalmente
-  window.toggleAccessDropdown = toggleAccessDropdown;
-  window.openLoginModal = openLoginModal;
-  window.closeLoginModal = closeLoginModal;
-  window.switchLoginTab = switchLoginTab;
-  window.loginModal = loginModal;
-  window.toggleMobileMenu = toggleMobileMenu;
-  window.closeMobileMenu = closeMobileMenu;
+  window.toggleAccessDropdown=toggleAccessDropdown;
+  window.openLoginModal=openLoginModal;
+  window.closeLoginModal=closeLoginModal;
+  window.switchLoginTab=switchLoginTab;
+  window.loginModal=loginModal;
+  window.toggleMobileMenu=toggleMobileMenu;
+  window.closeMobileMenu=closeMobileMenu;
 
   checkNavSessions();
 })();
