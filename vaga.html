@@ -13,7 +13,20 @@
 <meta property="og:image" content="https://mantoniogamaa.github.io/iniciaaí/og-image.png">
 
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">function toggleMobileMenu() {
+  document.getElementById('hamburger').classList.toggle('open');
+  document.getElementById('mobile-drawer').classList.toggle('open');
+  document.getElementById('drawer-overlay').classList.toggle('open');
+  document.body.style.overflow = document.getElementById('mobile-drawer').classList.contains('open') ? 'hidden' : '';
+}
+function closeMobileMenu() {
+  document.getElementById('hamburger').classList.remove('open');
+  document.getElementById('mobile-drawer').classList.remove('open');
+  document.getElementById('drawer-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+window.addEventListener('resize', function() { if (window.innerWidth > 768) closeMobileMenu(); });
+</script>
 
 <style>
   :root {
@@ -44,15 +57,15 @@
 
   /* NAV */
   nav {
-    position:sticky; top:0; z-index:50;
-    background:rgba(245,243,255,.92); backdrop-filter:blur(14px);
-    border-bottom:1px solid var(--border);
-    height:64px; padding:0 2rem;
-    display:flex; align-items:center; justify-content:space-between;
-  }
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(255,255,255,0.92); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border); padding: 0 2rem;
+  height: 64px; display: flex; align-items: center; justify-content: space-between;
+}
   .logo {
-  display: block; width: 140px; height: 40px; flex-shrink: 0;
+  width: 140px; height: 42px;
   background: url('logocolorida.png') no-repeat left center / contain;
+  display: block; flex-shrink: 0;
 }
   .nav-back { display:flex; align-items:center; gap:.5rem; color:var(--muted);
     text-decoration:none; font-size:.875rem; font-weight:500; transition:color .2s; }
@@ -660,22 +673,46 @@
 
 <nav>
   <a class="logo" href="index.html" aria-label="Conecta"></a>
-    <div class="nav-links">
+  <div class="nav-links">
     <a href="vagas.html" class="active">Vagas</a>
     <a href="sobre.html">Sobre</a>
     <a href="cadastro-empresa.html">Para Empresas</a>
     <a href="termos.html">Termos</a>
   </div>
-  <div style="display:flex;align-items:center;gap:.5rem">
-    <a class="nav-back" href="index.html">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-      Todas as vagas
-    </a>
-    <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+  <a href="cadastro-candidato.html" class="btn-nav-cta">Criar perfil</a>
+  <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+    <span></span><span></span><span></span>
   </div>
 </nav>
+
+<div class="drawer-overlay" id="drawer-overlay" onclick="closeMobileMenu()"></div>
+<div class="mobile-drawer" id="mobile-drawer">
+  <a href="vagas.html" onclick="closeMobileMenu()">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    Vagas
+  </a>
+  <a href="sobre.html" onclick="closeMobileMenu()">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+    Sobre
+  </a>
+  <a href="cadastro-empresa.html" onclick="closeMobileMenu()">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+    Para Empresas
+  </a>
+  <a href="termos.html" onclick="closeMobileMenu()">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+    Termos
+  </a>
+  <div style="border-top:1px solid var(--border);margin:.75rem 0"></div>
+  <a href="cadastro-candidato.html" style="background:var(--accent-light);color:var(--primary);font-weight:700;border-radius:12px" onclick="closeMobileMenu()">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    Criar perfil
+  </a>
+  <a href="cadastro-empresa.html" style="color:var(--primary);font-weight:600" onclick="closeMobileMenu()">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+    Publicar vaga
+  </a>
+</div>
 <div class="mobile-drawer" id="mobile-drawer">
   <a class="mobile-nav-link" href="index.html">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" style="flex-shrink:0"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
