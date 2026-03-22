@@ -1,4 +1,4 @@
-const __siteCfg = window.__PUBLIC_SITE_CONFIG__ || {};
+var __siteCfg = window.__PUBLIC_SITE_CONFIG__ || {};
 window.__PUBLIC_NAVBAR__ = {
   branding: {
     logo: (__siteCfg.branding && __siteCfg.branding.navbarLogo) || (window.getPublicAsset ? window.getPublicAsset('navbarLogo', 'logo-colorida.png') : 'logo-colorida.png'),

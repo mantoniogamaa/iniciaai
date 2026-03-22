@@ -1,4 +1,4 @@
-const __siteCfg = window.__PUBLIC_SITE_CONFIG__ || {};
+var __siteCfg = window.__PUBLIC_SITE_CONFIG__ || {};
 window.__PUBLIC_FOOTER__ = {
   logo: {
     src: (__siteCfg.branding && __siteCfg.branding.footerLogo) || (window.getPublicAsset ? window.getPublicAsset('footerLogo', 'logo-conecta-white.png') : 'logo-conecta-white.png'),
