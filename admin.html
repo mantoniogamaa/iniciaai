@@ -1158,6 +1158,7 @@
 const SUPABASE_URL = 'https://hnhxxchhwhdlpuiceirz.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhuaHh4Y2hod2hkbHB1aWNlaXJ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM0MjY4MDMsImV4cCI6MjA4OTAwMjgwM30._N9DBrCq7lXW6tpfpcXHHcaH21AqEAcinPPIE-_-Ik8';
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+window.sb = sb;
 
 // ---- AUTH ----
 let adminLogado = JSON.parse(sessionStorage.getItem('admin_data') || 'null');
@@ -1972,6 +1973,7 @@ async function carregarConfiguracoes() {
     updateLogoPreview(mergedCfg.logo_url || '');
     if (!mergedCfg.logo_url) document.getElementById('btn-salvar-logo').disabled = !pendingLogoDataUrl;
     atualizarNomePreview(nome);
+    loadPortalMediaAdmin();
   } catch (e) {
     showConfigMsg('Erro ao carregar configurações: ' + e.message, 'error');
   }
