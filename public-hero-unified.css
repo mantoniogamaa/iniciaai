@@ -1,0 +1,555 @@
+
+/* Unified hero system for public pages */
+:root{
+  --hero-surface: linear-gradient(135deg, #05695a 0%, #067764 58%, #07907d 100%);
+  --hero-surface-soft: linear-gradient(135deg, rgba(5,105,90,.94) 0%, rgba(6,119,100,.92) 58%, rgba(7,144,125,.88) 100%);
+  --hero-border: rgba(255,255,255,.10);
+  --hero-text: #ffffff;
+  --hero-text-soft: rgba(255,255,255,.88);
+  --hero-chip-bg: rgba(255,255,255,.14);
+  --hero-chip-border: rgba(255,255,255,.18);
+  --hero-shadow: 0 22px 60px rgba(0,69,58,.18);
+  --hero-radius: 34px;
+  --hero-gap: clamp(1.5rem, 3vw, 3rem);
+  --hero-pad-y: clamp(1.75rem, 3vw, 2.5rem);
+  --hero-pad-x: clamp(1.25rem, 3vw, 2.75rem);
+}
+
+.portal-hero-unified{
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--hero-radius);
+  background: var(--hero-surface);
+  border: 1px solid var(--hero-border);
+  box-shadow: var(--hero-shadow);
+  isolation: isolate;
+}
+.portal-hero-unified::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(255,255,255,.08), transparent 24%),
+    radial-gradient(circle at 82% 16%, rgba(255,255,255,.12), transparent 20%),
+    linear-gradient(90deg, rgba(255,255,255,.07) 0 1px, transparent 1px),
+    linear-gradient(rgba(255,255,255,.05) 0 1px, transparent 1px);
+  background-size: auto, auto, 120px 120px, 120px 120px;
+  opacity:.65;
+  pointer-events:none;
+  z-index:0;
+}
+.portal-hero-unified > *{
+  position:relative;
+  z-index:1;
+}
+.portal-hero-unified .hero-label,
+.portal-hero-unified .page-badge,
+.portal-hero-unified .page-hero-badge,
+.portal-hero-unified .eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  padding:.62rem 1rem;
+  border-radius:999px;
+  background:var(--hero-chip-bg) !important;
+  border:1px solid var(--hero-chip-border) !important;
+  color:var(--hero-text) !important;
+  box-shadow:none !important;
+}
+.portal-hero-unified h1,
+.portal-hero-unified .hero-title,
+.portal-hero-unified .page-title{
+  color:var(--hero-text) !important;
+  letter-spacing:-.04em;
+  line-height:.98;
+  text-wrap:balance;
+}
+.portal-hero-unified p,
+.portal-hero-unified .hero-subtitle,
+.portal-hero-unified .page-subtitle,
+.portal-hero-unified .panel-lead{
+  color:var(--hero-text-soft) !important;
+}
+.portal-hero-unified strong{ color:#fff; }
+
+.portal-hero-split{
+  display:grid;
+  grid-template-columns:minmax(0, 1.06fr) minmax(320px, .94fr);
+  align-items:center;
+  gap:var(--hero-gap);
+  padding: var(--hero-pad-y) var(--hero-pad-x);
+  min-height: clamp(360px, 38vw, 500px);
+}
+.portal-hero-split .hero-content,
+.portal-hero-split .page-header-copy{
+  min-width:0;
+  max-width:none !important;
+}
+.portal-hero-split .hero-content > * + *,
+.portal-hero-split .page-header-copy > * + *{
+  margin-top: 1rem;
+}
+.portal-hero-split h1{
+  max-width: 13.5ch;
+  font-size: clamp(3rem, 5.3vw, 4.75rem) !important;
+}
+.portal-hero-split p{
+  max-width: 34rem;
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  line-height: 1.75;
+}
+.portal-hero-split .hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap: .9rem;
+  margin-top: 1.4rem;
+}
+.portal-hero-split .hero-media,
+.portal-hero-split .page-header-media{
+  position:relative;
+  width:100%;
+  min-height: clamp(290px, 31vw, 420px);
+  border-radius: 30px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.18);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.04);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.02)),
+    rgba(255,255,255,.08);
+  backdrop-filter: blur(1px);
+}
+.portal-hero-split .hero-media::after,
+.portal-hero-split .page-header-media::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.18));
+  pointer-events:none;
+}
+.portal-hero-split .hero-media.portal-slot-media,
+.portal-hero-split .page-header-media.portal-slot-media{
+  background-position:center center !important;
+  background-size:cover !important;
+}
+
+/* About page tuning */
+.sobre-hero.portal-hero-unified{
+  min-height: clamp(390px, 40vw, 520px);
+}
+.sobre-hero.portal-hero-unified .hero-content{
+  padding-right: clamp(.25rem, 1vw, .75rem);
+}
+.sobre-hero.portal-hero-unified .hero-media::after{
+  background:
+    linear-gradient(180deg, rgba(3,55,48,.04), rgba(3,55,48,.26)),
+    linear-gradient(135deg, rgba(7,119,100,.08), rgba(7,119,100,.18));
+}
+
+/* Company page tuning */
+.empresa-hero.portal-hero-unified h1{
+  max-width: 15ch;
+  font-size: clamp(3.05rem, 5.1vw, 4.65rem) !important;
+}
+.empresa-hero.portal-hero-unified .page-header-copy{
+  padding-right: clamp(.25rem, .8vw, .75rem);
+}
+.empresa-hero.portal-hero-unified .page-header-media::after{
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.18)),
+    linear-gradient(135deg, rgba(7,119,100,.10), rgba(7,119,100,.18));
+}
+
+/* Jobs page */
+.vagas-hero.portal-hero-unified{
+  padding: var(--hero-pad-y) var(--hero-pad-x) !important;
+  max-width: 1280px;
+  margin: 1rem auto 1.6rem !important;
+}
+.vagas-hero.portal-hero-unified h1{
+  font-size: clamp(2.6rem, 4.7vw, 4.2rem) !important;
+  max-width: 13ch;
+  margin-bottom: .8rem;
+}
+.vagas-hero.portal-hero-unified p{
+  max-width: 46rem;
+  font-size: 1.08rem;
+}
+.vagas-hero.portal-hero-unified .hero-stats{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.75rem;
+  margin-top:1.35rem;
+}
+.vagas-hero.portal-hero-unified .hero-stat{
+  display:inline-flex;
+  align-items:center;
+  padding:.62rem .92rem;
+  border-radius:999px;
+  color:#fff !important;
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.16);
+}
+.vagas-hero.portal-hero-unified .page-header,
+.vagas-hero.portal-hero-unified{
+  color:#fff;
+}
+.vagas-hero.portal-hero-unified .eyebrow{
+  margin-bottom:1rem;
+}
+
+/* Terms page */
+.termos-hero.portal-hero-unified{
+  padding: clamp(2rem, 4vw, 3rem) 2rem !important;
+  margin: 1rem auto 1.4rem;
+  max-width: 1280px;
+}
+.termos-hero.portal-hero-unified .page-am-deco{
+  opacity:.12 !important;
+}
+.termos-hero.portal-hero-unified .page-hero-inner{
+  max-width:900px;
+  text-align:center;
+}
+.termos-hero.portal-hero-unified h1{
+  font-size: clamp(2.5rem, 5vw, 4.2rem) !important;
+  margin-bottom:.6rem;
+}
+.termos-hero.portal-hero-unified h1 span{
+  color: rgba(255,255,255,.72) !important;
+}
+.termos-hero.portal-hero-unified p{
+  max-width: 42rem;
+  margin: 0 auto;
+  font-size: 1.05rem;
+}
+.termos-hero.portal-hero-unified .page-hero-badge{
+  margin-bottom: 1rem;
+}
+
+/* Buttons inside heroes */
+.portal-hero-unified .hero-primary,
+.portal-hero-unified .hero-secondary{
+  min-width: 190px;
+  height: 52px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:0 1.3rem;
+  border-radius:999px;
+}
+.portal-hero-unified .hero-secondary{
+  background: rgba(255,255,255,.10) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255,255,255,.22) !important;
+}
+
+/* responsive */
+@media (max-width: 1080px){
+  .portal-hero-split{
+    grid-template-columns: minmax(0, 1fr) minmax(280px, .9fr);
+  }
+  .portal-hero-split h1{
+    max-width: 12.5ch;
+    font-size: clamp(2.7rem, 5vw, 4rem) !important;
+  }
+  .empresa-hero.portal-hero-unified h1{
+    max-width: 13.5ch;
+  }
+}
+@media (max-width: 900px){
+  .portal-hero-split{
+    grid-template-columns:1fr;
+    min-height:auto;
+  }
+  .portal-hero-split .hero-media,
+  .portal-hero-split .page-header-media{
+    min-height:260px;
+    order:2;
+  }
+  .portal-hero-split h1,
+  .empresa-hero.portal-hero-unified h1{
+    max-width: 100%;
+  }
+  .vagas-hero.portal-hero-unified,
+  .termos-hero.portal-hero-unified{
+    margin-left: 1rem !important;
+    margin-right: 1rem !important;
+  }
+}
+
+
+/* ===== Hero variants system ===== */
+.portal-hero-variant-left{
+  text-align: left;
+  justify-items: start;
+}
+.portal-hero-variant-left .hero-content,
+.portal-hero-variant-left .page-header-copy,
+.portal-hero-variant-left .page-hero-inner{
+  margin-left: 0;
+  margin-right: auto;
+}
+.portal-hero-variant-left h1,
+.portal-hero-variant-left .hero-title,
+.portal-hero-variant-left .page-title{
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.portal-hero-variant-center{
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  min-height: clamp(380px, 40vw, 520px);
+  padding-top: clamp(2.2rem, 4vw, 3.4rem) !important;
+  padding-bottom: clamp(2.2rem, 4vw, 3.4rem) !important;
+}
+.portal-hero-variant-center .hero-content,
+.portal-hero-variant-center .page-header-copy,
+.portal-hero-variant-center .page-hero-inner{
+  width: 100%;
+  max-width: 820px;
+  margin: 0 auto !important;
+}
+.portal-hero-variant-center .hero-label,
+.portal-hero-variant-center .page-badge,
+.portal-hero-variant-center .page-hero-badge,
+.portal-hero-variant-center .eyebrow{
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.portal-hero-variant-center h1,
+.portal-hero-variant-center .hero-title,
+.portal-hero-variant-center .page-title{
+  max-width: 11.5ch;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.portal-hero-variant-center p,
+.portal-hero-variant-center .hero-subtitle,
+.portal-hero-variant-center .page-subtitle{
+  max-width: 42rem;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.portal-hero-variant-center .hero-actions{
+  justify-content: center;
+}
+
+.portal-hero-variant-split{
+  display:grid !important;
+  grid-template-columns:minmax(0, 1.06fr) minmax(320px, .94fr);
+  align-items:center;
+  gap:var(--hero-gap);
+}
+.portal-hero-variant-split .hero-content,
+.portal-hero-variant-split .page-header-copy{
+  min-width:0;
+}
+.portal-hero-variant-split .hero-media,
+.portal-hero-variant-split .page-header-media{
+  width:100%;
+}
+
+/* stronger centering for terms page */
+.termos-hero.portal-hero-variant-center{
+  min-height: clamp(420px, 44vw, 560px);
+}
+.termos-hero.portal-hero-variant-center .page-hero-inner{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:.9rem;
+}
+.termos-hero.portal-hero-variant-center h1{
+  max-width: 10ch;
+  line-height: .98;
+  margin-top: 0 !important;
+  margin-bottom: .2rem !important;
+}
+.termos-hero.portal-hero-variant-center p{
+  margin-top: 0 !important;
+}
+.termos-hero.portal-hero-variant-center .page-am-deco{
+  top: 50% !important;
+  transform: translateY(-50%);
+}
+.termos-hero.portal-hero-variant-center::before{
+  background:
+    radial-gradient(circle at 18% 18%, rgba(255,255,255,.07), transparent 24%),
+    radial-gradient(circle at 82% 16%, rgba(255,255,255,.10), transparent 20%),
+    linear-gradient(90deg, rgba(255,255,255,.06) 0 1px, transparent 1px),
+    linear-gradient(rgba(255,255,255,.04) 0 1px, transparent 1px);
+}
+
+/* responsive hero variants */
+@media (max-width: 900px){
+  .portal-hero-variant-split{
+    grid-template-columns:1fr !important;
+  }
+  .portal-hero-variant-center{
+    min-height: 360px;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  .portal-hero-variant-center h1,
+  .termos-hero.portal-hero-variant-center h1{
+    max-width: 100%;
+  }
+}
+
+
+/* ===== Fixes: vagas + termos ===== */
+
+/* Vagas: keep left layout, but restore contrast and remove washed-out surface */
+.vagas-hero.portal-hero-unified{
+  background:
+    linear-gradient(135deg, rgba(6,101,88,.96) 0%, rgba(7,118,101,.94) 58%, rgba(10,144,125,.92) 100%) !important;
+  border: 1px solid rgba(255,255,255,.10) !important;
+  box-shadow: 0 22px 60px rgba(0,69,58,.18) !important;
+  padding: clamp(2rem, 4vw, 3rem) clamp(1.6rem, 3vw, 2.6rem) !important;
+  min-height: clamp(360px, 38vw, 470px);
+}
+.vagas-hero.portal-hero-unified::before{
+  opacity: .42 !important;
+}
+.vagas-hero.portal-hero-unified,
+.vagas-hero.portal-hero-unified .page-header{
+  color: #fff !important;
+}
+.vagas-hero.portal-hero-unified .eyebrow,
+.vagas-hero.portal-hero-unified .hero-label,
+.vagas-hero.portal-hero-unified .page-badge{
+  background: rgba(255,255,255,.12) !important;
+  border-color: rgba(255,255,255,.16) !important;
+  color: #fff !important;
+}
+.vagas-hero.portal-hero-variant-left{
+  display: block !important;
+  text-align: left !important;
+}
+.vagas-hero.portal-hero-variant-left .page-header-copy,
+.vagas-hero.portal-hero-variant-left .hero-content{
+  max-width: 980px !important;
+  margin: 0 !important;
+}
+.vagas-hero.portal-hero-variant-left h1,
+.vagas-hero.portal-hero-variant-left .page-title,
+.vagas-hero.portal-hero-variant-left .hero-title{
+  max-width: 8.5ch !important;
+  margin: 0 0 .9rem 0 !important;
+  color: #fff !important;
+  font-size: clamp(3rem, 5.2vw, 4.9rem) !important;
+  line-height: .96 !important;
+  letter-spacing: -.045em;
+}
+.vagas-hero.portal-hero-unified p,
+.vagas-hero.portal-hero-unified .page-subtitle,
+.vagas-hero.portal-hero-unified .hero-subtitle{
+  max-width: 52rem !important;
+  color: rgba(255,255,255,.92) !important;
+  font-size: 1.08rem !important;
+}
+.vagas-hero.portal-hero-unified .hero-stats,
+.vagas-hero.portal-hero-unified .hero-meta,
+.vagas-hero.portal-hero-unified .page-header-stats{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.75rem;
+  margin-top:1.25rem;
+}
+.vagas-hero.portal-hero-unified .hero-stat,
+.vagas-hero.portal-hero-unified .hero-stats span,
+.vagas-hero.portal-hero-unified .page-header-stats span{
+  display:inline-flex;
+  align-items:center;
+  min-height: 40px;
+  padding:.58rem .95rem;
+  border-radius:999px;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.16);
+  color: #fff !important;
+  font-weight: 700;
+}
+
+/* Terms: match the earlier centered composition more closely */
+.termos-hero.portal-hero-unified{
+  display: block !important;
+  position: relative;
+  min-height: 340px !important;
+  margin: 0 auto 1.4rem !important;
+  padding: 0 !important;
+  overflow: hidden;
+  border-radius: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  background:
+    linear-gradient(135deg, rgba(6,108,94,.98) 0%, rgba(7,123,104,.96) 58%, rgba(10,155,136,.94) 100%) !important;
+}
+.termos-hero.portal-hero-unified::before{
+  opacity: .36 !important;
+}
+.termos-hero .page-hero-inner{
+  min-height: 340px;
+  max-width: 900px !important;
+  margin: 0 auto !important;
+  padding: 2.3rem 1.5rem 2.6rem !important;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+.termos-hero .page-hero-badge,
+.termos-hero .hero-label,
+.termos-hero .page-badge{
+  margin: 0 auto .95rem !important;
+  background: rgba(255,255,255,.13) !important;
+  border: 1px solid rgba(255,255,255,.18) !important;
+  color: #fff !important;
+}
+.termos-hero h1,
+.termos-hero .page-title{
+  max-width: 8.8ch !important;
+  margin: 0 auto .7rem !important;
+  font-size: clamp(3rem, 5.2vw, 4.6rem) !important;
+  line-height: .96 !important;
+  letter-spacing: -.045em;
+  color: #fff !important;
+}
+.termos-hero h1 span{
+  color: #fff !important;
+  opacity: 1 !important;
+}
+.termos-hero p,
+.termos-hero .page-subtitle{
+  max-width: 44rem !important;
+  margin: 0 auto !important;
+  color: rgba(255,255,255,.92) !important;
+  font-size: 1.05rem !important;
+}
+.termos-hero .page-am-deco{
+  right: -26px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: clamp(180px, 18vw, 300px) !important;
+  height: auto !important;
+  opacity: .18 !important;
+}
+.termos-hero.portal-hero-variant-center{
+  display: block !important;
+  min-height: auto !important;
+  padding: 0 !important;
+}
+@media (max-width: 900px){
+  .termos-hero .page-hero-inner{
+    min-height: 300px;
+    padding: 2rem 1rem 2.2rem !important;
+  }
+  .termos-hero h1,
+  .vagas-hero.portal-hero-variant-left h1{
+    max-width: 100% !important;
+  }
+}

@@ -1,0 +1,232 @@
+
+/* Mobile and responsive refinements */
+:root{
+  --mobile-gutter: 16px;
+  --mobile-radius: 20px;
+}
+
+@media (max-width: 1100px){
+  .hero-home-grid,
+  .portal-hero-split,
+  .job-layout,
+  .vaga-layout,
+  .job-detail-layout,
+  .intro-grid,
+  .about-grid,
+  .empresa-grid,
+  .content-grid{
+    gap: 1.1rem !important;
+  }
+}
+
+@media (max-width: 900px){
+  body{
+    overflow-x: hidden;
+  }
+
+  .page-shell,
+  .page-wrap,
+  .content,
+  .content-wrap,
+  main{
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .hero,
+  .page-hero,
+  .page-header,
+  .portal-hero-unified,
+  .vagas-hero,
+  .termos-hero{
+    margin-left: var(--mobile-gutter) !important;
+    margin-right: var(--mobile-gutter) !important;
+    border-radius: 24px !important;
+  }
+
+  .hero-home-grid,
+  .portal-hero-split,
+  .intro-grid,
+  .about-grid,
+  .empresa-grid,
+  .content-grid,
+  .job-layout,
+  .vaga-layout,
+  .job-detail-layout,
+  .terms-layout{
+    grid-template-columns: 1fr !important;
+  }
+
+  .hero-home-content,
+  .hero-content,
+  .page-header-copy,
+  .job-main-card,
+  .job-sidebar-card,
+  .vaga-card,
+  .summary-card{
+    min-width: 0;
+  }
+
+  .hero-home-content h1,
+  .portal-hero-unified h1,
+  .page-hero h1,
+  .page-header h1{
+    font-size: clamp(2.1rem, 9vw, 3rem) !important;
+    line-height: 1.02 !important;
+    max-width: 100% !important;
+  }
+
+  .hero-home-content p,
+  .portal-hero-unified p,
+  .page-hero p,
+  .page-header p{
+    font-size: .98rem !important;
+    line-height: 1.65 !important;
+    max-width: 100% !important;
+  }
+
+  .hero-search-bar,
+  .hero-actions,
+  .cta-group,
+  .action-row{
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: .75rem !important;
+  }
+
+  .hero-search-btn,
+  .hero-create-btn,
+  .btn,
+  .btn-primary,
+  .btn-secondary,
+  .cta-primary,
+  .cta-secondary,
+  .hero-primary,
+  .hero-secondary{
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .section-card,
+  .content-panel,
+  .page-section-card,
+  .jobs-list-card,
+  .filters-card,
+  .legal-panel,
+  .job-main-card,
+  .job-sidebar-card,
+  .vaga-card,
+  .summary-card,
+  .auth-card,
+  .register-card,
+  .application-card{
+    border-radius: var(--mobile-radius) !important;
+    padding: 1rem !important;
+    margin-left: var(--mobile-gutter);
+    margin-right: var(--mobile-gutter);
+  }
+
+  .jobs-results,
+  .results-panel,
+  .filters-shell,
+  .jobs-grid-shell{
+    margin-left: var(--mobile-gutter);
+    margin-right: var(--mobile-gutter);
+    border-radius: var(--mobile-radius) !important;
+  }
+
+  .terms-layout .terms-sidebar,
+  .terms-layout .terms-content{
+    margin-left: var(--mobile-gutter);
+    margin-right: var(--mobile-gutter);
+    padding: 1rem !important;
+  }
+
+  .portal-slot-media,
+  .hero-media,
+  .page-header-media,
+  .media-card,
+  .image-card{
+    min-height: 220px !important;
+    border-radius: 22px !important;
+  }
+
+  .job-meta,
+  .vaga-meta,
+  .detail-meta,
+  .hero-proof-inline,
+  .hero-stats{
+    gap: .5rem !important;
+  }
+
+  .job-meta span,
+  .vaga-meta span,
+  .detail-meta span,
+  .hero-proof-inline span,
+  .hero-stat{
+    width: 100%;
+    justify-content: center;
+  }
+
+  form .form-grid,
+  form .form-row,
+  .form-layout,
+  .contact-grid{
+    grid-template-columns: 1fr !important;
+  }
+
+  input:not([type="checkbox"]):not([type="radio"]),
+  select,
+  textarea{
+    font-size: 16px !important;
+  }
+
+  footer .footer-inner,
+  .footer-inner{
+    padding-left: var(--mobile-gutter) !important;
+    padding-right: var(--mobile-gutter) !important;
+  }
+}
+
+@media (max-width: 640px){
+  .hero,
+  .page-hero,
+  .page-header,
+  .portal-hero-unified,
+  .vagas-hero,
+  .termos-hero{
+    padding: 1.15rem !important;
+  }
+
+  .hero-label,
+  .page-badge,
+  .page-hero-badge,
+  .eyebrow,
+  .section-label,
+  .kicker{
+    font-size: .72rem !important;
+    padding: .48rem .72rem !important;
+  }
+
+  .hero-search-field{
+    padding-left: .85rem !important;
+    padding-right: .85rem !important;
+  }
+
+  .table-wrap,
+  .results-table,
+  .jobs-table{
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .feature-card,
+  .benefit-card,
+  .partner-card,
+  .metric-card,
+  .stat-card,
+  .value-card,
+  .mini-card{
+    padding: .95rem !important;
+  }
+}

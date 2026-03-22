@@ -21,36 +21,11 @@
 <meta property="twitter:description" content="Encontre vagas de estágio e Jovem Aprendiz para alunos da Universidade Anhembi Morumbi — Polo Bauru Centro.">
 <meta property="twitter:image" content="https://mantoniogamaa.github.io/iniciaai/og-image.png">
 <link rel="canonical" href="https://mantoniogamaa.github.io/iniciaai/">
-<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
-  :root {
-    --primary:       #006C5B;   /* PANTONE 7719C — Verde Escuro Anhembi */
-    --primary-dark:  #005247;   /* Verde mais escuro hover */
-    --primary-mid:   #005F51;   /* Verde médio */
-    --accent:        #00A499;   /* PANTONE 3285C — Verde Claro/Menta */
-    --accent-dark:   #00897F;   /* Menta escuro hover */
-    --accent-light:  #E6F6F4;   /* Menta bem claro fundo */
-    --gray:          #63666A;   /* PANTONE Cool Gray 10C */
-    --gray-light:    #D9DEE2;   /* Cinza claro */
-    --bg:            #F4F8F7;   /* Fundo levemente esverdeado */
-    --dark:          #006C5B;   /* Dark = verde escuro */
-    --text:          #1A2E28;   /* Texto principal */
-    --muted:         #63666A;   /* Cinza médio Anhembi */
-    --border:        #C9D9D5;   /* Bordas esverdeadas */
-    --white:         #FFFFFF;
-    --green:         #00A499;
-    --orange:        #63666A;
-    --yellow:        #00897F;
-    --cyan:          #00A499;
-    --error:         #63666A;
-    --error-bg:      rgba(99,102,106,.12);
-    /* Aliases */
-    --violet:        #006C5B;
-    --coral:         #63666A;
-  }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family:'Plus Jakarta Sans',sans-serif; background:var(--bg); color:var(--text); overflow-x:hidden; }
+* { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Plus Jakarta Sans',sans-serif; background:linear-gradient(180deg,#ffffff 0%, #ffffff 22%, #E6F6F4 22%, #E6F6F4 100%); color:var(--text); overflow-x:hidden; }
 
   nav {
     position:fixed; top:0; left:0; right:0; z-index:100;
@@ -60,7 +35,7 @@
   }
   .logo {
   width: 140px; height: 42px;
-  background: url('logocolorida.png') no-repeat left center / contain;
+  background: url('logo-colorida.png') no-repeat left center / contain;
   display: block; flex-shrink: 0;
 }
   .nav-links { display:flex; gap:2rem; align-items:center; }
@@ -157,7 +132,7 @@
   .lm-btn:disabled { opacity:.6; cursor:not-allowed; transform:none; }
   .lm-msg { padding:.65rem .9rem; border-radius:9px; font-size:.82rem; font-weight:600;
     margin-top:.75rem; text-align:center; display:none; }
-  .lm-msg.error   { background:rgba(99,102,106,.12);  color:var(--coral); display:block; }
+  .lm-msg.error   { background:rgba(99,102,106,.12);  color:var(--status-error, #C0392B); display:block; }
   .lm-msg.success { background:rgba(0,164,153,.10); color:var(--green); display:block; }
   .lm-divider { text-align:center; font-size:.78rem; color:var(--muted); margin:.85rem 0; }
   .lm-link { font-size:.82rem; color:var(--muted); text-align:center; margin-top:.85rem; }
@@ -300,7 +275,7 @@
   .candidatura-msg { padding:.85rem 1rem; border-radius:10px; font-size:.85rem; font-weight:600;
     margin-bottom:1rem; display:none; text-align:center; }
   .candidatura-msg.success { background:rgba(0,164,153,.10); color:var(--green); display:block; }
-  .candidatura-msg.error   { background:rgba(99,102,106,.12); color:var(--coral); display:block; }
+  .candidatura-msg.error   { background:rgba(99,102,106,.12); color:var(--status-error, #C0392B); display:block; }
 
   @keyframes fadeDown { from{opacity:0;transform:translateY(-16px)} to{opacity:1;transform:translateY(0)} }
   @keyframes cardIn   { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
@@ -318,16 +293,18 @@
     padding:.6rem 1.4rem; border-radius:50px; font-size:.85rem; font-weight:600;
     color:var(--primary); background:var(--accent-light);
     border:1.5px solid rgba(0,122,94,.15); text-decoration:none;
-    transition:all .2s; font-family:'DM Sans',sans-serif;
+    transition:all .2s; font-family:sans-serif;
   }
   .btn-ver-todas:hover { background:var(--primary); color:white; border-color:var(--primary); transform:translateY(-2px); box-shadow:0 6px 20px rgba(0,122,94,.2); }
   .btn-cta-primary {
-    display:inline-flex; align-items:center; gap:.5rem;
-    padding:.9rem 2.5rem; background:var(--primary); color:white;
-    border-radius:50px; text-decoration:none; font-family:'DM Sans',sans-serif;
-    font-size:.95rem; font-weight:700; transition:all .2s; border:none;
+    display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
+    min-width:var(--btn-primary-min-width, 190px); min-height:var(--btn-primary-height, 56px);
+    padding:0 var(--btn-primary-padding-x, 1.5rem); background:var(--primary); color:white;
+    border-radius:var(--btn-pill-radius, 999px); text-decoration:none; font-family:sans-serif;
+    font-size:var(--btn-primary-font-size, .96rem); font-weight:800; transition:all .2s; border:none;
+    line-height:1; text-align:center; white-space:nowrap; box-shadow:var(--btn-primary-shadow, 0 10px 26px rgba(0,108,91,.18));
   }
-  .btn-cta-primary:hover { background:var(--primary-dark); transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,122,94,.3); }
+  .btn-cta-primary:hover { background:var(--primary-dark); transform:translateY(-2px); box-shadow:var(--btn-primary-shadow-hover, 0 14px 30px rgba(0,108,91,.24)); }
 
   /* DIFERENCIAIS HOME */
   .diff-card-home {
@@ -523,12 +500,12 @@
     display: block;
     width: 160px;
     height: 44px;
-    background: url('logocolorida.png') no-repeat center/contain;
+    background: url('logo-colorida.png') no-repeat center/contain;
   }
   /* Logo branca nos heróis (quando nav está sobre fundo escuro) */
   .hero-logo-wrap .logo::before,
   .vaga-hero .logo::before {
-    background-image: url('logobranca.png');
+    background-image: url('logo-branca.png');
   }
 
 
@@ -549,7 +526,7 @@
     display: block;
     width: 140px;
     height: 48px;
-    background: url('logocolorida.png') no-repeat left center / contain;
+    background: url('logo-colorida.png') no-repeat left center / contain;
   }
 
   /* ── NAV ── */
@@ -592,7 +569,7 @@
     position: absolute;
     bottom: -20px; left: -40px;
     width: 420px; height: 120px;
-    background: url('logobranca.png') no-repeat left center / contain;
+    background: url('logo-branca.png') no-repeat left center / contain;
     opacity: .05;
     pointer-events: none;
     z-index: 0;
@@ -654,7 +631,7 @@
     top: 50%; right: -60px;
     transform: translateY(-50%);
     width: 380px; height: 110px;
-    background: url('logocolorida.png') no-repeat center / contain;
+    background: url('logo-colorida.png') no-repeat center / contain;
     opacity: .035;
     pointer-events: none;
     z-index: 0;
@@ -691,8 +668,7 @@
 
 
   /* ── TYPOGRAPHY UPGRADE ── */
-  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap');
-  body { font-family: 'DM Sans', 'Plus Jakarta Sans', sans-serif; }
+  body { font-family: 'Plus Jakarta Sans', sans-serif; }
 
   /* ── HERO BADGE FIX — não deve esticar full width ── */
   .hero-badge {
@@ -967,7 +943,7 @@
     display: inline-block !important;
     width: 150px !important;
     height: 48px !important;
-    background: url('logocolorida.png') no-repeat left center / contain !important;
+    background: url('logo-colorida.png') no-repeat left center / contain !important;
     text-decoration: none !important;
     font-size: 0 !important;
     color: transparent !important;
@@ -1009,6 +985,8 @@
     color: var(--text, #1A2E28); margin: 0;
   }
   .companies-header h2 span { color: var(--accent, #00A499); }
+  .companies-header { position:relative; z-index:1; }
+  .carousel-outer, #carousel-empty { position:relative; z-index:1; }
   .carousel-outer {
     position: relative; width: 100%;
     -webkit-mask-image: linear-gradient(to right, transparent 0%, black 7%, black 93%, transparent 100%);
@@ -1028,26 +1006,29 @@
   }
   .parceiro-item {
     flex-shrink: 0;
-    width: 164px; height: 84px;
-    background: white; border-radius: 16px;
-    border: 1.5px solid var(--border, #C9D9D5);
+    width: 182px; height: 92px;
+    background: linear-gradient(180deg, rgba(255,255,255,.98), rgba(247,251,250,.96));
+    border-radius: 18px;
+    border: 1.5px solid rgba(0,108,91,.12);
     display: flex; align-items: center; justify-content: center;
-    padding: .75rem 1.1rem;
+    padding: .9rem 1.2rem;
     text-decoration: none;
-    transition: border-color .25s, box-shadow .25s, transform .25s;
+    box-shadow: 0 10px 28px rgba(0,64,54,.07);
+    transition: border-color .25s, box-shadow .25s, transform .25s, background .25s;
   }
   .parceiro-item:hover {
-    border-color: var(--accent, #00A499);
-    box-shadow: 0 6px 24px rgba(0,168,142,.15);
+    border-color: rgba(0,108,91,.24);
+    box-shadow: 0 16px 34px rgba(0,168,142,.14);
+    background: linear-gradient(180deg, rgba(255,255,255,1), rgba(240,248,245,.98));
     transform: translateY(-4px);
   }
   .parceiro-item img {
-    max-width: 100%; max-height: 46px;
+    max-width: 100%; max-height: 52px;
     object-fit: contain;
-    filter: grayscale(80%) opacity(.7);
-    transition: filter .3s;
+    filter: none; opacity: 1;
+    transition: transform .25s ease, opacity .25s ease;
   }
-  .parceiro-item:hover img { filter: grayscale(0%) opacity(1); }
+  .parceiro-item:hover img { transform: scale(1.04); opacity: 1; }
   .parceiro-item .p-text {
     font-family: 'Clash Display', 'Plus Jakarta Sans', sans-serif;
     font-weight: 700; font-size: .78rem;
@@ -1064,7 +1045,7 @@
   }
   @media (max-width: 768px) {
     .companies-section { padding: 2.5rem 0; }
-    .parceiro-item { width: 136px; height: 72px; }
+    .parceiro-item { width: 150px; height: 78px; }
     .carousel-track { gap: 1rem; }
   }
 
@@ -1096,8 +1077,20 @@
   .home-how-card h3 { font-family:'Clash Display',sans-serif; font-size:1.2rem; margin-bottom:.45rem; }
   .home-how-card p { color:var(--muted); line-height:1.65; font-size:.92rem; }
   .home-section-cta { text-align:center; margin-top:1.5rem; }
+
+  .companies-section{ margin-top: 2.5rem; position:relative; }
+  .companies-section::before{ content:''; position:absolute; inset:0; background:linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.04)); pointer-events:none; }
+  .jobs-section{ margin-top: 2.5rem; }
+  .home-how-section{ margin-top: 2.5rem; }
+  .home-employer-section{ margin-top: 2.5rem; padding-top: 0; }
+  .home-employer-grid{ margin-top: .5rem; }
+  @media (max-width: 768px){
+    .companies-section,.jobs-section,.home-how-section,.home-employer-section{ margin-top: 1.5rem; }
+  }
+
   .home-employer-grid { display:grid; grid-template-columns:1.2fr .9fr; gap:1.25rem; align-items:stretch; }
   .home-employer-copy, .home-final-cta { background:white; border-radius:24px; border:1px solid var(--border); padding:2rem; box-shadow:0 14px 36px rgba(0,0,0,.05); }
+  .home-employer-copy .btn-cta-primary, .home-final-cta .btn-cta-primary { align-self:flex-start; width:min(220px,100%); }
   .home-employer-copy h2, .home-final-cta h3 { font-family:'Clash Display',sans-serif; color:var(--dark); font-size:clamp(1.8rem,3vw,2.5rem); line-height:1.1; margin:.4rem 0 1rem; }
   .home-final-cta h3 { font-size:2rem; }
   .home-employer-list { list-style:none; display:grid; gap:.9rem; margin:0 0 1.4rem; }
@@ -1120,11 +1113,87 @@
     .home-how-card, .home-employer-copy, .home-final-cta { padding:1.4rem; border-radius:20px; }
   }
 
+
+  /* ── AJUSTE FINO HOME V2.1 ── */
+  .wave-sep path { fill: #F7FBFA !important; }
+
+  .home-lower-wrap {
+    position: relative;
+    background:
+      linear-gradient(180deg,
+        #F7FBFA 0%,
+        #F2FAF8 18%,
+        #EEF8F5 40%,
+        #F6FBFA 68%,
+        #EFF8F5 100%);
+    padding: 1.2rem 0 3.25rem;
+  }
+
+  .home-how-section,
+  .companies-section,
+  .jobs-section,
+  .home-employer-section {
+    position: relative;
+    background: transparent !important;
+  }
+
+  .companies-section {
+    padding-top: 3.2rem;
+    padding-bottom: 3rem;
+  }
+
+  .jobs-section {
+    padding: 2.4rem 2rem 3rem !important;
+    border-radius: 30px;
+    background: linear-gradient(180deg, rgba(255,255,255,.72) 0%, rgba(255,255,255,.92) 100%) !important;
+    border: 1px solid rgba(201,217,213,.72);
+    box-shadow: 0 18px 42px rgba(9, 58, 47, .05);
+    backdrop-filter: blur(6px);
+  }
+
+  .jobs-section::before,
+  .jobs-section::after {
+    display: none !important;
+    content: none !important;
+    background: none !important;
+  }
+
+  .home-employer-section {
+    padding-top: .75rem;
+    padding-bottom: 0;
+  }
+
+  .home-employer-copy,
+  .home-final-cta {
+    border-color: rgba(201,217,213,.82) !important;
+    box-shadow: 0 14px 34px rgba(9, 58, 47, .05) !important;
+  }
+
+  @media (max-width: 768px) {
+    .home-lower-wrap {
+      padding-top: .8rem;
+      padding-bottom: 2.4rem;
+    }
+
+    .jobs-section {
+      padding: 1.5rem 1rem 2.2rem !important;
+      border-radius: 24px;
+    }
+
+    .companies-section {
+      padding-top: 2.2rem;
+      padding-bottom: 2.2rem;
+    }
+  }
 </style>
   <link rel="stylesheet" href="public-navbar.css">
   <link rel="stylesheet" href="public-footer.css">
   <link rel="stylesheet" href="public-responsive.css">
+  <link rel="stylesheet" href="public-theme.css">
   <link rel="stylesheet" href="public-design-system.css">
+<link rel="stylesheet" href="public-media-slots.css">
+  <link rel="stylesheet" href="public-mobile-refinements.css">
+  <link rel="stylesheet" href="public-nav-modal.css">
 </head>
 <body>
 
@@ -1247,9 +1316,10 @@
 </section>
 
 <svg class="wave-sep" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 48" preserveAspectRatio="none">
-  <path fill="white" d="M0,24 C240,48 480,0 720,24 C960,48 1200,0 1440,24 L1440,48 L0,48 Z"/>
+  <path fill="#F7FBFA" d="M0,24 C240,48 480,0 720,24 C960,48 1200,0 1440,24 L1440,48 L0,48 Z"/>
 </svg>
 
+<div class="home-lower-wrap">
 <section class="home-how-section">
   <div class="home-section-head">
     <span class="section-badge-sm">Como funciona</span>
@@ -1350,17 +1420,26 @@
   </div>
 </div>
 
+</div>
+
 <footer class="public-footer">
-  <div class="public-footer-logo-wrap">
-    <img src="logo-conecta-white.png" alt="Conecta — Anhembi Morumbi — Polo Bauru Centro" class="public-footer-logo" />
+  <div class="public-footer-inner">
+    <div class="public-footer-logo-wrap">
+      <img src="logo-conecta-white.png" alt="Conecta — Anhembi Morumbi — Polo Bauru Centro" class="public-footer-logo" />
+    </div>
+    <div class="public-footer-contact" id="footer-contact">
+      <div class="public-footer-contact-title">Contato do portal</div>
+      <div class="public-footer-contact-items" id="footer-contact-items"></div>
+    </div>
+    <nav class="public-footer-nav" aria-label="Links do rodapé">
+      <a href="index.html">Início</a>
+      <a href="vagas.html">Vagas</a>
+      <a href="sobre.html">Sobre</a>
+      <a href="cadastro-empresa.html">Para Empresas</a>
+      <a href="termos.html">Termos &amp; Privacidade</a>
+    </nav>
+    <div class="public-footer-copy">© 2025 Universidade Anhembi Morumbi — Polo Bauru Centro. Todos os direitos reservados.</div>
   </div>
-  <div class="public-footer-nav">
-    <a href="index.html">Início</a>
-    <a href="vagas.html">Vagas</a>
-    <a href="sobre.html">Sobre</a>
-    <a href="termos.html">Termos &amp; Privacidade</a>
-  </div>
-  <p class="public-footer-copy">© 2025 Universidade Anhembi Morumbi — Polo Bauru Centro. Todos os direitos reservados.</p>
 </footer>
 
 <script>
@@ -1383,7 +1462,7 @@ async function carregarIdentidade() {
         el.style.cssText += ';width:auto;';
       });
     }
-    // Se não há logo personalizada, o CSS usa logocolorida.png por padrão
+    // Se não há logo personalizada, o CSS usa logo-colorida.png por padrão
 
     // Cor primária
     if (cfg.cor_primary && /^#[0-9A-Fa-f]{6}$/.test(cfg.cor_primary)) {
@@ -1784,6 +1863,13 @@ function goToHomeSearch(event){
   return false;
 }
 </script>
-<script src="public-navbar.js"></script>
+<script src="public-site-config.js"></script>
+<script src="public-assets-map.js"></script>
+<script src="public-navbar-config.js"></script>
+  <script src="public-navbar.js"></script>
+<script src="public-media-slots.js"></script>
+<script>loadGlobalBackground();</script>
+  <script src="public-footer-config.js"></script>
+<script src="public-footer.js"></script>
 </body>
 </html>

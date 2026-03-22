@@ -17,6 +17,86 @@
   const drawer = document.getElementById('mobileDrawer') || document.getElementById('mobile-drawer') || document.getElementById('mob-drawer') || document.querySelector('.mobile-drawer');
   const overlay = document.getElementById('drawer-overlay') || document.querySelector('.drawer-overlay');
 
+
+  function getNavbarConfig(){
+    const cfg = window.__PUBLIC_NAVBAR__ || {};
+    const branding = cfg.branding || {};
+    const mobile = cfg.mobile || {};
+    const actions = cfg.actions || {};
+    return {
+      branding: {
+        logo: branding.logo || (window.getPublicAsset ? window.getPublicAsset('navbarLogo', 'logo-colorida.png') : 'logo-colorida.png'),
+        alt: branding.alt || 'Conecta',
+        href: branding.href || 'index.html'
+      },
+      links: Array.isArray(cfg.links) && cfg.links.length ? cfg.links : [
+        { href: 'vagas.html', label: 'Vagas' },
+        { href: 'sobre.html', label: 'Sobre' },
+        { href: 'cadastro-empresa.html', label: 'Para Empresas' },
+        { href: 'termos.html', label: 'Termos' }
+      ],
+      mobile: {
+        includeHome: mobile.includeHome !== false,
+        home: mobile.home || { href: 'index.html', label: 'Início' },
+        companyLink: mobile.companyLink || { href: 'cadastro-empresa.html', label: 'Sou empresa → Publicar vaga' }
+      },
+      actions: {
+        loginLabel: actions.loginLabel || 'Entrar',
+        profileLabel: actions.profileLabel || 'Criar perfil',
+        profileHref: actions.profileHref || 'cadastro-candidato.html'
+      }
+    };
+  }
+
+  function renderDesktopLinks(cfg){
+    const host = document.querySelector('.nav-links');
+    if(!host) return;
+    host.innerHTML = cfg.links.map(function(item){
+      return '<a href="' + item.href + '">' + item.label + '</a>';
+    }).join('');
+  }
+
+  function renderMobileDrawer(cfg){
+    const mobileDrawer = document.getElementById('mobile-drawer') || document.querySelector('.mobile-drawer');
+    if(!mobileDrawer) return;
+    const mobileLinks = [];
+    if(cfg.mobile.includeHome && cfg.mobile.home){
+      mobileLinks.push('<a href="' + cfg.mobile.home.href + '" onclick="closeMobileMenu()">' + cfg.mobile.home.label + '</a>');
+    }
+    cfg.links.forEach(function(item){
+      mobileLinks.push('<a href="' + item.href + '" onclick="closeMobileMenu()">' + item.label + '</a>');
+    });
+    mobileDrawer.innerHTML = '' +
+      '<div class="mobile-nav-links">' + mobileLinks.join('') + '</div>' +
+      '<div class="mobile-divider"></div>' +
+      '<div class="mobile-access-title">Acesso rápido</div>' +
+      '<div class="mobile-cta">' +
+        '<a class="cta-secondary" href="javascript:void(0)" onclick="closeMobileMenu();openLoginModal(\'candidato\')">' + cfg.actions.loginLabel + '</a>' +
+        '<a class="cta-primary" href="' + cfg.actions.profileHref + '" onclick="closeMobileMenu()">' + cfg.actions.profileLabel + '</a>' +
+      '</div>' +
+      '<a class="mobile-company-link" href="' + cfg.mobile.companyLink.href + '" onclick="closeMobileMenu()">' + cfg.mobile.companyLink.label + '</a>';
+  }
+
+  function applyNavbarConfig(){
+    const cfg = getNavbarConfig();
+    document.querySelectorAll('nav > .logo, nav .logo').forEach(function(el){
+      el.setAttribute('aria-label', cfg.branding.alt);
+      el.setAttribute('title', cfg.branding.alt);
+      el.setAttribute('href', cfg.branding.href);
+      el.style.setProperty('--logo-url', "url('" + cfg.branding.logo + "')");
+    });
+    renderDesktopLinks(cfg);
+    renderMobileDrawer(cfg);
+
+    const loginBtn = document.querySelector('#nav-access-wrap .btn-nav-outline');
+    if(loginBtn) loginBtn.textContent = cfg.actions.loginLabel;
+    const profileBtn = document.querySelector('#nav-access-wrap .btn-nav-cta');
+    if(profileBtn){
+      profileBtn.textContent = cfg.actions.profileLabel;
+      profileBtn.setAttribute('href', cfg.actions.profileHref);
+    }
+  }
+
   function readLocalConfig(){
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
@@ -77,6 +157,7 @@
     const cor = normalizeBrandColor(cfg.cor_primary);
     const nome = cfg.nome_portal || 'Conecta';
     const logoUrl = cfg.logo_url;
+    applyFooterContact(cfg);
 
     if(/^#[0-9a-fA-F]{6}$/.test(cor || '')){
       const dark = adjustHex(cor, -24);
@@ -101,7 +182,11 @@
     });
 
     document.querySelectorAll('.public-footer-logo').forEach(function(img){
-      if(logoUrl){ img.src = logoUrl; img.style.filter = 'none'; img.style.opacity = '1'; }
+      const footerLogoUrl = cfg.footer_logo_url || cfg.logo_footer_url || '';
+      const defaultFooterLogo = window.getPublicAsset ? window.getPublicAsset('footerLogo', 'logo-conecta-white.png') : 'logo-conecta-white.png';
+      img.src = footerLogoUrl || defaultFooterLogo;
+      img.style.filter = 'none';
+      img.style.opacity = '1';
     });
 
     const prevText = document.getElementById('logo-preview-text');
@@ -111,6 +196,44 @@
       prevImg.style.display = 'block';
       prevImg.src = logoUrl;
     }
+  }
+
+  function normalizePhoneLink(value){
+    const digits = String(value || '').replace(/\D/g, '');
+    if(!digits) return '';
+    return digits.startsWith('55') ? digits : '55' + digits;
+  }
+
+  function applyFooterContact(cfg){
+    if(!cfg || typeof cfg !== 'object') return;
+    const email = String(cfg.contato_email || '').trim();
+    const telefone = String(cfg.contato_telefone || '').trim();
+    const whatsapp = String(cfg.contato_whatsapp || '').trim();
+
+    document.querySelectorAll('.public-footer').forEach(function(footer){
+      let block = footer.querySelector('.public-footer-contact');
+      if(!email && !telefone && !whatsapp){
+        if(block) block.remove();
+        return;
+      }
+      if(!block){
+        block = document.createElement('div');
+        block.className = 'public-footer-contact';
+        const copy = footer.querySelector('.public-footer-copy');
+        if(copy) copy.parentNode.insertBefore(block, copy);
+        else footer.appendChild(block);
+      }
+
+      const items = [];
+      if(email) items.push('<a href="mailto:' + email + '"><strong>E-mail:</strong> ' + email + '</a>');
+      if(telefone) items.push('<a href="tel:' + telefone.replace(/\D/g,'') + '"><strong>Telefone:</strong> ' + telefone + '</a>');
+      if(whatsapp){
+        const wa = normalizePhoneLink(whatsapp);
+        const href = wa ? 'https://wa.me/' + wa : '#';
+        items.push('<a href="' + href + '" target="_blank" rel="noopener"><strong>WhatsApp:</strong> ' + whatsapp + '</a>');
+      }
+      block.innerHTML = '<div class="public-footer-contact-title">Fale com o portal</div><div class="public-footer-contact-items">' + items.join('') + '</div>';
+    });
   }
 
   function getSession(key){
@@ -265,7 +388,13 @@
   }
 
   overlay?.addEventListener('click', function(){ setMenu(false); });
-  drawer?.querySelectorAll('a, button').forEach(function(item){ item.addEventListener('click', function(){ setMenu(false); }); });
+  function bindDrawerAutoClose(){
+    const currentDrawer = document.getElementById('mobile-drawer') || document.querySelector('.mobile-drawer');
+    currentDrawer?.querySelectorAll('a, button').forEach(function(item){
+      item.addEventListener('click', function(){ setMenu(false); });
+    });
+  }
+  bindDrawerAutoClose();
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape'){ setMenu(false); closeLoginModal(); closeAccessDropdown(); } });
   document.addEventListener('click', function(e){ if(!e.target.closest('.nav-access')) closeAccessDropdown(); });
   window.addEventListener('resize', function(){ if(window.innerWidth > 900) setMenu(false); checkNavSessions(); });
@@ -276,6 +405,8 @@
     history.replaceState({}, '', location.pathname);
   }
 
+  applyNavbarConfig();
+  bindDrawerAutoClose();
   markActiveLinks();
   checkNavSessions();
   loadIdentity();

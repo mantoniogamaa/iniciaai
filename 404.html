@@ -4,136 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Conecta — Página não encontrada</title>
-<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --primary:       #006C5B;   /* PANTONE 7719C — Verde Escuro Anhembi */
-    --primary-dark:  #005247;   /* Verde mais escuro hover */
-    --primary-mid:   #005F51;   /* Verde médio */
-    --accent:        #00A499;   /* PANTONE 3285C — Verde Claro/Menta */
-    --accent-dark:   #00897F;   /* Menta escuro hover */
-    --accent-light:  #E6F6F4;   /* Menta bem claro fundo */
-    --gray:          #63666A;   /* PANTONE Cool Gray 10C */
-    --gray-light:    #D9DEE2;   /* Cinza claro */
-    --bg:            #F4F8F7;   /* Fundo levemente esverdeado */
-    --dark:          #006C5B;   /* Dark = verde escuro */
-    --text:          #1A2E28;   /* Texto principal */
-    --muted:         #63666A;   /* Cinza médio Anhembi */
-    --border:        #C9D9D5;   /* Bordas esverdeadas */
-    --white:         #FFFFFF;
-    --green:         #00A499;
-    --orange:        #63666A;
-    --yellow:        #00897F;
-    --cyan:          #00A499;
-    --error:         #63666A;
-    --error-bg:      rgba(99,102,106,.12);
-    /* Aliases */
-    --violet:        #006C5B;
-    --coral:         #63666A;
-  }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body {
-    font-family:'Plus Jakarta Sans',sans-serif;
-    background-image: linear-gradient(155deg, rgba(0,30,22,.94) 0%, rgba(0,80,60,.87) 55%, rgba(0,40,30,.94) 100%), url("bg-network-dark.jpg");
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed; color:var(--text);
-    min-height:100vh; display:flex; flex-direction:column;
-    align-items:center; justify-content:center;
-    overflow:hidden; position:relative;
-  }
-
-  /* Blobs de fundo */
-  .blob {
-    position:fixed; border-radius:50%; filter:blur(80px);
-    opacity:.18; pointer-events:none; animation:float 8s ease-in-out infinite;
-  }
-  .blob-1 { width:500px; height:500px; background:var(--violet); top:-150px; right:-100px; animation-delay:0s; }
-  .blob-2 { width:400px; height:400px; background:var(--coral);  bottom:-120px; left:-100px; animation-delay:3s; }
-  .blob-3 { width:300px; height:300px; background:var(--cyan);   top:40%; left:60%; animation-delay:5s; }
-  @keyframes float {
-    0%,100% { transform:translateY(0) scale(1); }
-    50%      { transform:translateY(-30px) scale(1.05); }
-  }
-
-  nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  background: rgba(255,255,255,0.92); backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border); padding: 0 2rem;
-  height: 64px; display: flex; align-items: center; justify-content: space-between;
-}
-  .logo {
-  width: 140px; height: 42px;
-  background: url('logocolorida.png') no-repeat left center / contain;
-  display: block; flex-shrink: 0;
-}
-
-  .container {
-    text-align:center; padding:2rem; position:relative; z-index:1;
-    animation:fadeUp .6s ease both;
-  }
-  @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
-
-  .four-oh-four {
-    font-family:'Clash Display',sans-serif;
-    font-size:clamp(7rem,20vw,14rem);
-    font-weight:700; line-height:1;
-    background:linear-gradient(135deg,var(--violet) 30%,var(--coral) 70%);
-    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-    background-clip:text;
-    margin-bottom:.25rem;
-    position:relative;
-  }
-  .four-oh-four::after {
-    content:'404';
-    position:absolute; inset:0;
-    background:linear-gradient(135deg,var(--violet) 30%,var(--coral) 70%);
-    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-    background-clip:text;
-    filter:blur(24px); opacity:.3; z-index:-1;
-  }
-
-  .emoji { font-size:3.5rem; margin-bottom:1rem; display:block;
-    animation:bounce 2s ease-in-out infinite; }
-  @keyframes bounce {
-    0%,100% { transform:translateY(0); }
-    50%      { transform:translateY(-12px); }
-  }
-
-  h1 { font-family:'Clash Display',sans-serif; font-size:clamp(1.5rem,4vw,2.2rem);
-    font-weight:700; margin-bottom:.75rem; color:var(--dark); }
-  p  { font-size:1rem; color:var(--muted); max-width:420px; margin:0 auto 2rem; line-height:1.7; }
-
-  .btns { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
-  .btn-home {
-    padding:.8rem 2rem; background:linear-gradient(135deg,var(--accent),var(--accent-dark));
-    color:white; border:none; border-radius:50px; font-size:.95rem; font-weight:700;
-    cursor:pointer; text-decoration:none; font-family:'Plus Jakarta Sans',sans-serif;
-    transition:transform .2s,box-shadow .2s; display:inline-flex; align-items:center; gap:.5rem;
-  }
-  .btn-home:hover { transform:translateY(-3px); box-shadow:0 10px 28px rgba(12,61,48,.45); }
-  .btn-back {
-    padding:.8rem 2rem; background:white; color:var(--muted);
-    border:1.5px solid var(--border); border-radius:50px; font-size:.95rem; font-weight:600;
-    cursor:pointer; text-decoration:none; font-family:'Plus Jakarta Sans',sans-serif;
-    transition:all .2s; display:inline-flex; align-items:center; gap:.5rem;
-  }
-  .btn-back:hover { border-color:var(--violet); color:var(--violet); }
-
-  .hint { margin-top:2.5rem; font-size:.8rem; color:var(--muted); }
-  .hint a { color:var(--violet); font-weight:600; text-decoration:none; }
-  .hint a:hover { text-decoration:underline; }
-
-  .countdown-bar { width:200px; height:3px; background:var(--border); border-radius:50px;
-    margin:1.5rem auto 0; overflow:hidden; }
-  .countdown-fill { height:100%; background:linear-gradient(90deg,var(--accent),var(--accent-dark));
-    border-radius:50px; animation:shrink 10s linear forwards; }
-  @keyframes shrink { from{width:100%} to{width:0%} }
-  .countdown-text { font-size:.75rem; color:var(--muted); margin-top:.5rem; }
-  #sec { font-weight:700; color:var(--violet); }
-
-  
-  .hero, .page-hero, .vaga-hero, .doc-hero {
+.doc-hero {
     background: linear-gradient(135deg, #004D3D 0%, var(--primary) 50%, #0A3528 100%) !important;
     position: relative;
     overflow: hidden;
@@ -228,12 +101,12 @@
     display: block;
     width: 160px;
     height: 44px;
-    background: url('logocolorida.png') no-repeat center/contain;
+    background: url('logo-colorida.png') no-repeat center/contain;
   }
   /* Logo branca nos heróis (quando nav está sobre fundo escuro) */
   .hero-logo-wrap .logo::before,
   .vaga-hero .logo::before {
-    background-image: url('logobranca.png');
+    background-image: url('logo-branca.png');
   }
 
 
@@ -248,7 +121,7 @@
     content: '';
     display: block;
     width: 140px; height: 44px;
-    background: url('logocolorida.png') no-repeat left center / contain;
+    background: url('logo-colorida.png') no-repeat left center / contain;
   }
   nav {
     background: rgba(255,255,255,.97) !important;
@@ -304,9 +177,7 @@
 
 
   /* ── UPGRADE TIPOGRAFIA GLOBAL ── */
-  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap');
-
-  body { font-family: 'DM Sans', 'Plus Jakarta Sans', sans-serif !important; }
+  body { font-family: 'Plus Jakarta Sans', sans-serif !important; }
 
   h1, h2, h3, .section-title, .panel-title, .modal-title {
     font-family: 'Clash Display', sans-serif !important;
@@ -315,7 +186,7 @@
 
   /* Forms mais elegantes */
   input, select, textarea, button {
-    font-family: 'DM Sans', sans-serif !important;
+    font-family: sans-serif !important;
   }
 
   /* Labels mais profissionais */
@@ -324,14 +195,14 @@
   /* Botões — tipografia impactante */
   .btn-submit, .btn-save, .btn-primary, .btn-login,
   .btn-apply-full, .btn-search, .btn-buscar, .btn-nav-cta {
-    font-family: 'DM Sans', sans-serif !important;
+    font-family: sans-serif !important;
     font-weight: 700 !important;
     letter-spacing: .02em !important;
   }
 
   /* Nav links */
   .nav-links a, .nav-back {
-    font-family: 'DM Sans', sans-serif !important;
+    font-family: sans-serif !important;
     font-size: .875rem !important;
   }
 
@@ -399,7 +270,7 @@
     display: inline-block !important;
     width: 150px !important;
     height: 48px !important;
-    background: url('logocolorida.png') no-repeat left center / contain !important;
+    background: url('logo-colorida.png') no-repeat left center / contain !important;
     text-decoration: none !important;
     font-size: 0 !important;
     color: transparent !important;
@@ -416,12 +287,47 @@
   * { box-sizing: border-box; }
   img, video, canvas, svg { max-width: 100%; }
   table { width: 100%; table-layout: fixed; }
-
 </style>
   <link rel="stylesheet" href="public-navbar.css">
+  <link rel="stylesheet" href="public-nav-modal.css">
   <link rel="stylesheet" href="public-footer.css">
   <link rel="stylesheet" href="public-responsive.css">
+  <link rel="stylesheet" href="public-theme.css">
   <link rel="stylesheet" href="public-design-system.css">
+  <link rel="stylesheet" href="public-tech-background.css">
+
+<style id="v23b-alive-tweak">
+  .page-hero,
+  .hero-section,
+  .hero-wrap{
+    box-shadow: 0 22px 54px rgba(0,64,54,.16);
+  }
+  .page-hero{
+    background:
+      radial-gradient(circle at 18% 18%, rgba(0,164,153,.18), transparent 20%),
+      linear-gradient(135deg,#004c40 0%, #006C5B 52%, #00A499 100%) !important;
+  }
+  .page-hero h1,
+  .page-hero .hero-title,
+  .page-hero .page-title{
+    color:#fff !important;
+  }
+  .page-hero p,
+  .page-hero .hero-subtitle,
+  .page-hero .page-subtitle{
+    color:rgba(255,255,255,.88) !important;
+  }
+  .form-card,
+  .section-card,
+  .empresa-panel,
+  .job-card,
+  .benefit-card,
+  .recurso-card{
+    box-shadow:0 18px 42px rgba(0,64,54,.10) !important;
+  }
+</style>
+
+<link rel="stylesheet" href="public-media-slots.css">
 </head>
 <body>
 
@@ -537,17 +443,31 @@
 </script>
 
 <footer class="public-footer">
-  <div class="public-footer-logo-wrap">
-    <img src="logo-conecta-white.png" alt="Conecta — Anhembi Morumbi — Polo Bauru Centro" class="public-footer-logo" />
+  <div class="public-footer-inner">
+    <div class="public-footer-logo-wrap">
+      <img src="logo-conecta-white.png" alt="Conecta — Anhembi Morumbi — Polo Bauru Centro" class="public-footer-logo" />
+    </div>
+    <div class="public-footer-contact" id="footer-contact">
+      <div class="public-footer-contact-title">Contato do portal</div>
+      <div class="public-footer-contact-items" id="footer-contact-items"></div>
+    </div>
+    <nav class="public-footer-nav" aria-label="Links do rodapé">
+      <a href="index.html">Início</a>
+      <a href="vagas.html">Vagas</a>
+      <a href="sobre.html">Sobre</a>
+      <a href="cadastro-empresa.html">Para Empresas</a>
+      <a href="termos.html">Termos &amp; Privacidade</a>
+    </nav>
+    <div class="public-footer-copy">© 2025 Universidade Anhembi Morumbi — Polo Bauru Centro. Todos os direitos reservados.</div>
   </div>
-  <div class="public-footer-nav">
-    <a href="index.html">Início</a>
-    <a href="vagas.html">Vagas</a>
-    <a href="sobre.html">Sobre</a>
-    <a href="termos.html">Termos &amp; Privacidade</a>
-  </div>
-  <p class="public-footer-copy">© 2025 Universidade Anhembi Morumbi — Polo Bauru Centro. Todos os direitos reservados.</p>
 </footer>
+  <script src="public-site-config.js"></script>
+<script src="public-assets-map.js"></script>
+<script src="public-navbar-config.js"></script>
   <script src="public-navbar.js"></script>
+<script src="public-media-slots.js"></script>
+<script>loadGlobalBackground();</script>
+  <script src="public-footer-config.js"></script>
+<script src="public-footer.js"></script>
 </body>
 </html>

@@ -21,184 +21,10 @@
 <meta property="twitter:description" content="Gerencie suas vagas e visualize os candidatos no painel exclusivo para empresas do Conecta.">
 <meta property="twitter:image" content="https://mantoniogamaa.github.io/iniciaaí/og-image.png">
 <link rel="canonical" href="https://mantoniogamaa.github.io/iniciaaí/painel-empresa.html">
-<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
-  :root {
-    --primary:       #006C5B;   /* PANTONE 7719C — Verde Escuro Anhembi */
-    --primary-dark:  #005247;   /* Verde mais escuro hover */
-    --primary-mid:   #005F51;   /* Verde médio */
-    --accent:        #00A499;   /* PANTONE 3285C — Verde Claro/Menta */
-    --accent-dark:   #00897F;   /* Menta escuro hover */
-    --accent-light:  #E6F6F4;   /* Menta bem claro fundo */
-    --gray:          #63666A;   /* PANTONE Cool Gray 10C */
-    --gray-light:    #D9DEE2;   /* Cinza claro */
-    --bg:            #F4F8F7;   /* Fundo levemente esverdeado */
-    --dark:          #006C5B;   /* Dark = verde escuro */
-    --text:          #1A2E28;   /* Texto principal */
-    --muted:         #63666A;   /* Cinza médio Anhembi */
-    --border:        #C9D9D5;   /* Bordas esverdeadas */
-    --white:         #FFFFFF;
-    --green:         #00A499;
-    --orange:        #63666A;
-    --yellow:        #00897F;
-    --cyan:          #00A499;
-    --error:         #63666A;
-    --error-bg:      rgba(99,102,106,.12);
-    /* Aliases */
-    --violet:        #006C5B;
-    --coral:         #63666A;
-  }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family:'Plus Jakarta Sans',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; }
-
-    /* ═══ NAV BASE ═══ */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(255,255,255,0.97);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--border);
-    padding: 0 2rem;
-    height: 64px;
-    display: flex; align-items: center; justify-content: space-between;
-    box-shadow: 0 1px 12px rgba(0,122,94,.08);
-  }
-  .logo {
-    display: inline-flex; align-items: center;
-    text-decoration: none; cursor: pointer;
-    font-size: 0 !important; color: transparent !important;
-    -webkit-text-fill-color: transparent !important;
-    background: none !important; flex-shrink: 0;
-  }
-  .logo::before {
-    content: ''; display: block;
-    width: 140px; height: 44px;
-    background: url('logocolorida.png') no-repeat left center / contain;
-  }
-  .nav-links { display: flex; gap: 2rem; align-items: center; }
-  .nav-links a { color: var(--muted); text-decoration: none; font-size: .9rem; font-weight: 500; transition: color .2s; }
-  .nav-links a:hover { color: var(--primary); }
-  .nav-links a.active { color: var(--primary); font-weight: 700; }
-  /* DROPDOWN ACESSAR */
-  .nav-access { position: relative; }
-  .btn-access { display:flex; align-items:center; gap:.45rem; padding:.55rem 1.2rem;
-    border:1.5px solid var(--border); border-radius:50px; background:white;
-    font-size:.875rem; font-weight:600; cursor:pointer; color:var(--text);
-    font-family:inherit; transition:all .2s; }
-  .btn-access:hover { border-color:var(--primary); color:var(--primary); }
-  .btn-access svg { transition:transform .2s; }
-  .btn-access.open svg { transform:rotate(180deg); }
-  .access-dropdown { position:absolute; top:calc(100% + .6rem); right:0;
-    background:white; border-radius:16px; border:1.5px solid var(--border);
-    box-shadow:0 12px 40px rgba(0,0,0,.12); min-width:220px; z-index:200;
-    opacity:0; transform:translateY(-8px); pointer-events:none; transition:all .2s; overflow:hidden; }
-  .access-dropdown.open { opacity:1; transform:translateY(0); pointer-events:all; }
-  .access-dropdown-header { padding:.75rem 1rem .5rem; font-size:.7rem; font-weight:700;
-    text-transform:uppercase; letter-spacing:.08em; color:var(--muted); }
-  .access-item { display:flex; align-items:center; gap:.75rem; padding:.75rem 1rem;
-    cursor:pointer; transition:background .15s; text-decoration:none; color:var(--text); }
-  .access-item:hover { background:var(--bg,#F4F8F7); }
-  .access-item:last-child { border-top:1px solid var(--border); }
-  .access-icon { width:36px; height:36px; border-radius:10px;
-    display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-  .access-icon.cand { background:rgba(0,122,94,.1); }
-  .access-icon.emp  { background:rgba(0,168,142,.1); }
-  .access-icon.new  { background:rgba(0,164,153,.10); }
-  .access-label { font-size:.875rem; font-weight:600; }
-  .access-sub   { font-size:.72rem; color:var(--muted); margin-top:.1rem; }
-  /* AVATAR LOGADO */
-  .nav-avatar { width:36px; height:36px; border-radius:50%;
-    background:linear-gradient(135deg,var(--accent,#00A499),var(--primary,#006C5B));
-    display:flex; align-items:center; justify-content:center;
-    color:white; font-weight:700; font-size:.9rem; cursor:pointer; flex-shrink:0;
-    border:2px solid white; box-shadow:0 2px 8px rgba(0,122,94,.4); }
-  .nav-user-wrap { display:flex; align-items:center; gap:.6rem; }
-  .nav-user-name { font-size:.85rem; font-weight:600; color:var(--text); }
-  /* MODAL LOGIN */
-  .login-modal-overlay { position:fixed; inset:0; background:rgba(15,10,30,.55);
-    backdrop-filter:blur(6px); z-index:500; display:none;
-    align-items:center; justify-content:center; padding:1rem; }
-  .login-modal-overlay.open { display:flex; }
-  .login-modal { background:white; border-radius:24px; width:100%; max-width:420px;
-    padding:2rem; position:relative; animation:lmIn .3s ease; box-shadow:0 24px 60px rgba(0,0,0,.18); }
-  @keyframes lmIn { from{transform:scale(.95) translateY(10px);opacity:0} to{transform:scale(1) translateY(0);opacity:1} }
-  .login-modal-close { position:absolute; top:1rem; right:1rem; width:32px; height:32px;
-    border-radius:50%; border:none; background:var(--bg,#F4F8F7); cursor:pointer;
-    font-size:1rem; color:var(--muted); display:flex; align-items:center; justify-content:center; }
-  .login-modal-tabs { display:flex; background:var(--bg,#F4F8F7); border-radius:12px;
-    padding:.3rem; gap:.3rem; margin-bottom:1.5rem; }
-  .lm-tab { flex:1; padding:.55rem; border-radius:9px; border:none; cursor:pointer;
-    font-size:.82rem; font-weight:600; font-family:inherit;
-    transition:all .2s; color:var(--muted); background:transparent;
-    display:flex; align-items:center; justify-content:center; gap:.35rem; }
-  .lm-tab.active { background:white; color:var(--primary,#006C5B); box-shadow:0 2px 8px rgba(0,0,0,.08); }
-  .lm-section { display:none; }
-  .lm-section.show { display:block; }
-  .lm-title { font-family:'Clash Display',sans-serif; font-size:1.3rem; font-weight:700; margin-bottom:1.25rem; color:var(--dark,#004D3D); }
-  .lm-field { margin-bottom:.85rem; }
-  .lm-field label { font-size:.78rem; font-weight:700; display:block; margin-bottom:.35rem; }
-  .lm-field input { width:100%; padding:.75rem 1rem; border:1.5px solid var(--border);
-    border-radius:10px; font-size:.9rem; font-family:inherit;
-    outline:none; background:var(--bg,#F4F8F7); color:var(--text); transition:border-color .2s; }
-  .lm-field input:focus { border-color:var(--accent,#00A499); background:white; }
-  .lm-btn { width:100%; padding:.9rem; background:linear-gradient(135deg,var(--accent,#00A499),var(--primary,#006C5B));
-    color:white; border:none; border-radius:12px; font-size:.95rem; font-weight:700;
-    cursor:pointer; font-family:inherit; transition:transform .2s,box-shadow .2s; margin-top:.25rem; }
-  .lm-btn:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,122,94,.4); }
-  .lm-btn:disabled { opacity:.6; cursor:not-allowed; transform:none; }
-  .lm-msg { padding:.65rem .9rem; border-radius:9px; font-size:.82rem; font-weight:600;
-    margin-top:.75rem; text-align:center; display:none; }
-  .lm-msg.error   { background:rgba(99,102,106,.12); color:#4F5B62; display:block; }
-  .lm-msg.success { background:rgba(0,164,153,.10); color:#1B5E20; display:block; }
-  .lm-link { font-size:.82rem; color:var(--muted); text-align:center; margin-top:.85rem; }
-  .lm-link a { color:var(--primary,#006C5B); font-weight:600; text-decoration:none; }
-  
-  /* DRAWER MOBILE */
-  .mobile-drawer { display:none; position:fixed; top:64px; left:0; right:0; bottom:0;
-    background:rgba(248,255,252,.98); backdrop-filter:blur(16px);
-    z-index:99; flex-direction:column; padding:1.5rem 2rem;
-    border-top:1px solid var(--border); overflow-y:auto;
-    transform:translateX(100%); transition:transform .3s ease; }
-  .mobile-drawer.open { transform:translateX(0); }
-  .mobile-nav-links { display:flex; flex-direction:column; gap:.25rem; margin-bottom:1.5rem; }
-  .mobile-nav-links a { padding:.85rem 1rem; border-radius:12px; font-size:1rem; font-weight:600;
-    color:var(--text); text-decoration:none; transition:background .2s;
-    display:flex; align-items:center; gap:.6rem; }
-  .mobile-nav-links a:hover { background:white; }
-  .mobile-nav-links a.active { color:var(--primary,#006C5B); background:rgba(0,122,94,.06); }
-  .mobile-divider { height:1px; background:var(--border); margin:.75rem 0; }
-  .mobile-access-title { font-size:.72rem; font-weight:700; text-transform:uppercase;
-    letter-spacing:.1em; color:var(--muted); margin-bottom:.75rem; }
-  .mobile-access-btn { display:flex; align-items:center; gap:.85rem; width:100%;
-    padding:1rem; border-radius:14px; border:1.5px solid var(--border); background:white;
-    cursor:pointer; font-family:inherit; transition:all .2s; margin-bottom:.6rem; }
-  .mobile-access-btn:hover { border-color:var(--primary,#006C5B); }
-  .mobile-access-icon { width:40px; height:40px; border-radius:10px;
-    display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-  .mobile-access-label { font-size:.9rem; font-weight:700; color:var(--text); }
-  .mobile-access-sub   { font-size:.75rem; color:var(--muted); margin-top:.1rem; }
-  .mobile-cta { display:flex; flex-direction:column; gap:.6rem; margin-top:.5rem; }
-  .mobile-cta a { display:flex; align-items:center; justify-content:center; gap:.5rem;
-    padding:.9rem; border-radius:12px; font-weight:700; font-size:.9rem;
-    text-decoration:none; transition:all .2s; }
-  .mobile-cta .cta-primary { background:linear-gradient(135deg,var(--accent,#00A499),var(--primary,#006C5B)); color:white; }
-  .mobile-cta .cta-secondary { border:1.5px solid var(--border); color:var(--muted); }
-  @media(max-width:768px) {
-    nav { padding:0 1rem; height:64px; }
-    .nav-links { display:none !important; }
-    .btn-access { display:none !important; }
-    .nav-logado-desktop { display:none !important; }
-    .hamburger { display:flex !important; }
-    .mobile-drawer { display:flex; }
-  }
-  @media(max-width:600px) { .nav-user-name { display:none !important; } }
-  
-
-  .page-wrap { max-width:960px; margin:0 auto; padding:2.5rem 1.5rem 5rem; }
-
-
-  /* ── HERO INTERNO PADRÃO ── */
+── HERO INTERNO PADRÃO ── */
   .page-hero {
     background:var(--dark); padding:3rem 2rem 2.5rem; position:relative; overflow:hidden;
   }
@@ -247,7 +73,7 @@
   .btn-primary:disabled { opacity:.6; cursor:not-allowed; transform:none; }
   .msg-box { padding:.75rem 1rem; border-radius:10px; font-size:.85rem; font-weight:600;
     margin-top:1rem; text-align:center; display:none; }
-  .msg-box.error { background:rgba(99,102,106,.12); color:var(--coral); display:block; }
+  .msg-box.error { background:rgba(99,102,106,.12); color:var(--status-error, #C0392B); display:block; }
   .link-cadastro { text-align:center; margin-top:1.25rem; font-size:.85rem; color:var(--muted); }
   .link-cadastro a { color:var(--violet); font-weight:600; text-decoration:none; }
 
@@ -375,7 +201,7 @@
   .msg-modal { padding:.7rem 1rem; border-radius:9px; font-size:.82rem; font-weight:600;
     margin-top:.75rem; display:none; }
   .msg-modal.success { background:rgba(0,164,153,.10); color:var(--green); display:block; }
-  .msg-modal.error   { background:rgba(99,102,106,.12); color:var(--coral); display:block; }
+  .msg-modal.error   { background:rgba(99,102,106,.12); color:var(--status-error, #C0392B); display:block; }
 
   /* NOVA VAGA BTN */
   .btn-nova-vaga { padding:.55rem 1.2rem; background:linear-gradient(135deg,var(--accent),var(--accent-dark));
@@ -496,12 +322,12 @@
     display: block;
     width: 160px;
     height: 44px;
-    background: url('logocolorida.png') no-repeat center/contain;
+    background: url('logo-colorida.png') no-repeat center/contain;
   }
   /* Logo branca nos heróis (quando nav está sobre fundo escuro) */
   .hero-logo-wrap .logo::before,
   .vaga-hero .logo::before {
-    background-image: url('logobranca.png');
+    background-image: url('logo-branca.png');
   }
 
 
@@ -516,7 +342,7 @@
     content: '';
     display: block;
     width: 140px; height: 44px;
-    background: url('logocolorida.png') no-repeat left center / contain;
+    background: url('logo-colorida.png') no-repeat left center / contain;
   }
   nav {
     background: rgba(255,255,255,.97) !important;
@@ -572,9 +398,7 @@
 
 
   /* ── UPGRADE TIPOGRAFIA GLOBAL ── */
-  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap');
-
-  body { font-family: 'DM Sans', 'Plus Jakarta Sans', sans-serif !important; }
+  body { font-family: 'Plus Jakarta Sans', sans-serif !important; }
 
   h1, h2, h3, .section-title, .panel-title, .modal-title {
     font-family: 'Clash Display', sans-serif !important;
@@ -583,7 +407,7 @@
 
   /* Forms mais elegantes */
   input, select, textarea, button {
-    font-family: 'DM Sans', sans-serif !important;
+    font-family: sans-serif !important;
   }
 
   /* Labels mais profissionais */
@@ -595,7 +419,7 @@
 
   /* Nav links */
   .nav-links a, .nav-back {
-    font-family: 'DM Sans', sans-serif !important;
+    font-family: sans-serif !important;
     font-size: .875rem !important;
   }
 
@@ -609,7 +433,7 @@
   .section-title { font-family: 'Clash Display', sans-serif !important; letter-spacing: -.02em !important; }
   .stat-num { font-family: 'Clash Display', sans-serif !important; font-weight: 700 !important; }
   .vaga-title { font-family: 'Clash Display', sans-serif !important; letter-spacing: -.01em !important; }
-  .cand-name  { font-family: 'DM Sans', sans-serif !important; font-weight: 700 !important; }
+  .cand-name  { font-family: sans-serif !important; font-weight: 700 !important; }
   .modal-title { font-family: 'Clash Display', sans-serif !important; }
   .vaga-item { border-radius: 16px !important; }
   .cand-card-busca { border-radius: 16px !important; }
@@ -679,7 +503,7 @@
     display: inline-block !important;
     width: 150px !important;
     height: 48px !important;
-    background: url('logocolorida.png') no-repeat left center / contain !important;
+    background: url('logo-colorida.png') no-repeat left center / contain !important;
     text-decoration: none !important;
     font-size: 0 !important;
     color: transparent !important;
@@ -696,11 +520,12 @@
   * { box-sizing: border-box; }
   img, video, canvas, svg { max-width: 100%; }
   table { width: 100%; table-layout: fixed; }
-
 </style>
   <link rel="stylesheet" href="public-navbar.css">
+  <link rel="stylesheet" href="public-nav-modal.css">
   <link rel="stylesheet" href="public-footer.css">
   <link rel="stylesheet" href="public-responsive.css">
+  <link rel="stylesheet" href="public-theme.css">
   <link rel="stylesheet" href="public-design-system.css">
 </head>
 <body>
@@ -990,16 +815,23 @@
 <div class="toast" id="toast"></div>
 
 <footer class="public-footer">
-  <div class="public-footer-logo-wrap">
-    <img src="logo-conecta-white.png" alt="Conecta — Anhembi Morumbi — Polo Bauru Centro" class="public-footer-logo" />
+  <div class="public-footer-inner">
+    <div class="public-footer-logo-wrap">
+      <img src="logo-branca.png" alt="Conecta — Anhembi Morumbi — Polo Bauru Centro" class="public-footer-logo" />
+    </div>
+    <div class="public-footer-contact" id="footer-contact">
+      <div class="public-footer-contact-title">Contato do portal</div>
+      <div class="public-footer-contact-items" id="footer-contact-items"></div>
+    </div>
+    <nav class="public-footer-nav" aria-label="Links do rodapé">
+      <a href="index.html">Início</a>
+      <a href="vagas.html">Vagas</a>
+      <a href="sobre.html">Sobre</a>
+      <a href="cadastro-empresa.html">Para Empresas</a>
+      <a href="termos.html">Termos &amp; Privacidade</a>
+    </nav>
+    <div class="public-footer-copy">© 2025 Universidade Anhembi Morumbi — Polo Bauru Centro. Todos os direitos reservados.</div>
   </div>
-  <div class="public-footer-nav">
-    <a href="index.html">Início</a>
-    <a href="vagas.html">Vagas</a>
-    <a href="sobre.html">Sobre</a>
-    <a href="termos.html">Termos &amp; Privacidade</a>
-  </div>
-  <p class="public-footer-copy">© 2025 Universidade Anhembi Morumbi — Polo Bauru Centro. Todos os direitos reservados.</p>
 </footer>
 
 <script>
@@ -1022,7 +854,7 @@ async function carregarIdentidade() {
         el.style.cssText += ';width:auto;';
       });
     }
-    // Se não há logo personalizada, o CSS usa logocolorida.png por padrão
+    // Se não há logo personalizada, o CSS usa logo-colorida.png por padrão
 
     // Cor primária
     if (cfg.cor_primary && /^#[0-9A-Fa-f]{6}$/.test(cfg.cor_primary)) {
@@ -1550,6 +1382,9 @@ if (empresaLogada) showPainel();
     </div>
   </div>
 </div>
+  <script src="public-navbar-config.js"></script>
   <script src="public-navbar.js"></script>
+  <script src="public-footer-config.js"></script>
+<script src="public-footer.js"></script>
 </body>
 </html>

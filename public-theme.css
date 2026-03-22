@@ -1,0 +1,221 @@
+/*
+  TOKENS VISUAIS DO SISTEMA
+  Identidade visual base do portal Conecta — Anhembi Morumbi Bauru.
+  Conteúdo configurável (logo, textos, contato) fica em public-site-config.js
+*/
+:root {
+  /* ── Marca ── */
+  --brand-primary:       #006C5B;   /* PANTONE 7719C — Verde Escuro Anhembi */
+  --brand-primary-dark:  #005247;   /* Verde escuro para hover */
+  --brand-accent:        #00A499;   /* PANTONE 3285C — Menta */
+  --brand-accent-dark:   #00897F;   /* Menta escuro para hover */
+  --brand-neutral:       #63666A;   /* PANTONE Cool Gray 10C */
+
+  /* Aliases diretos (usados em CSS das páginas) */
+  --primary:       var(--brand-primary);
+  --primary-dark:  var(--brand-primary-dark);
+  --primary-mid:   #005F51;
+  --accent:        var(--brand-accent);
+  --accent-dark:   var(--brand-accent-dark);
+  --accent-light:  #E6F6F4;
+  --gray:          #63666A;
+  --gray-light:    #D9DEE2;
+
+  /* ── Superfícies ── */
+  --bg:            #F4F8F7;
+  --surface-page:  #F4F8F7;
+  --surface-card:  #FFFFFF;
+  --surface-soft:  #EEF5F3;
+
+  /* ── Texto ── */
+  --text:          #1A2E28;
+  --text-strong:   #17342E;
+  --text-body:     #4F6861;
+  --text-soft:     #6F8780;
+  --muted:         #63666A;
+
+  /* ── Bordas ── */
+  --border:        #C9D9D5;
+  --border-soft:   rgba(0,108,91,.10);
+
+  /* ── Feedback — CORRIGIDO: cores semanticamente corretas ── */
+  --status-error:     #C0392B;               /* Vermelho real para erros */
+  --status-error-bg:  rgba(192,57,43,.10);
+  --status-success:   #0C8A78;
+  --error:            var(--status-error);   /* Alias corrigido */
+  --error-bg:         var(--status-error-bg);
+
+  /* ── Tokens legados corrigidos (evitar confusão semântica) ── */
+  --white:   #FFFFFF;
+  --dark:    var(--brand-primary);
+  --green:   var(--brand-accent);
+  --cyan:    var(--brand-accent);
+  --yellow:  var(--brand-accent-dark);
+  --orange:  var(--brand-primary-dark);
+  /* NOTA: --violet e --coral eram aliases equivocados (ambos mapeavam para verde).
+     Use --primary e --primary-dark diretamente para evitar confusão. */
+  --violet:  var(--brand-primary);
+  --coral:   var(--brand-primary-dark);
+
+  /* ── Tipografia ── */
+  --font-family-base: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
+  --font-family-display: 'Clash Display', var(--font-family-base);
+
+  --font-size-xs:  .72rem;
+  --font-size-sm:  .84rem;
+  --font-size-md:  .95rem;
+  --font-size-lg:  1.05rem;
+  --font-size-xl:  1.35rem;
+  --font-size-2xl: clamp(2rem, 3.6vw, 3.8rem);
+  --line-height-tight: 1.08;
+  --line-height-body:  1.65;
+
+  /* ── Espaçamento ── */
+  --space-2xs: .25rem;
+  --space-xs:  .5rem;
+  --space-sm:  .75rem;
+  --space-md:  1rem;
+  --space-lg:  1.5rem;
+  --space-xl:  2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+
+  /* ── Layout ── */
+  --container-max:    1200px;
+  --container-narrow: 1040px;
+  --section-gap:      clamp(2rem, 4vw, 4rem);
+  --navbar-height:    72px;
+  --button-height:    46px;
+  --footer-padding-y: 34px;
+
+  /* ── Botões ── */
+  --btn-pill-radius:       999px;
+  --btn-primary-min-width: 190px;
+  --btn-primary-height:    56px;
+  --btn-primary-padding-x: 1.5rem;
+  --btn-primary-font-size: .96rem;
+  --btn-primary-shadow:       0 10px 26px rgba(0,108,91,.18);
+  --btn-primary-shadow-hover: 0 14px 30px rgba(0,108,91,.24);
+
+  /* ── Cards ── */
+  --card-elevated-bg:     rgba(255,255,255,.92);
+  --card-elevated-border: rgba(0,108,91,.12);
+  --card-elevated-shadow: 0 18px 42px rgba(0,64,54,.08);
+
+  /* ── Inputs ── */
+  --input-height:        54px;
+  --input-radius:        16px;
+  --input-bg:            rgba(255,255,255,.96);
+  --input-border:        rgba(0,108,91,.14);
+  --input-border-hover:  rgba(0,108,91,.24);
+  --input-border-focus:  rgba(0,164,153,.56);
+  --input-shadow-focus:  0 0 0 4px rgba(0,164,153,.12);
+
+  /* ── Badges ── */
+  --badge-radius:      999px;
+  --badge-padding-y:   .38rem;
+  --badge-padding-x:   .78rem;
+  --badge-font-size:   .74rem;
+  --badge-font-weight: 700;
+  --badge-bg:          #E7F3F0;
+  --badge-border:      rgba(0,108,91,.16);
+  --badge-text:        #0A6C5B;
+
+  /* ── Job Cards ── */
+  --job-card-radius:        22px;
+  --job-card-padding:       1.35rem;
+  --job-card-border:        rgba(0,108,91,.12);
+  --job-card-shadow:        0 12px 34px rgba(15,40,34,.08);
+  --job-card-shadow-hover:  0 20px 48px rgba(0,122,94,.14);
+  --job-card-hover-border:  rgba(0,168,142,.28);
+
+  /* ── Bordas e sombras globais ── */
+  --radius-xs: 10px;
+  --radius-sm: 12px;
+  --radius-md: 18px;
+  --radius-lg: 24px;
+  --radius-xl: 30px;
+
+  --shadow-soft: 0 10px 30px rgba(15,40,34,.08);
+  --shadow-md:   0 18px 44px rgba(15,40,34,.12);
+  --shadow-lg:   0 24px 60px rgba(15,40,34,.16);
+
+  /* ── Navbar ── */
+  --nav-surface:               rgba(255,255,255,.97);
+  --nav-border:                rgba(0,122,94,.10);
+  --nav-shadow:                0 8px 28px rgba(0,122,94,.08);
+  --nav-link-color:            #5f766f;
+  --nav-link-hover:            var(--brand-primary);
+  --nav-link-active:           var(--brand-primary);
+  --nav-logo-width:            148px;
+  --nav-logo-height:           40px;
+  --nav-padding-x:             1.5rem;
+  --nav-link-gap:              1.75rem;
+  --nav-cta-radius:            12px;
+  --nav-cta-shadow:            0 8px 20px rgba(0,122,94,.16);
+  --nav-cta-gradient-start:    var(--brand-accent);
+  --nav-cta-gradient-end:      var(--brand-primary);
+  --nav-outline-bg:            rgba(255,255,255,.92);
+  --nav-outline-border:        rgba(0,122,94,.18);
+  --nav-outline-border-hover:  rgba(0,122,94,.35);
+  --nav-outline-hover-bg:      rgba(0,122,94,.04);
+  --nav-mobile-surface:        rgba(249,251,250,.98);
+  --nav-mobile-shadow:         0 16px 40px rgba(0,0,0,.12);
+  --nav-mobile-item-active:    rgba(0,122,94,.08);
+
+  /* ── Rodapé ── */
+  --footer-bg-start: #00473f;
+  --footer-bg-mid:   #00584c;
+  --footer-bg-end:   #00473f;
+  --footer-border:        rgba(255,255,255,.08);
+  --footer-highlight:     rgba(255,255,255,.18);
+  --footer-link:          rgba(255,255,255,.86);
+  --footer-link-hover:    #FFFFFF;
+  --footer-copy:          rgba(255,255,255,.76);
+  --footer-contact-bg:    rgba(255,255,255,.05);
+  --footer-contact-border:rgba(255,255,255,.10);
+  --footer-contact-title: #d8f1ea;
+  --footer-logo-height:       28px;
+  --footer-logo-max-width:    min(188px, 64vw);
+  --footer-link-size:         .82rem;
+  --footer-copy-size:         .72rem;
+  --footer-contact-size:      .84rem;
+
+  --transition-fast: .22s ease;
+
+  /* ── Painéis com fundo customizado ── */
+  --panel-bg:     rgba(255,255,255,.94);
+  --panel-border: rgba(0,108,91,.10);
+  --panel-shadow: 0 18px 42px rgba(0,64,54,.08);
+}
+
+html {
+  color: var(--text-strong, var(--text));
+  background-color: var(--surface-page, var(--bg));
+}
+
+body {
+  color: var(--text-body, var(--text));
+  font-family: var(--font-family-base);
+}
+
+@media (max-width: 900px) {
+  :root {
+    --navbar-height:   64px;
+    --container-max:   min(100% - 32px, 1200px);
+    --nav-padding-x:   1rem;
+    --nav-logo-width:  124px;
+    --nav-logo-height: 34px;
+  }
+}
+
+@media (max-width: 600px) {
+  :root {
+    --navbar-height:          60px;
+    --radius-md:              16px;
+    --radius-lg:              20px;
+    --footer-padding-y:       26px;
+    --footer-logo-height:     25px;
+    --footer-logo-max-width:  min(176px, 72vw);
+  }
+}

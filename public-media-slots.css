@@ -1,0 +1,38 @@
+.portal-slot-media{
+  position:relative;
+  overflow:hidden;
+}
+.portal-slot-media img{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+}
+.portal-slot-ready::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg, rgba(0,108,91,var(--slot-overlay,0.35)), rgba(0,164,153,calc(var(--slot-overlay,0.35) * 0.8)));
+  pointer-events:none;
+}
+.portal-slot-inline{
+  position:relative;
+}
+.portal-slot-inline img{
+  border-radius:inherit;
+}
+
+html.portal-has-custom-bg,
+body.portal-has-custom-bg{
+  background-image: var(--portal-global-bg) !important;
+  background-size: cover !important;
+  background-position: center top !important;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important;
+}
+@media (max-width:768px){
+  html.portal-has-custom-bg,
+  body.portal-has-custom-bg{
+    background-attachment: scroll !important;
+  }
+}

@@ -1,1113 +1,614 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sobre o Conecta — Portal de oportunidades do Polo Bauru Centro</title>
-<meta name="description" content="Conheça o Conecta, o portal do Polo Bauru Centro da Universidade Anhembi Morumbi que conecta estudantes com oportunidades de estágio e Jovem Aprendiz.">
-<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
-<style>
-  /* ══ MOBILE FIX ══ */
-  html, body { overflow-x: hidden; max-width: 100%; }
-  *, *::before, *::after { box-sizing: border-box; }
-  img, video, iframe { max-width: 100%; }
-
-/* ════════════════════════════════════════════════════════════════
-   SOBRE.HTML — CSS ÚNICO E DEFINITIVO
-   Paleta: PANTONE 7719C (#006C5B) + PANTONE 3285C (#00A499)
-   Última revisão: versão limpa sem sobreposições
-════════════════════════════════════════════════════════════════ */
-
-:root {
-  --primary:      #006C5B;
-  --primary-dark: #005247;
-  --accent:       #00A499;
-  --accent-dark:  #00897F;
-  --accent-light: #E6F6F4;
-  --gray:         #63666A;
-  --bg:           #F4F8F7;
-  --dark:         #004D3D;
-  --text:         #1A2E28;
-  --muted:        #63666A;
-  --border:       #D0E8E0;
-}
-
-* { margin:0; padding:0; box-sizing:border-box; }
-
-body {
-  font-family: 'DM Sans', sans-serif;
-  background: #fff;
-  color: var(--text);
-  overflow-x: hidden;
-}
-
-  /* ═══ NAV BASE ═══ */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(255,255,255,0.97);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--border);
-    padding: 0 2rem;
-    height: 64px;
-    display: flex; align-items: center; justify-content: space-between;
-    box-shadow: 0 1px 12px rgba(0,122,94,.08);
-  }
-  .logo {
-    display: inline-flex; align-items: center;
-    text-decoration: none; cursor: pointer;
-    font-size: 0 !important; color: transparent !important;
-    -webkit-text-fill-color: transparent !important;
-    background: none !important; flex-shrink: 0;
-  }
-  .logo::before {
-    content: ''; display: block;
-    width: 140px; height: 44px;
-    background: url('logocolorida.png') no-repeat left center / contain;
-  }
-  .nav-links { display: flex; gap: 2rem; align-items: center; }
-  .nav-links a { color: var(--muted); text-decoration: none; font-size: .9rem; font-weight: 500; transition: color .2s; }
-  .nav-links a:hover { color: var(--primary); }
-  .nav-links a.active { color: var(--primary); font-weight: 700; }
-  /* DROPDOWN ACESSAR */
-  .nav-access { position: relative; }
-  .btn-access { display:flex; align-items:center; gap:.45rem; padding:.55rem 1.2rem;
-    border:1.5px solid var(--border); border-radius:50px; background:white;
-    font-size:.875rem; font-weight:600; cursor:pointer; color:var(--text);
-    font-family:inherit; transition:all .2s; }
-  .btn-access:hover { border-color:var(--primary); color:var(--primary); }
-  .btn-access svg { transition:transform .2s; }
-  .btn-access.open svg { transform:rotate(180deg); }
-  .access-dropdown { position:absolute; top:calc(100% + .6rem); right:0;
-    background:white; border-radius:16px; border:1.5px solid var(--border);
-    box-shadow:0 12px 40px rgba(0,0,0,.12); min-width:220px; z-index:200;
-    opacity:0; transform:translateY(-8px); pointer-events:none; transition:all .2s; overflow:hidden; }
-  .access-dropdown.open { opacity:1; transform:translateY(0); pointer-events:all; }
-  .access-dropdown-header { padding:.75rem 1rem .5rem; font-size:.7rem; font-weight:700;
-    text-transform:uppercase; letter-spacing:.08em; color:var(--muted); }
-  .access-item { display:flex; align-items:center; gap:.75rem; padding:.75rem 1rem;
-    cursor:pointer; transition:background .15s; text-decoration:none; color:var(--text); }
-  .access-item:hover { background:var(--bg,#F4F8F7); }
-  .access-item:last-child { border-top:1px solid var(--border); }
-  .access-icon { width:36px; height:36px; border-radius:10px;
-    display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-  .access-icon.cand { background:rgba(0,122,94,.1); }
-  .access-icon.emp  { background:rgba(0,168,142,.1); }
-  .access-icon.new  { background:rgba(0,164,153,.10); }
-  .access-label { font-size:.875rem; font-weight:600; }
-  .access-sub   { font-size:.72rem; color:var(--muted); margin-top:.1rem; }
-  /* AVATAR LOGADO */
-  .nav-avatar { width:36px; height:36px; border-radius:50%;
-    background:linear-gradient(135deg,var(--accent,#00A499),var(--primary,#006C5B));
-    display:flex; align-items:center; justify-content:center;
-    color:white; font-weight:700; font-size:.9rem; cursor:pointer; flex-shrink:0;
-    border:2px solid white; box-shadow:0 2px 8px rgba(0,122,94,.4); }
-  .nav-user-wrap { display:flex; align-items:center; gap:.6rem; }
-  .nav-user-name { font-size:.85rem; font-weight:600; color:var(--text); }
-  /* MODAL LOGIN */
-  .login-modal-overlay { position:fixed; inset:0; background:rgba(15,10,30,.55);
-    backdrop-filter:blur(6px); z-index:500; display:none;
-    align-items:center; justify-content:center; padding:1rem; }
-  .login-modal-overlay.open { display:flex; }
-  .login-modal { background:white; border-radius:24px; width:100%; max-width:420px;
-    padding:2rem; position:relative; animation:lmIn .3s ease; box-shadow:0 24px 60px rgba(0,0,0,.18); }
-  @keyframes lmIn { from{transform:scale(.95) translateY(10px);opacity:0} to{transform:scale(1) translateY(0);opacity:1} }
-  .login-modal-close { position:absolute; top:1rem; right:1rem; width:32px; height:32px;
-    border-radius:50%; border:none; background:var(--bg,#F4F8F7); cursor:pointer;
-    font-size:1rem; color:var(--muted); display:flex; align-items:center; justify-content:center; }
-  .login-modal-tabs { display:flex; background:var(--bg,#F4F8F7); border-radius:12px;
-    padding:.3rem; gap:.3rem; margin-bottom:1.5rem; }
-  .lm-tab { flex:1; padding:.55rem; border-radius:9px; border:none; cursor:pointer;
-    font-size:.82rem; font-weight:600; font-family:inherit;
-    transition:all .2s; color:var(--muted); background:transparent;
-    display:flex; align-items:center; justify-content:center; gap:.35rem; }
-  .lm-tab.active { background:white; color:var(--primary,#006C5B); box-shadow:0 2px 8px rgba(0,0,0,.08); }
-  .lm-section { display:none; }
-  .lm-section.show { display:block; }
-  .lm-title { font-family:'Clash Display',sans-serif; font-size:1.3rem; font-weight:700; margin-bottom:1.25rem; color:var(--dark,#004D3D); }
-  .lm-field { margin-bottom:.85rem; }
-  .lm-field label { font-size:.78rem; font-weight:700; display:block; margin-bottom:.35rem; }
-  .lm-field input { width:100%; padding:.75rem 1rem; border:1.5px solid var(--border);
-    border-radius:10px; font-size:.9rem; font-family:inherit;
-    outline:none; background:var(--bg,#F4F8F7); color:var(--text); transition:border-color .2s; }
-  .lm-field input:focus { border-color:var(--accent,#00A499); background:white; }
-  .lm-btn { width:100%; padding:.9rem; background:linear-gradient(135deg,var(--accent,#00A499),var(--primary,#006C5B));
-    color:white; border:none; border-radius:12px; font-size:.95rem; font-weight:700;
-    cursor:pointer; font-family:inherit; transition:transform .2s,box-shadow .2s; margin-top:.25rem; }
-  .lm-btn:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,122,94,.4); }
-  .lm-btn:disabled { opacity:.6; cursor:not-allowed; transform:none; }
-  .lm-msg { padding:.65rem .9rem; border-radius:9px; font-size:.82rem; font-weight:600;
-    margin-top:.75rem; text-align:center; display:none; }
-  .lm-msg.error   { background:rgba(99,102,106,.12); color:#4F5B62; display:block; }
-  .lm-msg.success { background:rgba(0,164,153,.10); color:#1B5E20; display:block; }
-  .lm-link { font-size:.82rem; color:var(--muted); text-align:center; margin-top:.85rem; }
-  .lm-link a { color:var(--primary,#006C5B); font-weight:600; text-decoration:none; }
-  
-  /* DRAWER MOBILE */
-  .mobile-drawer { display:none; position:fixed; top:64px; left:0; right:0; bottom:0;
-    background:rgba(248,255,252,.98); backdrop-filter:blur(16px);
-    z-index:99; flex-direction:column; padding:1.5rem 2rem;
-    border-top:1px solid var(--border); overflow-y:auto;
-    transform:translateX(100%); transition:transform .3s ease; }
-  .mobile-drawer.open { transform:translateX(0); }
-  .mobile-nav-links { display:flex; flex-direction:column; gap:.25rem; margin-bottom:1.5rem; }
-  .mobile-nav-links a { padding:.85rem 1rem; border-radius:12px; font-size:1rem; font-weight:600;
-    color:var(--text); text-decoration:none; transition:background .2s;
-    display:flex; align-items:center; gap:.6rem; }
-  .mobile-nav-links a:hover { background:white; }
-  .mobile-nav-links a.active { color:var(--primary,#006C5B); background:rgba(0,122,94,.06); }
-  .mobile-divider { height:1px; background:var(--border); margin:.75rem 0; }
-  .mobile-access-title { font-size:.72rem; font-weight:700; text-transform:uppercase;
-    letter-spacing:.1em; color:var(--muted); margin-bottom:.75rem; }
-  .mobile-access-btn { display:flex; align-items:center; gap:.85rem; width:100%;
-    padding:1rem; border-radius:14px; border:1.5px solid var(--border); background:white;
-    cursor:pointer; font-family:inherit; transition:all .2s; margin-bottom:.6rem; }
-  .mobile-access-btn:hover { border-color:var(--primary,#006C5B); }
-  .mobile-access-icon { width:40px; height:40px; border-radius:10px;
-    display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-  .mobile-access-label { font-size:.9rem; font-weight:700; color:var(--text); }
-  .mobile-access-sub   { font-size:.75rem; color:var(--muted); margin-top:.1rem; }
-  .mobile-cta { display:flex; flex-direction:column; gap:.6rem; margin-top:.5rem; }
-  .mobile-cta a { display:flex; align-items:center; justify-content:center; gap:.5rem;
-    padding:.9rem; border-radius:12px; font-weight:700; font-size:.9rem;
-    text-decoration:none; transition:all .2s; }
-  .mobile-cta .cta-primary { background:linear-gradient(135deg,var(--accent,#00A499),var(--primary,#006C5B)); color:white; }
-  .mobile-cta .cta-secondary { border:1.5px solid var(--border); color:var(--muted); }
-  @media(max-width:768px) {
-    nav { padding:0 1rem; height:64px; }
-    .nav-links { display:none !important; }
-    .btn-access { display:none !important; }
-    .nav-logado-desktop { display:none !important; }
-    .hamburger { display:flex !important; }
-    .mobile-drawer { display:flex; }
-  }
-  @media(max-width:600px) { .nav-user-name { display:none !important; } }
-
-.nav-links { display: flex; gap: 2rem; align-items: center; }
-.nav-links a { color: var(--muted); text-decoration: none; font-size: .9rem; font-weight: 500; transition: color .2s; }
-.nav-links a:hover { color: var(--primary); }
-.nav-links a.active { color: var(--primary); font-weight: 700; }
-
-
-
-/* ── HERO ────────────────────────────────────────────────────── */
-/* Hero com imagem de fundo Fundo1.png */
-.hero {
-  position: relative;
-  overflow: hidden;
-  background:
-    linear-gradient(160deg, rgba(0,30,22,.55) 0%, rgba(0,80,60,.4) 50%, rgba(0,30,22,.65) 100%),
-    url('Fundo1.png') center center / cover no-repeat;
-  padding: 4.5rem 2rem 1.5rem;
-  min-height: min(580px, 85vh);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-/* Overlay suave para garantir legibilidade do texto */
-.hero::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(0,122,94,.18) 0%, transparent 70%);
-  pointer-events: none; z-index: 0;
-}
-/* Glow central */
-.hero::after {
-  content: '';
-  position: absolute;
-  top: 40%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: 65%; height: 280px;
-  background: radial-gradient(ellipse, rgba(0,168,142,.12) 0%, transparent 70%);
-  pointer-events: none; z-index: 0;
-}
-/* Símbolo AM decorativo — canto direito */
-.hero-am2 { display: none; }
-
-.hero-am {
-  position: absolute;
-  right: -2%; bottom: -6%;
-  width: clamp(160px, 20vw, 260px);
-  aspect-ratio: 700/762;
-  background: url('symbol-am-white.png') no-repeat center / contain;
-  pointer-events: none; z-index: 0;
-  opacity: 1;
-}
-/* Símbolo AM secundário — canto esquerdo */
-
-.hero-inner {
-  position: relative; z-index: 1;
-  max-width: 720px; margin: 0 auto;
-}
-.hero-badge {
-  display: inline-flex; align-items: center; gap: .4rem;
-  background: rgba(255,255,255,.1);
-  border: 1px solid rgba(255,255,255,.18);
-  border-radius: 50px;
-  padding: .4rem 1rem;
-  font-size: .78rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
-  color: rgba(255,255,255,.8);
-  margin-bottom: 1.25rem;
-}
-.hero h1 {
-  font-family: 'Clash Display', sans-serif;
-  font-size: clamp(2.4rem, 5.5vw, 4rem);
-  font-weight: 700;
-  letter-spacing: -.025em; line-height: 1.08;
-  color: white;
-  margin-bottom: 1.1rem;
-}
-.hero h1 span { color: var(--accent); }
-.hero-sub {
-  font-size: 1.05rem; color: rgba(255,255,255,.68);
-  line-height: 1.75; max-width: 480px;
-  margin: 0 auto 2.5rem;
-}
-.hero-ctas {
-  display: flex; gap: 1rem;
-  justify-content: center; flex-wrap: wrap;
-  margin-bottom: 3.5rem;
-}
-.btn-hero-primary {
-  padding: .85rem 2.25rem;
-  background: var(--accent);
-  color: white; border: none; border-radius: 50px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: .95rem; font-weight: 700;
-  text-decoration: none; cursor: pointer;
-  transition: background .2s, transform .2s, box-shadow .2s;
-}
-.btn-hero-primary:hover {
-  background: var(--accent-dark);
-  transform: translateY(-3px);
-  box-shadow: 0 10px 28px rgba(0,164,153,.35);
-}
-.btn-hero-secondary {
-  padding: .85rem 2.25rem;
-  background: rgba(255,255,255,.1);
-  border: 1.5px solid rgba(255,255,255,.22);
-  color: white; border-radius: 50px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: .95rem; font-weight: 600;
-  text-decoration: none; cursor: pointer;
-  transition: all .2s; backdrop-filter: blur(8px);
-}
-.btn-hero-secondary:hover {
-  background: rgba(255,255,255,.18);
-  transform: translateY(-2px);
-}
-/* Numbers bar */
-.hero-numbers {
-  width: 100%;
-  position: relative; z-index: 1;
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  max-width: min(480px, 100%); margin: 0 auto;
-  background: rgba(0,0,0,.22);
-  border: 1px solid rgba(255,255,255,.1);
-  border-radius: 16px 16px 0 0;
-  backdrop-filter: blur(10px);
-  overflow: hidden;
-}
-.hero-num {
-  padding: 1.5rem 1rem; text-align: center;
-  border-right: 1px solid rgba(255,255,255,.08);
-}
-.hero-num:last-child { border-right: none; }
-.hero-num-val {
-  font-family: 'Clash Display', sans-serif;
-  font-size: 2rem; font-weight: 700;
-  color: white; line-height: 1;
-  margin-bottom: .3rem;
-}
-.hero-num-label { font-size: .72rem; color: rgba(255,255,255,.5); font-weight: 500; }
-
-/* ── SEÇÕES GERAIS ───────────────────────────────────────────── */
-section { padding: 5rem 2rem; }
-.container { max-width: 1060px; margin: 0 auto; }
-
-.section-badge {
-  display: inline-flex; align-items: center; gap: .4rem;
-  background: var(--accent-light); color: var(--primary);
-  border: 1px solid rgba(0,122,94,.15);
-  border-radius: 50px; padding: .35rem .95rem;
-  font-size: .72rem; font-weight: 700;
-  text-transform: uppercase; letter-spacing: .08em;
-  margin-bottom: 1rem;
-}
-.section-title {
-  font-family: 'Clash Display', sans-serif;
-  font-size: clamp(1.8rem, 4vw, 2.75rem);
-  font-weight: 700; letter-spacing: -.025em; line-height: 1.12;
-  color: var(--text); margin-bottom: .9rem;
-}
-.section-title span { color: var(--accent); }
-.section-sub { font-size: 1rem; color: var(--muted); line-height: 1.75; max-width: 520px; }
-
-/* Fade-in animation */
-.fade-in { opacity: 0; transform: translateY(22px); transition: opacity .6s, transform .6s; }
-.fade-in.visible { opacity: 1; transform: none; }
-
-/* ── MISSÃO ──────────────────────────────────────────────────── */
-.missao-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 4rem; align-items: center;
-}
-.missao-card-main {
-  background: linear-gradient(135deg, var(--primary), var(--accent-dark));
-  border-radius: 20px; padding: 2.25rem;
-  color: white; position: relative; overflow: hidden;
-}
-.missao-card-main h3 {
-  font-family: 'Clash Display', sans-serif;
-  font-size: 1.4rem; font-weight: 700; margin-bottom: .75rem;
-}
-.missao-card-main p { font-size: .9rem; opacity: .82; line-height: 1.75; }
-.missao-card-float {
-  position: absolute; bottom: -1.5rem; right: -1rem;
-  background: white; border-radius: 14px;
-  padding: .9rem 1.2rem;
-  box-shadow: 0 12px 32px rgba(0,0,0,.12);
-  border: 1px solid var(--border);
-}
-.missao-card-float div:first-child {
-  font-weight: 700; font-size: .88rem; color: var(--primary);
-  display: flex; align-items: center; gap: .4rem;
-}
-.missao-card-float div:last-child { font-size: .72rem; color: var(--muted); margin-top: .15rem; }
-
-/* ── COMO FUNCIONA ───────────────────────────────────────────── */
-.como-funciona { background: var(--bg); }
-.how-columns {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem;
-}
-.how-col {
-  display: flex; flex-direction: column; gap: 0;
-}
-.how-col-header {
-  display: flex; align-items: center; gap: .65rem;
-  padding: 1rem 1.25rem;
-  border-radius: 14px 14px 0 0;
-  font-family: 'Clash Display', sans-serif;
-  font-size: 1.05rem; font-weight: 700;
-  letter-spacing: -.01em;
-  position: relative;
-}
-.how-col-header svg { flex-shrink: 0; }
-.how-col-cand .how-col-header {
-  background: linear-gradient(135deg, rgba(0,122,94,.1), rgba(0,122,94,.05));
-  color: var(--primary);
-  border: 1.5px solid rgba(0,122,94,.18);
-  border-bottom: none;
-}
-.how-col-emp .how-col-header {
-  background: linear-gradient(135deg, rgba(0,168,142,.1), rgba(0,168,142,.05));
-  color: var(--accent);
-  border: 1.5px solid rgba(0,168,142,.18);
-  border-bottom: none;
-}
-.how-col-body {
-  display: flex; flex-direction: column; gap: 0;
-  background: white;
-  border-radius: 0 0 14px 14px;
-  overflow: hidden;
-}
-.how-col-cand .how-col-body { border: 1.5px solid rgba(0,122,94,.18); border-top: none; }
-.how-col-emp .how-col-body { border: 1.5px solid rgba(0,168,142,.18); border-top: none; }
-
-.step-item {
-  display: flex; gap: 1rem; align-items: flex-start;
-  padding: 1.15rem 1.25rem;
-  position: relative;
-  transition: background .3s, transform .3s;
-  cursor: default;
-}
-.step-item:not(:last-child)::after {
-  content: '';
-  position: absolute; bottom: 0; left: 1.25rem; right: 1.25rem;
-  height: 1px;
-  background: var(--border);
-}
-.how-col-cand .step-item:hover {
-  background: rgba(0,122,94,.04);
-}
-.how-col-emp .step-item:hover {
-  background: rgba(0,168,142,.04);
-}
-.step-item:hover .step-dot {
-  transform: scale(1.12) rotate(-4deg);
-}
-.step-item:hover .step-title {
-  letter-spacing: 0;
-}
-.step-item:hover .step-num {
-  transform: scale(1.15);
-}
-.step-dot {
-  width: 42px; height: 42px; border-radius: 11px;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-  transition: transform .3s cubic-bezier(.34,1.56,.64,1), background .3s;
-}
-.step-dot-v { background: rgba(0,122,94,.1); }
-.step-dot-e { background: rgba(0,168,142,.1); }
-.step-num {
-  width: 22px; height: 22px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: .65rem; font-weight: 800;
-  flex-shrink: 0;
-  transition: transform .3s cubic-bezier(.34,1.56,.64,1);
-}
-.how-col-cand .step-num { background: var(--primary); color: white; }
-.how-col-emp .step-num { background: var(--accent); color: white; }
-.step-label { font-size: .68rem; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; margin-bottom: .15rem; }
-.how-col-cand .step-label { color: var(--primary); }
-.how-col-emp .step-label { color: var(--accent); }
-.step-title {
-  font-family: 'Clash Display', sans-serif; font-size: .92rem; font-weight: 700;
-  color: var(--text); margin-bottom: .2rem; letter-spacing: -.01em;
-  transition: letter-spacing .3s;
-}
-.step-desc { font-size: .82rem; color: var(--muted); line-height: 1.6; }
-.step-content { flex: 1; min-width: 0; }
-
-/* ── DIFERENCIAIS ────────────────────────────────────────────── */
-.diff-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1.25rem; }
-.diff-card {
-  background: white; border-radius: 18px; padding: 1.75rem;
-  border: 1.5px solid var(--border);
-  transition: transform .2s, box-shadow .2s, border-color .2s;
-}
-.diff-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(0,122,94,.1);
-  border-color: rgba(0,122,94,.25);
-}
-.diff-icon { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; color: var(--primary); }
-.diff-title { font-family: 'Clash Display', sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: -.01em; margin-bottom: .5rem; color: var(--text); }
-.diff-desc  { font-size: .875rem; color: var(--muted); line-height: 1.7; }
-
-/* ── QUEM SOMOS ──────────────────────────────────────────────── */
-.quem-bg { background: var(--dark); }
-.quem-inner { max-width: 740px; margin: 0 auto; text-align: center; }
-.quem-inner .section-title { color: white; }
-.quem-inner .section-sub { color: rgba(255,255,255,.55); margin: 0 auto 2.5rem; }
-.valores-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2.5rem; }
-.valor-card {
-  background: rgba(255,255,255,.07);
-  border: 1px solid rgba(255,255,255,.12);
-  border-radius: 16px; padding: 1.5rem; text-align: center;
-  transition: background .2s, transform .2s;
-}
-.valor-card:hover { background: rgba(255,255,255,.12); transform: translateY(-3px); }
-.valor-icon { font-size: 0; margin-bottom: .75rem; color: var(--accent); display: flex; justify-content: center; }
-.valor-name { font-family: 'Clash Display', sans-serif; font-size: .95rem; font-weight: 700; color: white; margin-bottom: .3rem; }
-.valor-desc { font-size: .78rem; color: rgba(255,255,255,.5); line-height: 1.6; }
-
-/* ── PARA EMPRESAS ───────────────────────────────────────────── */
-.empresa-split { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
-.empresa-benefits { display: flex; flex-direction: column; gap: .85rem; }
-.benefit-row { display: flex; align-items: flex-start; gap: .85rem; }
-.benefit-check {
-  width: 30px; height: 30px; border-radius: 9px;
-  background: var(--accent-light); color: var(--primary);
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-.benefit-title { font-weight: 700; font-size: .9rem; color: var(--text); margin-bottom: .15rem; }
-.benefit-desc  { font-size: .8rem; color: var(--muted); line-height: 1.5; }
-.empresa-card {
-  background: linear-gradient(155deg, #003528, #004D3D);
-  border-radius: 22px; padding: 2.25rem;
-  position: relative; overflow: hidden;
-}
-.empresa-card::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: url('symbol-am-white.png') no-repeat right -20px bottom -20px / 200px;
-  opacity: .08; pointer-events: none;
-}
-.empresa-card h3 {
-  font-family: 'Clash Display', sans-serif;
-  font-size: 1.35rem; font-weight: 700;
-  color: white; margin-bottom: 1.25rem;
-  position: relative; z-index: 1;
-}
-.empresa-steps { display: flex; flex-direction: column; gap: .85rem; position: relative; z-index: 1; }
-.emp-step { display: flex; align-items: center; gap: .85rem; }
-.emp-step-num {
-  width: 28px; height: 28px; border-radius: 50%;
-  background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.22);
-  display: flex; align-items: center; justify-content: center;
-  font-size: .75rem; font-weight: 800; color: white; flex-shrink: 0;
-}
-.emp-step-text { font-size: .875rem; color: rgba(255,255,255,.75); }
-.emp-step-text strong { color: white; }
-
-/* ── FAQ ─────────────────────────────────────────────────────── */
-.faq-list { max-width: 680px; display: flex; flex-direction: column; gap: .65rem; }
-.faq-item {
-  background: white; border-radius: 14px;
-  border: 1.5px solid var(--border); overflow: hidden;
-  transition: border-color .2s;
-}
-.faq-item.open { border-color: rgba(0,168,142,.4); }
-.faq-q {
-  padding: 1.1rem 1.25rem; cursor: pointer;
-  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-  font-family: 'Clash Display', sans-serif;
-  font-weight: 700; font-size: .92rem; color: var(--text);
-}
-.faq-q svg { flex-shrink: 0; transition: transform .25s; color: var(--muted); }
-.faq-item.open .faq-q { color: var(--primary); }
-.faq-item.open .faq-q svg { transform: rotate(180deg); color: var(--accent); }
-.faq-a { max-height: 0; overflow: hidden; transition: max-height .3s ease; }
-.faq-a p { padding: 0 1.25rem 1.1rem; font-size: .875rem; color: var(--muted); line-height: 1.75; }
-
-/* ── CTA FINAL ───────────────────────────────────────────────── */
-.cta-final {
-  background: var(--dark);
-  text-align: center; position: relative; overflow: hidden;
-}
-.cta-final::before {
-  content: ''; position: absolute; inset: 0;
-  background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(0,168,142,.2), transparent);
-  pointer-events: none;
-}
-.cta-final::after {
-  content: ''; position: absolute;
-  right: -5%; bottom: -10%;
-  width: min(300px, 35vw); aspect-ratio: 700/762;
-  background: url('symbol-am-white.png') no-repeat center / contain;
-  pointer-events: none; opacity: 1;
-}
-.cta-final-inner { max-width: 600px; margin: 0 auto; position: relative; z-index: 1; }
-.cta-final h2 {
-  font-family: 'Clash Display', sans-serif;
-  font-size: clamp(2rem, 5vw, 3.4rem);
-  font-weight: 700; letter-spacing: -.025em;
-  color: white; line-height: 1.1; margin-bottom: 1rem;
-}
-.cta-final h2 span { color: var(--accent); }
-.cta-final p { color: rgba(255,255,255,.55); margin-bottom: 2.5rem; font-size: 1rem; line-height: 1.7; }
-.cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-.cta-btn-a {
-  padding: .9rem 2.25rem; background: var(--accent);
-  color: white; border: none; border-radius: 50px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: .95rem; font-weight: 700;
-  text-decoration: none; transition: all .2s;
-}
-.cta-btn-a:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,164,153,.35); }
-.cta-btn-b {
-  padding: .9rem 2.25rem;
-  background: rgba(255,255,255,.1);
-  border: 1.5px solid rgba(255,255,255,.22);
-  color: white; border-radius: 50px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: .95rem; font-weight: 600;
-  text-decoration: none; transition: all .2s;
-}
-.cta-btn-b:hover { background: rgba(255,255,255,.18); transform: translateY(-2px); }
-
-/* Shared footer handled in public-footer.css */
-@media(max-width: 768px) {
-  nav { padding: 0 1rem; height: 64px; }
-  .nav-links { display: none; }
-  
-  .hamburger { display: flex; }
-  .mobile-drawer { display: flex; }
-  .logo { width: 120px; height: 40px; }
-
-  .hero { padding: 3.5rem 1.25rem 0; min-height: auto; }
-  .hero h1 { font-size: clamp(2rem, 8vw, 2.8rem); }
-  .hero-sub { font-size: .95rem; }
-  .hero-ctas { flex-direction: column; align-items: center; }
-  .hero-ctas a { width: 100%; max-width: 280px; text-align: center; }
-  .hero-numbers { grid-template-columns: 1fr 1fr 1fr; max-width: 100%; }
-  .hero-am { width: min(160px, 38vw); right: -3%; bottom: -5%; }
-  
-
-  section { padding: 3rem 1.25rem; }
-  .missao-grid { grid-template-columns: 1fr; gap: 2rem; }
-  .missao-card-float { position: static; margin-top: 1rem; }
-  .empresa-split { grid-template-columns: 1fr; }
-  .valores-grid { grid-template-columns: 1fr 1fr; }
-  .diff-grid { grid-template-columns: 1fr; }
-  .steps-list { max-width: 100%; }
-  .how-columns { grid-template-columns: 1fr; gap: 2rem; }
-  .faq-list { max-width: 100%; }
-  .section-title { font-size: 1.65rem; }
-  .cta-btns { flex-direction: column; align-items: center; }
-  .cta-btns a { width: 100%; max-width: 280px; text-align: center; }
-}
-
-@media(max-width: 480px) {
-  .valores-grid { grid-template-columns: 1fr; }
-  .hero-numbers { grid-template-columns: 1fr; }
-  .hero-num { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,.08); }
-  .hero-num:last-child { border-bottom: none; }
-}
-
-  
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sobre o Conecta — Universidade Anhembi Morumbi — Polo Bauru Centro</title>
+  <meta name="description" content="Conheça o Conecta, portal de empregabilidade da Universidade Anhembi Morumbi — Polo Bauru Centro, criado para aproximar alunos e empresas da região.">
+  <meta name="theme-color" content="#006C5B">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="public-navbar.css">
   <link rel="stylesheet" href="public-footer.css">
-  <link rel="stylesheet" href="public-responsive.css">
-  <link rel="stylesheet" href="public-design-system.css">
+  <link rel="stylesheet" href="public-media-slots.css">
+  <style>
+    :root{
+      --primary:#006C5B;
+      --primary-dark:#005247;
+      --accent:#00A499;
+      --accent-light:#E6F6F4;
+      --neutral:#63666A;
+      --bg:#F4F8F7;
+      --surface:#FFFFFF;
+      --surface-soft:#F8FCFB;
+      --border:#D2E2DD;
+      --text:#14312B;
+      --muted:#556762;
+      --shadow:0 18px 40px rgba(0,64,54,.08);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;overflow-x:hidden}
+    body{
+      font-family:'Plus Jakarta Sans',sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 12% 12%, rgba(0,164,153,.10), transparent 24%),
+        radial-gradient(circle at 86% 10%, rgba(0,108,91,.08), transparent 20%),
+        linear-gradient(180deg,#f8fbfa 0%, #eef5f3 100%);
+      position:relative;
+    }
+    body::before{
+      content:"";
+      position:fixed;
+      inset:74px 0 0 0;
+      pointer-events:none;
+      opacity:.2;
+      background-image:
+        linear-gradient(rgba(0,108,91,.09) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,108,91,.09) 1px, transparent 1px);
+      background-size:150px 150px;
+      mask-image:linear-gradient(180deg, rgba(0,0,0,.28), transparent 70%);
+      z-index:0;
+    }
+    a{text-decoration:none}
+
+    nav{
+      position:sticky;top:0;z-index:100;
+      height:74px;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:0 28px;
+      background:rgba(255,255,255,.92);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid rgba(0,108,91,.10);
+    }
+    .logo{
+      width:164px;height:44px;display:block;flex-shrink:0;
+      background:url('logo-colorida.png') no-repeat left center / contain;
+    }
+    .nav-links{display:flex;gap:34px;align-items:center}
+    .nav-links a{color:var(--muted);font-size:.96rem;font-weight:600}
+    .nav-links a.active,.nav-links a:hover{color:var(--primary)}
+    .nav-actions-public{display:flex;align-items:center;gap:12px}
+    .btn-nav-outline,.btn-nav-cta{
+      display:inline-flex;align-items:center;justify-content:center;
+      min-height:46px;padding:0 18px;border-radius:14px;font-weight:700;font-size:.95rem;
+      transition:.2s ease;font-family:inherit;cursor:pointer;
+    }
+    .btn-nav-outline{border:1.5px solid var(--border);background:#fff;color:var(--primary)}
+    .btn-nav-outline:hover{border-color:var(--primary);transform:translateY(-1px)}
+    .btn-nav-cta{
+      border:1px solid var(--accent);background:var(--accent);color:#fff;
+      box-shadow:0 10px 24px rgba(0,164,153,.18);
+    }
+    .btn-nav-cta:hover{background:#00998f;transform:translateY(-1px)}
+    .hamburger{display:none;background:none;border:none;padding:8px;cursor:pointer}
+    .hamburger span{display:block;width:22px;height:2px;background:var(--primary);margin:5px 0;border-radius:999px}
+    .drawer-overlay{position:fixed;inset:0;background:rgba(9,24,21,.26);backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:.25s;z-index:95}
+    .drawer-overlay.open{opacity:1;pointer-events:auto}
+    .mobile-drawer{
+      position:fixed;top:74px;right:0;bottom:0;width:min(88vw,360px);background:#fff;z-index:99;
+      transform:translateX(100%);transition:transform .28s ease;padding:22px;border-left:1px solid var(--border);
+      display:flex;flex-direction:column;gap:18px;
+    }
+    .mobile-drawer.open{transform:translateX(0)}
+    .mobile-nav-links{display:flex;flex-direction:column;gap:4px}
+    .mobile-nav-links a{padding:14px 12px;border-radius:12px;color:var(--text);font-weight:600}
+    .mobile-nav-links a.active,.mobile-nav-links a:hover{background:var(--bg);color:var(--primary)}
+    .mobile-divider{height:1px;background:var(--border)}
+    .mobile-access-title{font-size:.76rem;font-weight:700;color:var(--neutral);text-transform:uppercase;letter-spacing:.08em}
+    .mobile-cta{display:flex;flex-direction:column;gap:10px}
+    .cta-secondary,.cta-primary,.mobile-company-link{
+      display:flex;align-items:center;justify-content:center;min-height:46px;padding:0 16px;border-radius:14px;font-weight:700
+    }
+    .cta-secondary{border:1.5px solid var(--border);color:var(--primary)}
+    .cta-primary{background:var(--accent);color:#fff}
+    .mobile-company-link{margin-top:6px;background:var(--bg);color:var(--primary)}
+
+    .page-shell{
+      position:relative;
+      z-index:1;
+      max-width:1180px;
+      margin:0 auto;
+      padding:28px 20px 0;
+    }
+    .hero{
+      position:relative;
+      overflow:hidden;
+      display:grid;
+      grid-template-columns:minmax(0,1.08fr) minmax(280px,.92fr);
+      align-items:stretch;
+      gap:28px;
+      background:
+        radial-gradient(circle at 22% 18%, rgba(0,164,153,.18), transparent 18%),
+        linear-gradient(135deg, #004c40 0%, #006C5B 52%, #00A499 100%);
+      border:1px solid rgba(0,108,91,.18);
+      border-radius:34px;
+      box-shadow:0 24px 54px rgba(0,64,54,.18);
+      padding:42px 46px;
+    }
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px);
+      background-size:160px 160px;
+      mask-image:linear-gradient(135deg, transparent 8%, rgba(0,0,0,.7) 48%, transparent 92%);
+      opacity:.16;
+      pointer-events:none;
+    }
+    .hero-content{position:relative;z-index:1;max-width:820px;align-self:center}
+    .hero-media{
+      position:relative;z-index:1;min-height:420px;border-radius:28px;overflow:hidden;
+      border:1px solid rgba(255,255,255,.16);
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+    }
+    .hero-media::before{
+      content:"";position:absolute;inset:0;
+      background:linear-gradient(135deg, rgba(0,76,64,.08), rgba(0,76,64,.22)), url('about-campaign.jpeg') center center / cover no-repeat;
+      filter:saturate(1.02) contrast(1.03) brightness(.96);
+    }
+    .hero-media::after{
+      content:"AM";position:absolute;right:28px;bottom:18px;
+      font-family:'Clash Display',sans-serif;font-size:clamp(5rem,10vw,8rem);line-height:.9;
+      color:rgba(255,255,255,.16);font-weight:700;letter-spacing:-.06em;text-shadow:0 10px 28px rgba(0,0,0,.12);
+    }
+    .hero-label{
+      display:inline-flex;align-items:center;gap:8px;
+      background:rgba(255,255,255,.14);color:#fff;
+      border:1px solid rgba(255,255,255,.18);
+      padding:10px 16px;border-radius:999px;font-size:.84rem;font-weight:700;letter-spacing:.02em;
+      margin-bottom:18px;
+      backdrop-filter: blur(6px);
+    }
+    h1,h2,h3{
+      font-family:'Clash Display',sans-serif;
+      letter-spacing:-.03em;
+      margin:0;
+      color:var(--text);
+    }
+    .hero h1{font-size:clamp(2.8rem,5vw,4.6rem);line-height:.98;margin-bottom:16px;color:#fff;max-width:11ch;}
+    .hero p{margin:0;max-width:760px;font-size:1.18rem;line-height:1.75;color:rgba(255,255,255,.90);}
+    .hero p strong{color:#fff;}
+
+    .content{display:flex;flex-direction:column;gap:28px;padding:32px 0 0}
+    .section-card{
+      background:rgba(255,255,255,.96);
+      border:1px solid var(--border);
+      border-radius:30px;
+      padding:30px;
+      box-shadow:0 12px 32px rgba(0,64,54,.05);
+      backdrop-filter:blur(6px);
+    }
+    .eyebrow{
+      color:var(--primary);
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      font-size:.82rem;
+      font-weight:700;
+      margin-bottom:10px;
+    }
+    .intro-grid,
+    .mission-grid{
+      display:grid;
+      grid-template-columns:minmax(0,1.12fr) minmax(360px,.88fr);
+      gap:26px;
+      align-items:center;
+    }
+    .intro-grid h2,
+    .mission-grid h2{font-size:clamp(2rem,4vw,3rem);line-height:1.02;margin-bottom:16px}
+    .lead{
+      color:var(--muted);
+      font-size:1.12rem;
+      line-height:1.8;
+      margin:0 0 14px;
+    }
+    .highlight-note{
+      margin-top:18px;
+      padding:18px 20px;
+      border-radius:18px;
+      border:1px solid rgba(0,108,91,.12);
+      background:linear-gradient(180deg, #f7fbfa 0%, #eef6f3 100%);
+      color:var(--primary-dark);
+      line-height:1.7;
+      font-weight:500;
+    }
+    .illustration-card{
+      background:linear-gradient(180deg,#f7fbfa 0%, #eef5f3 100%);
+      border:1px solid var(--border);
+      border-radius:28px;
+      padding:18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:320px;
+      overflow:hidden;
+    }
+    .illustration-card img{
+      width:100%;
+      max-width:100%;
+      height:100%;
+      display:block;
+      object-fit:cover;
+      border-radius:18px;
+    }
+    .campaign-photo{position:relative;}
+    .campaign-photo::after{content:"";position:absolute;inset:18px;pointer-events:none;border-radius:18px;background:linear-gradient(135deg, rgba(0,108,91,.06), rgba(0,164,153,.02));}
+    .campaign-photo img{filter:saturate(1.02) contrast(1.03) brightness(.96);}
+
+    .audience-section{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:22px;
+    }
+    .audience-card{
+      background:rgba(255,255,255,.96);
+      border:1px solid var(--border);
+      border-radius:28px;
+      padding:26px;
+      box-shadow:0 12px 28px rgba(0,64,54,.05);
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+    .audience-card h3{font-size:1.7rem}
+    .audience-card p{margin:0;color:var(--muted);line-height:1.75}
+    .audience-card ul{
+      margin:0;
+      padding-left:20px;
+      color:var(--muted);
+      line-height:1.9;
+    }
+    .audience-card li::marker{color:var(--accent)}
+    .mini-illustration{
+      margin-top:auto;
+      background:linear-gradient(135deg, #006C5B 0%, #005247 100%);
+      border:1px solid rgba(0,82,71,.22);
+      border-radius:22px;
+      padding:22px;
+      color:#ffffff;
+      font-weight:600;
+      line-height:1.8;
+      font-size:1.02rem;
+      box-shadow:0 10px 28px rgba(0,82,71,.22);
+    }
+
+    .mission-note{
+      margin-top:22px;
+      padding:18px 20px;
+      border-left:4px solid var(--accent);
+      background:var(--accent-light);
+      border-radius:0 18px 18px 0;
+      color:var(--primary);
+      font-weight:600;
+      line-height:1.7;
+    }
+
+    .login-modal-overlay{position:fixed;inset:0;background:rgba(12,24,22,.45);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:16px;z-index:120}
+    .login-modal-overlay.open{display:flex}
+    .login-modal{width:min(100%,420px);background:#fff;border-radius:24px;padding:24px;border:1px solid var(--border);box-shadow:0 24px 60px rgba(0,0,0,.16);position:relative}
+    .login-modal-close{position:absolute;top:12px;right:12px;border:none;background:var(--bg);width:34px;height:34px;border-radius:50%;cursor:pointer}
+    .login-modal-tabs{display:flex;background:var(--bg);border-radius:14px;padding:4px;gap:4px;margin-bottom:18px}
+    .lm-tab{flex:1;border:none;background:transparent;border-radius:10px;padding:10px;font-weight:700;color:var(--neutral);cursor:pointer}
+    .lm-tab.active{background:#fff;color:var(--primary);box-shadow:0 2px 10px rgba(0,0,0,.07)}
+    .lm-section{display:none}.lm-section.show{display:block}
+    .lm-title{font-family:'Clash Display',sans-serif;font-size:1.5rem;margin:0 0 18px}
+    .lm-field{margin-bottom:12px}.lm-field label{display:block;font-size:.84rem;font-weight:700;margin-bottom:6px}
+    .lm-field input{width:100%;padding:12px 14px;border-radius:12px;border:1.5px solid var(--border);font:inherit}
+    .lm-btn{width:100%;padding:13px 16px;border:none;border-radius:14px;background:var(--accent);color:#fff;font-weight:700;font:inherit;cursor:pointer}
+    .lm-msg{display:none;padding:10px 12px;border-radius:10px;margin-top:12px;font-size:.86rem}
+    .lm-msg.error{display:block;background:rgba(192,57,43,.10);color:#C0392B}
+    .lm-msg.success{display:block;background:var(--accent-light);color:var(--primary)}
+
+    @media (max-width: 980px){
+      .nav-links,.nav-actions-public{display:none}
+      .hamburger{display:block}
+      .hero{padding:34px 24px}
+      .intro-grid,.mission-grid,.audience-section{grid-template-columns:1fr}
+      .section-card,.audience-card{padding:24px}
+    }
+    @media (max-width: 640px){
+      nav{padding:0 16px;height:70px}
+      .logo{width:146px;height:40px}
+      body::before{inset:70px 0 0 0;background-size:110px 110px}
+      .mobile-drawer{top:70px}
+      .page-shell{padding:20px 14px 0}
+      .hero{border-radius:24px;padding:28px 18px}
+      .hero p{font-size:1rem}
+      .section-card,.audience-card{border-radius:22px;padding:20px}
+      .illustration-card{min-height:auto;padding:12px}
+      .highlight-note{padding:16px}
+    }
+  
+.hero-illustration{
+  width:100%;
+  height:100%;
+  min-height:260px;
+  border-radius:24px;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(0,164,153,.35), transparent 40%),
+    radial-gradient(circle at 70% 60%, rgba(255,255,255,.15), transparent 40%),
+    linear-gradient(135deg,#006C5B 0%, #00A499 100%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  overflow:hidden;
+}
+.hero-illustration::before{
+  content:"";
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  background:rgba(255,255,255,.08);
+  position:absolute;
+  top:20%;
+  left:15%;
+}
+.hero-illustration::after{
+  content:"";
+  width:80px;
+  height:80px;
+  border-radius:16px;
+  background:rgba(255,255,255,.12);
+  position:absolute;
+  bottom:20%;
+  right:15%;
+}
+
+
+.hero-image{
+  width:100%;
+  height:100%;
+  min-height:260px;
+  border-radius:24px;
+  background-size:cover;
+  background-position:center;
+  position:relative;
+  overflow:hidden;
+}
+.hero-image::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg, rgba(0,108,91,0.75), rgba(0,164,153,0.45));
+}
+
+</style>
+  <link rel="stylesheet" href="public-tech-background.css">
+  <link rel="stylesheet" href="public-hero-unified.css">
+  <link rel="stylesheet" href="public-mobile-refinements.css">
+  <link rel="stylesheet" href="public-theme.css">
 </head>
 <body>
-<nav>
-  <a class="logo" href="index.html" aria-label="Conecta"></a>
-  <div class="nav-links">
-    <a href="vagas.html">Vagas</a>
-    <a href="sobre.html" class="active">Sobre</a>
-    <a href="cadastro-empresa.html">Para Empresas</a>
-    <a href="termos.html">Termos</a>
-  </div>
-  <div style="display:flex;align-items:center;gap:.75rem">
-    <div id="nav-logado-cand" style="display:none" class="nav-logado-desktop">
-      <div class="nav-user-wrap">
-        <div class="nav-avatar" id="nav-avatar-cand" onclick="window.location.href='cadastro-candidato.html'">?</div>
-        <span class="nav-user-name" id="nav-user-name" style="display:none"></span>
-      </div>
-    </div>
-    <div id="nav-logado-emp" style="display:none" class="nav-logado-desktop">
-      <div class="nav-user-wrap">
-        <div class="nav-avatar" style="background:linear-gradient(135deg,var(--accent,#00A499),var(--primary,#006C5B))" onclick="window.location.href='painel-empresa.html'"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
-      </div>
+  <nav>
+    <a class="logo" href="index.html" aria-label="Conecta"></a>
+    <div class="nav-links">
+      <a href="vagas.html">Vagas</a>
+      <a href="sobre.html" class="active">Sobre</a>
+      <a href="cadastro-empresa.html">Para Empresas</a>
+      <a href="termos.html">Termos</a>
     </div>
     <div class="nav-actions-public" id="nav-access-wrap">
       <button class="btn-nav-outline" type="button" onclick="openLoginModal('candidato')">Entrar</button>
       <a href="cadastro-candidato.html" class="btn-nav-cta">Criar perfil</a>
     </div>
-  </div>
-  <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
+    <button class="hamburger" id="hamburger" aria-label="Abrir menu" onclick="toggleMobileMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
 
-<div class="drawer-overlay" id="drawer-overlay" onclick="closeMobileMenu()"></div>
-
-<div class="mobile-drawer" id="mobile-drawer">
-  <div class="mobile-nav-links">
-    <a href="vagas.html" onclick="closeMobileMenu()"><svg style="vertical-align:middle;flex-shrink:0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg> Vagas</a>
-    <a href="sobre.html" onclick="closeMobileMenu()" class="active"><svg style="vertical-align:middle;flex-shrink:0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg> Sobre</a>
-    <a href="cadastro-empresa.html" onclick="closeMobileMenu()"><svg style="vertical-align:middle;flex-shrink:0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg> Para Empresas</a>
-    <a href="termos.html" onclick="closeMobileMenu()"><svg style="vertical-align:middle;flex-shrink:0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Termos</a>
-  </div>
-  <div class="mobile-divider"></div>
-  <div class="mobile-access-title">Acesso rápido</div>
-  <div class="mobile-cta">
-    <a class="cta-secondary" href="javascript:void(0)" onclick="closeMobileMenu();openLoginModal('candidato')">Entrar</a>
-    <a class="cta-primary" href="cadastro-candidato.html" onclick="closeMobileMenu()"><svg style="vertical-align:middle;flex-shrink:0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Criar perfil</a>
-  </div>
-  <a class="mobile-company-link" href="cadastro-empresa.html" onclick="closeMobileMenu()">Sou empresa → Publicar vaga</a>
-</div>
-
-
-
-
-
-
-
-
-<div class="hero">
-  <div class="hero-am" aria-hidden="true"></div>
-  <div class="hero-inner">
-    <div class="hero-badge">
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
-      Portal oficial — Universidade Anhembi Morumbi — Polo Bauru Centro
+  <div class="drawer-overlay" id="drawer-overlay" onclick="closeMobileMenu()"></div>
+  <div class="mobile-drawer" id="mobile-drawer">
+    <div class="mobile-nav-links">
+      <a href="index.html" onclick="closeMobileMenu()">Início</a>
+      <a href="vagas.html" onclick="closeMobileMenu()">Ver vagas</a>
+      <a href="sobre.html" class="active" onclick="closeMobileMenu()">Sobre</a>
+      <a href="cadastro-empresa.html" onclick="closeMobileMenu()">Para Empresas</a>
+      <a href="termos.html" onclick="closeMobileMenu()">Termos &amp; Privacidade</a>
     </div>
-    <h1>O portal que <span>conecta</span> talentos<br>a oportunidades</h1>
-    <p class="hero-sub">O Conecta é o portal de estágio e Jovem Aprendiz do Polo Bauru Centro da Universidade Anhembi Morumbi. Aqui, estudantes encontram oportunidades reais e empresas descobrem talentos comprometidos.</p>
-    <div class="hero-ctas">
-      <a class="btn-hero-primary" href="cadastro-candidato.html">Criar meu perfil grátis →</a>
-      <a class="btn-hero-secondary" href="#como-funciona">Como funciona</a>
+    <div class="mobile-divider"></div>
+    <div class="mobile-access-title">Acesso rápido</div>
+    <div class="mobile-cta">
+      <a class="cta-secondary" href="javascript:void(0)" onclick="closeMobileMenu();openLoginModal('candidato')">Entrar</a>
+      <a class="cta-primary" href="cadastro-candidato.html" onclick="closeMobileMenu()">Criar perfil</a>
     </div>
+    <a class="mobile-company-link" href="cadastro-empresa.html" onclick="closeMobileMenu()">Sou empresa → Publicar vaga</a>
   </div>
-  <div class="hero-numbers">
-    <div class="hero-num">
-      <div class="hero-num-val">100%</div>
-      <div class="hero-num-label">Gratuito para candidatos</div>
-    </div>
-    <div class="hero-num">
-      <div class="hero-num-val">24h</div>
-      <div class="hero-num-label">Prazo de revisão de vagas</div>
-    </div>
-    <div class="hero-num">
-      <div class="hero-num-val">LGPD</div>
-      <div class="hero-num-label">Dados protegidos por lei</div>
-    </div>
-  </div>
-</div>
-<svg class="section-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 40" preserveAspectRatio="none">
-  <path fill="white" d="M0,20 C360,40 1080,0 1440,20 L1440,40 L0,40 Z"/>
-</svg>
 
-<!-- ═══════ MISSÃO ═══════ -->
-<section>
-  <div class="container">
-    <div class="missao-grid">
-      <div class="fade-in">
-        <div class="section-badge">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
-          Nossa Missão
+  <main class="page-shell">
+    <section class="hero portal-hero-unified portal-hero-split portal-hero-variant-split sobre-hero">
+      <div class="hero-content">
+        <div class="hero-label">Página institucional do portal</div>
+        <h1>Sobre o Conecta Polo Bauru Centro</h1>
+        <p>Portal de empregabilidade da <strong>Universidade Anhembi Morumbi — Polo Bauru Centro</strong>, criado para aproximar alunos e empresas da região com uma experiência mais clara, confiável e alinhada ao propósito do polo.</p>
+      </div>
+      <div class="hero-media portal-slot-media" id="slot-sobre-hero" data-media-mode="background" aria-hidden="true"></div>
+    </section>
+
+    <div class="content">
+      <section class="section-card intro-grid">
+        <div>
+          <div class="eyebrow">O que é o Conecta</div>
+          <h2>Uma plataforma criada para conectar formação e mercado</h2>
+          <p class="lead">O Conecta é o portal oficial de empregabilidade do polo. Ele foi estruturado para facilitar o acesso dos estudantes a vagas de estágio e emprego e, ao mesmo tempo, oferecer às empresas parceiras um canal objetivo para divulgar oportunidades e encontrar talentos da universidade.</p>
+          <div class="highlight-note">A proposta do portal é simples: dar visibilidade às oportunidades certas, reduzir ruído na comunicação e tornar a jornada de candidatura mais clara para alunos e recrutadores.</div>
         </div>
-        <h2 class="section-title">Democratizar o acesso às <span>primeiras oportunidades</span></h2>
-        <p class="section-sub" style="margin-bottom:1.25rem">No Brasil, conseguir o primeiro emprego ainda é um desafio enorme. O Conecta nasceu no Polo Bauru Centro para mudar essa realidade — criando uma ponte direta entre estudantes motivados e empresas que valorizam o potencial humano acima da experiência.</p>
-        <p class="section-sub">Acreditamos que todo jovem merece uma chance real. Nossa plataforma é o elo que faltava entre o talento de quem quer aprender e as empresas que precisam de gente comprometida.</p>
-      </div>
-      <div class="fade-in" style="padding-bottom:2.5rem">
-        <div class="missao-card-main">
-          <h3>Por que o nome Conecta?</h3>
-          <p>Conectar é a nossa essência: ligar talentos a oportunidades, aproximar empresas de estudantes, e integrar o Polo Bauru Centro ao mercado de trabalho regional. O nome traduz exatamente o propósito da plataforma.</p>
-        </div>
-        <div class="missao-card-float">
-          <div>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            Revisão manual de vagas
-          </div>
-          <div>Toda vaga é aprovada antes de publicar</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+        <div class="illustration-card campaign-photo portal-slot-media" id="slot-sobre-bloco-2" data-media-mode="cover"></div>
+      </section>
 
-<!-- ═══════ COMO FUNCIONA ═══════ -->
-<section class="como-funciona" id="como-funciona">
-  <div class="container">
-    <div class="fade-in" style="margin-bottom:2.25rem;text-align:center">
-      <div class="section-badge" style="margin:0 auto .75rem">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-        Como Funciona
-      </div>
-      <h2 class="section-title">Simples para <span>candidatos</span> e <span>empresas</span></h2>
-    </div>
-    <div class="how-columns fade-in">
-      <!-- COLUNA CANDIDATOS -->
-      <div class="how-col how-col-cand">
-        <div class="how-col-header">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          Para Candidatos
-        </div>
-        <div class="how-col-body">
-          <div class="step-item">
-            <div class="step-num">1</div>
-            <div class="step-dot step-dot-v"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg></div>
-            <div class="step-content"><div class="step-label">Passo 1</div><div class="step-title">Crie seu perfil em minutos</div><div class="step-desc">Cadastro gratuito com dados básicos, formação e objetivo profissional. Opcionalmente faça o teste de perfil DISC para se destacar.</div></div>
-          </div>
-          <div class="step-item">
-            <div class="step-num">2</div>
-            <div class="step-dot step-dot-v"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
-            <div class="step-content"><div class="step-label">Passo 2</div><div class="step-title">Explore vagas com filtros avançados</div><div class="step-desc">Filtre por área, modalidade, período, cidade e bolsa. Cada vaga tem página própria com todos os detalhes.</div></div>
-          </div>
-          <div class="step-item">
-            <div class="step-num">3</div>
-            <div class="step-dot step-dot-v"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
-            <div class="step-content"><div class="step-label">Passo 3</div><div class="step-title">Candidate-se com um clique</div><div class="step-desc">Sua candidatura chega diretamente para o RH da empresa. Acompanhe o status em tempo real no seu painel.</div></div>
-          </div>
-          <div class="step-item">
-            <div class="step-num">4</div>
-            <div class="step-dot step-dot-v"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
-            <div class="step-content"><div class="step-label">Passo 4</div><div class="step-title">Receba o contato da empresa</div><div class="step-desc">Se aprovado, a empresa entra em contato pelo WhatsApp ou LinkedIn cadastrados no seu perfil.</div></div>
-          </div>
-        </div>
-      </div>
-      <!-- COLUNA EMPRESAS -->
-      <div class="how-col how-col-emp">
-        <div class="how-col-header">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
-          Para Empresas
-        </div>
-        <div class="how-col-body">
-          <div class="step-item">
-            <div class="step-num">1</div>
-            <div class="step-dot step-dot-e"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
-            <div class="step-content"><div class="step-label">Passo 1</div><div class="step-title">Cadastre sua empresa</div><div class="step-desc">Informe os dados da empresa e crie sua conta. O processo é rápido e completamente gratuito.</div></div>
-          </div>
-          <div class="step-item">
-            <div class="step-num">2</div>
-            <div class="step-dot step-dot-e"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
-            <div class="step-content"><div class="step-label">Passo 2</div><div class="step-title">Publique sua vaga</div><div class="step-desc">Preencha o formulário detalhado com cargo, benefícios, requisitos e bolsa. Pode manter confidencial se quiser.</div></div>
-          </div>
-          <div class="step-item">
-            <div class="step-num">3</div>
-            <div class="step-dot step-dot-e"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg></div>
-            <div class="step-content"><div class="step-label">Passo 3</div><div class="step-title">Vaga revisada e publicada</div><div class="step-desc">Nossa equipe revisa e aprova em até 24h. Vagas com informações completas são aprovadas mais rápido.</div></div>
-          </div>
-          <div class="step-item">
-            <div class="step-num">4</div>
-            <div class="step-dot step-dot-e"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-            <div class="step-content"><div class="step-label">Passo 4</div><div class="step-title">Gerencie candidatos no painel</div><div class="step-desc">Visualize currículos, perfis DISC, contacte diretamente pelo WhatsApp e registre o status de cada candidato.</div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+      <section class="audience-section">
+        <article class="audience-card">
+          <div class="eyebrow">Para estudantes</div>
+          <h3>Mais clareza para buscar e disputar oportunidades</h3>
+          <p>O portal organiza a jornada do aluno desde o cadastro até a candidatura, com foco em apresentar oportunidades relevantes e um perfil mais completo para as empresas.</p>
+          <ul>
+            <li>Acesso a vagas de estágio e emprego em um ambiente institucional</li>
+            <li>Criação de perfil profissional com currículo e LinkedIn</li>
+            <li>Teste DISC após o cadastro para enriquecer o perfil</li>
+            <li>Envio de currículo de forma simples e direta nas candidaturas</li>
+          </ul>
+          <div class="mini-illustration">Empresas parceiras encontram um ambiente institucional mais organizado para divulgar vagas e receber candidaturas com mais contexto.</div>
+        </article>
 
-<!-- ═══════ DIFERENCIAIS ═══════ -->
-<section>
-  <div class="container">
-    <div class="fade-in" style="margin-bottom:2.25rem">
-      <div class="section-badge">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        Diferenciais
-      </div>
-      <h2 class="section-title">Por que escolher o <span>Conecta?</span></h2>
-    </div>
-    <div class="diff-grid">
-      <div class="diff-card fade-in">
-        <div class="diff-icon" style="background:rgba(0,122,94,.1)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-1.14z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-1.14z"/></svg></div>
-        <div class="diff-title">Teste de Perfil DISC</div>
-        <div class="diff-desc">Candidatos podem fazer o teste comportamental DISC. Empresas filtram por perfil ideal, tornando o match muito mais preciso.</div>
-      </div>
-      <div class="diff-card fade-in">
-        <div class="diff-icon" style="background:rgba(0,168,142,.1)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
-        <div class="diff-title">Vagas Revisadas Manualmente</div>
-        <div class="diff-desc">Nenhuma vaga entra no portal sem aprovação humana. Isso garante qualidade e evita anúncios falsos ou enganosos.</div>
-      </div>
-      <div class="diff-card fade-in">
-        <div class="diff-icon" style="background:rgba(0,122,94,.08)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
-        <div class="diff-title">Vagas Confidenciais</div>
-        <div class="diff-desc">Empresas podem publicar vagas sem revelar o nome, exibindo apenas "Empresa Confidencial" até o processo avançar.</div>
-      </div>
-      <div class="diff-card fade-in">
-        <div class="diff-icon" style="background:rgba(0,122,94,.08)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
-        <div class="diff-title">Currículo PDF Integrado</div>
-        <div class="diff-desc">Candidatos fazem upload do currículo diretamente na plataforma. Empresas baixam com um clique, sem e-mail.</div>
-      </div>
-      <div class="diff-card fade-in">
-        <div class="diff-icon" style="background:rgba(0,122,94,.08)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-        <div class="diff-title">Contato via WhatsApp</div>
-        <div class="diff-desc">Com um clique, a empresa abre o WhatsApp com mensagem pré-preenchida para o candidato. Rápido e direto ao ponto.</div>
-      </div>
-      <div class="diff-card fade-in">
-        <div class="diff-icon" style="background:rgba(0,122,94,.08)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><line x1="12" y1="3" x2="12" y2="21"/><path d="M3 9l9-6 9 6"/><path d="M6 12L3 9v6a3 3 0 0 0 6 0V9L6 12z"/><path d="M18 12l3-3v6a3 3 0 0 1-6 0V9l3 3z"/></svg></div>
-        <div class="diff-title">Feito para a Lei Brasileira</div>
-        <div class="diff-desc">Focado em estágio (Lei 11.788/2008) e Jovem Aprendiz (Lei 10.097/2000), seguindo a legislação trabalhista vigente.</div>
-      </div>
-    </div>
-  </div>
-</section>
+        <article class="audience-card">
+          <div class="eyebrow">Para empresas</div>
+          <h3>Um caminho mais simples para encontrar talentos do polo</h3>
+          <p>Empresas parceiras podem divulgar vagas e acessar candidatos com perfil mais estruturado, reduzindo atrito no processo de triagem e aumentando a aderência das candidaturas.</p>
+          <ul>
+            <li>Divulgação de oportunidades para alunos da universidade</li>
+            <li>Acesso a candidatos com perfil mais organizado</li>
+            <li>Triagem mais objetiva com apoio do perfil comportamental</li>
+            <li>Conexão direta com a comunidade acadêmica do Polo Bauru Centro</li>
+          </ul>
+          <div class="mini-illustration">Empresas parceiras conseguem divulgar oportunidades com mais clareza e receber candidaturas com melhor contexto de perfil.</div>
+        </article>
+      </section>
 
-<svg class="section-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 40" preserveAspectRatio="none">
-  <path fill="#004D3D" d="M0,20 C360,40 1080,0 1440,20 L1440,40 L0,40 Z"/>
-</svg>
-<!-- ═══════ NOSSOS VALORES ═══════ -->
-<section class="quem-bg">
-  <div class="container">
-    <div class="quem-inner fade-in">
-      <div class="section-badge" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.75);border-color:rgba(255,255,255,.15)">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-        Nossos Valores
-      </div>
-      <h2 class="section-title">Guiados por propósito,<br><span>movidos por impacto</span></h2>
-      <p class="section-sub">Construímos o Conecta com valores que acreditamos de verdade — não como decoração de site, mas como critérios que guiam cada decisão que tomamos.</p>
-    </div>
-    <div class="valores-grid fade-in">
-      <div class="valor-card">
-        <div class="valor-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
-        <div class="valor-name">Oportunidade Igual</div>
-        <div class="valor-desc">Acreditamos que todo jovem merece acesso às melhores oportunidades, independentemente de onde vem.</div>
-      </div>
-      <div class="valor-card">
-        <div class="valor-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
-        <div class="valor-name">Privacidade Primeiro</div>
-        <div class="valor-desc">Dados pessoais são sagrados. Seguimos a LGPD à risca e nunca vendemos informações de ninguém.</div>
-      </div>
-      <div class="valor-card">
-        <div class="valor-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="9" y1="18" x2="15" y2="18"/><line x1="10" y1="22" x2="14" y2="22"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg></div>
-        <div class="valor-name">Transparência Total</div>
-        <div class="valor-desc">Vagas claras, processos visíveis, sem surpresas. Estudantes merecem saber exatamente para onde estão se candidatando.</div>
-      </div>
-      <div class="valor-card">
-        <div class="valor-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 7.65l7.42 7.42 7.42-7.42a5.4 5.4 0 0 0 1-7.65z"/></svg></div>
-        <div class="valor-name">Parceria Genuína</div>
-        <div class="valor-desc">Não somos só um quadro de vagas — somos parceiros de empresas comprometidas com o desenvolvimento jovem.</div>
-      </div>
-      <div class="valor-card">
-        <div class="valor-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg></div>
-        <div class="valor-name">Evolução Constante</div>
-        <div class="valor-desc">A plataforma cresce com o feedback de quem usa. Cada sugestão é uma oportunidade de melhorar.</div>
-      </div>
-      <div class="valor-card">
-        <div class="valor-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
-        <div class="valor-name">Impacto Social Real</div>
-        <div class="valor-desc">Cada contratação via Conecta representa uma família que mudou de patamar. Isso nos motiva todo dia.</div>
-      </div>
-    </div>
-  </div>
-</section>
-<svg class="section-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 40" preserveAspectRatio="none">
-  <path fill="white" d="M0,20 C360,40 1080,0 1440,20 L1440,40 L0,40 Z"/>
-</svg>
-<!-- ═══════ PARA EMPRESAS ═══════ -->
-<section>
-  <div class="container">
-    <div class="empresa-split">
-      <div class="fade-in">
-        <div class="section-badge">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
-          Para Empresas
+      <section class="section-card mission-grid">
+        <div>
+          <div class="eyebrow">Nossa missão</div>
+          <h2>Gerar oportunidades reais com mais credibilidade e menos atrito</h2>
+          <p class="lead">O Conecta existe para aproximar estudantes e empresas por meio de uma experiência simples, institucional e confiável. A missão do portal é apoiar a inserção profissional dos alunos e tornar o processo de recrutamento mais objetivo para as empresas parceiras.</p>
+          <div class="mission-note">Universidade Anhembi Morumbi — Polo Bauru Centro<br>Portal Conecta</div>
         </div>
-        <h2 class="section-title">Encontre o candidato <span>certo mais rápido</span></h2>
-        <p class="section-sub" style="margin-bottom:2rem">Publicar vagas é gratuito. Nossa plataforma entrega candidatos qualificados e motivados, com perfil DISC e currículo à disposição.</p>
-        <div class="empresa-benefits">
-          <div class="benefit-row">
-            <div class="benefit-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></div>
-            <div><div class="benefit-title">Publicação gratuita e ilimitada</div><div class="benefit-desc">Sem mensalidades ou planos pagos. Publique quantas vagas precisar.</div></div>
-          </div>
-          <div class="benefit-row">
-            <div class="benefit-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></div>
-            <div><div class="benefit-title">Filtro por perfil DISC</div><div class="benefit-desc">Encontre candidatos com o comportamento ideal para cada função.</div></div>
-          </div>
-          <div class="benefit-row">
-            <div class="benefit-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></div>
-            <div><div class="benefit-title">Contato direto via WhatsApp</div><div class="benefit-desc">Zero burocracia. Fale com o candidato com um clique.</div></div>
-          </div>
-          <div class="benefit-row">
-            <div class="benefit-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></div>
-            <div><div class="benefit-title">Modo confidencial disponível</div><div class="benefit-desc">Oculte o nome da empresa durante o processo seletivo.</div></div>
-          </div>
-        </div>
-        <a href="cadastro-empresa.html" style="display:inline-flex;align-items:center;gap:.5rem;margin-top:2rem;padding:.9rem 2rem;background:var(--accent);color:white;border-radius:50px;font-weight:700;font-size:.9rem;text-decoration:none;transition:all .2s" onmouseover="this.style.background='var(--accent-dark)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='var(--accent)';this.style.transform='none'">
-          Cadastrar minha empresa →
-        </a>
-      </div>
-      <div class="empresa-card fade-in">
-        <h3>Como publicar uma vaga</h3>
-        <div class="empresa-steps">
-          <div class="emp-step"><div class="emp-step-num">1</div><div class="emp-step-text"><strong>Crie sua conta</strong> com CNPJ e e-mail corporativo</div></div>
-          <div class="emp-step"><div class="emp-step-num">2</div><div class="emp-step-text"><strong>Preencha os dados</strong> da empresa e da vaga em 4 etapas</div></div>
-          <div class="emp-step"><div class="emp-step-num">3</div><div class="emp-step-text"><strong>Aguarde a revisão</strong> — publicamos em até 24 horas</div></div>
-          <div class="emp-step"><div class="emp-step-num">4</div><div class="emp-step-text"><strong>Gerencie candidatos</strong> no painel exclusivo da empresa</div></div>
-          <div class="emp-step"><div class="emp-step-num">5</div><div class="emp-step-text"><strong>Contrate</strong> e encerre a vaga quando preencher</div></div>
-        </div>
-      </div>
+        <div class="illustration-card campaign-photo portal-slot-media" id="slot-sobre-bloco-2" data-media-mode="cover"></div>
+      </section>
     </div>
-  </div>
-</section>
+  </main>
 
-<!-- ═══════ FAQ ═══════ -->
-<section style="background:var(--bg)">
-  <div class="container">
-    <div class="fade-in" style="margin-bottom:2.25rem">
-      <div class="section-badge">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        Dúvidas Frequentes
-      </div>
-      <h2 class="section-title">Perguntas que <span>todo mundo faz</span></h2>
+  <footer class="public-footer">
+  <div class="public-footer-inner">
+    <div class="public-footer-logo-wrap">
+      <img src="logo-conecta-white.png" alt="Conecta — Anhembi Morumbi — Polo Bauru Centro" class="public-footer-logo" />
     </div>
-    <div class="faq-list">
-      <div class="faq-item" onclick="toggleFaq(this)">
-        <div class="faq-q">O Conecta é gratuito para candidatos?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></div>
-        <div class="faq-a"><p>Sim, 100% gratuito para candidatos, sem exceções. Criar perfil, fazer o teste DISC, se candidatar a vagas e fazer upload do currículo — tudo sem custo nenhum.</p></div>
-      </div>
-      <div class="faq-item" onclick="toggleFaq(this)">
-        <div class="faq-q">Quanto tempo leva para minha vaga ser publicada?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></div>
-        <div class="faq-a"><p>Vagas são revisadas em até 24 horas úteis. Vagas com informações completas e bem descritas costumam ser aprovadas mais rápido. Você recebe notificação assim que for publicada.</p></div>
-      </div>
-      <div class="faq-item" onclick="toggleFaq(this)">
-        <div class="faq-q">O que é o teste DISC e por que fazer?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></div>
-        <div class="faq-a"><p>O DISC é um teste comportamental muito usado em RH que classifica seu perfil em Dominante, Influente, Estável ou Conscencioso. Candidatos com DISC têm seu badge exibido no perfil, o que aumenta muito as chances de ser encontrado por empresas que buscam um perfil específico. Leva apenas 3 minutos.</p></div>
-      </div>
-      <div class="faq-item" onclick="toggleFaq(this)">
-        <div class="faq-q">O Conecta garante contratação?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></div>
-        <div class="faq-a"><p>Não garantimos contratação — somos um portal de conexão. O processo seletivo é conduzido pela empresa. O que garantimos é que todas as vagas são reais, revisadas e publicadas por empresas verificadas.</p></div>
-      </div>
-      <div class="faq-item" onclick="toggleFaq(this)">
-        <div class="faq-q">Meus dados estão seguros na plataforma?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></div>
-        <div class="faq-a"><p>Sim. Seguimos rigorosamente a LGPD (Lei Geral de Proteção de Dados). Senhas são armazenadas com hash criptográfico, nunca em texto simples. Seus dados só são compartilhados com empresas quando você se candidata a uma vaga delas. Nunca vendemos dados.</p></div>
-      </div>
-      <div class="faq-item" onclick="toggleFaq(this)">
-        <div class="faq-q">Posso publicar vaga confidencial?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></div>
-        <div class="faq-a"><p>Sim! Ao cadastrar a vaga, basta ativar a opção "Vaga Confidencial". O nome da empresa ficará oculto no portal, aparecendo como "Empresa Confidencial". Você ainda gerencia tudo normalmente pelo painel interno.</p></div>
-      </div>
+    <div class="public-footer-contact" id="footer-contact">
+      <div class="public-footer-contact-title">Contato do portal</div>
+      <div class="public-footer-contact-items" id="footer-contact-items"></div>
     </div>
+    <nav class="public-footer-nav" aria-label="Links do rodapé">
+      <a href="index.html">Início</a>
+      <a href="vagas.html">Vagas</a>
+      <a href="sobre.html">Sobre</a>
+      <a href="cadastro-empresa.html">Para Empresas</a>
+      <a href="termos.html">Termos &amp; Privacidade</a>
+    </nav>
+    <div class="public-footer-copy">© 2025 Universidade Anhembi Morumbi — Polo Bauru Centro. Todos os direitos reservados.</div>
   </div>
-</section>
-
-<!-- ═══════ CTA FINAL ═══════ -->
-<section class="cta-final">
-  <div class="cta-final-inner fade-in">
-    <h2>Pronto para dar o<br><span>primeiro passo?</span></h2>
-    <p>Milhares de estudantes já encontraram sua oportunidade aqui. Sua vez pode ser agora.</p>
-    <div class="cta-btns">
-      <a class="cta-btn-a" href="cadastro-candidato.html">Criar perfil grátis</a>
-      <a class="cta-btn-b" href="cadastro-empresa.html">Cadastrar empresa</a>
-    </div>
-  </div>
-</section>
-
-<footer class="public-footer">
-  <div class="public-footer-logo-wrap">
-    <img src="logo-conecta-white.png" alt="Conecta — Anhembi Morumbi — Polo Bauru Centro" class="public-footer-logo" />
-  </div>
-  <div class="public-footer-nav">
-    <a href="index.html">Início</a>
-    <a href="vagas.html">Vagas</a>
-    <a href="sobre.html">Sobre</a>
-    <a href="termos.html">Termos &amp; Privacidade</a>
-  </div>
-  <p class="public-footer-copy">© 2025 Universidade Anhembi Morumbi — Polo Bauru Centro. Todos os direitos reservados.</p>
 </footer>
 
-<script>
-function toggleFaq(el) {
-  const isOpen = el.classList.contains('open');
-  document.querySelectorAll('.faq-item').forEach(f => {
-    f.classList.remove('open');
-    f.querySelector('.faq-a').style.maxHeight = '0';
-  });
-  if (!isOpen) {
-    el.classList.add('open');
-    const a = el.querySelector('.faq-a');
-    a.style.maxHeight = a.scrollHeight + 'px';
-  }
-}
-
-const obs = new IntersectionObserver(entries => {
-  entries.forEach((e, i) => {
-    if (e.isIntersecting) {
-      setTimeout(() => e.target.classList.add('visible'), i * 80);
-      obs.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.1 });
-document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
-
-
-</script>
-
-<!-- MODAL LOGIN -->
-<div class="login-modal-overlay" id="login-modal-overlay" onclick="if(event.target===this)closeLoginModal()">
-  <div class="login-modal">
-    <button class="login-modal-close" onclick="closeLoginModal()">✕</button>
-    <div class="login-modal-tabs">
-      <button class="lm-tab active" id="lmt-candidato" onclick="switchLoginTab('candidato')"><svg style="vertical-align:middle;flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Candidato</button>
-      <button class="lm-tab" id="lmt-empresa" onclick="switchLoginTab('empresa')"><svg style="vertical-align:middle;flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg> Empresa</button>
-    </div>
-    <div class="lm-section show" id="lms-candidato">
-      <div class="lm-title">Bem-vindo de volta!</div>
-      <div class="lm-field"><label>E-mail</label><input type="email" id="lm-c-email" placeholder="seu@email.com" onkeydown="if(event.key==='Enter')loginModal('candidato')"></div>
-      <div class="lm-field"><label>Senha</label><input type="password" id="lm-c-senha" placeholder="Sua senha" onkeydown="if(event.key==='Enter')loginModal('candidato')"></div>
-      <button class="lm-btn" id="lm-btn-cand" onclick="loginModal('candidato')">Entrar →</button>
-      <div class="lm-msg" id="lm-msg-cand"></div>
-      <div class="lm-link">Não tem conta? <a href="cadastro-candidato.html">Criar perfil grátis →</a></div>
-    </div>
-    <div class="lm-section" id="lms-empresa">
-      <div class="lm-title">Painel da Empresa</div>
-      <div class="lm-field"><label>E-mail</label><input type="email" id="lm-e-email" placeholder="rh@empresa.com.br" onkeydown="if(event.key==='Enter')loginModal('empresa')"></div>
-      <div class="lm-field"><label>Senha</label><input type="password" id="lm-e-senha" placeholder="Sua senha" onkeydown="if(event.key==='Enter')loginModal('empresa')"></div>
-      <button class="lm-btn" id="lm-btn-emp" onclick="loginModal('empresa')">Entrar →</button>
-      <div class="lm-msg" id="lm-msg-emp"></div>
-      <div class="lm-link">Não tem cadastro? <a href="cadastro-empresa.html">Cadastrar empresa →</a></div>
+  <div class="login-modal-overlay" id="login-modal-overlay" onclick="if(event.target===this) closeLoginModal()">
+    <div class="login-modal">
+      <button class="login-modal-close" type="button" aria-label="Fechar" onclick="closeLoginModal()">×</button>
+      <div class="login-modal-tabs">
+        <button class="lm-tab active" id="lmt-candidato" type="button" onclick="switchLoginTab('candidato')">Candidato</button>
+        <button class="lm-tab" id="lmt-empresa" type="button" onclick="switchLoginTab('empresa')">Empresa</button>
+      </div>
+      <div class="lm-section show" id="lms-candidato">
+        <h3 class="lm-title">Entrar como candidato</h3>
+        <div class="lm-field"><label for="lm-c-email">E-mail</label><input id="lm-c-email" type="email" placeholder="voce@exemplo.com"></div>
+        <div class="lm-field"><label for="lm-c-senha">Senha</label><input id="lm-c-senha" type="password" placeholder="Digite sua senha"></div>
+        <button class="lm-btn" id="lm-btn-cand" type="button" onclick="loginModal('candidato')">Entrar</button>
+        <div class="lm-msg" id="lm-msg-cand"></div>
+      </div>
+      <div class="lm-section" id="lms-empresa">
+        <h3 class="lm-title">Entrar como empresa</h3>
+        <div class="lm-field"><label for="lm-e-email">E-mail</label><input id="lm-e-email" type="email" placeholder="empresa@exemplo.com"></div>
+        <div class="lm-field"><label for="lm-e-senha">Senha</label><input id="lm-e-senha" type="password" placeholder="Digite sua senha"></div>
+        <button class="lm-btn" id="lm-btn-emp" type="button" onclick="loginModal('empresa')">Entrar</button>
+        <div class="lm-msg" id="lm-msg-emp"></div>
+      </div>
     </div>
   </div>
-</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    window.sb = window.supabase ? window.supabase.createClient(
+      'https://hnhxxchhwhdlpuiceirz.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJvcGVuYWkiLCJyZWYiOiJobmh4eGNoaHdoZGxwdWljZWlyeiIsInJvbGUiOiJhbm9uIiwiaWF0IjoxNzQ2Nzg3MjQ1LCJleHAiOjIwNjIzNjMyNDV9.e2QkxrwA8qCR3ylcV-25A8IS5CKQNgZTcxSny-VzbwY'
+    ) : null;
+
+    const PORTAL_CONFIG_STORAGE_KEY = 'portal_config_local';
+
+    function normalizePhoneDisplay(value){
+      const digits = String(value || '').replace(/\D+/g,'');
+      if (!digits) return '';
+      if (digits.length === 13) return `+${digits.slice(0,2)} (${digits.slice(2,4)}) ${digits.slice(4,9)}-${digits.slice(9)}`;
+      if (digits.length === 11) return `(${digits.slice(0,2)}) ${digits.slice(2,7)}-${digits.slice(7)}`;
+      if (digits.length === 10) return `(${digits.slice(0,2)}) ${digits.slice(2,6)}-${digits.slice(6)}`;
+      return value;
+    }
+
+    function readLocalPortalConfig(){
+      try { return JSON.parse(localStorage.getItem(PORTAL_CONFIG_STORAGE_KEY) || '{}'); } catch(e) { return {}; }
+    }
+
+    function renderFooterContact(cfg){
+      const wrap = document.getElementById('footer-contact');
+      const items = document.getElementById('footer-contact-items');
+      if (!wrap || !items) return;
+      const email = (cfg.contato_email || '').trim();
+      const telefone = (cfg.contato_telefone || '').trim();
+      const whatsapp = (cfg.contato_whatsapp || '').trim();
+      const links = [];
+
+      if (email) links.push(`<a href="mailto:${email}">E-mail: ${email}</a>`);
+      if (telefone) {
+        const telDigits = telefone.replace(/\D+/g,'');
+        links.push(`<a href="tel:${telDigits}">Telefone: ${normalizePhoneDisplay(telefone)}</a>`);
+      }
+      if (whatsapp) {
+        const waDigits = whatsapp.replace(/\D+/g,'');
+        links.push(`<a href="https://wa.me/${waDigits}" target="_blank" rel="noopener">WhatsApp: ${normalizePhoneDisplay(whatsapp)}</a>`);
+      }
+
+      if (!links.length){
+        wrap.classList.remove('show');
+        items.innerHTML = '';
+        return;
+      }
+
+      items.innerHTML = links.join('');
+      wrap.classList.add('show');
+    }
+
+    async function loadFooterContact(){
+      const localCfg = readLocalPortalConfig();
+      renderFooterContact(localCfg);
+
+      if (!window.sb) return;
+      try {
+        const { data, error } = await window.sb
+          .from('configuracoes')
+          .select('chave, valor')
+          .in('chave', ['contato_email', 'contato_telefone', 'contato_whatsapp']);
+        if (error) throw error;
+        const dbCfg = (data || []).reduce((acc, item) => {
+          acc[item.chave] = item.valor || '';
+          return acc;
+        }, {});
+        renderFooterContact(Object.assign({}, localCfg, dbCfg));
+      } catch (e) {
+        console.warn('Contato do rodapé indisponível:', e?.message || e);
+      }
+    }
+
+    loadFooterContact();
+  </script>
+  <script src="public-media-slots.js"></script>
+  <script>
+    loadPortalMediaSlot('sobre_hero_imagem', 'slot-sobre-hero-imagem', { mode: 'background' });
+    loadPortalMediaSlot('sobre_bloco_2', 'slot-sobre-bloco-2', { mode: 'cover' });
+    loadGlobalBackground();
+  </script>
+  <script src="public-site-config.js"></script>
+<script src="public-assets-map.js"></script>
+<script src="public-navbar-config.js"></script>
   <script src="public-navbar.js"></script>
+  <script src="public-footer-config.js"></script>
+<script src="public-footer.js"></script>
 </body>
 </html>

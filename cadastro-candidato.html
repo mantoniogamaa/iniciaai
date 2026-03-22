@@ -21,7 +21,7 @@
 <meta property="twitter:description" content="Crie seu perfil, candidate-se a vagas e acompanhe suas candidaturas no Conecta.">
 <meta property="twitter:image" content="https://mantoniogamaa.github.io/iniciaaí/og-image.png">
 <link rel="canonical" href="https://mantoniogamaa.github.io/iniciaaí/cadastro-candidato.html">
-<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
   :root {
@@ -74,7 +74,7 @@
   .logo::before {
     content: ''; display: block;
     width: 140px; height: 44px;
-    background: url('logocolorida.png') no-repeat left center / contain;
+    background: url('logo-colorida.png') no-repeat left center / contain;
   }
   .nav-links { display: flex; gap: 2rem; align-items: center; }
   .nav-links a { color: var(--muted); text-decoration: none; font-size: .9rem; font-weight: 500; transition: color .2s; }
@@ -149,7 +149,7 @@
   .lm-btn:disabled { opacity:.6; cursor:not-allowed; transform:none; }
   .lm-msg { padding:.65rem .9rem; border-radius:9px; font-size:.82rem; font-weight:600;
     margin-top:.75rem; text-align:center; display:none; }
-  .lm-msg.error   { background:rgba(99,102,106,.12); color:#4F5B62; display:block; }
+  .lm-msg.error   { background:rgba(192,57,43,.10); color:#C0392B; display:block; }
   .lm-msg.success { background:rgba(0,164,153,.10); color:#1B5E20; display:block; }
   .lm-link { font-size:.82rem; color:var(--muted); text-align:center; margin-top:.85rem; }
   .lm-link a { color:var(--primary,#006C5B); font-weight:600; text-decoration:none; }
@@ -566,12 +566,12 @@
     display: block;
     width: 160px;
     height: 44px;
-    background: url('logocolorida.png') no-repeat center/contain;
+    background: url('logo-colorida.png') no-repeat center/contain;
   }
   /* Logo branca nos heróis (quando nav está sobre fundo escuro) */
   .hero-logo-wrap .logo::before,
   .vaga-hero .logo::before {
-    background-image: url('logobranca.png');
+    background-image: url('logo-branca.png');
   }
 
 
@@ -586,7 +586,7 @@
     content: '';
     display: block;
     width: 140px; height: 44px;
-    background: url('logocolorida.png') no-repeat left center / contain;
+    background: url('logo-colorida.png') no-repeat left center / contain;
   }
   nav {
     background: rgba(255,255,255,.97) !important;
@@ -642,9 +642,7 @@
 
 
   /* ── UPGRADE TIPOGRAFIA GLOBAL ── */
-  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap');
-
-  body { font-family: 'DM Sans', 'Plus Jakarta Sans', sans-serif !important; }
+  body { font-family:  'Plus Jakarta Sans', sans-serif !important; }
 
   h1, h2, h3, .section-title, .panel-title, .modal-title {
     font-family: 'Clash Display', sans-serif !important;
@@ -653,7 +651,7 @@
 
   /* Forms mais elegantes */
   input, select, textarea, button {
-    font-family: 'DM Sans', sans-serif !important;
+    font-family:  sans-serif !important;
   }
 
   /* Labels mais profissionais */
@@ -665,7 +663,7 @@
 
   /* Nav links */
   .nav-links a, .nav-back {
-    font-family: 'DM Sans', sans-serif !important;
+    font-family:  sans-serif !important;
     font-size: .875rem !important;
   }
 
@@ -753,13 +751,15 @@
   /* ── SÍMBOLO AM — página interna ── */
   .page-hero, .vaga-hero { position:relative; overflow:hidden; }
   .page-am-deco {
-    position:absolute; right:-4%; bottom:-8%;
+    position:absolute; right:0; top:50%;
+    transform:translateY(-50%);
     width:min(260px, 28vw); aspect-ratio:700/762;
     background:url('symbol-am-white.png') no-repeat center/contain;
     pointer-events:none; z-index:0;
+    opacity:.55;
   }
   @media(max-width:768px){
-    .page-am-deco { width:min(140px, 35vw)!important; right:-2%!important; }
+    .page-am-deco { width:min(140px, 35vw)!important; right:0!important; }
   }
 
 
@@ -796,7 +796,7 @@
     display: inline-block !important;
     width: 150px !important;
     height: 48px !important;
-    background: url('logocolorida.png') no-repeat left center / contain !important;
+    background: url('logo-colorida.png') no-repeat left center / contain !important;
     text-decoration: none !important;
     font-size: 0 !important;
     color: transparent !important;
@@ -816,9 +816,47 @@
 
 </style>
   <link rel="stylesheet" href="public-navbar.css">
+  <link rel="stylesheet" href="public-nav-modal.css">
   <link rel="stylesheet" href="public-footer.css">
   <link rel="stylesheet" href="public-responsive.css">
+  <link rel="stylesheet" href="public-theme.css">
   <link rel="stylesheet" href="public-design-system.css">
+  <link rel="stylesheet" href="public-tech-background.css">
+
+<style id="v23b-alive-tweak">
+  .page-hero,
+  .hero-section,
+  .hero-wrap{
+    box-shadow: 0 22px 54px rgba(0,64,54,.16);
+  }
+  .page-hero{
+    background:
+      radial-gradient(circle at 18% 18%, rgba(0,164,153,.18), transparent 20%),
+      linear-gradient(135deg,#004c40 0%, #006C5B 52%, #00A499 100%) !important;
+  }
+  .page-hero h1,
+  .page-hero .hero-title,
+  .page-hero .page-title{
+    color:#fff !important;
+  }
+  .page-hero p,
+  .page-hero .hero-subtitle,
+  .page-hero .page-subtitle{
+    color:rgba(255,255,255,.88) !important;
+  }
+  .form-card,
+  .section-card,
+  .empresa-panel,
+  .job-card,
+  .benefit-card,
+  .recurso-card{
+    box-shadow:0 18px 42px rgba(0,64,54,.10) !important;
+  }
+</style>
+
+<link rel="stylesheet" href="public-media-slots.css">
+  <link rel="stylesheet" href="public-forms-unified.css">
+  <link rel="stylesheet" href="public-mobile-refinements.css">
 </head>
 <body>
 <nav>
@@ -1117,16 +1155,23 @@
 </div>
 
 <footer class="public-footer">
-  <div class="public-footer-logo-wrap">
-    <img src="logo-conecta-white.png" alt="Conecta — Anhembi Morumbi — Polo Bauru Centro" class="public-footer-logo" />
+  <div class="public-footer-inner">
+    <div class="public-footer-logo-wrap">
+      <img src="logo-conecta-white.png" alt="Conecta — Anhembi Morumbi — Polo Bauru Centro" class="public-footer-logo" />
+    </div>
+    <div class="public-footer-contact" id="footer-contact">
+      <div class="public-footer-contact-title">Contato do portal</div>
+      <div class="public-footer-contact-items" id="footer-contact-items"></div>
+    </div>
+    <nav class="public-footer-nav" aria-label="Links do rodapé">
+      <a href="index.html">Início</a>
+      <a href="vagas.html">Vagas</a>
+      <a href="sobre.html">Sobre</a>
+      <a href="cadastro-empresa.html">Para Empresas</a>
+      <a href="termos.html">Termos &amp; Privacidade</a>
+    </nav>
+    <div class="public-footer-copy">© 2025 Universidade Anhembi Morumbi — Polo Bauru Centro. Todos os direitos reservados.</div>
   </div>
-  <div class="public-footer-nav">
-    <a href="index.html">Início</a>
-    <a href="vagas.html">Vagas</a>
-    <a href="sobre.html">Sobre</a>
-    <a href="termos.html">Termos &amp; Privacidade</a>
-  </div>
-  <p class="public-footer-copy">© 2025 Universidade Anhembi Morumbi — Polo Bauru Centro. Todos os direitos reservados.</p>
 </footer>
 
 <script>
@@ -1149,7 +1194,7 @@ async function carregarIdentidade() {
         el.style.cssText += ';width:auto;';
       });
     }
-    // Se não há logo personalizada, o CSS usa logocolorida.png por padrão
+    // Se não há logo personalizada, o CSS usa logo-colorida.png por padrão
 
     // Cor primária
     if (cfg.cor_primary && /^#[0-9A-Fa-f]{6}$/.test(cfg.cor_primary)) {
@@ -1882,6 +1927,13 @@ if (candidatoLogado) showPainel();
     </div>
   </div>
 </div>
+  <script src="public-site-config.js"></script>
+<script src="public-assets-map.js"></script>
+<script src="public-navbar-config.js"></script>
   <script src="public-navbar.js"></script>
+<script src="public-media-slots.js"></script>
+<script>loadGlobalBackground();</script>
+  <script src="public-footer-config.js"></script>
+<script src="public-footer.js"></script>
 </body>
 </html>

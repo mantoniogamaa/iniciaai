@@ -15,192 +15,10 @@
 <meta property="og:image" content="https://mantoniogamaa.github.io/iniciaai/og-image.png">
 <meta property="og:url" content="https://mantoniogamaa.github.io/iniciaai/vagas.html">
 <link rel="canonical" href="https://mantoniogamaa.github.io/iniciaai/vagas.html">
-<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
-:root {
-  --primary: #006C5B;
-  --primary-dark: #005247;
-  --accent: #00A499;
-  --accent-dark: #00897F;
-  --accent-light: #E6F6F4;
-  --gray: #63666A;
-  --bg: #F4F8F7;
-  --dark: #006C5B;
-  --text: #1A2E28;
-  --muted: #63666A;
-  --border: #C9D9D5;
-  --white: #FFFFFF;
-  --violet: #006C5B;
-  --coral: #005247;
-  --green: #00A499;
-  --cyan: #00A499;
-  --error: #63666A;
-  --error-bg: rgba(99,102,106,.12);
-  --yellow:        #00897F;
-  --orange:        #005247;
-}
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html, body { overflow-x: hidden; }
-body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); }
-img { max-width: 100%; }
-
-  /* ═══ NAV BASE ═══ */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(255,255,255,0.97);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--border);
-    padding: 0 2rem;
-    height: 64px;
-    display: flex; align-items: center; justify-content: space-between;
-    box-shadow: 0 1px 12px rgba(0,122,94,.08);
-  }
-  .logo {
-    display: inline-flex; align-items: center;
-    text-decoration: none; cursor: pointer;
-    font-size: 0 !important; color: transparent !important;
-    -webkit-text-fill-color: transparent !important;
-    background: none !important; flex-shrink: 0;
-  }
-  .logo::before {
-    content: ''; display: block;
-    width: 140px; height: 44px;
-    background: url('logocolorida.png') no-repeat left center / contain;
-  }
-  .nav-links { display: flex; gap: 2rem; align-items: center; }
-  .nav-links a { color: var(--muted); text-decoration: none; font-size: .9rem; font-weight: 500; transition: color .2s; }
-  .nav-links a:hover { color: var(--primary); }
-  .nav-links a.active { color: var(--primary); font-weight: 700; }
-  /* DROPDOWN ACESSAR */
-  .nav-access { position: relative; }
-  .btn-access { display:flex; align-items:center; gap:.45rem; padding:.55rem 1.2rem;
-    border:1.5px solid var(--border); border-radius:50px; background:white;
-    font-size:.875rem; font-weight:600; cursor:pointer; color:var(--text);
-    font-family:inherit; transition:all .2s; }
-  .btn-access:hover { border-color:var(--primary); color:var(--primary); }
-  .btn-access svg { transition:transform .2s; }
-  .btn-access.open svg { transform:rotate(180deg); }
-  .access-dropdown { position:absolute; top:calc(100% + .6rem); right:0;
-    background:white; border-radius:16px; border:1.5px solid var(--border);
-    box-shadow:0 12px 40px rgba(0,0,0,.12); min-width:220px; z-index:200;
-    opacity:0; transform:translateY(-8px); pointer-events:none; transition:all .2s; overflow:hidden; }
-  .access-dropdown.open { opacity:1; transform:translateY(0); pointer-events:all; }
-  .access-dropdown-header { padding:.75rem 1rem .5rem; font-size:.7rem; font-weight:700;
-    text-transform:uppercase; letter-spacing:.08em; color:var(--muted); }
-  .access-item { display:flex; align-items:center; gap:.75rem; padding:.75rem 1rem;
-    cursor:pointer; transition:background .15s; text-decoration:none; color:var(--text); }
-  .access-item:hover { background:var(--bg,#F4F8F7); }
-  .access-item:last-child { border-top:1px solid var(--border); }
-  .access-icon { width:36px; height:36px; border-radius:10px;
-    display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-  .access-icon.cand { background:rgba(0,122,94,.1); }
-  .access-icon.emp  { background:rgba(0,168,142,.1); }
-  .access-icon.new  { background:rgba(0,164,153,.10); }
-  .access-label { font-size:.875rem; font-weight:600; }
-  .access-sub   { font-size:.72rem; color:var(--muted); margin-top:.1rem; }
-  /* AVATAR LOGADO */
-  .nav-avatar { width:36px; height:36px; border-radius:50%;
-    background:linear-gradient(135deg,var(--accent,#00A499),var(--primary,#006C5B));
-    display:flex; align-items:center; justify-content:center;
-    color:white; font-weight:700; font-size:.9rem; cursor:pointer; flex-shrink:0;
-    border:2px solid white; box-shadow:0 2px 8px rgba(0,122,94,.4); }
-  .nav-user-wrap { display:flex; align-items:center; gap:.6rem; }
-  .nav-user-name { font-size:.85rem; font-weight:600; color:var(--text); }
-  /* MODAL LOGIN */
-  .login-modal-overlay { position:fixed; inset:0; background:rgba(15,10,30,.55);
-    backdrop-filter:blur(6px); z-index:500; display:none;
-    align-items:center; justify-content:center; padding:1rem; }
-  .login-modal-overlay.open { display:flex; }
-  .login-modal { background:white; border-radius:24px; width:100%; max-width:420px;
-    padding:2rem; position:relative; animation:lmIn .3s ease; box-shadow:0 24px 60px rgba(0,0,0,.18); }
-  @keyframes lmIn { from{transform:scale(.95) translateY(10px);opacity:0} to{transform:scale(1) translateY(0);opacity:1} }
-  .login-modal-close { position:absolute; top:1rem; right:1rem; width:32px; height:32px;
-    border-radius:50%; border:none; background:var(--bg,#F4F8F7); cursor:pointer;
-    font-size:1rem; color:var(--muted); display:flex; align-items:center; justify-content:center; }
-  .login-modal-tabs { display:flex; background:var(--bg,#F4F8F7); border-radius:12px;
-    padding:.3rem; gap:.3rem; margin-bottom:1.5rem; }
-  .lm-tab { flex:1; padding:.55rem; border-radius:9px; border:none; cursor:pointer;
-    font-size:.82rem; font-weight:600; font-family:inherit;
-    transition:all .2s; color:var(--muted); background:transparent;
-    display:flex; align-items:center; justify-content:center; gap:.35rem; }
-  .lm-tab.active { background:white; color:var(--primary,#006C5B); box-shadow:0 2px 8px rgba(0,0,0,.08); }
-  .lm-section { display:none; }
-  .lm-section.show { display:block; }
-  .lm-title { font-family:'Clash Display',sans-serif; font-size:1.3rem; font-weight:700; margin-bottom:1.25rem; color:var(--dark,#004D3D); }
-  .lm-field { margin-bottom:.85rem; }
-  .lm-field label { font-size:.78rem; font-weight:700; display:block; margin-bottom:.35rem; }
-  .lm-field input { width:100%; padding:.75rem 1rem; border:1.5px solid var(--border);
-    border-radius:10px; font-size:.9rem; font-family:inherit;
-    outline:none; background:var(--bg,#F4F8F7); color:var(--text); transition:border-color .2s; }
-  .lm-field input:focus { border-color:var(--accent,#00A499); background:white; }
-  .lm-btn { width:100%; padding:.9rem; background:linear-gradient(135deg,var(--accent,#00A499),var(--primary,#006C5B));
-    color:white; border:none; border-radius:12px; font-size:.95rem; font-weight:700;
-    cursor:pointer; font-family:inherit; transition:transform .2s,box-shadow .2s; margin-top:.25rem; }
-  .lm-btn:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,122,94,.4); }
-  .lm-btn:disabled { opacity:.6; cursor:not-allowed; transform:none; }
-  .lm-msg { padding:.65rem .9rem; border-radius:9px; font-size:.82rem; font-weight:600;
-    margin-top:.75rem; text-align:center; display:none; }
-  .lm-msg.error   { background:rgba(99,102,106,.12); color:#4F5B62; display:block; }
-  .lm-msg.success { background:rgba(0,164,153,.10); color:#1B5E20; display:block; }
-  .lm-link { font-size:.82rem; color:var(--muted); text-align:center; margin-top:.85rem; }
-  .lm-link a { color:var(--primary,#006C5B); font-weight:600; text-decoration:none; }
-  
-  /* DRAWER MOBILE */
-  .mobile-drawer { display:none; position:fixed; top:64px; left:0; right:0; bottom:0;
-    background:rgba(248,255,252,.98); backdrop-filter:blur(16px);
-    z-index:99; flex-direction:column; padding:1.5rem 2rem;
-    border-top:1px solid var(--border); overflow-y:auto;
-    transform:translateX(100%); transition:transform .3s ease; }
-  .mobile-drawer.open { transform:translateX(0); }
-  .mobile-nav-links { display:flex; flex-direction:column; gap:.25rem; margin-bottom:1.5rem; }
-  .mobile-nav-links a { padding:.85rem 1rem; border-radius:12px; font-size:1rem; font-weight:600;
-    color:var(--text); text-decoration:none; transition:background .2s;
-    display:flex; align-items:center; gap:.6rem; }
-  .mobile-nav-links a:hover { background:white; }
-  .mobile-nav-links a.active { color:var(--primary,#006C5B); background:rgba(0,122,94,.06); }
-  .mobile-divider { height:1px; background:var(--border); margin:.75rem 0; }
-  .mobile-access-title { font-size:.72rem; font-weight:700; text-transform:uppercase;
-    letter-spacing:.1em; color:var(--muted); margin-bottom:.75rem; }
-  .mobile-access-btn { display:flex; align-items:center; gap:.85rem; width:100%;
-    padding:1rem; border-radius:14px; border:1.5px solid var(--border); background:white;
-    cursor:pointer; font-family:inherit; transition:all .2s; margin-bottom:.6rem; }
-  .mobile-access-btn:hover { border-color:var(--primary,#006C5B); }
-  .mobile-access-icon { width:40px; height:40px; border-radius:10px;
-    display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-  .mobile-access-label { font-size:.9rem; font-weight:700; color:var(--text); }
-  .mobile-access-sub   { font-size:.75rem; color:var(--muted); margin-top:.1rem; }
-  .mobile-cta { display:flex; flex-direction:column; gap:.6rem; margin-top:.5rem; }
-  .mobile-cta a { display:flex; align-items:center; justify-content:center; gap:.5rem;
-    padding:.9rem; border-radius:12px; font-weight:700; font-size:.9rem;
-    text-decoration:none; transition:all .2s; }
-  .mobile-cta .cta-primary { background:linear-gradient(135deg,var(--accent,#00A499),var(--primary,#006C5B)); color:white; }
-  .mobile-cta .cta-secondary { border:1.5px solid var(--border); color:var(--muted); }
-  @media(max-width:768px) {
-    nav { padding:0 1rem; height:64px; }
-    .nav-links { display:none !important; }
-    .btn-access { display:none !important; }
-    .nav-logado-desktop { display:none !important; }
-    .hamburger { display:flex !important; }
-    .mobile-drawer { display:flex; }
-  }
-  @media(max-width:600px) { .nav-user-name { display:none !important; } }
-
-.nav-links { display: flex; gap: 2rem; align-items: center; }
-.nav-links a { color: var(--muted); text-decoration: none; font-size: .9rem; font-weight: 500; transition: color .2s; }
-.nav-links a:hover { color: var(--primary); }
-.nav-links a.active { color: var(--primary); font-weight: 700; }
-
-
-
-
-
-
-
-
-
-/* ── PAGE HEADER ── */
+PAGE HEADER ── */
 .page-header {
   padding: 108px 2rem 2.2rem;
   text-align: center;
@@ -248,17 +66,39 @@ img { max-width: 100%; }
 /* ── FILTROS ── */
 .filters-wrap {
   max-width: 1180px;
-  margin: -0.7rem auto 0;
+  margin: -3.25rem auto 0;
   padding: 0 2rem;
   position: relative;
   z-index: 2;
 }
+.filters-wrap::before {
+  content: "";
+  position: absolute;
+  left: 2.8rem;
+  right: 2.8rem;
+  top: 1.3rem;
+  height: 18px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(0,108,91,.10), rgba(0,108,91,0));
+  filter: blur(14px);
+  opacity: .55;
+  pointer-events: none;
+}
 .filters-card {
-  background: rgba(255,255,255,.96);
+  background: rgba(255,255,255,.98);
   border-radius: 24px;
   padding: 1.35rem;
   border: 1px solid rgba(0,108,91,.1);
-  box-shadow: 0 18px 50px rgba(0,108,91,.08);
+  box-shadow: 0 24px 60px rgba(0,108,91,.12);
+  position: relative;
+  overflow: hidden;
+}
+.filters-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 5px;
+  background: linear-gradient(90deg, rgba(0,164,153,.95), rgba(0,108,91,.85));
 }
 .search-row {
   display:grid;
@@ -332,130 +172,189 @@ img { max-width: 100%; }
 .active-filter-tag:hover { background: rgba(0,164,153,.18); }
 
 /* ── RESULTADOS ── */
-.results-wrap { max-width: 1180px; margin: 0 auto; padding: 1.8rem 2rem 4rem; }
+.results-wrap { max-width: 1180px; margin: 1rem auto 0; padding: 1.8rem 2rem 4rem;
+  background: linear-gradient(180deg, rgba(250,252,251,.94) 0%, rgba(255,255,255,.985) 100%);
+  border: 1px solid rgba(0,108,91,.10);
+  border-radius: 30px;
+  box-shadow: 0 18px 44px rgba(0,64,54,.08);
+  backdrop-filter: blur(10px);
+}
 .results-header {
   display:flex; align-items:flex-end; justify-content:space-between;
   gap:1rem; margin-bottom:1.35rem; flex-wrap:wrap;
 }
-.results-title { font-family: 'Clash Display', sans-serif; font-size: 1.6rem; font-weight: 700; color: var(--text); }
-.results-count { font-size: .9rem; color: var(--muted); font-weight: 500; margin-top:.25rem; }
+.results-title { font-family: 'Clash Display', sans-serif; font-size: 1.6rem; font-weight: 700; color: #12352f; }
+.results-count { font-size: .9rem; color: #5d6f6a; font-weight: 600; margin-top:.25rem; }
 .results-actions {
-  display:flex; align-items:center; gap:.65rem; color:var(--muted);
+  display:flex; align-items:center; gap:.65rem; color:#47615b;
   font-size:.82rem; font-weight:700;
 }
-.jobs-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+.jobs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 1rem;
+}
 
-/* ── CARDS ── */
+/* ── CARD BASE ── */
 .job-card {
-  background: white;
-  border-radius: 22px;
-  padding: 1.2rem;
-  border: 1px solid rgba(0,108,91,.10);
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid rgba(0,0,0,.08);
   cursor: pointer;
   position: relative;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
-  transition: transform .25s, box-shadow .25s, border-color .25s;
-  animation: cardIn .4s ease both;
-  box-shadow: 0 8px 24px rgba(0,108,91,.06);
-}
-.job-card::before {
-  content: ''; position: absolute; inset: 0 auto auto 0; width:100%; height:4px; opacity: 0; transition: opacity .2s;
+  transition: box-shadow .2s ease, transform .2s ease, border-color .2s ease;
+  animation: cardIn .35s ease both;
+  box-shadow: 0 2px 8px rgba(0,0,0,.05);
 }
 .job-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 18px 42px rgba(0,108,91,.12);
-  border-color: rgba(0,164,153,.22);
+  box-shadow: 0 8px 28px rgba(0,0,0,.10);
+  transform: translateY(-2px);
+  border-color: rgba(0,108,91,.18);
 }
-.job-card:hover::before { opacity: 1; }
-.card-estagio::before { background: linear-gradient(90deg, var(--primary), var(--accent)); }
-.card-aprendiz::before { background: linear-gradient(90deg, var(--accent), var(--primary-dark)); }
-.job-card.featured {
-  grid-column: 1 / -1;
-  display:grid;
-  grid-template-columns: minmax(0, 1.6fr) auto;
-  gap:1rem;
-  align-items:stretch;
-}
-.job-card-main { min-width:0; }
-.card-top { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: .95rem; }
-.company-logo {
-  width: 64px; height: 64px; border-radius: 18px;
+
+/* Estrela de destaque */
+.card-featured-star {
+  position: absolute;
+  top: 14px; right: 14px;
+  width: 28px; height: 28px;
+  background: linear-gradient(135deg, #F5B800, #E09600);
+  border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  font-size: 1.45rem; flex-shrink: 0;
-  background: linear-gradient(135deg, rgba(0,108,91,.10), rgba(0,164,153,.12));
-  border: 1px solid rgba(0,108,91,.08);
-  font-family: 'Clash Display', sans-serif; font-weight: 700; color: var(--primary);
+  box-shadow: 0 2px 8px rgba(224,150,0,.35);
+  z-index: 2;
 }
-.card-meta { flex: 1; min-width:0; }
+.card-featured-star svg { color: #fff; }
+
+/* Corpo do card */
+.job-card-body {
+  padding: 1.25rem 1.25rem .9rem;
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  flex: 1;
+}
+
+/* Topo: logo + empresa + título */
+.card-top {
+  display: flex;
+  align-items: center;
+  gap: .85rem;
+}
+.company-logo {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,.08);
+  background: #f4f8f7;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Clash Display', sans-serif;
+  font-size: 1.2rem; font-weight: 700;
+  color: var(--primary);
+  flex-shrink: 0;
+}
+.card-meta { min-width: 0; flex: 1; }
 .card-company {
-  font-size: .88rem; color: var(--muted); font-weight: 600; margin-bottom: .25rem;
+  font-size: .72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: .18rem;
 }
 .card-title {
-  font-family: 'Clash Display', sans-serif; font-size: clamp(1.08rem, 1.6vw, 1.32rem);
-  font-weight: 700; color: var(--text); line-height: 1.22;
+  font-family: 'Clash Display', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-.card-location {
-  display:flex; align-items:center; gap:.4rem;
-  color:var(--muted); font-size:.88rem; font-weight:600;
-  margin:.05rem 0 .95rem;
+
+/* Info row: localização + salário */
+.card-info-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
-.card-badges { display: flex; gap: .45rem; flex-wrap: wrap; margin-bottom: .95rem; }
+.card-location, .card-salary-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+.card-salary-inline { color: var(--primary); }
+.card-salary-inline svg, .card-location svg { flex-shrink: 0; }
+
+/* Badges */
+.card-badges {
+  display: flex;
+  gap: .4rem;
+  flex-wrap: wrap;
+}
 .badge {
-  padding: .36rem .78rem; border-radius: 999px; font-size: .73rem; font-weight: 700;
+  padding: .28rem .65rem;
+  border-radius: 6px;
+  font-size: .71rem;
+  font-weight: 700;
 }
-.badge-type-estagio { background: rgba(0,108,91,.10); color: var(--primary); }
-.badge-type-aprendiz { background: rgba(0,164,153,.12); color: var(--accent-dark); }
-.badge-remote { background: rgba(0,164,153,.12); color: var(--accent-dark); }
-.badge-hybrid { background: rgba(0,108,91,.08); color: var(--primary); }
-.badge-presential { background: rgba(99,102,106,.10); color: var(--gray); }
-.card-chips {
-  display:flex; gap:.6rem; flex-wrap:wrap; margin-bottom:.95rem;
+.badge-type-estagio  { background: rgba(0,108,91,.08);  color: #005247; }
+.badge-type-aprendiz { background: rgba(0,164,153,.12); color: #007A70; }
+.badge-remote     { background: rgba(0,164,153,.10); color: #007A70; }
+.badge-hybrid     { background: rgba(0,108,91,.08);  color: #005247; }
+.badge-presential { background: rgba(99,102,106,.09); color: #555; }
+
+/* Data publicação */
+.card-date {
+  font-size: .74rem;
+  color: var(--muted);
+  font-weight: 500;
 }
-.info-chip {
-  display:inline-flex; align-items:center; gap:.42rem;
-  padding:.48rem .72rem;
-  background:#F6FAF9;
-  border:1px solid rgba(0,108,91,.08);
-  border-radius:12px;
-  color:var(--muted); font-size:.76rem; font-weight:700;
-}
-.card-bottom {
-  display:flex; align-items:stretch; justify-content:space-between;
-  gap:1rem; margin-top:auto;
-}
-.salary-box {
-  min-width: 185px;
-  background: linear-gradient(180deg, #F7FBFA 0%, #EEF6F4 100%);
-  border:1px solid rgba(0,108,91,.08);
-  border-radius:16px;
-  padding:.85rem 1rem;
-}
-.salary-label {
-  display:block; font-size:.74rem; color:var(--muted); font-weight:700; margin-bottom:.18rem;
-}
-.card-salary { font-weight: 800; font-size: 1.16rem; color: var(--text); }
-.card-date { font-size: .78rem; color: var(--muted); margin-top:.18rem; }
-.card-side {
-  min-width: 220px;
-  display:flex; flex-direction:column; justify-content:space-between; gap:.9rem;
-  padding-left:.2rem;
-}
-.side-top {
-  display:flex; justify-content:flex-end;
+
+/* Botão rodapé */
+.card-footer {
+  margin-top: auto;
+  padding: 0 1.25rem 1.1rem;
 }
 .btn-apply {
-  width:100%;
-  padding: .98rem 1.1rem;
-  background: linear-gradient(135deg, var(--accent), var(--primary));
-  color: white; border: none; border-radius: 14px; font-size: .92rem; font-weight: 700;
-  cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif;
-  transition: transform .2s, box-shadow .2s;
+  display: block;
+  width: 100%;
+  padding: .82rem 1rem;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: .88rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  text-align: center;
+  text-decoration: none;
+  transition: background .18s ease, transform .18s ease;
+  letter-spacing: .01em;
 }
-.btn-apply:hover { transform: translateY(-1px); box-shadow: 0 8px 18px rgba(0,108,91,.25); }
-.mini-apply {
-  margin-top:.8rem;
+.btn-apply:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
 }
-.mini-apply .btn-apply { width:auto; min-width:156px; }
+
+/* Manter compatibilidade (não usado mais no featured) */
+.job-card-main { display: contents; }
+.card-side, .side-top, .side-salary-highlight, .side-salary-label,
+.side-salary-value, .side-salary-period, .side-meta, .side-meta-item,
+.salary-box, .salary-label, .card-salary, .card-bottom,
+.card-chips, .info-chip, .mini-apply, .card-row-meta, .card-dot { display: none !important; }
+/* card-footer não ocultar */
+.card-footer, .card-footer .btn-apply { display: block !important; }
 
 /* ── LOADING / EMPTY ── */
 .loading { text-align: center; padding: 4rem 2rem; }
@@ -490,7 +389,7 @@ img { max-width: 100%; }
   .search-row .search-input-wrap:first-child { grid-column: 1 / -1; }
   .filters-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .sort-select, .btn-clear { width:100%; }
-  .job-card.featured { grid-template-columns: 1fr; }
+  /* featured sem grid especial */
   .card-side { min-width: 0; padding-left: 0; }
   .side-top { justify-content:flex-start; }
 }
@@ -501,14 +400,14 @@ img { max-width: 100%; }
   .page-header { padding: 92px 1rem 1.5rem; }
   .page-header .eyebrow { font-size:.74rem; }
   .page-header p { font-size:.93rem; }
-  .filters-wrap { padding: 0 1rem; margin-top: -.45rem; }
+  .filters-wrap { padding: 0 1rem; margin-top: -2.2rem; }
   .filters-card { padding: 1rem; border-radius: 18px; }
   .search-row { grid-template-columns: 1fr; }
   .filters-row { grid-template-columns: 1fr 1fr; }
-  .results-wrap { padding: 1.2rem 1rem 3rem; }
+  .results-wrap { padding: 1.2rem 1rem 3rem; border-radius: 22px; }
   .results-header { align-items:flex-start; }
-  .jobs-grid { grid-template-columns: 1fr; }
-  .job-card, .job-card.featured { padding: 1rem; }
+  .jobs-grid { grid-template-columns: 1fr; gap: .75rem; }
+  .job-card { border-radius: 14px; }
   .card-top { gap: .85rem; }
   .company-logo { width: 56px; height: 56px; border-radius: 16px; }
   .card-bottom { flex-direction: column; }
@@ -521,11 +420,232 @@ img { max-width: 100%; }
   .page-header .hero-stat { width:100%; justify-content:center; }
 }
 
+
+.hero-image{
+  width:100%;
+  height:100%;
+  min-height:260px;
+  border-radius:24px;
+  background-size:cover;
+  background-position:center;
+  position:relative;
+  overflow:hidden;
+}
+.hero-image::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg, rgba(0,108,91,0.75), rgba(0,164,153,0.45));
+}
+
+
+/* V30 vagas hero */
+.hero, .hero-vagas, .vagas-hero{
+  background:
+    radial-gradient(circle at 18% 16%, rgba(0,164,153,.18), transparent 18%),
+    radial-gradient(circle at 82% 18%, rgba(0,108,91,.14), transparent 16%),
+    linear-gradient(135deg, #f7fbfa 0%, #eef6f3 45%, #e6f6f4 100%) !important;
+  border:1px solid rgba(0,108,91,.10);
+  box-shadow:0 18px 42px rgba(0,64,54,.08);
+}
+.hero::before, .hero-vagas::before, .vagas-hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.22) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.22) 1px, transparent 1px);
+  background-size:140px 140px;
+  mask-image:linear-gradient(180deg, rgba(0,0,0,.12), transparent 85%);
+  pointer-events:none;
+}
+.hero h1, .hero-vagas h1, .vagas-hero h1{
+  color: var(--text) !important;
+}
+.hero p, .hero-vagas p, .vagas-hero p{
+  color: var(--muted) !important;
+}
 </style>
   <link rel="stylesheet" href="public-navbar.css">
+  <link rel="stylesheet" href="public-nav-modal.css">
   <link rel="stylesheet" href="public-footer.css">
   <link rel="stylesheet" href="public-responsive.css">
+  <link rel="stylesheet" href="public-theme.css">
   <link rel="stylesheet" href="public-design-system.css">
+  <link rel="stylesheet" href="public-tech-background.css">
+
+<style id="v23b-alive-tweak">
+  .page-hero,
+  .hero-section,
+  .hero-wrap{
+    box-shadow: 0 22px 54px rgba(0,64,54,.16);
+  }
+  .page-hero{
+    background:
+      radial-gradient(circle at 18% 18%, rgba(0,164,153,.18), transparent 20%),
+      linear-gradient(135deg,#004c40 0%, #006C5B 52%, #00A499 100%) !important;
+  }
+  .page-hero h1,
+  .page-hero .hero-title,
+  .page-hero .page-title{
+    color:#fff !important;
+  }
+  .page-hero p,
+  .page-hero .hero-subtitle,
+  .page-hero .page-subtitle{
+    color:rgba(255,255,255,.88) !important;
+  }
+  .form-card,
+  .section-card,
+  .empresa-panel,
+  .job-card,
+  .benefit-card,
+  .recurso-card{
+    box-shadow:0 18px 42px rgba(0,64,54,.10) !important;
+  }
+
+.hero-image{
+  width:100%;
+  height:100%;
+  min-height:260px;
+  border-radius:24px;
+  background-size:cover;
+  background-position:center;
+  position:relative;
+  overflow:hidden;
+}
+.hero-image::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg, rgba(0,108,91,0.75), rgba(0,164,153,0.45));
+}
+
+
+/* V30 vagas hero */
+.hero, .hero-vagas, .vagas-hero{
+  background:
+    radial-gradient(circle at 18% 16%, rgba(0,164,153,.18), transparent 18%),
+    radial-gradient(circle at 82% 18%, rgba(0,108,91,.14), transparent 16%),
+    linear-gradient(135deg, #f7fbfa 0%, #eef6f3 45%, #e6f6f4 100%) !important;
+  border:1px solid rgba(0,108,91,.10);
+  box-shadow:0 18px 42px rgba(0,64,54,.08);
+}
+.hero::before, .hero-vagas::before, .vagas-hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.22) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.22) 1px, transparent 1px);
+  background-size:140px 140px;
+  mask-image:linear-gradient(180deg, rgba(0,0,0,.12), transparent 85%);
+  pointer-events:none;
+}
+.hero h1, .hero-vagas h1, .vagas-hero h1{
+  color: var(--text) !important;
+}
+.hero p, .hero-vagas p, .vagas-hero p{
+  color: var(--muted) !important;
+}
+</style>
+
+<link rel="stylesheet" href="public-media-slots.css">
+  <link rel="stylesheet" href="public-hero-unified.css">
+  <link rel="stylesheet" href="public-mobile-refinements.css">
+
+<style id="vagas-hero-pro-v3">
+  .vagas-hero-clean{
+    position:relative;
+    padding:92px 24px 108px;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,.94) 0%, rgba(240,247,245,.92) 100%),
+      url('bg-tech-green.jpg') center/cover no-repeat;
+    overflow:hidden;
+  }
+  .vagas-hero-clean::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg, rgba(255,255,255,.90), rgba(255,255,255,.78));
+    pointer-events:none;
+  }
+  .vagas-hero-clean-inner{
+    position:relative;
+    z-index:1;
+    max-width:980px;
+    margin:0 auto;
+    min-height:300px;
+    border-radius:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+  }
+  .vagas-hero-clean-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:11px 18px;
+    border-radius:999px;
+    background:#fff;
+    border:1px solid rgba(0,108,91,.12);
+    box-shadow:0 12px 24px rgba(0,64,54,.06);
+    color:var(--primary);
+    font-size:.95rem;
+    font-weight:700;
+    margin-bottom:20px;
+  }
+  .vagas-hero-clean h1{
+    margin:0 0 16px;
+    font-family:'Clash Display',sans-serif;
+    font-size:clamp(2.8rem, 5.6vw, 4.75rem);
+    line-height:1.03;
+    letter-spacing:-.05em;
+    color:#173630;
+  }
+  .vagas-hero-clean h1 span{ color:var(--primary); }
+  .vagas-hero-clean p{
+    max-width:900px;
+    margin:0;
+    font-size:clamp(1rem, 1.35vw, 1.18rem);
+    line-height:1.62;
+    color:#5f6f6b;
+  }
+  .vagas-hero-clean p strong{ color:#5a6764; font-weight:800; }
+  .vagas-hero-clean-stats{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:12px;
+    margin-top:22px;
+  }
+  .vagas-hero-clean-stat{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:11px 18px;
+    border-radius:999px;
+    background:#fff;
+    border:1px solid rgba(0,108,91,.12);
+    box-shadow:0 10px 22px rgba(0,64,54,.05);
+    color:var(--primary);
+    font-size:.95rem;
+    font-weight:700;
+  }
+  @media (max-width: 900px){
+    .vagas-hero-clean{ padding:86px 18px 92px; }
+    .vagas-hero-clean-inner{ min-height:auto; padding:24px 0 8px; }
+    .vagas-hero-clean h1{ font-size:clamp(2.2rem, 9vw, 3.3rem); }
+    .vagas-hero-clean p br{ display:none; }
+  }
+  @media (max-width: 640px){
+    .vagas-hero-clean-badge,
+    .vagas-hero-clean-stat{ width:100%; }
+  }
+</style>
+
 </head>
 <body>
 <nav>
@@ -584,22 +704,24 @@ img { max-width: 100%; }
 <!-- MOBILE DRAWER -->
 
 
-<div class="page-header">
-  <div class="eyebrow">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-    Portal oficial de oportunidades do polo
+<section class="vagas-hero-clean" aria-label="Apresentação da página de vagas">
+  <div class="vagas-hero-clean-inner">
+    <div class="vagas-hero-clean-badge">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+      Portal oficial de oportunidades do polo
+    </div>
+    <h1>Vagas de <span>estágio</span> &amp; emprego</h1>
+    <p>Encontre oportunidades para alunos da <strong>Universidade Anhembi Morumbi — Polo Bauru Centro.</strong><br>Filtre por área, local e modalidade para chegar mais rápido na vaga certa.</p>
+    <div class="vagas-hero-clean-stats">
+      <span class="vagas-hero-clean-stat">+80 vagas publicadas</span>
+      <span class="vagas-hero-clean-stat">+35 empresas parceiras</span>
+      <span class="vagas-hero-clean-stat">Atualização frequente</span>
+    </div>
   </div>
-  <h1>Vagas de <span>estágio</span> &amp; emprego</h1>
-  <p>Encontre oportunidades para alunos da <strong>Universidade Anhembi Morumbi — Polo Bauru Centro</strong>. Filtre por área, local e modalidade para chegar mais rápido na vaga certa.</p>
-  <div class="hero-stats">
-    <span class="hero-stat">+80 vagas publicadas</span>
-    <span class="hero-stat">+35 empresas parceiras</span>
-    <span class="hero-stat">Atualização frequente</span>
-  </div>
-</div>
+</section>
 
 <!-- FILTROS -->
-<div class="filters-wrap">
+<div id="filtros-vagas" class="filters-wrap">
   <div class="filters-card">
     <div class="search-row">
       <div class="search-input-wrap">
@@ -668,16 +790,23 @@ img { max-width: 100%; }
 
 <!-- FOOTER -->
 <footer class="public-footer">
-  <div class="public-footer-logo-wrap">
-    <img src="logo-conecta-white.png" alt="Conecta — Anhembi Morumbi — Polo Bauru Centro" class="public-footer-logo" />
+  <div class="public-footer-inner">
+    <div class="public-footer-logo-wrap">
+      <img src="logo-conecta-white.png" alt="Conecta — Anhembi Morumbi — Polo Bauru Centro" class="public-footer-logo" />
+    </div>
+    <div class="public-footer-contact" id="footer-contact">
+      <div class="public-footer-contact-title">Contato do portal</div>
+      <div class="public-footer-contact-items" id="footer-contact-items"></div>
+    </div>
+    <nav class="public-footer-nav" aria-label="Links do rodapé">
+      <a href="index.html">Início</a>
+      <a href="vagas.html">Vagas</a>
+      <a href="sobre.html">Sobre</a>
+      <a href="cadastro-empresa.html">Para Empresas</a>
+      <a href="termos.html">Termos &amp; Privacidade</a>
+    </nav>
+    <div class="public-footer-copy">© 2025 Universidade Anhembi Morumbi — Polo Bauru Centro. Todos os direitos reservados.</div>
   </div>
-  <div class="public-footer-nav">
-    <a href="index.html">Início</a>
-    <a href="vagas.html">Vagas</a>
-    <a href="sobre.html">Sobre</a>
-    <a href="termos.html">Termos &amp; Privacidade</a>
-  </div>
-  <p class="public-footer-copy">© 2025 Universidade Anhembi Morumbi — Polo Bauru Centro. Todos os direitos reservados.</p>
 </footer>
 
 <script>
@@ -788,67 +917,73 @@ function getInitial(empresa) {
 }
 
 function renderCard(j, delay, index) {
-  const isE = j.tipo === 'Estágio';
+  const isE       = j.tipo === 'Estágio';
   const typeClass = isE ? 'card-estagio' : 'card-aprendiz';
-  const badgeC = isE ? 'badge-type-estagio' : 'badge-type-aprendiz';
-  const modC = j.modalidade === 'Remoto' ? 'badge-remote' : j.modalidade === 'Híbrido' ? 'badge-hybrid' : 'badge-presential';
-  const empresa = j.confidencial ? 'Empresa confidencial' : (j.empresas?.nome_fantasia || j.empresas?.razao_social || 'Empresa parceira');
-  const initial = j.confidencial ? '•' : getInitial(empresa);
-  const city = j.cidade || 'Bauru - SP';
-  const featured = index === 0 ? ' featured' : '';
+  const badgeC    = isE ? 'badge-type-estagio' : 'badge-type-aprendiz';
+  const modC      = j.modalidade === 'Remoto'  ? 'badge-remote'
+                  : j.modalidade === 'Híbrido' ? 'badge-hybrid' : 'badge-presential';
+  const empresa   = j.confidencial
+                  ? 'Empresa confidencial'
+                  : (j.empresas?.nome_fantasia || j.empresas?.razao_social || 'Empresa parceira');
+  const initial   = j.confidencial ? '•' : (empresa || 'V').trim().charAt(0).toUpperCase();
+  const city      = j.cidade || 'Bauru - SP';
+  const featured  = index === 0;
   const modalidade = j.modalidade || 'Presencial';
-  const periodo = j.periodo || 'Período a combinar';
-  const escolaridade = j.escolaridade || 'Ensino superior';
-  const horas = j.horas || 'Carga horária flexível';
-  const published = timeAgo(j.created_at);
-  return '<div class="job-card ' + typeClass + featured + '" style="animation-delay:' + delay + 'ms" onclick="window.location.href=\'vaga.html?id=' + j.id + '\'">' +
-    '<div class="job-card-main">' +
-      '<div class="card-top">' +
-        '<div class="company-logo">' + initial + '</div>' +
-        '<div class="card-meta">' +
-          '<div class="card-company">' + empresa + '</div>' +
-          '<div class="card-title">' + j.titulo + '</div>' +
-        '</div>' +
-      '</div>' +
-      '<div class="card-location">' +
-        '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-6-5.33-6-11a6 6 0 1 1 12 0c0 5.67-6 11-6 11z"/><circle cx="12" cy="10" r="2.5"/></svg>' +
-        '<span>' + city + '</span>' +
-      '</div>' +
-      '<div class="card-badges">' +
-        '<span class="badge ' + badgeC + '">' + (j.tipo || 'Vaga') + '</span>' +
-        '<span class="badge ' + modC + '">' + modalidade + '</span>' +
-        '<span class="badge" style="background:rgba(99,102,106,.08);color:var(--gray)">' + periodo + '</span>' +
-      '</div>' +
-      '<div class="card-chips">' +
-        '<span class="info-chip">' +
-          '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7H14a3.5 3.5 0 0 1 0 7H6"/></svg>' +
-          formatMoney(j.bolsa) + (Number(j.bolsa||0) ? '/mês' : '') +
-        '</span>' +
-        '<span class="info-chip">' +
-          '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>' +
-          horas +
-        '</span>' +
-        '<span class="info-chip">' +
-          '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10v6"/><path d="M12 6v12"/><path d="M6 12h12"/><path d="M4 20h16"/><path d="M4 10l8-6 8 6"/></svg>' +
-          escolaridade +
-        '</span>' +
-      '</div>' +
-      '<div class="card-bottom">' +
-        '<div class="salary-box">' +
-          '<span class="salary-label">Bolsa / faixa</span>' +
-          '<div class="card-salary">' + formatMoney(j.bolsa) + '</div>' +
-          '<div class="card-date">' + published + '</div>' +
-        '</div>' +
-        (featured ? '' : '<div class="mini-apply"><button class="btn-apply" onclick="event.stopPropagation();window.location.href=\'vaga.html?id=' + j.id + '\'">Candidatar-se</button></div>') +
-      '</div>' +
-    '</div>' +
-    (featured ? '<div class="card-side">' +
-      '<div class="side-top"><span class="badge ' + badgeC + '">' + (j.tipo || 'Vaga') + '</span></div>' +
-      '<div>' +
-        '<button class="btn-apply" onclick="event.stopPropagation();window.location.href=\'vaga.html?id=' + j.id + '\'">Candidatar-se</button>' +
-      '</div>' +
-    '</div>' : '') +
-  '</div>';
+  const periodo    = j.periodo    || 'A combinar';
+  const published  = timeAgo(j.created_at);
+  const salario    = formatMoney(j.bolsa);
+  const vagaUrl    = `vaga.html?id=${encodeURIComponent(j.id)}`;
+
+  const star = featured
+    ? `<div class="card-featured-star" title="Vaga em destaque">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
+      </div>`
+    : '';
+
+  const salChip = Number(j.bolsa || 0)
+    ? `<span class="card-salary-inline">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="12" y1="1" x2="12" y2="23"/>
+          <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7H14a3.5 3.5 0 0 1 0 7H6"/>
+        </svg>${salario}/mês</span>`
+    : '';
+
+  return `<div class="job-card ${typeClass}"
+    style="animation-delay:${delay}ms"
+    onclick="window.location.href='${vagaUrl}'">
+    ${star}
+    <div class="job-card-body">
+      <div class="card-top">
+        <div class="company-logo">${initial}</div>
+        <div class="card-meta">
+          <div class="card-company">${empresa}</div>
+          <div class="card-title">${j.titulo}</div>
+        </div>
+      </div>
+      <div class="card-info-row">
+        <span class="card-location">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 21s-6-5.33-6-11a6 6 0 1 1 12 0c0 5.67-6 11-6 11z"/>
+            <circle cx="12" cy="10" r="2.5"/>
+          </svg>${city}
+        </span>
+        ${salChip}
+      </div>
+      <div class="card-badges">
+        <span class="badge ${badgeC}">${j.tipo || 'Vaga'}</span>
+        <span class="badge ${modC}">${modalidade}</span>
+        <span class="badge badge-presential">${periodo}</span>
+      </div>
+      <div class="card-date">${published}</div>
+    </div>
+    <div class="card-footer">
+      <button class="btn-apply" onclick="event.stopPropagation();window.location.href='${vagaUrl}'">
+        Ver mais detalhes
+      </button>
+    </div>
+  </div>`;
 }
 
 function renderPagination(totalPages) {
@@ -959,6 +1094,13 @@ loadVagas();
     </div>
   </div>
 </div>
+  <script src="public-site-config.js"></script>
+<script src="public-assets-map.js"></script>
+<script src="public-navbar-config.js"></script>
   <script src="public-navbar.js"></script>
+<script src="public-media-slots.js"></script>
+<script>loadGlobalBackground();</script>
+  <script src="public-footer-config.js"></script>
+<script src="public-footer.js"></script>
 </body>
 </html>
